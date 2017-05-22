@@ -37,6 +37,8 @@ gem 'devise', '~> 4.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 # Dotenv
 gem 'dotenv-rails', '~> 2.2', '>= 2.2.1', :groups => [:development, :test]
+# Omniauth
+gem 'omniauth-facebook', '~> 4.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
