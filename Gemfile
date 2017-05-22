@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.3'
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
+# Dotenv
+gem 'dotenv-rails', '~> 2.2', '>= 2.2.1', :groups => [:development, :test]
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
