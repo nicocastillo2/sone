@@ -278,4 +278,9 @@ Devise.setup do |config|
                   Rails.application.secrets.facebook_key,
                   Rails.application.secrets.facebook_secret,
                   callback_url: "#{ENV['APP_FULL_PATH']}/users/auth/facebook/callback"
+
+  config.omniauth :google_oauth2,
+                  Rails.application.secrets.google_client_id,
+                  Rails.application.secrets.google_client_secret,
+                  callback_url: "#{ENV['APP_FULL_PATH']}/users/auth/google_oauth2/callback"
 end

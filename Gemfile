@@ -39,6 +39,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'dotenv-rails', '~> 2.2', '>= 2.2.1', :groups => [:development, :test]
 # Omniauth
 gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-google-oauth2', '~> 0.4.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
