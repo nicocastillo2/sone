@@ -41,6 +41,8 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 # Bootstrap generators
 gem 'bootstrap-generators', '~> 3.3', '>= 3.3.4'
+# TODO: Remove gem if not necessary
+gem 'record_tag_helper', '~> 1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
