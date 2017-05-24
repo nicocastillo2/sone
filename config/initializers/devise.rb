@@ -277,5 +277,5 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   Rails.application.secrets.facebook_key,
                   Rails.application.secrets.facebook_secret,
-                  callback_url: 'http://localhost:3000/users/auth/facebook/callback'
+                  callback_url: "#{ENV['APP_FULL_PATH']}/users/auth/facebook/callback"
 end
