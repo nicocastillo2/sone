@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0'
 # Use postgresql as the database for Active Record
@@ -40,6 +39,8 @@ gem 'dotenv-rails', '~> 2.2', '>= 2.2.1', :groups => [:development, :test]
 # Omniauth
 gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
+# Bootstrap generators
+gem 'bootstrap-generators', '~> 3.3', '>= 3.3.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
