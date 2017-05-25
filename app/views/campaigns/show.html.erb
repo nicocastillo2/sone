@@ -34,11 +34,12 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Nombre</th>
         <th>Email</th>
         <th>Estatus</th>
         <th>Fecha de envío</th>
-        <th>Answer</th>
+        <th>Puntuación</th>
+        <th>Comentario</th>
       </tr>
     </thead>
 
@@ -49,6 +50,7 @@
           <td><%= contact.email %></td>
           <td><%= contact.status %></td>
           <td><%= contact.sent_date.to_s %></td>
+          <td><%= contact.answer.score %></td>
           <td><%= contact.answer.comment %></td>
         </tr>
       <% end %>
