@@ -17,25 +17,29 @@ AdminUser.create(username: 'nico',
 
 puts '2 Admin User created'
 
-5.times do |campaign|
+5.times do |campaign_num|
   color = '#' + "%06x" % (rand * 0xffffff)
   status = rand(0..1)
-  campaign = Campaign.create(name: "Campaign #{campaign + 1}",
+  campaign = Campaign.create(name: "Campaign #{campaign_num + 1}",
                              sender_name: @user.username,
                              sender_email: @user.email,
                              logo: 'Logo',
                              color: color,
-                             user_id: @user.id)
-  15.times do |contact|
-    Contact.create(name: "Contact #{contact}",
-                   email: "contact_#{contact}@mail.com",
+                             user: @user)
+  15.times do |contact_num|
+    contact = Contact.create(name: "Contact #{contact_num + 1}",
+                   email: "contact_#{contact_num + 1}@mail.com",
                    sent_date: nil,
                    status: status,
                    campaign: campaign)
+    Answer.create(score: rand(1..10),
+                  comment: "Answer of contact #{contact_num + 1}",
+                  contact: contact)
   end
 end
 
-puts '5 campaigns created for User with 15 contacts added to each campaign'
+puts '5 campaigns created for User with 15 contacts added to each campaign and
+every contact created an answer'
 
 color = '#' + "%06x" % (rand * 0xffffff)
 admin_campaign = Campaign.create(name: 'Admin Campaign',
@@ -44,13 +48,17 @@ admin_campaign = Campaign.create(name: 'Admin Campaign',
                                  logo: 'Logo',
                                  color: color,
                                  user_id: @admin.id)
-15.times do |contact|
+15.times do |contact_num|
   status = rand(0..1)
-  Contact.create(name: "Contact #{contact}",
-                 email: "contact_#{contact}@mail.com",
-                 sent_date: nil,
-                 status: status,
-                 campaign: admin_campaign)
+  contact = Contact.create(name: "Contact #{contact_num + 1}",
+                           email: "contact_#{contact_num + 1}@mail.com",
+                           sent_date: nil,
+                           status: status,
+                           campaign: admin_campaign)
+  Answer.create(score: rand(1..10),
+                comment: "Answer of contact #{contact_num + 1}",
+                contact: contact)
 end
 
-puts '1 campaign created for Admin with 15 contacts added to it'
+puts '1 campaign created for Admin with 15 contacts added to it and every
+contact created an answer'

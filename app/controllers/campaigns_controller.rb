@@ -10,7 +10,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    @campaign = Campaign.includes(:contacts).find(params[:id])
+    @campaign = Campaign.includes(contacts: [:answer]).find(params[:id])
   end
 
   # GET /campaigns/new

@@ -38,6 +38,7 @@
         <th>Email</th>
         <th>Estatus</th>
         <th>Fecha de envío</th>
+        <th>Answer</th>
       </tr>
     </thead>
 
@@ -48,6 +49,7 @@
           <td><%= contact.email %></td>
           <td><%= contact.status %></td>
           <td><%= contact.sent_date.to_s %></td>
+          <td><%= contact.answer.comment %></td>
         </tr>
       <% end %>
     </tbody>
