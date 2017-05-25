@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_campaign, only: [:edit, :update, :destroy]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -10,6 +10,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    @campaign = Campaign.includes(:contacts).find(params[:id])
   end
 
   # GET /campaigns/new
