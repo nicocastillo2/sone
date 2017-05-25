@@ -43,6 +43,8 @@ gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'bootstrap-generators', '~> 3.3', '>= 3.3.4'
 # TODO: Remove gem if not necessary
 gem 'record_tag_helper', '~> 1.0'
+# Carrierwave
+gem 'carrierwave', '~> 1.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

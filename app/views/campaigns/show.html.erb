@@ -21,7 +21,8 @@
   <dd><%= @campaign.sender_email %></dd>
 
   <dt>Logo:</dt>
-  <dd><%= @campaign.logo %></dd>
+  <!-- <dd><%#= @campaign.logo %></dd> -->
+  <dd><%= image_tag(@campaign.logo_url.to_s) %></dd>
 
   <dt>Color:</dt>
   <dd><%= @campaign.color %></dd>
