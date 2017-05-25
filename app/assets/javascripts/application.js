@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-colorpicker
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $('.colorpicker').colorpicker();
+});

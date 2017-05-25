@@ -18,21 +18,23 @@ AdminUser.create(username: 'nico',
 puts '2 Admin User created'
 
 5.times do |campaign|
+  color = '#' + "%06x" % (rand * 0xffffff)
   Campaign.create(name: "Campaign #{campaign + 1}",
                   sender_name: @user.username,
                   sender_email: @user.email,
                   logo: 'Logo',
-                  color: 'color',
+                  color: color,
                   user_id: @user.id)
 end
 
 puts '5 campaigns created for Test'
 
+color = '#' + "%06x" % (rand * 0xffffff)
 Campaign.create(name: 'Admin Campaign',
                 sender_name: @admin.username,
                 sender_email: @admin.email,
                 logo: 'Logo',
-                color: 'color',
+                color: color,
                 user_id: @admin.id)
 
 puts '1 campaigns created for Admin'
