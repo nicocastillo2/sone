@@ -11,6 +11,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1.json
   def show
     @campaign = Campaign.includes(contacts: [:answer]).find(params[:id])
+    @nps = Nps.for_campaign(@campaign.id)
   end
 
   # GET /campaigns/new

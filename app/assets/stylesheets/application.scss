@@ -1,7 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-colorpicker';
+@import 'd3c3_rails';
 
 .main-container {
   margin-top: 50px;
+}
+
+.c3-target-NPS .c3-line {
+  stroke-width: 5px;
+}
+
+.c3-target-NPS.c3-focused path.c3-line, .c3-target-NPS.c3-focused path.c3-step {
+  stroke-width: 5px;
 }

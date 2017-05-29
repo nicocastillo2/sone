@@ -29,6 +29,39 @@
 
 </dl>
 
+<div id="nps_score"></div>
+<%= javascript_tag do %>
+  <%=
+    graph_generate(
+      'nps_score',
+      data: {
+        x: 'x',
+        columns: [
+          ['x'] + @nps.dates,
+          ['NPS'] + @nps.nps,
+          ['Detractors'] + @nps.detractors,
+          ['Passives'] + @nps.passives,
+          ['Promoters'] + @nps.promoters
+        ],
+        axes: {
+          'NPS' => 'y',
+          'Detractors' => 'y2',
+          'Passives' => 'y2',
+          'Promoters' => 'y2'
+        }
+      },
+      axis: {
+        x: {
+          type: 'category'
+        },
+        y2: {
+          show: true
+        }
+      }
+    )
+  %>
+<% end %>
+
 <h1>Campaign Contacts</h1>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">

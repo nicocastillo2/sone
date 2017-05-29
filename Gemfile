@@ -47,6 +47,8 @@ gem 'record_tag_helper', '~> 1.0'
 gem 'carrierwave', '~> 1.1'
 # Bootstrap color-picker
 gem 'bootstrap-colorpicker-rails', '~> 0.4.0'
+# C3 Graphics
+gem 'd3c3-rails', '~> 0.1.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

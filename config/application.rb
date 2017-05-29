@@ -1,4 +1,5 @@
 require_relative 'boot'
+require 'pp'
 
 require 'rails/all'
 

@@ -27,6 +27,7 @@ puts '2 Admin User created'
                              color: color,
                              user: @user)
   15.times do |contact_num|
+    days_before = contact_num % 3
     contact = Contact.create(name: "Contact #{contact_num + 1}",
                    email: "contact_#{contact_num + 1}@mail.com",
                    sent_date: nil,
@@ -34,7 +35,8 @@ puts '2 Admin User created'
                    campaign: campaign)
     Answer.create(score: rand(1..10),
                   comment: "Answer of contact #{contact_num + 1}",
-                  contact: contact)
+                  contact: contact,
+                  created_at: Time.now - days_before.days)
   end
 end
 
