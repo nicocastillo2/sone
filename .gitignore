@@ -20,3 +20,6 @@
 
 # Dotenv files
 /.env
+
+# Local tmp storage
+/public/uploads/tmp/
