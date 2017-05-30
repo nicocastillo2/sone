@@ -11,6 +11,6 @@ class Campaign < ApplicationRecord
     file_content = CSV.foreach(file.path, headers: true) do |row|
       contacts << Contact.new(name: row['name'], email: row['email'], campaign_id: campaign_id)
     end
-    Contact.import(contacts)
+    Contact.import(contacts, batch_size: 1000)
   end
 end
