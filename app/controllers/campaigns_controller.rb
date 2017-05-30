@@ -27,9 +27,12 @@ class CampaignsController < ApplicationController
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(campaign_params.merge(user_id: current_user.id))
-
+    puts 'INSIDE CAMPAIGN CREATE'
+    pp params
+    puts 'mmm' * 30
     respond_to do |format|
       if @campaign.save
+        Campaign.import_contacts(params[:campaign][:file], @campaign.id)
         format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
         format.json { render :show, status: :created, location: @campaign }
       else

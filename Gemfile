@@ -49,6 +49,8 @@ gem 'carrierwave', '~> 1.1'
 gem 'bootstrap-colorpicker-rails', '~> 0.4.0'
 # C3 Graphics
 gem 'd3c3-rails', '~> 0.1.2'
+# Import csv
+gem 'activerecord-import', '~> 0.18.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

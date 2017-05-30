@@ -83,8 +83,8 @@
           <td><%= contact.email %></td>
           <td><%= contact.status %></td>
           <td><%= contact.sent_date.to_s %></td>
-          <td><%= contact.answer.score %></td>
-          <td><%= contact.answer.comment %></td>
+          <td><%= contact.answer&.score %></td>
+          <td><%= contact.answer&.comment %></td>
         </tr>
       <% end %>
     </tbody>
