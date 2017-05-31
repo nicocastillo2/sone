@@ -43,8 +43,10 @@ gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'bootstrap-generators', '~> 3.3', '>= 3.3.4'
 # TODO: Remove gem if not necessary
 gem 'record_tag_helper', '~> 1.0'
-# Carrierwave
+# Carrierwave, MiniMagick and Fog
 gem 'carrierwave', '~> 1.1'
+gem 'mini_magick', '~> 4.7'
+gem 'fog-aws', '~> 1.3'
 # Bootstrap color-picker
 gem 'bootstrap-colorpicker-rails', '~> 0.4.0'
 # C3 Graphics
