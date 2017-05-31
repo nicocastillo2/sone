@@ -44,8 +44,8 @@ gem 'bootstrap-generators', '~> 3.3', '>= 3.3.4'
 # TODO: Remove gem if not necessary
 gem 'record_tag_helper', '~> 1.0'
 # Carrierwave, MiniMagick and Fog
-gem 'fog', '~> 1.40'
-gem 'carrierwave', '~> 1.1'
+gem 'fog', require: 'fog/aws'
+gem 'carrierwave'
 gem 'mini_magick', '~> 4.7'
 # Bootstrap color-picker
 gem 'bootstrap-colorpicker-rails', '~> 0.4.0'
