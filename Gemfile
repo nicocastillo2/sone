@@ -46,7 +46,7 @@ gem 'record_tag_helper', '~> 1.0'
 # Carrierwave, MiniMagick and Fog
 gem 'carrierwave', '~> 1.1'
 gem 'mini_magick', '~> 4.7'
-gem 'fog-aws', '~> 1.3'
+gem 'fog', '~> 1.40'
 # Bootstrap color-picker
 gem 'bootstrap-colorpicker-rails', '~> 0.4.0'
 # C3 Graphics
