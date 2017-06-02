@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.0'
+gem 'rails', '5.1.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -53,6 +53,8 @@ gem 'bootstrap-colorpicker-rails', '~> 0.4.0'
 gem 'd3c3-rails', '~> 0.1.2'
 # Import csv
 gem 'activerecord-import', '~> 0.18.3'
+# Mail Send
+gem 'sparkpost_rails', :git => 'https://github.com/KheperIo/sparkpost_rails.git'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
