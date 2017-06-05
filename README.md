@@ -15,4 +15,6 @@ gem 'bootstrap-colorpicker-rails', '~> 0.4.0'
 gem 'd3c3-rails', '~> 0.1.2'
 gem 'activerecord-import', '~> 0.18.3'
 El archivo csv debe de tener un formato específico (headers)
+gem 'sparkpost_rails', :git => 'https://github.com/KheperIo/sparkpost_rails.git'
+Fork para ajustarn la compativilidad con rails 5.1.0 
 ```
