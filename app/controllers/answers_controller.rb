@@ -1,19 +1,15 @@
 class AnswersController < ApplicationController
+
   def new
-    puts '*' * 30
-    puts 'INSIDE NEW'
-    @answer = Answer.new
+    contact = Contact.find_by token: params[:token]
+    @answer = Answer.create(score: params[:score], contact: contact)
+    contact.update(token: nil)
   end
 
-  def create
-    puts '*' * 30
-    puts 'INSIDE CREATE'
-    p params
+  def update
+    answer = Answer.find(params[:id])
+    answer.update(comment: params[:answer][:comment])
+    redirect_to root_path
   end
 
-  private
-
-    def answer_params
-      params.require(:answer).permit(:score, :comment)
-    end
 end

@@ -18,9 +18,9 @@
         {{name}}
       </tr>
       <tr>
-      <% (1..9).each do |index| %>
+      <% (1..10).each do |index| %>
         <td>
-          <a href="<%=new_answer_url%>/{{token}}?score=<%=index%>"><%= index %></a>
+          <a href="<%=URI.decode(new_answer_url(token: '{{token}}'))%>?score=<%=index%>"><%= index %></a>
         </td>
       <% end %>
       </tr>
