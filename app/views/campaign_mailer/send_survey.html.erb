@@ -20,7 +20,7 @@
       <tr>
       <% (1..9).each do |index| %>
         <td>
-          <a href="{{token}}?score=<%=index%>"><%= index %></a>
+          <a href="<%=new_answer_url%>/{{token}}?score=<%=index%>"><%= index %></a>
         </td>
       <% end %>
       </tr>
