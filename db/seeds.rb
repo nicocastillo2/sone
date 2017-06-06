@@ -62,5 +62,28 @@ admin_campaign = Campaign.create(name: 'Admin Campaign',
                 contact: contact)
 end
 
+
+
+roberto = AdminUser.create(username: 'roberto',
+                          email: 'roberto@kheper.io',
+                          password: '123456',
+                          password_confirmation: '123456')
+
+campaign = Campaign.create(name: "Kheper",
+                             sender_name: "Roberto",
+                             sender_email: "roberto@kheper.io",
+                             logo: 'Logo',
+                             color: 'red',
+                             user: roberto)
+
+mails = ["roberto@kheper.io", "mauricio@kheper.io", "alejandro@kheper.io"]
+mails.each_with_index do |mail, index|
+  contact = Contact.create(name: "Kheper #{index}",
+                             email: mail,
+                             sent_date: nil,
+                             status: "not_sent",
+                             campaign: campaign)
+end
+
 puts '1 campaign created for Admin with 15 contacts added to it and every
 contact created an answer'
