@@ -2,11 +2,12 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Sone</title>
   <style type="text/css">
-    
+    a{
+      color: {{color}}
+    }
   </style>
 
 </head>
@@ -14,9 +15,12 @@
   <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tbody>
       <tr>
-      <% @hashes.each_with_index do |hash, index| %>
+        {{name}}
+      </tr>
+      <tr>
+      <% (1..9).each do |index| %>
         <td>
-          <a href="<%= hash %>"><%= index+1 %></a>
+          <a href="{{token}}?score=<%=index%>"><%= index %></a>
         </td>
       <% end %>
       </tr>
