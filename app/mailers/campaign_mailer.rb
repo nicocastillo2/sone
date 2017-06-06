@@ -10,7 +10,8 @@ class CampaignMailer < ApplicationMailer
       recipients_data << { substitution_data: { name: contact.name, token: contact.token, color: color } }
     end
     data = { html_content_only: true, recipients: recipients_data }
-    # mail(to: receiver, subject: "Test", body: "test correo gem", from: "roberto@kheper.io")
+    @logo_path = campaign.logo.url
+
     mail(to: recipients, subject: subject, from: sender, sparkpost_data: data)
   end
 

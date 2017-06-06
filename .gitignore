@@ -22,4 +22,4 @@
 /.env
 
 # Local tmp storage
-/public/uploads/tmp/
+/public/uploads
