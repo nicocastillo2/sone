@@ -69,6 +69,8 @@ class CampaignsController < ApplicationController
     respond_to do |format|
       format.js { flash.now[:notice] = 'Campaña enviada exitosamente.' }
     end
+    campaign = Campaign.includes(:contacts).find(params[:campaign_id])
+    campaign.contacts.update_all(status: 1)
   end
 
   private
