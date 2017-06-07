@@ -63,6 +63,14 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def generate_campaign_mailing
+    CampaignMailer.send_survey(params[:campaign_id], 'Campaña enviada via Sone', params[:sender_email]).deliver!
+    # TODO: Add/Render this flash message into flash messages partial
+    respond_to do |format|
+      format.js { flash.now[:notice] = 'Campaña enviada exitosamente.' }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign

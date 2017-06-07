@@ -63,6 +63,11 @@
 <% end %>
 
 <h1>Campaign Contacts</h1>
+
+<%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-primary', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
+<br>
+<br>
+
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
