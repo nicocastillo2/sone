@@ -4,19 +4,17 @@
   <div class="col-md-4">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal') do |f| %>
       <div class="form-group">
-        <%= f.label :email, class: 'control-label' %>
-        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :password, class: 'control-label' %>
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Contraseña' %>
       </div>
 
       <% if devise_mapping.rememberable? -%>
         <div class="form-group">
           <%= f.check_box :remember_me %>
-          <%= f.label :remember_me, class: 'control-label' %>
+          <%= f.label 'Recordarme', class: 'control-label' %>
         </div>
       <% end -%>
 

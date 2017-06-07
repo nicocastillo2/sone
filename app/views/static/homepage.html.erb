@@ -1,4 +1,7 @@
-<h1>Homepage</h1>
+<div class="jumbotron text-center">
+  <h1>Sone</h1>
+  <p>Customer Comfort</p>
+</div>
 <% if current_user %>
   <%= current_user.omniauth_name %>
   <%= image_tag(current_user.image) if current_user.image%>
