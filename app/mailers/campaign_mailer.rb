@@ -1,7 +1,7 @@
 class CampaignMailer < ApplicationMailer
 
   def send_survey(id_campaign, subject, sender)
-    campaign = Campaign.find(id_campaign)
+    campaign = Campaign.includes(:contacts).find(id_campaign)
     recipients = []
     recipients_data = []
     color = campaign.color
