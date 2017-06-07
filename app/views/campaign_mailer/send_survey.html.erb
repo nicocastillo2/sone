@@ -41,9 +41,6 @@
       <tr>
         <td>
           <% if @logo_path %>
-            <% puts '*'*60 %>
-            <% p root_url %>
-            <% @logo_path %>
             <img src="<%= (URI(root_url)+@logo_path).to_s %>">
           <% end %>
         </td>
