@@ -1,27 +1,26 @@
 <div class="page-header">
   <%= link_to campaigns_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+    Regresar
   <% end %>
   <%= link_to edit_campaign_path(@campaign), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+    Editar
   <% end %>
-  <h1>Show campaign</h1>
+  <h1>Campaña: <%= @campaign.name %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Name:</dt>
+  <dt>Nombre:</dt>
   <dd><%= @campaign.name %></dd>
 
-  <dt>Sender name:</dt>
+  <dt>Nombre del Remitente:</dt>
   <dd><%= @campaign.sender_name %></dd>
 
-  <dt>Sender email:</dt>
+  <dt>Email del Remitente:</dt>
   <dd><%= @campaign.sender_email %></dd>
 
   <dt>Logo:</dt>
-  <!-- <dd><%#= @campaign.logo %></dd> -->
   <dd><%= image_tag(@campaign.logo_url.to_s) %></dd>
 
   <dt>Color:</dt>
@@ -62,7 +61,7 @@
   %>
 <% end %>
 
-<h1>Campaign Contacts</h1>
+<h1>Contactos de la campañas</h1>
 
 <%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-primary', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
 <br>
