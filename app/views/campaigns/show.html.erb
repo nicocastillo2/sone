@@ -86,9 +86,9 @@
         <tr>
           <td><%= contact.name %></td>
           <td><%= contact.email %></td>
-          <td  class="estatus"><%= contact.status %></td>
-          <td><%= contact.sent_date.to_s %></td>
-          <td><%= contact.answer&.score %></td>
+          <td  class="status"><%= contact.status %></td>
+          <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
+          <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
           <td><%= contact.answer&.comment %></td>
         </tr>
       <% end %>

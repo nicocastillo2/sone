@@ -70,7 +70,9 @@ class CampaignsController < ApplicationController
       format.js { flash.now[:notice] = 'Campaña enviada exitosamente.' }
     end
     campaign = Campaign.includes(:contacts).find(params[:campaign_id])
-    campaign.contacts.update_all(status: 1)
+
+    @time = Time.now
+    campaign.contacts.update_all(status: 1, sent_date: @time)
   end
 
   private

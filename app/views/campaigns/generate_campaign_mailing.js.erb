@@ -1,2 +1,4 @@
 $('.main-container').prepend('<%= escape_javascript(render partial: "layouts/flash") %>');
-$('.estatus').html("sent");
+$('.status').html("sent");
+$('.sent_date').html('<%= @time.strftime "%d/%m/%Y" %>');
+$('.score').html("Pendiente");
