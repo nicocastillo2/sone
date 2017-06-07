@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/answers/new/:token', to: 'answers#new', as: 'new_answer'
   patch '/answers/:id', to: 'answers#update', as: 'edit_answer'
   put '/answers/:id', to: 'answers#update', as: nil
+  get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
 end
