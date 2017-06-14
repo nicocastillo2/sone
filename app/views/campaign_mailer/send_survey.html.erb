@@ -55,7 +55,7 @@
               <tr>
                 <% (1..10).each do |index| %>
                   <td>
-                    <a href="<%=URI.decode(new_answer_url(token: '{{token}}'))%>?score=<%=index%>"><%= index %></a>
+                    <a href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
                   </td>
                   <% end %>
               </tr>

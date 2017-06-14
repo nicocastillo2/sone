@@ -17,4 +17,6 @@ gem 'activerecord-import', '~> 0.18.3'
 El archivo csv debe de tener un formato específico (headers)
 gem 'sparkpost_rails', :git => 'https://github.com/KheperIo/sparkpost_rails.git'
 Fork para ajustarn la compativilidad con rails 5.1.0 
+gem 'openssl', '~> 2.0.0.beta.1'
+Para generar el token de la url de los email
 ```

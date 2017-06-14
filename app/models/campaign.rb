@@ -12,11 +12,5 @@ class Campaign < ApplicationRecord
       contacts << Contact.new(name: row['name'], email: row['email'], campaign_id: campaign_id)
     end
     Contact.import(contacts, batch_size: 1000)
-
-    campaign = Campaign.includes(:contacts).find(campaign_id)
-    campaign.contacts.each do |contact|
-      contact.asign_id
-      contact.save
-    end
   end
 end

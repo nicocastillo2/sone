@@ -55,6 +55,8 @@ gem 'd3c3-rails', '~> 0.1.2'
 gem 'activerecord-import', '~> 0.18.3'
 # Mail Send
 gem 'sparkpost_rails', :git => 'https://github.com/KheperIo/sparkpost_rails.git'
+# OpenSSL generate mail token
+gem 'openssl', '~> 2.0.0.beta.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
