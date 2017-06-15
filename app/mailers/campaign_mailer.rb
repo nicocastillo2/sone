@@ -7,7 +7,7 @@ class CampaignMailer < ApplicationMailer
     color = campaign.color
     campaign.contacts.each do |contact|
       recipients << contact.email
-      recipients_data << { substitution_data: { name: contact.name, token: CampaignsHelper.encrypt(contact.id.to_s), color: color } }
+      recipients_data << { substitution_data: { name: contact.name, token: CampaignsHelper.encrypt(contact.id.to_s), color: color }, address: { email: contact.email, header_to: contact.email } }
     end
     data = { html_content_only: true, recipients: recipients_data }
     @logo_path = campaign.logo.url

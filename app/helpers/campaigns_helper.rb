@@ -6,11 +6,11 @@ module CampaignsHelper
     cipher.key = ENV['OPENSSL_KEY']
     cipher.iv = ENV['OPENSSL_IV']
     encrypt_text = cipher.update(data) + cipher.final
-    Base64.encode64(encrypt_text)
+    Base64.urlsafe_encode64(encrypt_text)
   end
 
   def self.decrypt(data)
-    decode_text = Base64.decode64(data)
+    decode_text = Base64.urlsafe_decode64(data)
     cipher = OpenSSL::Cipher::AES256.new(:CBC)
     cipher.decrypt
     cipher.key = ENV['OPENSSL_KEY']
