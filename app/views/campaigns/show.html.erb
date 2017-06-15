@@ -81,7 +81,7 @@
     </thead>
 
     <tbody>
-      <% @campaign.contacts.each do |contact| %>
+      <% @contacts.each do |contact| %>
         <tr>
           <td><%= contact.name %></td>
           <td><%= contact.email %></td>
@@ -94,3 +94,6 @@
     </tbody>
   </table>
 </div>
+
+
+<%= will_paginate @contacts %>

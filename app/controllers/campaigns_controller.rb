@@ -11,6 +11,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1.json
   def show
     @campaign = Campaign.includes(contacts: [:answer]).find(params[:id])
+    @contacts = @campaign.contacts.paginate(:page => params[:page], :per_page => 50)
     @nps = Nps.for_campaign(@campaign.id)
   end
 
