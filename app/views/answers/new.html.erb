@@ -1,4 +1,4 @@
-<h2>Tu score fue: </h2>
+<h2>Tu Calificación fue: <%= @score %> </h2>
 <h3>Déjanos tus comentarios</h3>
 
 <%= form_for(@answer, url: edit_answer_path(@answer), html: { method: "patch", class: "form-horizontal", role: "form" }) do |f| %>

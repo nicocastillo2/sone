@@ -3,7 +3,8 @@ class AnswersController < ApplicationController
   def new
     id = CampaignsHelper.decrypt(params[:data])
     contact = Contact.find(id)
-    @answer = Answer.create(score: params[:score], contact: contact)
+    @score = params[:score]
+    @answer = Answer.create(score: @score, contact: contact)
   end
 
   def update
