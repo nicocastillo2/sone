@@ -21,4 +21,6 @@ gem 'openssl', '~> 2.0.0.beta.1'
 Para generar el token de la url de los email
 gem 'will_paginate', '~> 3.1.0'
 Pagination to Campaign contacts
+gem 'conekta'
+conekta integration
 ```

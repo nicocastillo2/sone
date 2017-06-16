@@ -59,6 +59,8 @@ gem 'sparkpost_rails', :git => 'https://github.com/KheperIo/sparkpost_rails.git'
 gem 'openssl', '~> 2.0.0.beta.1'
 # Pagination to Campaign contacts
 gem 'will_paginate', '~> 3.1.0'
+# conekta integration
+gem 'conekta'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
