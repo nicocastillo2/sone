@@ -1,15 +1,3 @@
-<div class="page-header">
-  <%= link_to payments_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to @payment, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-info-sign"></span>
-    Show
-  <% end %>
-  <h1>Editing payment</h1>
-</div>
-
 <% content_for :conekta_scripts do %>
   <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
   <script type="text/javascript">
@@ -43,6 +31,20 @@
 </script>
 
 <% end %>
+
+
+<div class="page-header">
+  <%= link_to payments_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to @payment, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Show
+  <% end %>
+  <h1>Editing payment</h1>
+</div>
+
 
 <%= form_tag(payment_path(@payment), id: 'card-form', method: "patch", class: "form-inline") do %>
   <span class="card-errors"></span>
