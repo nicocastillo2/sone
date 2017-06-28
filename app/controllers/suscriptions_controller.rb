@@ -22,7 +22,7 @@ class SuscriptionsController < ApplicationController
     else
       begin
         customer = Conekta::Customer.find(current_user.payment.id_conekta)
-        debugger
+        # debugger
         if(customer.subscription)
           customer.subscription.resume if customer.subscription.status == "canceled"
           subscription = customer.subscription.update({
