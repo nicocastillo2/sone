@@ -1,0 +1,14 @@
+
+<% @suscriptions.each do |suscription| %>
+  <div class="col-md-3">
+    <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
+      <%= hidden_field_tag 'suscription_name', suscription %>
+      <div class="form-group">
+        <span><%= suscription %></span>
+      </div>
+      <div class="form-group">
+        <%= submit_tag 'Comprar', class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
