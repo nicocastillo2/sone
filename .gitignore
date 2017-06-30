@@ -23,3 +23,5 @@
 
 # Local tmp storage
 /public/uploads
+
+.DS_Store
