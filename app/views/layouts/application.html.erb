@@ -9,54 +9,85 @@
   <title>Sone</title>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-    <%= javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js" %>
-  <![endif]-->
+<!--[if lt IE 9]>
+<%= javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js" %>
+<![endif]-->
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
 
-  <%= yield :conekta_scripts %>
+<%= yield :conekta_scripts %>
 
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <%= link_to "Sone", root_path, class: "navbar-brand" %>
-      </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav pull-right">
-          <% unless current_user %>
-            <li><%= link_to 'Login', new_user_session_path %></li>
-          <% else %>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pagos
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to 'Tarjeta', new_payment_path %></li>
-                <li><%= link_to 'Suscripcion', suscriptions_path %></li>
-              </ul>
-            </li>
-            <li><%= link_to 'Campañas', campaigns_path %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-          <% end %>
-        </ul>
+  <div class="row affix-row">
+    <div class="col-sm-3 col-md-2 affix-sidebar">
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Menu</span>
+          </div>
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav" id="sidenav01">
+              <li class="active">
+                <%= image_tag("logo-sone-250.png", id: "sone_icon", class: "img-responsive center") %>
+                <br>
+                <h2 class="left-menu">foto</h2>
+                <% if user_signed_in? %>
+                  <p class="left-menu"><%= current_user.email %></p>
+               <!--  <div class="collapse" id="toggleDemo0" style="height: 0px;">
+                  <ul class="nav nav-list">
+                    <li><a href="#">ProfileSubMenu1</a></li>
+                    <li><a href="#">ProfileSubMenu2</a></li>
+                    <li><a href="#">ProfileSubMenu3</a></li>
+                  </ul>
+                </div>--> 
+                <% else %>
+                  <h3 class="left-menu">Inicia sesion</h3>
+                <% end %>
+              </li>
+           
+              <li><a class="left-menu" href=""><span class="glyphicon pink glyphicon-pencil"></span> Editar perfil</a></li>
+              <li><a class="left-menu" href="#"><span class="glyphicon pink glyphicon-lock"></span> Privacidad </a></li>
+              <li><a class="left-menu" href="#"><span class="glyphicon pink glyphicon-cog"></span> Configuración</a></li>
+              <li><a class="left-menu" href="#"><span class="glyphicon pink glyphicon-shopping-cart"></span> Carrito</a></li>
+              <li><a class="left-menu" href=""><span class="glyphicon pink glyphicon-question-sign"></span> Dudas</a></li>
+              <li><a class="left-menu" href=""><span class="glyphicon pink glyphicon-headphones"></span> Ayuda</a></li>
+              <li><a class="left-menu" href=""><span class="glyphicon pink glyphicon-user"></span> Cerrar sesión</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
       </div>
     </div>
-  </nav>
-  <div class="container main-container">
-    <!-- TODO: Put these flash messages into a partial -->
-    <%= render partial: 'layouts/flash' %>
-
-    <%= yield %>
+    <div class="col-sm-9 col-md-10 affix-content nopadding">
+      <div class="content-container container">
+        <nav class="menu-top hidden-sm">
+          <div class="col-md-5">
+            <p>Nombre de la campaña: sone </p>
+          </div>
+            <div class="col-md-3"><p id="black-list">Black list</p></div>
+            <div class="col-md-2"><p>Crear campaña</p></div>
+            <div class="col-md-2"><p><%=current_user.email %></p></div>
+          </div>
+        </nav>
+        <div class="page-header">
+          <h3 class="capitalize">Lista de campañas</h3>
+        </div>
+        <div class="main-container">
+          <!-- TODO: Put these flash messages into a partial -->
+          <%= render partial: 'layouts/flash' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </div>
+
 </body>
 </html>
