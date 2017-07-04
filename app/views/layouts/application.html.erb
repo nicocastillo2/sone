@@ -39,8 +39,8 @@
               <li class="active">
                 <%= image_tag("logo-sone-250.png", id: "sone_icon", class: "img-responsive center") %>
                 <br>
-                <h2 class="left-menu center">foto</h2>
                 <% if user_signed_in? %>
+                  <h2 class="left-menu center">foto</h2>     
                   <p class="left-menu center"><%= current_user.email %></p>
                <!--  <div class="collapse" id="toggleDemo0" style="height: 0px;">
                   <ul class="nav nav-list">
@@ -49,18 +49,24 @@
                     <li><a href="#">ProfileSubMenu3</a></li>
                   </ul>
                 </div>--> 
-                <% else %>
-                  <h3 class="left-menu" center>Inicia sesion</h3>
-                <% end %>
+                
               </li>
-           
+              
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-pencil.svg", class: "img-responsive small-img navbar-link") %> Editar perfil</a></li>
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-block.svg", class: "img-responsive small-img navbar-link") %>Privacidad </a></li>
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Configuración</a></li>
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Carrito</a></li>
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-question.svg", class: "img-responsive small-img navbar-link") %> Dudas</a></li>
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-audio.svg", class: "img-responsive small-img navbar-link") %>Ayuda</a></li>
-              <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-profile.svg", class: "img-responsive small-img navbar-link") %> Cerrar sesión</a></li>
+              <li class="center">
+                <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu") do %>
+                  <%= image_tag("iconos-profile.svg", class: "small-img") %>
+                  Cerrar sesión
+                <% end %> 
+              </li>
+              <% else %>
+                  <%=link_to "Iniciar sesión", new_user_session_path, class: "left-menu" %>
+                <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -69,13 +75,17 @@
     <div class="col-sm-9 col-md-10 affix-content nopadding shadow-inset-left">
       <div class="content-container container">
         <nav class="menu-top hidden-sm hidden-xs">
-          <div class="col-md-4 col-xs-3">
-            <p>Nombre de la campaña: sone </p>
-          </div>
-            <div class="col-md-2 col-xs-3 text-right" ><a href="#" id="black-list">Black list</a></div>
-            <div class="col-md-3 col-xs-3 text-right"><a href="#" class="border-pink">Crear campaña<span class="glyphicon pink glyphicon-plus pink padding-left"></a></div>
-            <div class="col-md-3 col-xs-3 text-right"><span class="glyphicon pink glyphicon-user "></span><%=current_user.email %></div>
-          </div>
+          <% if user_signed_in? %>
+            <div class="col-md-4 col-xs-3">
+              <p>Nombre de la campaña: sone </p>
+            </div>
+              <div class="col-md-2 col-xs-3 text-right" ><a href="#" id="black-list">Black list</a></div>
+              <div class="col-md-3 col-xs-3 text-right"><a href="#" class="border-pink">Crear campaña<span class="glyphicon pink glyphicon-plus pink padding-left"></a></div>
+              <div class="col-md-3 col-xs-3 text-right"><span class="glyphicon pink glyphicon-user "></span><%=current_user.email %></div>
+            </div>
+          <% else %>
+            <%=link_to "Iniciar sesión", new_user_session_path %>
+          <% end %>
         </nav>
         <div class="page-header">
           <h3 class="capitalize padding-left">Lista de campañas</h3>
