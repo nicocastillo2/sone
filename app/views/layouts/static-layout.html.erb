@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Sone</title>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<%= javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js" %>
+<![endif]-->
+
+<%= stylesheet_link_tag 'static' %>
+<%= javascript_include_tag 'static' %>
+
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand"><%= image_tag("logo-sone-250.png", id: "sone_icon") %></a>
+        <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#navbar-toggle-menu" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-center navbar-brand-center">
+        <a class="nav-btn navbar-text navbar-brand-center center-links active">Productos</a>
+        <a class="nav-btn navbar-text navbar-brand-center center-links">Precios</a>
+        <a class="nav-btn navbar-text navbar-brand-center center-links">Blog</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-toggle-menu">
+        <a class="nav-btn navbar-text show-toggle-menu">Productos</a>
+        <a class="nav-btn navbar-text show-toggle-menu">Precios</a>
+        <a class="nav-btn navbar-text show-toggle-menu">Blog</a>
+        <%= link_to "Iniciar Sesión", new_user_session_path, id: 'login', class: "nav-btn navbar-text navbar-link navbar-right green" %>
+        <a href="" id="faq" class="nav-btn navbar-text navbar-right pink">FAQ ?</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <%= yield %>
+
+</body>
+</html>
