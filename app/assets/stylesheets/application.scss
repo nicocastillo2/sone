@@ -6,6 +6,9 @@
 .main-container {
   margin-top: 50px;
 }
+.overflow{
+	overflow: auto;
+}
 
 .c3-target-NPS .c3-line {
   stroke-width: 5px;
@@ -133,17 +136,42 @@
 }
 .left-menu{margin-left: 3%;}
 .pink{color: #b2427c;}
+.back-white{background-color: white!important;}
+@media (max-width: 767px){
+	.center{text-align: center;}
+	#sone_icon{
+		margin: 0 auto;
+	}
+}
 /* Menu top */
+.no-border{border: 0!important;}
 .menu-top{
 	width: 100%;
-	height: 40px;
-	background-color: black;
+	height: 65px;
+	background-color: #606060;
 	color: white;
-	padding-top: 1%;
+	padding-top: 2.5%;
 	padding-left: 3%;
+}
+.padding-left{
+	padding-left: 8px;
+}
+.padding-bottom{
+	padding-bottom: 20px!important;
+}
+.text-right{
+	text-align: right;
 }
 .capitalize{
 	text-transform: uppercase;
+}
+.shadow-inset-left{
+	box-shadow: inset 7px 0 20px -4px rgba(0,0,0,0.4);
+}
+.small-img{
+	max-width: 20px!important;
+	display: inline-table;
+	padding-right: 3px;
 }
 
 @media (min-width: 768px) {
@@ -163,6 +191,59 @@
 	    text-align: center;
 	    border-radius: 10px;
 	    background-color: #b2427c;
+	    border-radius: 17px;
+	    padding: 7px 13px;
+	    color: white;
+	}
+	a:hover{
+		text-decoration: none;
+		color: white;
+	}
+	.border-pink{
+		text-align: center;
+	    border: 2px solid #b2427c;
+	    border-radius: 10px;
+    	padding: 5px 11px;
+    	color: white;
 	}
 }
-
+/* table style*/
+.th-no-border{
+	background: #b3b3b3!important;
+    border: inset 0pt!important;
+    text-align: center!important;
+    padding: 22px 16px!important;
+    color: white!important;
+}
+.tr-pad{
+	padding-top: 8.5%!important;
+}
+.table-shadow{
+	box-shadow: 0px 0px 28px -2px rgba(0,0,0,0.55);
+}
+.td-no-border{
+	border-bottom: 0!important;
+	border-top: 0!important;
+	background-color: white!important;
+}
+.table-no-margin{
+	margin-bottom: 0px!important;
+}
+.black{
+	color: black;
+}
+.black:hover{
+	color: #b2427c;;
+}
+.box-color{
+	height: 30px;
+	width: 30px;
+	border-radius: 100%;
+}
+.div-center{
+	margin: 0 auto!important;
+}
+.logo-cam{
+	width: 30%;
+	height: auto;
+}
