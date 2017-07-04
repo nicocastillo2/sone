@@ -24,25 +24,25 @@
           <% @campaigns.each_with_index do |campaign, index| %>
             <%if index == 0%>
               <tr class="td-no-border">
-                <td class="tr-pad text-center td-no-border padding-bottom"><%= campaign.name %></td>
-                <td class="tr-pad text-center td-no-border padding-bottom"><%= campaign.sender_name %></td>
-                <td class="tr-pad text-center td-no-border padding-bottom"><%= campaign.sender_email %></td>
-                <td class="tr-pad text-center td-no-border padding-bottom"><%= image_tag(campaign.logo, class: "logo-cam") %></td>
-                <td class="tr-pad text-center td-no-border padding-bottom"><div class="box-color text-center div-center" style="background-color: <%=campaign.color%>;"></div></td>
-                <td class="text-center tr-pad td-no-border padding-bottom"><%= link_to 'show', campaign, class: "black"%></td>
-                <td class="text-center tr-pad td-no-border padding-bottom"><%= link_to 'edit', edit_campaign_path(campaign), class: "black" %></td>
-                <td class="text-center tr-pad td-no-border padding-bottom"><%= link_to 'destroy', campaign, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.name %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.sender_name %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.sender_email %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= image_tag(campaign.logo, class: "logo-cam") %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><div class="box-color text-center div-center" style="background-color: <%=campaign.color%>;"></div></td>
+                <td class="text-center tr-pad td-no-border padding-bottom middle-align"><%= link_to 'show', campaign, class: "black"%></td>
+                <td class="text-center tr-pad td-no-border padding-bottom middle-align"><%= link_to 'edit', edit_campaign_path(campaign), class: "black" %></td>
+                <td class="text-center tr-pad td-no-border padding-bottom middle-align"><%= link_to 'destroy', campaign, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
               </tr>
             <% else %>
               <tr>
-                <td class="td-no-border text-center padding-bottom"><%= campaign.name %></td>
-                <td class="td-no-border text-center padding-bottom"><%= campaign.sender_name %></td>
-                <td class="td-no-border text-center padding-bottom"><%= campaign.sender_email %></td>
-                <td class="td-no-border text-center padding-bottom"><%= image_tag(campaign.logo,class: "logo-cam") %></td>
-                <td class="td-no-border text-center padding-bottom"><div class="box-color div-center" style="background-color: <%=campaign.color%>;"></div></td>
-                <td class="text-center td-no-border padding-bottom"><%= link_to 'show', campaign, class: "black"%></td>
-                <td class="text-center td-no-border padding-bottom"><%= link_to 'edit', edit_campaign_path(campaign), class: "black" %></td>
-                <td class="text-center td-no-border padding-bottom"><%= link_to 'destroy', campaign, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
+                <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.name %></td>
+                <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.sender_name %></td>
+                <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.sender_email %></td>
+                <td class="td-no-border text-center padding-bottom middle-align"><%= image_tag(campaign.logo,class: "logo-cam") %></td>
+                <td class="td-no-border text-center padding-bottom middle-align"><div class="box-color div-center" style="background-color: <%=campaign.color%>;"></div></td>
+                <td class="text-center td-no-border padding-bottom middle-align"><%= link_to 'show', campaign, class: "black"%></td>
+                <td class="text-center td-no-border padding-bottom middle-align"><%= link_to 'edit', edit_campaign_path(campaign), class: "black" %></td>
+                <td class="text-center td-no-border padding-bottom middle-align"><%= link_to 'destroy', campaign, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
               </tr>
             <% end %>
           <% end %>
