@@ -57,18 +57,37 @@
                   <%= image_tag("iconos-pencil.svg", class: "img-responsive small-img navbar-link") %> Editar perfil
                 </a>
               </li>
-              <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-block.svg", class: "img-responsive small-img navbar-link") %>Privacidad </a></li>
-              <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Configuración</a></li>
-              <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Carrito</a></li>
-              <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-question.svg", class: "img-responsive small-img navbar-link") %> Dudas</a></li>
-              <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-audio.svg", class: "img-responsive small-img navbar-link") %>Ayuda</a></li>
+              <li class="center">
+                <%= link_to(campaigns_path, class: 'left-menu') do %>
+                  <%= image_tag("iconos-block.svg", class: "img-responsive small-img navbar-link") %>Campañas
+                <% end %>
+              </li>
+              <li class="center">
+                <a class="left-menu" href="#">
+                  <%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Configuración
+                </a>
+              </li>
+              <li class="center">
+                <a class="left-menu" href="#">
+                  <%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Carrito
+                </a>
+              </li>
+              <li class="center">
+                <a class="left-menu" href="#">
+                  <%= image_tag("iconos-question.svg", class: "img-responsive small-img navbar-link") %>Dudas
+                </a>
+              </li>
+              <li class="center">
+                <a class="left-menu" href="#">
+                  <%= image_tag("iconos-audio.svg", class: "img-responsive small-img navbar-link") %>Ayuda
+                </a>
+              </li>
               <li class="center">
                 <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu") do %>
-                  <%= image_tag("iconos-profile.svg", class: "small-img") %>
-                  Cerrar sesión
+                  <%= image_tag("iconos-profile.svg", class: "small-img") %>Cerrar sesión
                 <% end %> 
               </li>
-              <% else %>
+                <% else %>
                   <%=link_to "Iniciar sesión", new_user_session_path, class: "left-menu" %>
                 <% end %>
             </ul>
@@ -96,7 +115,7 @@
             <%=link_to "Iniciar sesión", new_user_session_path %>
           <% end %>
         </nav>
-        <div class="main-container">
+        <div class="container-fluid main-container">
           <!-- TODO: Put these flash messages into a partial -->
           <%= render partial: 'layouts/flash' %>
           <div class="page-header no-border">
