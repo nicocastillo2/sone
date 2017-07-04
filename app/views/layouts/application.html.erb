@@ -52,7 +52,11 @@
                 
               </li>
               
-              <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-pencil.svg", class: "img-responsive small-img navbar-link") %> Editar perfil</a></li>
+              <li class="center">
+                <a class="left-menu" href="#">
+                  <%= image_tag("iconos-pencil.svg", class: "img-responsive small-img navbar-link") %> Editar perfil
+                </a>
+              </li>
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-block.svg", class: "img-responsive small-img navbar-link") %>Privacidad </a></li>
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Configuración</a></li>
               <li class="center"><a class="left-menu" href="#"><%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Carrito</a></li>
@@ -98,7 +102,7 @@
           <div class="page-header no-border">
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
-                 <!-- Some text --><h2>Campañas</h2>
+                <h2><%= yield :title %></h2>
               </div>          
             </div>
           </div>

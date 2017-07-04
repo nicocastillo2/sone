@@ -3,9 +3,9 @@
 @import 'bootstrap-colorpicker';
 @import 'd3c3_rails';
 
-.main-container {
-  margin-top: 50px;
-}
+$green: #cbc86f;
+$pink: #9a4479;
+
 .overflow{
 	overflow: auto;
 }
@@ -126,6 +126,10 @@
     margin-top: 8px;
   }  
 }
+
+.page-header{
+  margin: 10px 0 20px;
+}
 /* left menu */
 #sone_icon{
 	width: 100px!important;
@@ -134,8 +138,15 @@
 	margin-top: 2%;
 	margin-bottom: 3%;
 }
-.left-menu{margin-left: 3%;}
-.pink{color: #b2427c;}
+
+.left-menu{
+  margin-left: 3%;
+}
+
+.pink{
+  color: #b2427c;
+}
+
 .back-white{background-color: white!important;}
 @media (max-width: 767px){
 	.center{text-align: center;}
@@ -143,8 +154,19 @@
 		margin: 0 auto;
 	}
 }
+
+#sidenav01{
+  li.center:hover{
+    background-color: $green;
+  }
+
+  li.center a:hover{
+    background-color: $green;
+  } 
+}
 /* Menu top */
 .no-border{border: 0!important;}
+
 .menu-top{
 	width: 100%;
 	height: 65px;
