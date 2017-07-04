@@ -1,19 +1,15 @@
 <div class="row">
   <div class="col-md-1"><br></div>
   <div class="col-md-10">
-    <div class="page-header">
-      <%= link_to new_campaign_path, class: 'btn btn-primary' do %>
-        <span class="glyphicon glyphicon-plus"></span>
-        Nueva Campaña
-      <% end %>
+   <!--  <div class="page-header">
       <h1>Campañas</h1>
-    </div>
+    </div> -->
 
 
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover">
+    <div class="table-responsive table-shadow">
+      <table class="table table-striped table-bordered table-hover table-no-margin">
         <thead>
-          <tr>
+          <tr id="tr-pad">
             <th class="th-no-border">Nombre</th>
             <th class="th-no-border">Nombre del Remitente</th>
             <th class="th-no-border">Email del Remitente</th>
@@ -25,15 +21,30 @@
           </tr>
         </thead>
         <tbody>
-          <%= content_tag_for(:tr, @campaigns) do |campaign| %>
-            <td><%= campaign.name %></td>
-            <td><%= campaign.sender_name %></td>
-            <td><%= campaign.sender_email %></td>
-            <td><%= campaign.logo %></td>
-            <td><%= campaign.color %></td>
-            <td class="text-center"><%= link_to 'show', campaign %></td>
-            <td class="text-center"><%= link_to 'edit', edit_campaign_path(campaign) %></td>
-            <td class="text-center"><%= link_to 'delete', campaign, method: :delete, data: { confirm: 'Are you sure?' }%></td>
+          <% @campaigns.each_with_index do |campaign, index| %>
+            <%if index == 0%>
+              <tr class="td-no-border">
+                <td class="tr-pad text-center td-no-border padding-bottom"><%= campaign.name %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom"><%= campaign.sender_name %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom"><%= campaign.sender_email %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom"><%= image_tag(campaign.logo, class: "logo-cam") %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom"><div class="box-color text-center div-center" style="background-color: <%=campaign.color%>;"></div></td>
+                <td class="text-center tr-pad td-no-border padding-bottom"><%= link_to 'show', campaign, class: "black"%></td>
+                <td class="text-center tr-pad td-no-border padding-bottom"><%= link_to 'edit', edit_campaign_path(campaign), class: "black" %></td>
+                <td class="text-center tr-pad td-no-border padding-bottom"><%= link_to 'destroy', campaign, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
+              </tr>
+            <% else %>
+              <tr>
+                <td class="td-no-border text-center padding-bottom"><%= campaign.name %></td>
+                <td class="td-no-border text-center padding-bottom"><%= campaign.sender_name %></td>
+                <td class="td-no-border text-center padding-bottom"><%= campaign.sender_email %></td>
+                <td class="td-no-border text-center padding-bottom"><%= image_tag(campaign.logo,class: "logo-cam") %></td>
+                <td class="td-no-border text-center padding-bottom"><div class="box-color div-center" style="background-color: <%=campaign.color%>;"></div></td>
+                <td class="text-center td-no-border padding-bottom"><%= link_to 'show', campaign, class: "black"%></td>
+                <td class="text-center td-no-border padding-bottom"><%= link_to 'edit', edit_campaign_path(campaign), class: "black" %></td>
+                <td class="text-center td-no-border padding-bottom"><%= link_to 'destroy', campaign, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

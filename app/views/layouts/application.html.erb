@@ -72,7 +72,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-9 col-md-10 affix-content nopadding shadow-inset-left">
+    <div class="col-sm-9 col-md-10 affix-content nopadding shadow-inset-left overflow">
       <div class="content-container container">
         <nav class="menu-top hidden-sm hidden-xs">
           <% if user_signed_in? %>
@@ -80,15 +80,27 @@
               <p>Nombre de la campaña: sone </p>
             </div>
               <div class="col-md-2 col-xs-3 text-right" ><a href="#" id="black-list">Black list</a></div>
-              <div class="col-md-3 col-xs-3 text-right"><a href="#" class="border-pink">Crear campaña<span class="glyphicon pink glyphicon-plus pink padding-left"></a></div>
+              <div class="col-md-3 col-xs-3 text-right">
+                <%= link_to new_campaign_path, class: 'border-pink' do %>
+                  Crear campaña
+                  <span class="glyphicon pink glyphicon-plus pink padding-left"></span> 
+                <% end %>
+              </div>
               <div class="col-md-3 col-xs-3 text-right"><span class="glyphicon pink glyphicon-user "></span><%=current_user.email %></div>
             </div>
           <% else %>
             <%=link_to "Iniciar sesión", new_user_session_path %>
           <% end %>
         </nav>
-        <div class="page-header">
-          <h3 class="capitalize padding-left">Lista de campañas</h3>
+        <div class="page-header no-border">
+        <div class="row">
+          <div class="col-md-1"><br></div>
+          <div class="col-md-10">
+             <!-- Some text --><h2>Campañas</h2>
+          </div>          
+          <div class="col-md-1"></div>
+        </div>
+         
         </div>
         <div class="main-container">
           <!-- TODO: Put these flash messages into a partial -->
