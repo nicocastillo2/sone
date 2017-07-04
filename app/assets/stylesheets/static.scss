@@ -1,5 +1,165 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-colorpicker';
-@import 'd3c3_rails';
 
+@font-face {
+  font-family: 'SourceSansPro';
+  src: asset-url('SourceSansPro-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: asset-url('SourceSansPro-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+$green: #cbc86f;
+$pink: #9a4479;
+
+#sone_icon{
+  width: auto;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.navbar-default .navbar-brand{
+  padding: 2px;
+}
+
+.navbar{
+  border: none;
+}
+
+.navbar .nav-btn{
+  font-family: "SourceSansPro";
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 15px;
+  padding: 2px 3%;
+}
+
+.green{
+  color: #cbc86f;
+}
+
+.pink{
+  color: #9a4479;
+}
+
+.white{
+  color: white;
+}
+
+#faq{
+  border: 1px solid $pink;
+}
+
+#login{
+  border: 1px solid $green;
+}
+
+.navbar-brand-center {
+  float: none;
+}
+
+.navbar-center{
+    position: absolute;
+    width: 40vw;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin: auto;
+    height:100%;
+
+    .center-links{
+      color: white;
+    }
+
+    .center-links.active{
+      color: $green;
+    }
+}
+
+.center-links{
+  display: inline-block;
+}
+
+.navbar{
+  background-color: rgba(40, 39, 50, 0.78);
+  position: absolute;
+  width: 100vw;
+}
+
+@media (max-width: 767px) {
+  .navbar-brand-center{
+    display: none;
+  }
+
+  #navbar-toggle-menu a{
+    display: block;
+  }
+}
+
+@media (min-width: 768px){
+  .show-toggle-menu{
+    display: none; 
+  }
+}
+
+#banner-container{
+  width: 100vw;
+  height: 100vh;
+  background-image: image-url("static/banner-pricing.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.banner-text:first-child{
+  padding-top: 40vh;
+}
+
+.banner-text{
+  color: white;
+  padding-left: 25vw;
+  padding-right: 25vw;
+  text-align: center;
+  font-size: 1.9em;
+  font-family: 'SourceSansPro';
+}
+
+@media (max-width: 767px) {
+  .banner-text:first-child{
+    padding-top: 35vh;
+  }
+}
+
+@media (max-width: 767px){
+  .banner-text{
+    font-size: 1.3em;
+  }
+}
+
+.trial-free{
+  position: absolute;
+  background-color: $pink;
+  bottom: 15vh;
+  color: white;
+  font-family: 'SourceSansPro';
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 18px;
+  border-radius: 50px;
+  left: 0;
+  right: 0;
+  width: 16vw;
+  text-align: center;
+  padding: 5px;
+  -webkit-box-shadow: 2px 6px 25px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 6px 25px 1px rgba(0,0,0,0.75);
+  box-shadow: 2px 6px 25px 1px rgba(0,0,0,0.75);
+}
