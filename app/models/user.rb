@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :campaigns
   has_one :payment
+  
+  mount_uploader :avatar, AvatarUploader
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -10,6 +12,7 @@ class User < ApplicationRecord
 
   validates_presence_of :email
   validates :email, uniqueness: true
+
 
   def self.new_with_session(params, session)
     super.tap do |user|
