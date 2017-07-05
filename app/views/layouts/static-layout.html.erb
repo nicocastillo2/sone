@@ -19,7 +19,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand"><%= image_tag("logo-sone-250.png", id: "sone_icon") %></a>
@@ -39,8 +39,10 @@
         <a class="nav-btn navbar-text show-toggle-menu">Productos</a>
         <a class="nav-btn navbar-text show-toggle-menu">Precios</a>
         <a class="nav-btn navbar-text show-toggle-menu">Blog</a>
-        <%= link_to "Iniciar Sesión", new_user_session_path, id: 'login', class: "nav-btn navbar-text navbar-link navbar-right green" %>
-        <a href="" id="faq" class="nav-btn navbar-text navbar-right pink">FAQ ?</a>
+        <%= link_to(new_user_session_path, id: 'login', class: "nav-btn navbar-text navbar-link navbar-right green") do %>
+          <span class="green">Iniciar Sesión</span>
+        <% end %>
+        <a href="" id="faq" class="nav-btn navbar-text navbar-right pink"><span class="white">FAQ</span> <span class="pink">?</span></a>
       </div>
     </div>
   </nav>
