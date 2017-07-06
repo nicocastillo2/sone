@@ -4,6 +4,8 @@ class Campaign < ApplicationRecord
   belongs_to :user
   has_many :contacts
 
+  validates :name, :sender_name, :sender_email, :logo, :color, presence: { message: "esta vacio" }
+
   mount_uploader :logo, LogoUploader
 
   def self.import_contacts(file, campaign_id)
