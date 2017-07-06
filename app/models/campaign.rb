@@ -6,13 +6,13 @@ class Campaign < ApplicationRecord
 
   attr_accessor :file
 
-  validates :name, :sender_name, :sender_email, :logo, :color, presence: { message: "esta vacio" }
+  validates :name, :sender_name, :sender_email, :logo, :color, :file, presence: { message: "esta vacio" }
   validates :file, csv: {
                           columns: 2,
                           max_rows: 6000,
                           min_rows: 1,
                           message: 'CSV Malformado'
-                        }
+                        }, if: :file
   validate :csv_has_headers?
 
   mount_uploader :logo, LogoUploader
@@ -25,9 +25,13 @@ class Campaign < ApplicationRecord
     Contact.import(contacts, batch_size: 1000)
   end
 
+  private
+
   def csv_has_headers?
-    csv = CSV.read(file.path)
-    errors.add(:csv, "sin headers") if csv.first != ["name", "email"]  
+    if file
+      csv = CSV.read(file.path)
+      errors.add(:csv, "sin headers") if csv.first != ["name", "email"]
+    end  
   end
 
 end
