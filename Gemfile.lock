@@ -90,6 +90,10 @@ GEM
       json
       rake
       sys-uname
+    csv_validator (0.0.3)
+      actionpack
+      activemodel
+      mail
     d3c3-rails (0.1.2)
       rails (>= 4.0)
       rails_javascript_helpers (~> 1.0)
@@ -285,6 +289,7 @@ DEPENDENCIES
   carrierwave (~> 1.1)
   coffee-rails (~> 4.2)
   conekta
+  csv_validator
   d3c3-rails (~> 0.1.2)
   devise (~> 4.3)
   dotenv-rails (~> 2.2, >= 2.2.1)
@@ -315,4 +320,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.0
+   1.15.1

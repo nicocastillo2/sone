@@ -61,6 +61,8 @@ gem 'openssl', '~> 2.0.0.beta.1'
 gem 'will_paginate', '~> 3.1.0'
 # conekta integration
 gem 'conekta'
+# validates csv
+gem 'csv_validator'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

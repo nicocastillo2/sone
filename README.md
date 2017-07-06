@@ -23,4 +23,6 @@ gem 'will_paginate', '~> 3.1.0'
 Pagination to Campaign contacts
 gem 'conekta'
 conekta integration
+# validates csv
+gem 'csv_validator'
 ```
