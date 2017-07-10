@@ -3,52 +3,161 @@
 <head>
   <meta charset="UTF-8">
 
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+  <style>
+    
+    body{
+      background-image: url("<%= root_url %>login-background.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100vw 100vh;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .registrate-gratis{
+      color: #cbc86f;
+      text-align: center;
+    }
+
+    .login-icons{
+      height: auto;
+      width: 50%;
+      padding: 3px;
+    }
+
+    .login-icons:hover{
+      border: 1px solid #9a4479;
+      border-radius: 50%;
+    }
+
+    .con{
+      margin: 14px auto;
+      text-align: center;
+    }
+
+    #compu{
+      position: absolute;
+      width: 65vw;
+      height: auto;
+      right: 1vw;
+      bottom: 0vh;
+      z-index: 3;
+    }
+
+    #login-button{
+      background-color: #9a4479;
+      color: white;
+      border-radius: 50px;
+      width: 40%;
+    }
+
+    .container-margin{
+      border: 1px solid #9a4479;
+      border-bottom: none;
+      margin: 5% 4%;
+      padding: 5% 4%;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      z-index: 0;
+    }
+
+    .container-margin::after{
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 40%;
+      width: 10%;
+      z-index: 1;
+      background-image: url("<%= root_url %>login-background.png");
+      background-position: right bottom;
+      background-repeat: no-repeat;
+      background-size: 100vw 100vh;
+    }
+
+    .tienes-cuenta{
+      margin-top: 45%;
+    }
+
+  </style>
 
 </head>
 <body>
   
+  <div class="container-fluid">
+    <div class="container-margin">
+      <img id="compu" src="<%= root_url %>login-pc.png">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <h2 class="registrate-gratis">¡Registrate gratis!</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+          <div class="row">
+            <div class="col-xs-3">
+              <p class="con">con</p>
+            </div>
+            <div class="col-xs-3">
+              <img class="login-icons img-responsive center-block" src="<%= root_url %>face-icon.svg" alt="">
+            </div>
+            <div class="col-xs-3">
+              <img class="login-icons img-responsive center-block" src="<%= root_url %>google-plus.svg" alt="">
+            </div>
+            <div class="col-xs-3">
+              <img class="login-icons img-responsive center-block" src="<%= root_url %>mail.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="tienes-cuenta">¿Ya tienes una cuenta?</h3>
+            </div>
+            <div class="col-md-12">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal') do |f| %>
+                <div class="form-group">
+                  <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: '¿Cual es mail?' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Contraseña' %>
+                </div>
+
+                <%# if devise_mapping.rememberable? -%>
+                  <!-- <div class="form-group">
+                    <%#= f.check_box :remember_me %>
+                    <%#= f.label 'Recordarme', class: 'control-label' %>
+                  </div> -->
+                <%# end -%>
+
+                <div class="form-group">
+                  <%= f.submit "Iniciar Sesión", class: 'btn pull-right', id: 'login-button' %>
+                </div>
+              <% end %>
+
+              <%#= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
-
-<h2>Log in</h2>
-
-<div class="row">
-  <div class="col-md-4">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal') do |f| %>
-      <div class="form-group">
-        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Contraseña' %>
-      </div>
-
-      <% if devise_mapping.rememberable? -%>
-        <div class="form-group">
-          <%= f.check_box :remember_me %>
-          <%= f.label 'Recordarme', class: 'control-label' %>
-        </div>
-      <% end -%>
-
-      <div class="form-group">
-        <%= f.submit "Log in", class: 'btn btn-primary' %>
-      </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
-  </div>
-</div>
