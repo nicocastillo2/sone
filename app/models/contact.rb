@@ -4,4 +4,6 @@ class Contact < ApplicationRecord
   
   enum status: { not_sent: 0, sent: 1 }
 
+  self.per_page = 50
+
 end
