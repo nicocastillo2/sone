@@ -31,16 +31,24 @@ class PaymentsController < ApplicationController
       @payment = Payment.new(full_name: user_name, phone: user_phone,
                               id_conekta: customer.id,
                               card_conekta: customer.payment_sources.first.id, user: current_user)
-      
-    rescue Conekta::ErrorList => e
-      flash[:danger] = e.message
-    rescue Conekta::Error => e
-      flash[:danger] = e.message
-    end
 
     if @payment.save
-      redirect_to campaigns_path, notice: 'Se agrego satisfactoriamente el metodo de pago'
+      redirect_to suscriptions_path, notice: 'Se agrego satisfactoriamente el metodo de pago'
     else
+      render :new
+    end
+
+    rescue Conekta::ErrorList => e
+      errors = []
+      for error in e.details do
+        errors << error.message
+      end
+      error_name = errors.inject{ |list, error| list + ", #{error.message}" }
+
+      flash[:danger] = error_name
+      render :new
+    rescue Conekta::Error => e
+      flash[:danger] = "Error Inesperado, intentelo mas tarde"
       render :new
     end
 
