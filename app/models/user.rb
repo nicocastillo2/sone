@@ -24,7 +24,7 @@ class User < ApplicationRecord
   # end
 
   def blacklist_contacts
-    Contact.joins([:campaign => :user]).where(campaigns: {user_id: self.id}).where.not(blacklist: nil)
+    Contact.joins([:campaign => :user]).where(campaigns: {user_id: self.id}).where.not(blacklist: nil).order(blacklist: :desc)
   end
 
   def self.new_with_session(params, session)
