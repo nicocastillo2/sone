@@ -13,6 +13,19 @@ class User < ApplicationRecord
   validates_presence_of :email
   validates :email, uniqueness: true
 
+  # return all the user contacts
+  # def all_contacts
+  #   Contact.joins([:campaign => :user]).where(campaigns: {user_id: self.id})
+  # end
+
+  # return all the active contacts
+  # def contacts_without_blacklist
+  #   Contact.joins([:campaign => :user]).where(blacklist: nil, campaigns: {user_id: self.id})
+  # end
+
+  def blacklist_contacts
+    Contact.joins([:campaign => :user]).where(campaigns: {user_id: self.id}).where.not(blacklist: nil)
+  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -30,4 +43,5 @@ class User < ApplicationRecord
       user.image = auth.info.image # assuming the user model has an image
     end
   end
+
 end

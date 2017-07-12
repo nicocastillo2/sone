@@ -17,6 +17,10 @@ class Campaign < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
+  def active_contacts
+    contacts.where(blacklist: nil)
+  end
+
   def self.import_contacts(file, campaign_id)
     contacts = []
     file_content = CSV.foreach(file.path, headers: true) do |row|
