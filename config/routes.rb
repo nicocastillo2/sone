@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   post 'suscriptions', to: 'suscriptions#update'
 
   get '/blacklist', to: 'blacklists#index', as: 'blacklist'
-  get '/blacklist/unsubscribe', to: 'blacklists#unsubscribe', as: 'blacklist_unsubscribe'
+  get '/blacklist/confirm', to: 'blacklists#confirm', as: 'blacklist_confirm'
+  post '/blacklist/cancel', to: 'blacklists#cancel', as: 'blacklist_cancel'
+  post '/blacklist/unsubscribe', to: 'blacklists#unsubscribe', as: 'blacklist_unsubscribe'
 end

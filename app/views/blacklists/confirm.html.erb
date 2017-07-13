@@ -1,0 +1,7 @@
+<h4>Estas seguro?</h4>
+<br>
+<%= link_to "Si", blacklist_unsubscribe_path + "?data=#{@data}", method: :post %>
+
+<%= link_to "No", blacklist_cancel_path, method: :post, remote: true %>
+
+<h4 class="gracias" style="display: none">Gracias</h4>
