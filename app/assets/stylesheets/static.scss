@@ -396,6 +396,12 @@ header {
   color: #fff;
 }
 
+header {
+  h3, h4 {
+    font-family: 'SourceSansPro';
+  }
+}
+
 #home-main-title {
   font-family: 'LeagueSpartan';
   color: $green;
