@@ -2,11 +2,44 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sone</title>
   <style type="text/css">
-    a{
-      color: {{color}}
+  body {
+      margin: 0;
+      padding: 0;
+      min-width: 100%;
+      background-color: #ffffff;
+    }
+    table {
+      border-spacing: 0;
+      font-family: sans-serif;
+      color: #333333;
+    }
+    td {
+      padding: 0;
+    }
+    img {
+      border: 0;
+    }
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    .webkit {
+      max-width: 600px;
+    }   
+    /* Windows Phone Viewport Fix */
+    @-ms-viewport { 
+      width: device-width; 
+    }
+    td a{
+    color: #616161;
+    font-size: 20px;
+    text-decoration: none;
     }
 
     tr, td{
@@ -15,8 +48,12 @@
     }
 
     .back-color{
-      height: 30px;
-      background-color: {{color}};
+      height: 250px;
+      background-position: center;
+      background-image: url(<%= @logo_path %>);
+      background-repeat: no-repeat;
+      position: relative;
+      box-shadow: 10px 4px 16px -2px rgba(163,160,163,1);
     }
 
     img{
@@ -28,6 +65,70 @@
       border: 1px solid black;
       width: 9.09%;
     }
+    @media only screen and (max-width: 580px)  {
+      .full {
+        display:block;
+        width:30%;
+        margin: 0 auto;
+      }
+      .pink{
+        margin-left: 37%;
+      }
+      .shadow{
+        padding:15px;
+      }
+    }
+    @media only screen and (min-width: 580px)  {
+      .pink{
+        color: white;
+        bottom: 0;
+        position: absolute;
+        margin-left: 45%;
+      }
+      .shadow{
+        padding:50px;
+        margin-bottom: 20px;
+      }
+    }
+    .pink:nth-child(-n+6) {
+      color:#b2427c;
+    }
+    .pink:last-child {
+      color:#b2427c;
+    }
+    .pink{
+      color: white;
+      bottom: 0;
+      position: absolute;
+    }
+
+    .white{color: white;}
+    .shadow{
+      -webkit-box-shadow: 0px 11px 18px -2px rgba(163,160,163,1);
+      -moz-box-shadow: 0px 11px 18px -2px rgba(163,160,163,1);
+      box-shadow: 0px 11px 18px -2px rgba(163,160,163,1);
+      padding-top: 25px;
+    }
+    .back-color{
+      background-color: {{color}};
+    }
+    .border-0{
+      border:0;
+      padding-bottom: 5px;
+      padding-top: 5px;
+    }
+    .border-0:hover{
+      border-color: 1px solid black;
+    }
+    #ten{
+      color: white;
+      background-color: #b2427c;
+      padding:10px;
+      border-radius:100%;
+    }
+    .link{
+      color:#b2427c;
+    }
 
   </style>
 
@@ -36,36 +137,42 @@
   <table border="0" cellpadding="0" cellspacing="5" width="100%">
     <tbody>
       <tr>
-        <td class="back-color"></td>
-      </tr>
-      <tr>
-        <td>
-          <% if @logo_path %>
-            <img src="<%= (URI(root_url)+@logo_path).to_s %>">
-          <% end %>
+        <td style="background-color: black" class="back-color">
+        <center>
+          <p style="color: #b2427c" class="pink">!Hola, {{name}}¡</p>
+        </center>
         </td>
       </tr>
       <tr>
-        <td>{{name}}</td>
+        <td>
+          
+        </td>
       </tr>
       <tr>
-        <td>
+        <p style="text-align: center">¿Qué tan dispuesta estarías a recomendar <strong>Sone</strong> a un amigo o familiar?</p>
+      </tr>
+      <tr>
+        <td dir="rtl" class="back-gray">
           <table border="0" cellpadding="0" cellspacing="5" width="100%">
             <tbody>
               <tr>
                 <% (0..10).each do |index| %>
-                  <td>
-                    <a href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
+                  <td class="full border-0">
+                    <% if index != 10  %>
+                      <a href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
+                      <% else %>
+                      <a id="ten" style="color: white;background-color: #b2427c;padding:10px;border-radius:100%;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
+                    <% end %>
                   </td>
                   <% end %>
               </tr>
             </tbody>
           </table>
+          <p>Si quieres dejar de recibir correos por parte de Sone da <a class="link" href="<%=URI.decode(blacklist_unsubscribe_url)%>?data={{token}}">Clic aquí</a></p>
         </td>
       </tr>
     </tbody>
   </table>
-    <a href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Unsubscribe</a>
 </body>
 </html>
 

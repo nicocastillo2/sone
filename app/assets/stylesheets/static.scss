@@ -1,12 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-colorpicker';
-@import 'bxslider.min.css';
-
-@font-face {
-  font-family: 'LeagueSpartan';
-  src: asset-url('LeagueSpartan-Bold.otf') format('opentype');
-}
 
 @font-face {
   font-family: 'SourceSansPro';
@@ -21,18 +15,6 @@
 
 $green: #cbc86f;
 $pink: #9a4479;
-
-html {
-  font-size: 20px;
-}
-
-section {
-  padding-top: 80px;
-}
-
-p {
-  font-family: 'SourceSansPro';
-}
 
 #sone_icon{
   width: auto;
@@ -123,7 +105,7 @@ p {
 
 @media (min-width: 768px){
   .show-toggle-menu{
-    display: none;
+    display: none; 
   }
 }
 
@@ -180,7 +162,6 @@ p {
   -moz-box-shadow: 2px 6px 25px 1px rgba(0,0,0,0.75);
   box-shadow: 2px 6px 25px 1px rgba(0,0,0,0.75);
 }
-
 /* PRICING */
 .font-gray{
   color: #66676a;
@@ -248,7 +229,6 @@ p {
 .margin-top-5{margin-top: 5%;}
 .padding-bottom-5{padding-bottom: 5%;}
 .button-pink{
-  padding: 10px 40px!important;
   background-color: $pink;
   bottom: 15vh;
   color: white;
@@ -256,7 +236,6 @@ p {
   font-weight: bold;
   margin-left: auto;
   margin-right: auto;
-  font-size: 18px;
   border-radius: 50px;
   left: 0;
   right: 0;
@@ -265,7 +244,6 @@ p {
   padding: 5px;
 }
 .button-white{
-  padding: 10px 40px!important;
   background-color: white;
   bottom: 15vh;
   color: $pink;
@@ -273,7 +251,6 @@ p {
   font-weight: bold;
   margin-left: auto;
   margin-right: auto;
-  font-size: 18px;
   border-radius: 50px;
   left: 0;
   right: 0;
@@ -293,6 +270,9 @@ p {
 }
 .img-25{
   max-width: 25%;
+}
+.img-50{
+  max-width: 50%;
 }
 .box-offer{
   box-shadow: 7px 15px 48px -8px rgba(0, 0, 0, 0.45);
@@ -345,10 +325,24 @@ p {
     padding-top: 20%;
   }
   .padding-top-50{
-    padding-top: 50%;
+    padding-top: 50%; 
+  }
+  .padding-top-20{
+    padding-top: 20%;
   }
   .border-right-pink{
     padding-right: 3%;
+  }
+  .button-pink{
+    padding: 10px 40px !important;
+    font-size: 18px;
+  }
+  .button-white{
+    padding: 10px 40px!important;
+    font-size: 18px;
+  }
+  .padding-top-10{
+    padding-top: 10%;
   }
 }
 @media (max-width: 992px) {
@@ -360,6 +354,14 @@ p {
   .tittle-offer{
     padding-top: 0%;
   }
+  .button-pink{
+    padding: 10px 20px!important;
+    font-size: 12px;
+  }
+  .button-white{
+    padding: 10px 20px!important;
+    font-size: 12px;
+  }
 }
 .triangle{
   height: 0;
@@ -369,240 +371,9 @@ p {
   border-top: 46px solid black;
 }
 
-/*.black-triangle::before{
-  content: "";
-  background-color: white;
-  width: 105%;
-  height: 15%;
-  position: absolute;
-  left: -35%;
-  transform: rotate(25deg);
-  z-index: 1;
-}*/
-
-header {
-  background-image: url('hero.png');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-}
-
-.hero-text-box {
-  position: absolute;
-  width: 1000px;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-}
-
-header {
-  h3, h4 {
-    font-family: 'SourceSansPro';
-  }
-}
-
-#home-main-title {
-  font-family: 'LeagueSpartan';
-  color: $green;
-  font-size: 400%;
-}
-
-.btn-free-trial {
-  font-family: 'SourceSansPro';
-  background-color: $pink;
-  color: white;
-  font-weight: bold;
-  font-size: 150%;
-  border-radius: 50px;
-  width: 200px;
-  text-align: center;
-  padding: 5px;
-  margin-top: 90px;
-}
-
-.hero-text-bottom {
-  position: absolute;
-  width: 1000px;
-  bottom: 1%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-}
-
-.hero-text-bottom h4:first-child:after {
-  display: block;
-  height: 1px;
-  background-color: $pink;
-  content: " ";
-  width: 600px;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-
-// Ask / Improve section
-.ask-improve-section {
-  background-image: image-url("dotted.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.ask-improve-section h3 {
-  font-family: 'LeagueSpartan';
-  color: $pink;
-  font-size: 220%;
-}
-
-.ask-improve-section p {
-  font-size: 130%;
-  color: #989893;
-  margin: 40px 0;
-}
-
-.highlight-text {
-  font-family: 'SourceSansPro';
-  font-weight: bold;
-}
-
-// End Ask-Improve section
-
-// Benefits section
-
-.benefits-section h3 {
-  font-family: 'LeagueSpartan';
-  color: $green;
-  font-size: 180%;
-  text-transform: uppercase;
-}
-
-.benefits-section p {
-  font-size: 155%;
-  color: #989893;
-}
-
-.benefit-row {
-  margin: 60px 0;
-}
-
-// End benefits section
-
-// Easy / Fast section
-
-.easy-fast-row {
-  position: relative;
-}
-
-.easy-fast-section .phone-img {
-  height: 600px;
-}
-
-.easy-fast-text-content {
-  margin-top: 70px;
-}
-
-.easy-fast-section h3 {
-  font-family: 'LeagueSpartan';
-  font-size: 280%;
-  color: $pink;
-  margin-bottom: 45px;
-}
-
-.easy-fast-section p {
-  color: #B9B9B1;
-  font-size: 185%;
-}
-
-.img-container {
-  position: absolute;
-  z-index: -1;
-  height: 400px;
-  bottom: 0;
-  left: 0;
-}
-
-.img-background {
+/* Footer */
+footer{
   width: 100%;
+  height: 100%;
+  background-color: black;
 }
-
-// End Easy / Fast section
-
-// Clients opinion section
-
-.clients-opinion-section {
-  background-image: image-url("clients-opinion.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.opinions-row {
-  position: relative;
-  color: #fff;
-}
-
-.clients-opinion-section h2 {
-  font-family: 'LeagueSpartan';
-  color: #fff;
-  margin-bottom: 70px;
-  font-size: 260%;
-}
-
-#slider-right-arrow, #slider-left-arrow {
-  height: 35px;
-  width: 35px;
-  position: absolute;
-  // top: 50vh;
-  cursor: pointer;
-}
-
-#slider-right-arrow {
-    right: 7vw;
-}
-
-#slider-left-arrow {
-    left: 7vw;
-}
-
-.bx-wrapper {
-  background-color: transparent;
-  box-shadow: none;
-  border: none;
-}
-
-.bxslider-opinions p:first-child:after {
-  display: block;
-  height: 1px;
-  background-color: $green;
-  content: " ";
-  width: 120px;
-  margin-top: 15px;
-  margin-bottom: 25px;
-}
-
-.bxslider-opinions p {
-  font-family: 'SourceSansPro';
-  font-size: 150%;
-}
-
-.author-opinion {
-  color: $green;
-  font-size: 120%;
-}
-
-.author-lastname {
-  font-family: 'SourceSansPro';
-  font-weight: bold;
-}
-
-.author-site {
-  font-size: 80%;
-}
-
-.sone-text-in-opinion {
-  color: $green;
-  text-transform: uppercase;
-  font-size: 90%;
-}
-
-// End Clients opinion section
