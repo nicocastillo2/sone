@@ -63,14 +63,14 @@
                 <% end %>
               </li>
               <li class="center">
-                <a class="left-menu" href="#">
-                  <%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Configuración
-                </a>
+                <%= link_to(suscriptions_path, class: 'left-menu') do %>
+                  <%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Planes
+                <% end %>
               </li>
               <li class="center">
-                <a class="left-menu" href="#">
-                  <%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Carrito
-                </a>
+                <%= link_to(new_payment_path, class: 'left-menu') do %>
+                  <%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Metodo de Pago
+                <% end %>
               </li>
               <li class="center">
                 <a class="left-menu" href="#">
@@ -102,7 +102,11 @@
           <div class="col-md-4 col-xs-3">
             <p>Nombre de la campaña: sone </p>
           </div>
-          <div class="col-md-2 col-xs-3 text-right" ><a href="#" id="black-list">Black list</a></div>
+          
+          <div class="col-md-2 col-xs-3 text-right" >
+            <%= link_to "Black List", blacklist_path, id: 'black-list' %>
+          </div>
+          
           <div class="col-md-3 col-xs-3 text-right">
             <%= link_to new_campaign_path, class: 'border-pink' do %>
             Crear campaña

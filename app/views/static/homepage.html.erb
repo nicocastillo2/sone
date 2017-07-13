@@ -1,8 +1,144 @@
-<div class="jumbotron text-center">
-  <h1>Sone</h1>
-  <p>Customer Comfort</p>
-</div>
-<% if current_user %>
-  <%= current_user.omniauth_name %>
-  <%= image_tag(current_user.image) if current_user.image%>
-<% end %>
+<header>
+  <div class="container-fluid">
+    <div class="hero-text-box text-center">
+      <h1 id="home-main-title">Pide feedback a tus clientes</h1>
+      <h3>Mide la experiencia que les ofreces y encuentra áreas de oportunidad<br>para crecer tu negocio</h3>
+      <%= link_to 'Prueba gratis', '#', class: 'btn btn-free-trial' %>
+    </div>
+    <div class="hero-text-bottom text-center">
+      <h4>250 clientes por 30 días </h4>
+      <h4>Sin tarjeta de crédito</h4>
+    </div>
+  </div>
+</header>
+
+<!-- Pregunta - Mejora -->
+<section class="ask-improve-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 col-sm-5">
+        <h3>Pregunta</h3>
+        <p>
+          Crea una <span class="highlight-text">base de clientes</span>,
+          mándales nuestra sencilla <span class="highlight-text">encuesta</span>
+          y obtén a cambio <span class="highlight-text">resultados</span> poderosos.
+        </p>
+        <%= image_tag "pregunta.png", class: 'img-responsive' %>
+      </div>
+      <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-2">
+        <h3>Mejora</h3>
+        <p>
+          Adapta tu modelo de negocio a las necesidades reales de tus clientes.<br>Nuestro <span class="highlight-text">SONE Dashboard</span> te dice cómo.
+        </p>
+        <%= image_tag "mejora.png", class: 'img-responsive' %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Pregunta - Mejora -->
+
+<!-- Beneficios -->
+<section class="benefits-section">
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">Beneficios de contar con sone</h2>
+    </div>
+
+    <div class="row benefit-row">
+      <div class="col-md-3 col-md-offset-3">
+        <h3>Escalable</h3>
+        <p>Contamos con <span class="highlight-text">planes</span> diseñados para <span class="highlight-text">cualquier tipo y tamaño de empresa</span>.</p>
+      </div>
+      <div class="col-md-3 col-md-offset-1">
+        <%= image_tag 'escalable.png', class: 'img-responsive' %>
+      </div>
+    </div>
+
+    <div class="row benefit-row">
+      <div class="col-md-3 col-md-offset-3">
+        <%= image_tag 'responsivo.png', class: 'img-responsive' %>
+      </div>
+      <div class="col-md-3 col-md-offset-1">
+        <h3>Responsivo</h3>
+        <p>Funciona en <span class="highlight-text">cualquier dispositivo móvil</span> con los sistemas operativos más comunes.</p>
+      </div>
+    </div>
+
+    <div class="row benefit-row">
+      <div class="col-md-3 col-md-offset-3">
+        <h3>Soporte</h3>
+        <p>Soporte en línea via <span class="highlight-text">chat</span>. Para cualquier duda puedes escribirnos.</p>
+      </div>
+      <div class="col-md-3 col-md-offset-1">
+        <%= image_tag 'soporte.png', class: 'img-responsive' %>
+      </div>
+    </div>
+
+    <div class="row benefit-row">
+      <div class="col-md-3 col-md-offset-3">
+        <%= image_tag 'confiable.png', class: 'img-responsive' %>
+      </div>
+      <div class="col-md-3 col-md-offset-1">
+        <h3>Confiable</h3>
+        <p><span class="highlight-text">Sistemas de seguridad</span> con certificación integrados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Beneficios section -->
+
+<!-- Fácil y Rápido section -->
+<section class="easy-fast-section">
+  <div class="container">
+    <div class="row easy-fast-row">
+      <div class="col-md-4 col-sm-4">
+        <%= image_tag 'home-phone.png', class: 'img-responsive phone-img' %>
+      </div>
+      <div class="col-md-7 col-sm-8 easy-fast-text-content">
+        <h3>Es muy fácil y rápido</h3>
+        <p>No necesitas conocimiento técnico para entender tu propio sistema de voz del cliente casi al instante.</p>
+        <div class="text-center">
+          <%= link_to 'Prueba gratis', '#', class: 'btn btn-free-trial' %>
+        </div>
+      </div>
+      <div class="img-container">
+        <%= image_tag 'dotted.png', class: 'img-background' %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Fácil y Rápido section -->
+
+<!-- Our clients opinion -->
+<section class="clients-opinion-section">
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">Nuestros clientes opinan</h2>
+    </div>
+    <div class="row opinions-row">
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">
+        <ul class="bxslider-opinions">
+          <li>
+            <p>"<span class="sone-text-in-opinion">sone</span> es fácil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente."</p>
+            <p><span class="author-opinion">Mauricio <span class="author-lastname">Herrera</span></span><br><small class="author-site">mexicanisimo.com</small></p>
+          </li>
+          <li>
+            <p>"<span class="sone-text-in-opinion">sone</span> es fácil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente."</p>
+            <p><span class="author-opinion">Mauricio <span class="author-lastname">Herrera</span></span><br><small class="author-site">mexicanisimo.com</small></p>
+          </li>
+          <li>
+            <p>"<span class="sone-text-in-opinion">sone</span> es fácil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente."</p>
+            <p><span class="author-opinion">Mauricio <span class="author-lastname">Herrera</span></span><br><small class="author-site">mexicanisimo.com</small></p>
+          </li>
+          <li>
+            <p>"<span class="sone-text-in-opinion">sone</span> es fácil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente."</p>
+            <p><span class="author-opinion">Mauricio <span class="author-lastname">Herrera</span></span><br><small class="author-site">mexicanisimo.com</small></p>
+          </li>
+        </ul>
+      </div>
+      <%= image_tag 'arrow-left.svg', id: 'slider-left-arrow' %>
+      <%= image_tag 'arrow-right.svg', id: 'slider-right-arrow' %>
+    </div>
+  </div>
+</section>
+<!-- End Our clients opinion -->
