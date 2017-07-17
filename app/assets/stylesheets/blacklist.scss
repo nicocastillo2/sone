@@ -1,0 +1,59 @@
+$green: #cbc86f;
+$pink: #9a4479;
+
+.back-image{
+  /*background-image: image-url("Folder-8.png")!important;*/
+  background-color: #fafbfb!important;
+  height: 100%;
+  max-width: 100% ;
+  margin: 0!important;
+  border-top-right-radius: 35%;
+  border-top-left-radius: 35%;
+  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-top: 5%;
+}
+#confirm{
+  width: 100%!important;
+  height: 250px!important;
+}
+.confirm-div{
+  width: 100%;
+  min-width: 100%;
+}
+.font-st{
+  font-size: 50px!important;
+}
+.margin-auto{
+	margin:0 auto;
+  max-height: 100%;
+  border-radius: 100%;
+}
+.hover-black{
+	color: black;
+}
+.hover-black{
+	color: $pink;
+}
+.img-100{
+  max-width: 100px!important;
+}
+.img-350{
+  max-width: 350px;
+}
+.margin-bottom{
+  margin-bottom: 50px;
+}
+.no{
+  color: black;
+  padding-left: 10%;
+}
+.no:hover{
+  color: $pink;
+  text-decoration: none;
+}
+@media (min-width: 991px) {
+  .padding-top{
+    padding-top: 10%;
+  }
+}

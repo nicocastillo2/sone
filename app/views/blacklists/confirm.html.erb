@@ -1,7 +1,35 @@
-<h4>Estas seguro?</h4>
-<br>
-<%= link_to "Si", blacklist_unsubscribe_path + "?data=#{@data}", method: :post %>
-
-<%= link_to "No", blacklist_cancel_path, method: :post, remote: true %>
-
-<h4 class="gracias" style="display: none">Gracias</h4>
+<% provide(:aside, "hidden")  %>
+<% provide(:header, "hidden")  %>
+<div class="confirm-div">
+	<nav id="confirm">
+		<%= image_tag(@logo, class: "img-responsive margin-auto") %>
+		<br>
+	</nav>
+	<h2 class="text-center">¿Estas seguro(a) que ya no quieres recibir correos de <%= @campaign %>?</h2>
+	<br>
+	<div class="row margin-bottom">
+		<div class="col-md-4"><br></div>
+		<div class="col-md-4 text-center">
+			<%= link_to(blacklist_unsubscribe_path + "?data=#{@data}", method: :post, class: "") do %>
+ 				<%= image_tag("si-8.png", class: "img-100") %>
+		    <% end %>
+			<%= link_to "No", blacklist_cancel_path, method: :post, class: "text-center font-st no", remote: true %>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<div class="row back-image">
+		<div class="col-md-2"><br></div>
+		<div class="col-md-8">
+			<div class="row ">
+				<div class="col-md-6 text-center">
+					<h3 class="pink padding-top">Disculpe las moletias</h3>
+				</div>
+				<div class="col-md-2 text-center">
+					<%= image_tag("folder.png", class: "img-350") %>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+	<h4 class="gracias text-center" style="display: none">Gracias</h4>
+</div>

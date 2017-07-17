@@ -13,7 +13,7 @@
 <%= javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js" %>
 <![endif]-->
 
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= csrf_meta_tags %>
 
@@ -22,119 +22,34 @@
 </head>
 <body>
   <div class="row affix-row back-white">
-    <div class="col-sm-3 col-md-2 affix-sidebar">
-      <div class="sidebar-nav">
-        <div class="navbar navbar-default" role="navigation">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <span class="visible-xs navbar-brand">Menu</span>
-          </div>
-          <div class="navbar-collapse collapse sidebar-navbar-collapse back-white">
-            <ul class="nav navbar-nav" id="sidenav01">
-              <li class="active">
-                <%= image_tag("logo-sone-250.png", id: "sone_icon", class: "img-responsive center") %>
-                <br>
-                <% if user_signed_in? %>
-                <h2 class="left-menu center">foto</h2>     
-                <p class="left-menu center"><%= current_user.email %></p>
-               <!--  <div class="collapse" id="toggleDemo0" style="height: 0px;">
-                  <ul class="nav nav-list">
-                    <li><a href="#">ProfileSubMenu1</a></li>
-                    <li><a href="#">ProfileSubMenu2</a></li>
-                    <li><a href="#">ProfileSubMenu3</a></li>
-                  </ul>
-                </div>--> 
-                
-              </li>
-              
-              <li class="center">
-                <a class="left-menu" href="#">
-                  <%= image_tag("iconos-pencil.svg", class: "img-responsive small-img navbar-link") %> Editar perfil
-                </a>
-              </li>
-              <li class="center">
-                <%= link_to(campaigns_path, class: 'left-menu') do %>
-                <%= image_tag("iconos-block.svg", class: "img-responsive small-img navbar-link") %>Campañas
-                <% end %>
-              </li>
-              <li class="center">
-                <%= link_to(suscriptions_path, class: 'left-menu') do %>
-                  <%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Planes
-                <% end %>
-              </li>
-              <li class="center">
-                <%= link_to(new_payment_path, class: 'left-menu') do %>
-                  <%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Metodo de Pago
-                <% end %>
-              </li>
-              <li class="center">
-                <a class="left-menu" href="#">
-                  <%= image_tag("iconos-question.svg", class: "img-responsive small-img navbar-link") %>Dudas
-                </a>
-              </li>
-              <li class="center">
-                <a class="left-menu" href="#">
-                  <%= image_tag("iconos-audio.svg", class: "img-responsive small-img navbar-link") %>Ayuda
-                </a>
-              </li>
-              <li class="center">
-                <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu") do %>
-                <%= image_tag("iconos-profile.svg", class: "small-img") %>Cerrar sesión
-                <% end %> 
-              </li>
-              <% else %>
-              <%=link_to "Iniciar sesión", new_user_session_path, class: "left-menu" %>
-              <% end %>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-9 col-md-10 affix-content nopadding shadow-inset-left overflow">
-      <div class="content-container container">
-        <nav class="menu-top hidden-sm hidden-xs">
-          <% if user_signed_in? %>
-          <div class="col-md-4 col-xs-3">
-            <p>Nombre de la campaña: sone </p>
-          </div>
-          
-          <div class="col-md-2 col-xs-3 text-right" >
-            <%= link_to "Black List", blacklist_path, id: 'black-list' %>
-          </div>
-          
-          <div class="col-md-3 col-xs-3 text-right">
-            <%= link_to new_campaign_path, class: 'border-pink' do %>
-            Crear campaña
-            <span class="glyphicon pink glyphicon-plus pink padding-left"></span> 
-            <% end %>
-          </div>
-          <div class="col-md-3 col-xs-3 text-right"><span class="glyphicon pink glyphicon-user "></span><%=current_user.email %></div>
-          <% else %>
-            <%=link_to "Iniciar sesión", new_user_session_path %>
-          <% end %>
-        </nav>
-      </div>
-
-      <%= render partial: 'layouts/flash' %>
+    <% if (yield :aside) != "hidden"  %>
+      <%= render partial: 'layouts/aside' %>
+    <% end %>
+  <!-- </div> -->
+    <div class="<%= (yield :aside) != "hidden" ? 'col-sm-9 col-md-10 ' : '' %>affix-content nopadding shadow-inset-left overflow">
+    <% if (yield :header) != "hidden"  %>
+      <%= render partial: 'layouts/header' %>
+      <% else %>
+    <% end %>
+    <%= render partial: 'layouts/flash' %>
       
-      <div class="container-fluid main-container">
-        <!-- TODO: Put these flash messages into a partial -->
-        <div class="page-header no-border">
-          <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-              <h2><%= yield :title %></h2>
-            </div>          
-          </div>
-        </div>
 
+     
+      
+        <% if (yield :aside) != "hidden" %>
+          <div class="container-fluid main-container">
+            <!-- TODO: Put these flash messages into a partial -->
+            <div class="page-header no-border">
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  <h2><%= yield :title %></h2>
+                </div>          
+              </div>
+            </div>
+          </div>
+        <% end %>
         <%= yield %>
-        
-      </div>
+     
     </div>
   </div>
 </div>
