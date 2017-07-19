@@ -1,0 +1,65 @@
+$gray: #b0b0b0;
+$pink: #b2427c;
+.pink-button{	width: 49%;
+    border: 1px solid $pink;
+    text-align: center;
+    border-radius: 10px;
+    background-color: $pink;
+    border-radius: 17px;
+    padding: 7px 13px;
+    color: white;
+    margin-top: 10%;
+}
+.border-left{
+	border-left: 5px solid gray;
+	color: $gray;
+	padding: 10px 2%
+}
+.logo{
+	max-width: 50%;
+	border-radius: 100%;
+}
+.margin-bot{
+	margin-bottom: 5%;
+}
+.text-pink{
+	color: $pink;
+	font-size: 20px;
+}
+.text-gray{
+	color: $gray;
+	font-size: 20px;
+}
+.shadow-box{
+	-webkit-box-shadow: 0px 0px 20px 0px rgba(158,158,158,1);
+	-moz-box-shadow: 0px 0px 20px 0px rgba(158,158,158,1);
+	box-shadow: 0px 0px 20px 0px rgba(158,158,158,1);
+	margin-bottom: 5%;
+}
+.back-gray{
+	background-color: $gray;
+	color: white;
+}
+.table{
+	margin-bottom: 0px!important;
+}
+#contactos{
+	margin-top: 10%!important;
+	margin-bottom: 5%!important;
+}
+.send-button{
+	background-color: $pink;
+	color: white;
+	margin-bottom: 7%;
+}
+
+/* Media Querys */
+
+@media (max-width: 991px) {
+  .align-center{
+  	text-align: center;
+  }
+  .logo{
+  	padding-bottom: 5%;
+  }
+}
