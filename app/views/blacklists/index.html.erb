@@ -1,7 +1,6 @@
-<% provide(:title, 'Blacklist') %>
-
+<% provide(:title, 'BLACKLIST') %>
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
 
     <div class="table-responsive table-shadow">
       <table class="table table-striped table-bordered table-hover table-no-margin">
@@ -16,15 +15,15 @@
           <% @contacts.each_with_index do |contact, index| %>
             <%if index == 0%>
               <tr class="td-no-border">
-                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= contact.campaign.name %></td>
-                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= contact.email %></td>
-                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= contact.blacklist %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align text-gray-form"><%= contact.campaign.name %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align text-gray-form"><%= contact.email %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align text-gray-form"><%= contact.blacklist %></td>
               </tr>
             <% else %>
               <tr>
-                <td class="td-no-border text-center padding-bottom middle-align"><%= contact.campaign.name %></td>
-                <td class="td-no-border text-center padding-bottom middle-align"><%= contact.email %></td>
-                <td class="td-no-border text-center padding-bottom middle-align"><%= contact.blacklist %></td>
+                <td class="td-no-border text-center padding-bottom middle-align text-gray-form"><%= contact.campaign.name %></td>
+                <td class="td-no-border text-center padding-bottom middle-align text-gray-form"><%= contact.email %></td>
+                <td class="td-no-border text-center padding-bottom middle-align text-gray-form"><%= contact.blacklist %></td>
               </tr>
             <% end %>
           <% end %>

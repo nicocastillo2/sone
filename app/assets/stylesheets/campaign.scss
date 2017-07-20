@@ -30,6 +30,9 @@ $pink: #b2427c;
 	color: $gray;
 	font-size: 20px;
 }
+.text-gray-form{
+	color: $gray;
+}
 .shadow-box{
 	-webkit-box-shadow: 0px 0px 20px 0px rgba(158,158,158,1);
 	-moz-box-shadow: 0px 0px 20px 0px rgba(158,158,158,1);
@@ -51,6 +54,10 @@ $pink: #b2427c;
 	background-color: $pink;
 	color: white;
 	margin-bottom: 7%;
+}
+.return-button{
+	background-color: $pink;
+	color: white;
 }
 
 /* Media Querys */
