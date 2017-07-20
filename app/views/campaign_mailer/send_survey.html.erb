@@ -22,6 +22,13 @@
     }
     img {
       border: 0;
+    }
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
     .webkit {
       max-width: 600px;
     }   
@@ -40,6 +47,15 @@
       vertical-align:middle;
     }
 
+    .back-color{
+      height: 250px;
+      background-position: center;
+      background-image: url(http://localhost:3000/uploads/campaign/logo/1/instagram_perfil.jpg);
+      background-repeat: no-repeat;
+      position: relative;
+      box-shadow: 10px 4px 16px -2px rgba(163,160,163,1);
+    }
+
     img{
       width: 300px;
       height: auto;
@@ -55,14 +71,11 @@
         width:30%;
         margin: 0 auto;
       }
-      /*.pink{
+      .pink{
         margin-left: 37%;
-      }*/
+      }
       .shadow{
         padding:15px;
-      }
-      .font-size-3{
-        font-size: 3px;
       }
     }
     @media only screen and (min-width: 580px)  {
@@ -76,28 +89,35 @@
         padding:50px;
         margin-bottom: 20px;
       }
-      .font-size-3{
-        font-size: 8px;
-      }
-      .full {
-        display:block;
-        width:100%;
-        margin: 0 auto;
-      }
+    }
+    .pink:nth-child(-n+6) {
+      color:#b2427c;
+    }
+    .pink:last-child {
+      color:#b2427c;
     }
     .pink{
       color: white;
       bottom: 0;
       position: absolute;
     }
+
     .white{color: white;}
+    .shadow{
+      -webkit-box-shadow: 0px 11px 18px -2px rgba(163,160,163,1);
+      -moz-box-shadow: 0px 11px 18px -2px rgba(163,160,163,1);
+      box-shadow: 0px 11px 18px -2px rgba(163,160,163,1);
+    }
+    .back-color{
+      background-color: black;
+    }
     .border-0{
       border:0;
       padding-bottom: 5px;
-      padding-top: 10px;
+      padding-top: 5px;
     }
     .border-0:hover{
-      border-color: 1px solid black;
+      
     }
     #ten{
       color: white;
@@ -108,6 +128,12 @@
     .link{
       color:#b2427c;
     }
+    .font-10{
+      font-size: 10px!important;
+    }
+    #img{
+      border-radius: 100%;
+    }
   </style>
 
 </head>
@@ -117,16 +143,15 @@
       <tr>
         <td style="" class="">
         <center>
-          <img src='<%= @logo_path %>' alt="" style="height: auto, border-radius:100%, width:auto;">
+          <img id="img" src='<%= @logo_path %>' alt="" style="height: auto, border-radius:100%, width:auto;">
+          <br>
+          ¡Hola {{name}}!
         </center>
         </td>
       </tr>
       <tr>
         <td>
-          <center>
-            <p style="color: #b2427c, padding-top:3px" class="pink">!Hola, {{name}}¡</p>
             <hr>
-          </center>
         </td>
       </tr>
       <tr>
@@ -135,12 +160,12 @@
         </td>
       </tr>
       <tr>
-        <td dir="rtl" class="back-gray">
+        <td class="back-gray">
           <table border="0" cellpadding="0" cellspacing="5" width="100%">
             <tbody>
               <tr>
                 <% (0..10).each do |index| %>
-                  <td class="full">
+                  <td class="full border-0">
                     <% if index != 10  %>
                       <a href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
                     <% else %>
@@ -152,7 +177,7 @@
             </tbody>
           </table>
           <center>
-            <p class="font-size-3" style="font-size: 70%">Si quieres dejar de recibir correos por parte de Sone da <a class="link font-size-3" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Clic aquí</a></p>
+            <p class="font-size-10" style="font-size: 70%">Si quieres dejar de recibir correos por parte de Sone da <a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Clic aquí</a></p>
           </center>
         </td>
       </tr>
@@ -160,4 +185,5 @@
   </table>
 </body>
 </html>
+
 
