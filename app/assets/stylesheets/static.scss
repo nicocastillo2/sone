@@ -96,17 +96,16 @@ $pink: #9a4479;
   width: 100vw;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .navbar-brand-center{
     display: none;
   }
-
   #navbar-toggle-menu a{
     display: block;
   }
 }
 
-@media (min-width: 768px){
+@media (min-width: 7 68px){
   .show-toggle-menu{
     display: none; 
   }
