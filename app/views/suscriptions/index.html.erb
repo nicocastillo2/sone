@@ -1,14 +1,84 @@
-
-<% @suscriptions.each do |suscription| %>
-  <div class="col-md-3">
-    <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
-      <%= hidden_field_tag 'suscription_name', suscription %>
-      <div class="form-group">
-        <span><%= suscription %></span>
-      </div>
-      <div class="form-group">
-        <%= submit_tag 'Comprar', class: 'btn btn-success' %>
-      </div>
+<% provide(:title, 'Elige tu plan') %>
+<div class="row">
+  <div class="col-md-1"><br></div>
+  <div class="col-md-10">
+    <% @suscriptions.each_with_index do |suscription, index| %>
+      <% if  index == 0%>
+        <div class="col-md-3 text-center">
+          <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
+            <%= hidden_field_tag 'suscription_name', suscription %>
+            <div class="form-group shadow">
+              <span class="title"><%= suscription %></span>
+              <br>
+              <h3 class="gray">Cien</h3>
+              <h5 class="gray">Clientes al mes</h5>
+              <h2>Gratis</h2>
+              <div class="imagen">
+                <%= image_tag("static/avion-papel.png", class: "img-responsive img-center") %>
+              </div>
+              <%= submit_tag 'Obtener', class: 'btn confirm' %>
+              <p class="margin-top-10">Funcionalidad básica</p>
+            </div>
+          <% end %>
+        </div>
+      <% elsif index == 1 %>
+        <div class="col-md-3 text-center">
+          <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
+            <%= hidden_field_tag 'suscription_name', suscription %>
+            <div class="form-group shadow">
+              <span class="title"><%= suscription %></span>
+              <br>
+              <h3 class="gray">Mil</h3>
+              <h5 class="gray">Clientes al mes</h5>
+              <h2>$900</h2>
+              <div class="imagen">
+                <%= image_tag("static/avion.png", class: "img-responsive img-center") %>  
+              </div>
+              <%= submit_tag 'Obtener', class: 'btn confirm' %>
+              <p class="margin-top-10">Multi campaña</p>
+            </div>
+          <% end %>
+        </div>
+      <% elsif index == 2 %>
+        <div class="col-md-3 text-center">
+          <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
+            <%= hidden_field_tag 'suscription_name', suscription %>
+            <div class="form-group shadow">
+              <span class="title"><%= suscription %></span>
+              <br>
+              <h3 class="gray">5 mil</h3>
+              <h5 class="gray">Clientes al mes</h5>
+              <h2>$2,500</h2>
+              <div class="imagen">
+                <%= image_tag("static/helicoptero.png", class: "img-responsive img-center") %>
+              </div>
+              <%= submit_tag 'Obtener', class: 'btn confirm' %>
+              <p class="margin-top-10">Multi campaña</p>
+              <p class="pink">Inforgrafía mensual</p>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="col-md-3 text-center">
+          <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
+            <%= hidden_field_tag 'suscription_name', suscription %>
+            <div class="form-group shadow">
+              <span class="title"><%= suscription %></span>
+              <br>
+              <h3 class="gray">10 mil</h3>
+              <h5 class="gray">Clientes al mes</h5>
+              <h2>$4,500</h2>
+              <div class="imagen">
+                <%= image_tag("static/cohete.png", class: "img-responsive img-center") %>  
+              </div>
+              <%= submit_tag 'Obtener', class: 'btn confirm' %>
+              <p class="margin-top-10">Multi campaña</p>
+              <p class="pink">Inforgrafía mensual</p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
-<% end %>
+  <div class="col-md-1"></div>
+</div>
