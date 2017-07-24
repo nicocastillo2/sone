@@ -10,12 +10,9 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    # @campaign = Campaign.includes(contacts: [:answer]).find(params[:id])
-    # puts '*'*100
     @nps = Nps.for_campaign(@campaign.id)
     @contacts = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.paginate(:page => params[:page])
-    # debug @contacts
-    # debugger
+    @topics = Campaign.find(params[:id]).tmp_topics
   end
 
   # GET /campaigns/new
@@ -31,9 +28,9 @@ class CampaignsController < ApplicationController
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(campaign_params.merge(user_id: current_user.id))
+    @campaign.tmp_topics = campaign_params[:topics].map(&:split).flatten.sort if campaign_params[:topics]
     respond_to do |format|
-      if @campaign.save
-        Campaign.import_contacts(params[:campaign][:file], @campaign.id)
+      if @campaign.save!
         format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
         format.json { render :show, status: :created, location: @campaign }
       else
@@ -79,6 +76,13 @@ class CampaignsController < ApplicationController
     campaign.contacts.update_all(status: 1, sent_date: @time)
   end
 
+  def upload_csv
+    campaign_id = params[:campaign][:id]
+    topics = Campaign.find(campaign_id).tmp_topics
+    Campaign.import_contacts(params[:campaign][:file], topics, campaign_id)
+    redirect_to campaign_path(campaign_id), notice: 'CSV was successfully imported.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
@@ -87,6 +91,6 @@ class CampaignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
-      params.require(:campaign).permit(:name, :sender_name, :sender_email, :logo, :color, :file)
+      params.require(:campaign).permit(:name, :sender_name, :sender_email, :logo, :color, topics: [])
     end
 end
