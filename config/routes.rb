@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   #static pages
   root to: 'static#homepage'
   get 'pricing', to: 'static#pricing'
@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
   resources :campaigns
   resources :payments, except: [:index, :show]
-  
+  post '/import_contacts', to: 'campaigns#upload_csv', as: 'import_csv'
+
   get '/suscriptions', to: 'suscriptions#index', as: 'suscriptions'
   post 'suscriptions', to: 'suscriptions#update'
 end

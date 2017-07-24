@@ -66,6 +66,15 @@
 <h1>Contactos de la campañas</h1>
 
 <%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-primary', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
+
+<%= form_for :campaign, url: { controller: 'campaigns', action: 'upload_csv' } do |f| %>
+  <div class="form-group">
+    <%= f.hidden_field :id %>
+    <%= f.label :file, 'Importar archivo' , class: "control-label" %>
+    <%= f.file_field :file, placeholder: 'sin archivo' %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end  %>
 <br>
 <br>
 
@@ -73,8 +82,11 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-        <th>Nombre</th>
         <th>Email</th>
+        <% @topics.each do |topic| %>
+          <th><%= topic.camelize %></th>
+        <% end %>
+        <th>Nombre</th>
         <th>Estatus</th>
         <th>Fecha de envío</th>
         <th>Puntuación</th>
@@ -85,8 +97,13 @@
     <tbody>
       <% @contacts.each do |contact| %>
         <tr>
-          <td><%= contact.name %></td>
           <td><%= contact.email %></td>
+          <% if @topics %>
+            <% contact.topics.sort.to_h.each do |t, v| %>
+              <td><%= v %></td>
+            <% end %>
+          <% end %>
+          <td><%= contact.name %></td>
           <td  class="status"><%= contact.status %></td>
           <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
           <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
@@ -96,6 +113,5 @@
     </tbody>
   </table>
 </div>
-
 
 <%= will_paginate @contacts %>
