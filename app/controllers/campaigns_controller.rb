@@ -13,6 +13,8 @@ class CampaignsController < ApplicationController
     @nps = Nps.for_campaign(@campaign.id)
     @contacts = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.paginate(:page => params[:page])
     @topics = Campaign.find(params[:id]).tmp_topics
+    @mails_sent = Campaign.mails_sent
+    @mails_not_sent = Campaign.mails_not_sent
   end
 
   # GET /campaigns/new
