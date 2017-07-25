@@ -108,19 +108,21 @@
 
         <tbody>
           <% @contacts.each do |contact| %>
-            <tr>
-              <td><%= contact.email %></td>
-              <% if @topics %>
-                <% contact.topics.sort.to_h.each do |t, v| %>
-                  <td><%= v %></td>
+            <% if contact.blacklist.nil? %>
+              <tr>
+                <td><%= contact.email %></td>
+                <% if @topics %>
+                  <% contact.topics.sort.to_h.each do |t, v| %>
+                    <td><%= v %></td>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <td><%= contact.name %></td>
-              <td class="status"><%= contact.status %></td>
-              <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
-              <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
-              <td><%= contact.answer&.comment %></td>
-            </tr>
+                <td><%= contact.name %></td>
+                <td class="status"><%= contact.status %></td>
+                <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
+                <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
+                <td><%= contact.answer&.comment %></td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
