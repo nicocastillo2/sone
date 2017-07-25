@@ -31,8 +31,8 @@
         <p class="text-gray"><%= @campaign.sender_email %></p>
       </div>
       <div class="col-md-3 align-center">
-        <p class="text-pink">Email del Remitente:</p>
-        <p class="text-gray"><%= @campaign.sender_email %></p>
+        <p class="text-pink">Creada el:</p>
+        <p class="text-gray"><%= @campaign.created_at %></p>
       </div>
     </div>
 
@@ -73,7 +73,8 @@
 
     <p>Enviados <span class="badge"><%= @mails_sent %></span></p>
     <p>No Enviados <span class="badge"><%= @mails_not_sent %></span></p>
-    <p>Contestados <span class="badge">0</span></p>
+    <p>Contestados <span class="badge"><%= @mails_answered %></span></p>
+    <p>No Contestados <span class="badge"><%= @mails_not_answered %></span></p>
 
     <%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
     <%= form_for :campaign, url: { controller: 'campaigns', action: 'upload_csv' } do |f| %>

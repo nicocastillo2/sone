@@ -17,10 +17,6 @@ class Campaign < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
-  scope :mails_not_sent, -> { joins(:contacts).where(contacts: { status: 0 }).count }
-  scope :mails_sent, -> { joins(:contacts).where(contacts: { status: 1 }).count }
-  scope :mails_answered, -> { joins(:contacts).where(contacts: { status: 1 }).count }
-
   def self.import_contacts(file, topics, campaign_id)
     formatted_topics = Campaign.assign_topics(topics)
     contacts = []
@@ -40,6 +36,22 @@ class Campaign < ApplicationRecord
       attributes = {}
     end
     Contact.import(contacts, batch_size: 1000)
+  end
+
+  def mails_sent
+    contacts.where(contacts: { status: 1 }).count
+  end
+
+  def mails_not_sent
+    contacts.where(contacts: { status: 0 }).count
+  end
+
+  def mails_answered
+    contacts.where('contacts.id IN (SELECT DISTINCT(contact_id) FROM answers)').count
+  end
+
+  def mails_not_answered
+    contacts.where('contacts.id NOT IN (SELECT DISTINCT(contact_id) FROM answers)').count
   end
 
   private
