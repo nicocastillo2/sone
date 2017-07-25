@@ -13,10 +13,6 @@ class CampaignsController < ApplicationController
     @nps = Nps.for_campaign(@campaign.id)
     @contacts = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.paginate(:page => params[:page])
     @topics = Campaign.find(params[:id]).tmp_topics
-    @mails_sent = @campaign.mails_sent
-    @mails_not_sent = @campaign.mails_not_sent
-    @mails_answered = @campaign.mails_answered
-    @mails_not_answered = @campaign.mails_not_answered
   end
 
   # GET /campaigns/new
@@ -77,6 +73,7 @@ class CampaignsController < ApplicationController
     campaign = Campaign.includes(:contacts).find(params[:campaign_id])
 
     @time = Time.now
+    campaign.update last_sent: @time
     campaign.contacts.update_all(status: 1, sent_date: @time)
   end
 

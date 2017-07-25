@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721190807) do
+ActiveRecord::Schema.define(version: 20170725222315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170721190807) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "tmp_topics", default: [], array: true
+    t.datetime "last_sent"
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
@@ -45,8 +46,8 @@ ActiveRecord::Schema.define(version: 20170721190807) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "blacklist"
     t.jsonb "topics", default: "{}", null: false
+    t.date "blacklist"
     t.index ["campaign_id"], name: "index_contacts_on_campaign_id"
   end
 

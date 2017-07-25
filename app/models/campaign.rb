@@ -54,6 +54,10 @@ class Campaign < ApplicationRecord
     contacts.where('contacts.id NOT IN (SELECT DISTINCT(contact_id) FROM answers)').count
   end
 
+  def unsubscribes
+    contacts.where.not(blacklist: nil).count
+  end
+
   private
 
   def csv_has_headers?
