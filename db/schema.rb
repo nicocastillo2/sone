@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20170728170136) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "topics", default: "{}", null: false
     t.date "blacklist"
-    t.boolean "valid", default: true, null: false
+    t.jsonb "topics", default: "{}", null: false
+    t.boolean "valid_info", default: true, null: false
     t.index ["campaign_id"], name: "index_contacts_on_campaign_id"
   end
 
