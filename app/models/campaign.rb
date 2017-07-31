@@ -6,6 +6,7 @@ class Campaign < ApplicationRecord
 
   attr_accessor :file, :topics
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :sender_name, :sender_email, :logo, :color, presence: { message: "esta vacio" }
   validates :file, csv: {
                           columns: 2,
@@ -26,6 +27,11 @@ class Campaign < ApplicationRecord
         if formatted_topics.key? head
           formatted_topics[head] = row[head]
         else
+          if head == 'email'
+            if !VALID_EMAIL_REGEX.match?(row[head])
+              attributes[:valid_info] = false
+            end
+          end
           attributes[head.to_sym] = row[head]
         end
         attributes[:topics] = formatted_topics
@@ -56,6 +62,10 @@ class Campaign < ApplicationRecord
 
   def unsubscribes
     contacts.where.not(blacklist: nil).count
+  end
+
+  def invalid_contacts
+    contacts.where(valid_info: false)
   end
 
   private

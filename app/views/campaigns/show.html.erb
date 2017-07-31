@@ -69,14 +69,15 @@
       %>
     <% end %>
 
-    <h1 class="border-left" id="contactos">Contactos de la campañas</h1>
+    <h1 class="border-left" id="contactos">Contactos de la campaña</h1>
 
     <p>Enviados <span class="badge"><%= @campaign.mails_sent %></span></p>
     <p>No Enviados <span class="badge"><%= @campaign.mails_not_sent %></span></p>
     <p>Contestados <span class="badge"><%= @campaign.mails_answered %></span></p>
     <p>No Contestados <span class="badge"><%= @campaign.mails_not_answered %></span></p>
     <p>Suscripciones canceladas <span class="badge"><%= @campaign.unsubscribes %></span></p>
-    <p>Último envío: <%= @campaign.last_sent.strftime("%d-%m-%Y") %></p>
+    <% campaign_last_sent = (@campaign.last_sent)? @campaign.last_sent.strftime("%d-%m-%Y") : 'Sin enviar' %>
+    <p>Último envío: <%= campaign_last_sent %></p>
 
     <%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
     <%= form_for :campaign, url: { controller: 'campaigns', action: 'upload_csv' } do |f| %>
@@ -89,6 +90,45 @@
     <% end  %>
     <br>
     <br>
+
+    <h3>Contactos Inválidos</h3>
+    <div class="table-responsive shadow-box">
+      <table class="table table-striped table-bordered table-hover ">
+        <thead>
+          <tr>
+            <th class='back-gray'>Email</th>
+            <% @topics.each do |topic| %>
+              <th class='back-gray'><%= topic.camelize %></th>
+            <% end %>
+            <th class='back-gray'>Nombre</th>
+            <th class='back-gray'>Estatus</th>
+            <th class='back-gray'>Fecha de envío</th>
+            <th class='back-gray'>Puntuación</th>
+            <th class='back-gray'>Comentario</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @campaign.invalid_contacts.each do |contact| %>
+            <% if contact.blacklist.nil? %>
+              <tr>
+                <td><%= contact.email %></td>
+                <% if @topics %>
+                  <% contact.topics.sort.to_h.each do |t, v| %>
+                    <td><%= v %></td>
+                  <% end %>
+                <% end %>
+                <td><%= contact.name %></td>
+                <td class="status"><%= contact.status.titleize %></td>
+                <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
+                <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
+                <td><%= contact.answer&.comment %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
     <div class="table-responsive shadow-box">
       <table class="table table-striped table-bordered table-hover ">
@@ -117,7 +157,7 @@
                   <% end %>
                 <% end %>
                 <td><%= contact.name %></td>
-                <td class="status"><%= contact.status %></td>
+                <td class="status"><%= contact.status.titleize %></td>
                 <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
                 <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
                 <td><%= contact.answer&.comment %></td>
