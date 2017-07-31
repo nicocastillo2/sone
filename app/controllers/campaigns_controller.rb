@@ -74,7 +74,7 @@ class CampaignsController < ApplicationController
 
     @time = Time.now
     campaign.update last_sent: @time
-    campaign.contacts.update_all(status: 1, sent_date: @time)
+    campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
   end
 
   def upload_csv
