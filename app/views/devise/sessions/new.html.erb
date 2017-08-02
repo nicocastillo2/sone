@@ -41,8 +41,9 @@
     }
 
     .con{
-      margin: 14px auto;
+      margin: 2px;
       text-align: center;
+      font-size: 20px;
     }
 
     #compu{
@@ -129,12 +130,14 @@
         background-size: 100vw 100vh;
       }
     }
-    @media (max-width: 992px){
+    @media (max-width: 991px){
       .login-icons{
+        width: 30px;
+      }
+      .width {
         width: 100%;
       }
     }
-
   </style>
 
 </head>
@@ -153,23 +156,25 @@
       <div class="col-md-4 text-center">
         <%= image_tag("static/sone-logo.svg", class: "img-100 margin-top-20  hidden-sm hidden-xs") %>
       </div>
-        <div class="col-xs-4 text-center">
+        <div class="col-xs-4 text-center width">
           <div class="row text-center">
             <div class="col-xs-3 col-md-3">
               <p class="con">con</p>
             </div>
             <div class="col-xs-3 col-md-3">
               <%= link_to user_facebook_omniauth_authorize_path do %>
-                <img class="login-icons img-responsive center-block" src="<%= root_url %>face-icon.svg" alt="">
+                <img class="login-icons" src="<%= root_url %>face-icon.svg" alt="">
               <% end %>
             </div>
             <div class="col-xs-3 col-md-3">
               <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-                <img class="login-icons img-responsive center-block" src="<%= root_url %>google-plus.svg" alt="">
+                <img class="login-icons" src="<%= root_url %>google-plus.svg" alt="">
               <% end %>
             </div>
             <div class="col-xs-3 col-md-3">
-              <img class="login-icons img-responsive center-block img-border" src="<%= root_url %>mail.svg" alt="">
+              <%= link_to new_user_registration_path do %>
+              <img class="login-icons img-border" src="<%= root_url %>mail.svg" alt="">
+              <% end %>
             </div>
           </div>
         </div>

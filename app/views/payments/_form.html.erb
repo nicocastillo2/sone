@@ -37,34 +37,56 @@
   <div class="form-group">
     <label>
       <span>Nombre del tarjetahabiente</span>
-      <input class="form-control" type="text" size="20" name="name" data-conekta="card[name]" />
+      <input id="name" class="form-control field-pay" type="text" size="20" name="name" data-conekta="card[name]" />
     </label>
   </div>
+  <br>
+  <br>
   <div class="form-group">
     <label>
       <span>Telefono</span>
-      <input class="form-control" type="text" size="20" name="phone" data-conekta="card[phone]"/>
+      <input class="form-control field-pay" type="text" size="20" name="phone" data-conekta="card[phone]"/>
+      <%= image_tag("master.png", class: "img-responsive card-img") %>
+      <%= image_tag("visa.png", class: "img-responsive card-img") %>
+      <%= image_tag("american.png", class: "img-responsive card-img") %>
+
     </label>
   </div>
-  <div class="form-group">
-    <label>
-      <span>Número de tarjeta de crédito</span>
-      <input class="form-control" type="text" size="20" data-conekta="card[number]"/>
-    </label>
+  <br>
+  <div class="row ">
+    <div class="col-md-2"><br></div>
+    <div class="col-md-8 target ">
+      <div class="form-group">
+      <h3>Realizar compra<%= image_tag("master.png", class: "img-responsive card-img", id: "chip") %></h3>
+
+      <br>
+      <%= image_tag("chip.png", class: "img-responsive chip") %>
+      <br>
+      <label>
+        <span>Número de tarjeta de crédito</span><br>
+        <input class="form-control field-pay" type="text" size="20" data-conekta="card[number]"/>
+      </label>
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="fecha">
+        <span>Fecha de expiración (MM/AAAA)</span><br>
+        <input class="form-control field-pay date" type="text" size="2" data-conekta="card[exp_month]"/>
+      
+      <span>/</span>
+      <input class="form-control field-pay date" type="text" size="4" data-conekta="card[exp_year]"/>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        <span>CVC</span>
+        <input class="form-control field-pay" type="text" size="4" data-conekta="card[cvc]"/>
+      </label>
+    </div>
+    <br>
+    
+    <button type="submit" class="pay-now">Pagar ahora!</button>
+    </div>
+    <div class="col-md-2"></div>
   </div>
-  <div class="form-group">
-    <label>
-      <span>CVC</span>
-      <input class="form-control" type="text" size="4" data-conekta="card[cvc]"/>
-    </label>
-  </div>
-  <div class="form-group">
-    <label>
-      <span>Fecha de expiración (MM/AAAA)</span>
-      <input class="form-control" type="text" size="2" data-conekta="card[exp_month]"/>
-    </label>
-    <span>/</span>
-    <input class="form-control" type="text" size="4" data-conekta="card[exp_year]"/>
-  </div>
-  <button type="submit">Pagar ahora!</button>
 <% end %>
