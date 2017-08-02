@@ -33,20 +33,20 @@
       <div class="form-group">
         <div class="col-sm-10 gray">
           <%#= f.file_field :logo,class: "filestyle", "data-input" => false %>
-          <div class="image-upload">
-           <label for="file-input">
+          <!-- <div class="image-upload"> -->
+           <!-- <label for="file-input">
              <span class="glyphicon glyphicon-download-alt gray-sone"></span>
-           </label>
+           </label> -->
+           <%= f.file_field :logo, id:"file-input gray-sone", class: "gray-sone filestyle", style:" font-size: 12px;" %>
 
-           <%= f.file_field :logo, id:"file-input gray-sone" %>
-           Subir Logo
-          </div>
+          <!-- </div> -->
         </div>
       </div>
       <div class="form-group">
-        <div class="col-sm-3 col-ms-3">
-          <%= image_tag("iconos-circles.svg", class: "img-responsive img-center green") %>
-          <%= f.text_field :color, input_html: {data: {minicolors: {theme: :bootstrap}}}, as: :minicolors, placeholder:"Color",class: "form-control colorpicker" %>
+        <div class="col-sm-2 col-ms-2">
+
+          <%= f.text_field :color, input_html: {data: {minicolors: {theme: :bootstrap}}}, as: :minicolors, placeholder:"Color",class: "form-control colorpicker form-pink" %>
+  
         </div>
       </div>
       <%= image_tag("cel.png", class: "img-responsive img-center") %>
@@ -62,9 +62,9 @@
       <p class="gray">Los topics son atributos (información que acompañan a las direcciones de correo de tus clientes). Al incluirlos, el diagnóstico sobre la experiencia que tu marca ofrece será más completo.</p>
         <%= f.label :tmp_topics, 'Topics', class: "col-sm-2 control-label text-gray-form" %>
         <div class="col-sm-10">
-          <ul>
+          <ul class="gray">
           <% Campaign.contact_topics.each do |t_spanish, t_english| %>
-            <%= f.check_box :topics, { multiple: true }, t_english, class: "roundedTwo" %>
+            <%= f.check_box :topics, { multiple: true, class: "" }, t_english, nil %>
             <%= t_spanish %>
             <%#= t_spanish.label(class: "roundedTwo") { t_spanish.check_box + t_spanish_text } %>
             <br>
