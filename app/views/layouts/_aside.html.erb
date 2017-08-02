@@ -16,11 +16,10 @@
                 <%= image_tag("logo-sone-250.png", id: "sone_icon", class: "img-responsive center") %>
                 <br>
                 <% if user_signed_in? %>
-                    <% if current_user.avatar == nil %>
-                      <%= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %>
-                    <% else %>
+                    <% if current_user.avatar.nil? %>
                       <%= image_tag("logo-sone-250.png", id: "sone_icon", class: "img-responsive center") %>
-  
+                    <% else %>
+                      <%= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %> 
                     <% end %>
                     <p class="left-menu center"><%= current_user.email %></p>                   
                 </li>
