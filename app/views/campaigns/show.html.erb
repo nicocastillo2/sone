@@ -101,6 +101,41 @@
               <th class='back-gray'><%= topic.camelize %></th>
             <% end %>
             <th class='back-gray'>Nombre</th>
+            <th class='back-gray text-center'><span class="glyphicon glyphicon-pencil"></span></th>
+            <th class='back-gray text-center'><span class="glyphicon glyphicon-trash"></span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @campaign.invalid_contacts.each do |contact| %>
+            <% if contact.blacklist.nil? %>
+              <tr>
+                <td><%= contact.email %></td>
+                <% if @topics %>
+                  <% contact.topics.sort.to_h.each do |t, v| %>
+                    <td><%= v %></td>
+                  <% end %>
+                <% end %>
+                <td><%= contact.name %></td>
+                <td class="text-center"><%= link_to 'edit', edit_contact_path(contact), class: "black" %></td>
+                <td class="text-center"><%= link_to 'destroy', contact, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Contactos Válidos. <small>No enviados</small></h3>
+    <div class="table-responsive shadow-box">
+      <table class="table table-striped table-bordered table-hover ">
+        <thead>
+          <tr>
+            <th class='back-gray'>Email</th>
+            <% @topics.each do |topic| %>
+              <th class='back-gray'><%= topic.camelize %></th>
+            <% end %>
+            <th class='back-gray'>Nombre</th>
             <th class='back-gray'>Estatus</th>
             <th class='back-gray'>Fecha de envío</th>
             <th class='back-gray'>Puntuación</th>
@@ -109,7 +144,7 @@
         </thead>
 
         <tbody>
-          <% @campaign.invalid_contacts.each do |contact| %>
+          <% @contacts_not_sent.each do |contact| %>
             <% if contact.blacklist.nil? %>
               <tr>
                 <td><%= contact.email %></td>
@@ -130,6 +165,7 @@
       </table>
     </div>
 
+    <h3>Contactos Válidos. <small>Enviados</small></h3>
     <div class="table-responsive shadow-box">
       <table class="table table-striped table-bordered table-hover ">
         <thead>
@@ -147,7 +183,7 @@
         </thead>
 
         <tbody>
-          <% @contacts.each do |contact| %>
+          <% @contacts_sent.each do |contact| %>
             <% if contact.blacklist.nil? %>
               <tr>
                 <td><%= contact.email %></td>
@@ -170,4 +206,4 @@
   </div>
 </div>
 
-<%= will_paginate @contacts %>
+<%= will_paginate @contacts_sent %>
