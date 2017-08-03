@@ -65,15 +65,14 @@
           <ul class="gray">
           <% Campaign.contact_topics.each do |t_spanish, t_english| %>
             <%= f.check_box :topics, { multiple: true, class: "" }, t_english, nil %>
-            <%= t_spanish %>
-            <%#= t_spanish.label(class: "roundedTwo") { t_spanish.check_box + t_spanish_text } %>
+            <%= t_spanish.camelize %>
             <br>
           <% end %>
           </ul>
         </div>
         <div class="form-group">
           <div class="col-sm-offset-1 col-sm-5">
-            <%= f.submit "continuar", class: "btn btn-default send-button button-100" %>
+            <%= f.submit "Crear", class: "btn btn-default send-button button-100" %>
           </div>
           <div class="col-sm-offset-1 col-sm-5 ">
             <%= link_to(campaigns_path, class: 'btn btn-default send-button button-100') do %>
