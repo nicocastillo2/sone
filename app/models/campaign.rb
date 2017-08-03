@@ -64,8 +64,20 @@ class Campaign < ApplicationRecord
     contacts.where.not(blacklist: nil).count
   end
 
+  def valid_contacts
+    contacts.where(valid_info: true)
+  end
+
   def invalid_contacts
     contacts.where(valid_info: false)
+  end
+
+  def percentage_sent
+    ((mails_sent * 100) / valid_contacts.count )
+  end
+
+  def percentage_answered
+    ((mails_answered * 100) / valid_contacts.count )
   end
 
   private

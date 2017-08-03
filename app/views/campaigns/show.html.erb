@@ -70,9 +70,17 @@
 
     <h1 class="border-left" id="contactos">Contactos de la campaña</h1>
 
-    <p>Enviados <span class="badge"><%= @campaign.mails_sent %></span></p>
+    <p>
+      Enviados
+      <span class="badge"><%= @campaign.mails_sent %></span>
+      <span class="badge"><%= number_to_percentage(@campaign.percentage_sent, precision: 1) %></span>
+    </p>
     <p>No Enviados <span class="badge"><%= @campaign.mails_not_sent %></span></p>
-    <p>Contestados <span class="badge"><%= @campaign.mails_answered %></span></p>
+    <p>
+      Contestados
+      <span class="badge"><%= @campaign.mails_answered %></span>
+      <span class="badge"><%= number_to_percentage(@campaign.percentage_answered, precision: 1) %></span>
+    </p>
     <p>No Contestados <span class="badge"><%= @campaign.mails_not_answered %></span></p>
     <p>Suscripciones canceladas <span class="badge"><%= @campaign.unsubscribes %></span></p>
     <% campaign_last_sent = (@campaign.last_sent)? @campaign.last_sent.strftime("%d-%m-%Y") : 'Sin enviar' %>
