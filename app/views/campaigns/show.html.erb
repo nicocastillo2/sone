@@ -35,6 +35,51 @@
       </div>
     </div>
 
+    <div class="row text-center contact-stats">
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-10 contact-stats-box">
+            <h4>Enviados</h4>
+            <span class="contact-stat"><%= @campaign.mails_sent %></span>
+            <span class="badge"><%= number_to_percentage(@campaign.percentage_sent, precision: 1) %></span>
+          </div>
+          <div class="col-md-10 contact-stats-box">
+            <h4>No Enviados</h4>
+            <span class="contact-stat"><%= @campaign.mails_not_sent %></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-10 contact-stats-box">
+            <h4>Contestados</h4>
+            <span class="contact-stat"><%= @campaign.mails_answered %></span>
+            <span class="badge"><%= number_to_percentage(@campaign.percentage_answered, precision: 1) %></span>
+          </div>
+          <div class="col-md-10 contact-stats-box">
+            <h4>No Contestados</h4>
+            <span class="contact-stat"><%= @campaign.mails_not_answered %></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-10 contact-stats-box">
+            <h4>Suscripciones canceladas</h4>
+            <span class="contact-stat unsubscribed-stat"><%= @campaign.unsubscribes %></span>
+            <span class="badge"><%= number_to_percentage(@campaign.percentage_unsubscribed, precision: 1) %></span>
+          </div>
+          <div class="col-md-10 contact-stats-box">
+            <% campaign_last_sent = (@campaign.last_sent)? @campaign.last_sent.strftime("%d-%m-%Y") : 'Sin enviar' %>
+            <h4>Último envío</h4>
+            <span class="contact-stat last-sent-stat"><%= campaign_last_sent %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br><br><br>
+
     <div id="nps_score" class="shadow-box"></div>
     <%= javascript_tag do %>
       <%=
@@ -70,21 +115,11 @@
 
     <h1 class="border-left" id="contactos">Contactos de la campaña</h1>
 
-    <p>
-      Enviados
-      <span class="badge"><%= @campaign.mails_sent %></span>
-      <span class="badge"><%= number_to_percentage(@campaign.percentage_sent, precision: 1) %></span>
-    </p>
-    <p>No Enviados <span class="badge"><%= @campaign.mails_not_sent %></span></p>
-    <p>
-      Contestados
-      <span class="badge"><%= @campaign.mails_answered %></span>
-      <span class="badge"><%= number_to_percentage(@campaign.percentage_answered, precision: 1) %></span>
-    </p>
-    <p>No Contestados <span class="badge"><%= @campaign.mails_not_answered %></span></p>
-    <p>Suscripciones canceladas <span class="badge"><%= @campaign.unsubscribes %></span></p>
-    <% campaign_last_sent = (@campaign.last_sent)? @campaign.last_sent.strftime("%d-%m-%Y") : 'Sin enviar' %>
-    <p>Último envío: <%= campaign_last_sent %></p>
+
+
+    <br>
+    <br>
+    <br>
 
     <%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
     <%= form_for :campaign, url: { controller: 'campaigns', action: 'upload_csv' } do |f| %>

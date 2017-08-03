@@ -80,6 +80,10 @@ class Campaign < ApplicationRecord
     ((mails_answered * 100) / valid_contacts.count )
   end
 
+  def percentage_unsubscribed
+    (unsubscribes * 100) / mails_sent
+  end
+
   private
 
   def csv_has_headers?
