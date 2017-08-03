@@ -2,7 +2,11 @@ class SuscriptionsController < ApplicationController
   before_action :require_payment_method, only: "update"
 
   def index
+    if user_signed_in?
     @suscriptions = ["freelancer", "startup", "crecimiento", "enterprise"]
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def update
