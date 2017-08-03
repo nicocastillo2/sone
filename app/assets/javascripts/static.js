@@ -64,3 +64,7 @@ $(document).ready(function() {
         slider.goToPrevSlide();
       });
 });
+
+//$(":file").filestyle({input: false});
+
+

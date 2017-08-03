@@ -7,6 +7,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Sone</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.2.1/bootstrap-filestyle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.filestyle/1.1.0/js/bootstrap-filestyle.min.js"> </script>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -25,31 +27,25 @@
     <% if (yield :aside) != "hidden"  %>
       <%= render partial: 'layouts/aside' %>
     <% end %>
-  <!-- </div> -->
     <div class="<%= (yield :aside) != "hidden" ? 'col-sm-9 col-md-10 ' : '' %>affix-content nopadding shadow-inset-left overflow">
-    <% if (yield :header) != "hidden"  %>
-      <%= render partial: 'layouts/header' %>
-      <% else %>
-    <% end %>
-    <%= render partial: 'layouts/flash' %>
-      
-
-     
-      
+      <% if (yield :header) != "hidden"  %>
+        <%= render partial: 'layouts/header' %>
+        <% else %>
+      <% end %>
+      <%= render partial: 'layouts/flash' %>
         <% if (yield :aside) != "hidden" %>
           <div class="container-fluid main-container">
             <!-- TODO: Put these flash messages into a partial -->
             <div class="page-header no-border">
               <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                  <h2><%= yield :title %></h2>
+                  <h2 class="gray"><%= yield :title %></h2>
                 </div>          
               </div>
             </div>
           </div>
         <% end %>
-        <%= yield %>
-     
+      <%= yield %>
     </div>
   </div>
 </div>
