@@ -7,7 +7,7 @@ class Campaign < ApplicationRecord
   attr_accessor :file, :topics
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :sender_name, :sender_email, :logo, :color, presence: { message: "esta vacio" }
+  validates :sender_name, :sender_email, :logo, :color, presence: { message: "está vacío" }
   validates :file, csv: {
                           columns: 2,
                           max_rows: 6000,
