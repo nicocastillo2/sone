@@ -5,11 +5,11 @@
         <div class="col-md-4">
           <h1 class="border-left"><%= @campaign.name %></h1>
         </div>
-        <div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-1">
-          <%= link_to campaigns_path, class: 'btn btn-default pink-button' do %>
+        <div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-1 col-sm-5">
+          <%= link_to campaigns_path, class: 'btn btn-default pink-show' do %>
             Regresar
           <% end %>
-          <%= link_to edit_campaign_path(@campaign), class: 'btn btn-default pink-button' do %>
+          <%= link_to edit_campaign_path(@campaign), class: 'btn btn-default pink-show' do %>
             Editar
             <span class="glyphicon glyphicon-pencil"></span>
           <% end %>
@@ -84,7 +84,7 @@
         <%= f.hidden_field :id %>
         <%= f.label :file, 'Importar contactos' , class: "control-label" %>
         <%= f.file_field :file, placeholder: 'sin archivo' %>
-        <%= f.submit 'Subir archivo', class:"btn btn-primary" %>
+        <%= f.submit 'Subir archivo', class:"btn btn-primary pink-show" %>
       </div>
     <% end  %>
     <br>

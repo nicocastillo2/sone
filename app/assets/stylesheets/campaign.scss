@@ -1,7 +1,17 @@
 $gray: #b0b0b0;
 $pink: #b2427c;
 $green: #c6c36e;
-.pink-button{	width: 49%;
+.pink-button{	
+    border: 1px solid $pink;
+    text-align: center;
+    border-radius: 10px;
+    background-color: $pink;
+    border-radius: 17px;
+    padding: 7px 13px;
+    color: white;
+    margin-top: 10%;
+}
+.pink-show{	
     border: 1px solid $pink;
     text-align: center;
     border-radius: 10px;
@@ -195,4 +205,12 @@ $green: #c6c36e;
   .logo{
   	padding-bottom: 5%;
   }
+  .pink-button{
+  	width: 49%;
+  }
+}
+@media (min-width: 992px){
+	.pink-button{
+		width: 100%;
+	}
 }
