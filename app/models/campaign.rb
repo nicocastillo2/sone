@@ -7,7 +7,7 @@ class Campaign < ApplicationRecord
   attr_accessor :file, :topics
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :sender_name, :sender_email, :logo, :color, presence: { message: "esta vacio" }
+  validates :sender_name, :sender_email, :logo, :color, presence: { message: "está vacío" }
   validates :file, csv: {
                           columns: 2,
                           max_rows: 6000,
@@ -64,8 +64,24 @@ class Campaign < ApplicationRecord
     contacts.where.not(blacklist: nil).count
   end
 
+  def valid_contacts
+    contacts.where(valid_info: true)
+  end
+
   def invalid_contacts
     contacts.where(valid_info: false)
+  end
+
+  def percentage_sent
+    ((mails_sent * 100) / valid_contacts.count )
+  end
+
+  def percentage_answered
+    ((mails_answered * 100) / valid_contacts.count )
+  end
+
+  def percentage_unsubscribed
+    (unsubscribes * 100) / mails_sent
   end
 
   private
