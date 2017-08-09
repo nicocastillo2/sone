@@ -73,15 +73,18 @@ class Campaign < ApplicationRecord
   end
 
   def percentage_sent
-    ((mails_sent * 100) / valid_contacts.count )
+    return ((mails_sent * 100) / valid_contacts.count.to_f ) if valid_contacts.count > 0
+    0
   end
 
   def percentage_answered
-    ((mails_answered * 100) / valid_contacts.count )
+    return ((mails_answered * 100) / mails_sent.to_f ) if mails_sent > 0
+    0
   end
 
   def percentage_unsubscribed
-    (unsubscribes * 100) / mails_sent
+    return (unsubscribes * 100) / mails_sent.to_f if mails_sent > 0
+    0
   end
 
   private

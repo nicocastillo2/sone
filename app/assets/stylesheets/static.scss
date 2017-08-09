@@ -1,6 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-colorpicker';
+@import 'bxslider.min.css';
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: asset-url('LeagueSpartan-Bold.otf') format('opentype');
+}
 
 @font-face {
   font-family: 'SourceSansPro';
@@ -15,6 +21,18 @@
 
 $green: #cbc86f;
 $pink: #9a4479;
+
+html {
+  font-size: 20px;
+}
+
+section {
+  padding-top: 80px;
+}
+
+p {
+  font-family: 'SourceSansPro';
+}
 
 #sone_icon{
   width: auto;
@@ -108,7 +126,7 @@ $pink: #9a4479;
 
 @media (min-width: 7 68px){
   .show-toggle-menu{
-    display: none; 
+    display: none;
   }
 }
 
@@ -352,7 +370,7 @@ $pink: #9a4479;
     padding-top: 20%;
   }
   .padding-top-50{
-    padding-top: 50%; 
+    padding-top: 50%;
   }
   .padding-top-20{
     padding-top: 20%;
@@ -411,3 +429,223 @@ footer{
   margin: 0!important;
 }
 
+header {
+  background-image: url('hero.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.hero-text-box {
+  position: absolute;
+  width: 1000px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+#home-main-title {
+  font-family: 'LeagueSpartan';
+  color: $green;
+  font-size: 400%;
+}
+
+.btn-free-trial {
+  font-family: 'SourceSansPro';
+  background-color: $pink;
+  color: white;
+  font-weight: bold;
+  font-size: 150%;
+  border-radius: 50px;
+  width: 200px;
+  text-align: center;
+  padding: 5px;
+  margin-top: 90px;
+}
+
+.hero-text-bottom {
+  position: absolute;
+  width: 1000px;
+  bottom: 1%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.hero-text-bottom h4:first-child:after {
+  display: block;
+  height: 1px;
+  background-color: $pink;
+  content: " ";
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+// Ask / Improve section
+.ask-improve-section {
+  background-image: image-url("dotted.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.ask-improve-section h3 {
+  font-family: 'LeagueSpartan';
+  color: $pink;
+  font-size: 220%;
+}
+
+.ask-improve-section p {
+  font-size: 130%;
+  color: #989893;
+  margin: 40px 0;
+}
+
+.highlight-text {
+  font-family: 'SourceSansPro';
+  font-weight: bold;
+}
+
+// End Ask-Improve section
+
+// Benefits section
+
+.benefits-section h3 {
+  font-family: 'LeagueSpartan';
+  color: $green;
+  font-size: 180%;
+  text-transform: uppercase;
+}
+
+.benefits-section p {
+  font-size: 155%;
+  color: #989893;
+}
+
+.benefit-row {
+  margin: 60px 0;
+}
+
+// End benefits section
+
+// Easy / Fast section
+
+.easy-fast-row {
+  position: relative;
+}
+
+.easy-fast-section .phone-img {
+  height: 600px;
+}
+
+.easy-fast-text-content {
+  margin-top: 70px;
+}
+
+.easy-fast-section h3 {
+  font-family: 'LeagueSpartan';
+  font-size: 280%;
+  color: $pink;
+  margin-bottom: 45px;
+}
+
+.easy-fast-section p {
+  color: #B9B9B1;
+  font-size: 185%;
+}
+
+.img-container {
+  position: absolute;
+  z-index: -1;
+  height: 400px;
+  bottom: 0;
+  left: 0;
+}
+
+.img-background {
+  width: 100%;
+}
+
+// End Easy / Fast section
+
+// Clients opinion section
+
+.clients-opinion-section {
+  background-image: image-url("clients-opinion.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.opinions-row {
+  position: relative;
+  color: #fff;
+}
+
+.clients-opinion-section h2 {
+  font-family: 'LeagueSpartan';
+  color: #fff;
+  margin-bottom: 70px;
+  font-size: 260%;
+}
+
+#slider-right-arrow, #slider-left-arrow {
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  // top: 50vh;
+  cursor: pointer;
+}
+
+#slider-right-arrow {
+    right: 7vw;
+}
+
+#slider-left-arrow {
+    left: 7vw;
+}
+
+.bx-wrapper {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.bxslider-opinions p:first-child:after {
+  display: block;
+  height: 1px;
+  background-color: $green;
+  content: " ";
+  width: 120px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.bxslider-opinions p {
+  font-family: 'SourceSansPro';
+  font-size: 150%;
+}
+
+.author-opinion {
+  color: $green;
+  font-size: 120%;
+}
+
+.author-lastname {
+  font-family: 'SourceSansPro';
+  font-weight: bold;
+}
+
+.author-site {
+  font-size: 80%;
+}
+
+.sone-text-in-opinion {
+  color: $green;
+  text-transform: uppercase;
+  font-size: 90%;
+}
+
+// End Clients opinion section
