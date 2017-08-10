@@ -231,7 +231,7 @@
             <% if contact.blacklist.nil? %>
               <tr>
                 <td><%= contact.email %></td>
-                <% if @topics %>
+                <% unless @topics.empty? %>
                   <% contact.topics.sort.to_h.each do |t, v| %>
                     <td><%= v %></td>
                   <% end %>
