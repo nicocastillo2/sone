@@ -17,13 +17,15 @@ AdminUser.create(username: 'nico',
 
 puts '2 Admin User created'
 
+campaign_logo_img = Rails.root.join("app/assets/images/logo-sone-250.png").open
+
 5.times do |campaign_num|
   color = '#' + "%06x" % (rand * 0xffffff)
   status = rand(0..1)
   campaign = Campaign.create(name: "Campaign #{campaign_num + 1}",
                              sender_name: @user.username,
                              sender_email: @user.email,
-                             logo: 'Logo',
+                             logo: campaign_logo_img,
                              color: color,
                              last_sent: Time.now,
                              user: @user)
@@ -48,7 +50,7 @@ color = '#' + "%06x" % (rand * 0xffffff)
 admin_campaign = Campaign.create(name: 'Admin Campaign',
                                  sender_name: @admin.username,
                                  sender_email: @admin.email,
-                                 logo: 'Logo',
+                                 logo: campaign_logo_img,
                                  color: color,
                                  last_sent: Time.now,
                                  user_id: @admin.id)
@@ -74,7 +76,7 @@ roberto = AdminUser.create(username: 'roberto',
 campaign = Campaign.create(name: "Kheper",
                              sender_name: "Roberto",
                              sender_email: "roberto@kheper.io",
-                             logo: 'Logo',
+                             logo: campaign_logo_img,
                              color: 'red',
                              last_sent: Time.now,
                              user: roberto)

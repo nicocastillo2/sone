@@ -96,9 +96,13 @@ class CampaignsController < ApplicationController
 
   def upload_csv
     campaign_id = params[:campaign][:id]
-    topics = Campaign.find(campaign_id).tmp_topics
-    Campaign.import_contacts(params[:campaign][:file], topics, campaign_id)
-    redirect_to campaign_path(campaign_id), notice: 'CSV was successfully imported.'
+    if params[:campaign][:file].nil?
+      redirect_to campaign_path(campaign_id), notice: 'Necesitas agregar un archivo.'
+    else
+      topics = Campaign.find(campaign_id).tmp_topics
+      Campaign.import_contacts(params[:campaign][:file], topics, campaign_id)
+      redirect_to campaign_path(campaign_id), notice: 'CSV importado exitosamente.'
+    end
   end
 
   private
