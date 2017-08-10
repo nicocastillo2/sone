@@ -1,107 +1,121 @@
-
-  <% provide(:header, "hidden")  %>
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
-      <div class="page-header">
-        <div class="row">
-          <div class="col-md-4">
-            <h1 class="border-left"><%= @campaign.name %></h1>
-          </div>
-          <div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-1">
-            <%= link_to campaigns_path, class: 'btn btn-default pink-button' do %>
-              Regresar
-            <% end %>
-            <%= link_to edit_campaign_path(@campaign), class: 'btn btn-default pink-button' do %>
-              Editar
-              <span class="glyphicon glyphicon-pencil"></span>
-            <% end %>
-            </div>
-          </div>
-      </div>
-
-      <div class="row margin-bot">
-        <div class="col-md-3 align-center">
-          <%= image_tag(@campaign.logo_url.to_s, class: "logo") %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-md-4">
+          <h1 class="border-left"><%= @campaign.name %></h1>
         </div>
-        <div class="col-md-3 align-center">
-          <p class="text-pink">Nombre:</p>
-          <p class="text-gray"><%= @campaign.name %></p>
-        </div>
-        <div class="col-md-3 align-center">
-          <p class="text-pink">Email del Remitente:</p>
-          <p class="text-gray"><%= @campaign.sender_email %></p>
-        </div>
-        <div class="col-md-3 align-center">
-          <p class="text-pink">Email del Remitente:</p>
-          <p class="text-gray"><%= @campaign.sender_email %></p>
+        <div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-1">
+          <%= link_to campaigns_path, class: 'btn btn-default pink-button' do %>
+            Regresar
+          <% end %>
+          <%= link_to edit_campaign_path(@campaign), class: 'btn btn-default pink-button' do %>
+            Editar
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
         </div>
       </div>
+    </div>
 
-      <div id="nps_score" class="shadow-box"></div>
-      <%= javascript_tag do %>
-        <%=
-          graph_generate(
-            'nps_score',
-            data: {
-              x: 'x',
-              columns: [
-                ['x'] + @nps.dates,
-                ['NPS'] + @nps.nps,
-                ['Detractors'] + @nps.detractors,
-                ['Passives'] + @nps.passives,
-                ['Promoters'] + @nps.promoters
-              ],
-              axes: {
-                'NPS' => 'y',
-                'Detractors' => 'y2',
-                'Passives' => 'y2',
-                'Promoters' => 'y2'
-              }
-            },
-            axis: {
-              x: {
-                type: 'category'
-              },
-              y2: {
-                show: true
-              }
+    <div class="row margin-bot">
+      <div class="col-md-3 align-center">
+        <%= image_tag(@campaign.logo_url.to_s, class: "logo") %>
+      </div>
+      <div class="col-md-3 align-center">
+        <p class="text-pink">Nombre:</p>
+        <p class="text-gray"><%= @campaign.name %></p>
+      </div>
+      <div class="col-md-3 align-center">
+        <p class="text-pink">Email del Remitente:</p>
+        <p class="text-gray"><%= @campaign.sender_email %></p>
+      </div>
+      <div class="col-md-3 align-center">
+        <p class="text-pink">Creada el:</p>
+        <p class="text-gray"><%= @campaign.created_at.strftime("%d-%m-%Y") %></p>
+      </div>
+    </div>
+
+    <div id="nps_score" class="shadow-box"></div>
+    <%= javascript_tag do %>
+      <%=
+        graph_generate(
+          'nps_score',
+          data: {
+            x: 'x',
+            columns: [
+              ['x'] + @nps.dates,
+              ['NPS'] + @nps.nps,
+              ['Detractors'] + @nps.detractors,
+              ['Passives'] + @nps.passives,
+              ['Promoters'] + @nps.promoters
+            ],
+            axes: {
+              'NPS' => 'y',
+              'Detractors' => 'y2',
+              'Passives' => 'y2',
+              'Promoters' => 'y2'
             }
-          )
-        %>
-      <% end %>
+          },
+          axis: {
+            x: {
+              type: 'category'
+            },
+            y2: {
+              show: true
+            }
+          }
+        )
+      %>
+    <% end %>
 
-      <h1 class="border-left" id="contactos">Contactos de la campañas</h1>
+    <h1 class="border-left" id="contactos">Contactos de la campaña</h1>
 
-      <%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
-      <%= form_for :campaign, url: { controller: 'campaigns', action: 'upload_csv' } do |f| %>
-        <div class="form-group">
-          <%= f.hidden_field :id %>
-          <%= f.label :file, 'Importar archivo' , class: "control-label" %>
-          <%= f.file_field :file, placeholder: 'sin archivo' %>
-          <%= f.submit class: "btn btn-primary" %>
-        </div>
-      <% end  %>
-      <br>
-      <br>
+    <p>
+      Enviados
+      <span class="badge"><%= @campaign.mails_sent %></span>
+      <span class="badge"><%= number_to_percentage(@campaign.percentage_sent, precision: 1) %></span>
+    </p>
+    <p>No Enviados <span class="badge"><%= @campaign.mails_not_sent %></span></p>
+    <p>
+      Contestados
+      <span class="badge"><%= @campaign.mails_answered %></span>
+      <span class="badge"><%= number_to_percentage(@campaign.percentage_answered, precision: 1) %></span>
+    </p>
+    <p>No Contestados <span class="badge"><%= @campaign.mails_not_answered %></span></p>
+    <p>Suscripciones canceladas <span class="badge"><%= @campaign.unsubscribes %></span></p>
+    <% campaign_last_sent = (@campaign.last_sent)? @campaign.last_sent.strftime("%d-%m-%Y") : 'Sin enviar' %>
+    <p>Último envío: <%= campaign_last_sent %></p>
 
-      <div class="table-responsive shadow-box">
-        <table class="table table-striped table-bordered table-hover ">
-          <thead>
-            <tr>
-              <th class='back-gray'>Email</th>
-              <% @topics.each do |topic| %>
-                <th class='back-gray'><%= topic.camelize %></th>
-              <% end %>
-              <th class='back-gray'>Nombre</th>
-              <th class='back-gray'>Estatus</th>
-              <th class='back-gray'>Fecha de envío</th>
-              <th class='back-gray'>Puntuación</th>
-              <th class='back-gray'>Comentario</th>
-            </tr>
-          </thead>
+    <%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
+    <%= form_for :campaign, url: { controller: 'campaigns', action: 'upload_csv' } do |f| %>
+      <div class="form-group">
+        <%= f.hidden_field :id %>
+        <%= f.label :file, 'Importar contactos' , class: "control-label" %>
+        <%= f.file_field :file, placeholder: 'sin archivo' %>
+        <%= f.submit 'Subir archivo', class:"btn btn-primary" %>
+      </div>
+    <% end  %>
+    <br>
+    <br>
 
-          <tbody>
-            <% @contacts.each do |contact| %>
+    <h3>Contactos Inválidos</h3>
+    <div class="table-responsive shadow-box">
+      <table class="table table-striped table-bordered table-hover ">
+        <thead>
+          <tr>
+            <th class='back-gray'>Email</th>
+            <% @topics.each do |topic| %>
+              <th class='back-gray'><%= topic.camelize %></th>
+            <% end %>
+            <th class='back-gray'>Nombre</th>
+            <th class='back-gray text-center'><span class="glyphicon glyphicon-pencil"></span></th>
+            <th class='back-gray text-center'><span class="glyphicon glyphicon-trash"></span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @campaign.invalid_contacts.each do |contact| %>
+            <% if contact.blacklist.nil? %>
               <tr>
                 <td><%= contact.email %></td>
                 <% if @topics %>
@@ -110,16 +124,91 @@
                   <% end %>
                 <% end %>
                 <td><%= contact.name %></td>
-                <td  class="status"><%= contact.status %></td>
+                <td class="text-center"><%= link_to 'edit', edit_contact_path(contact), class: "black" %></td>
+                <td class="text-center"><%= link_to 'destroy', contact, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Contactos Válidos. <small>No enviados</small></h3>
+    <div class="table-responsive shadow-box">
+      <table class="table table-striped table-bordered table-hover ">
+        <thead>
+          <tr>
+            <th class='back-gray'>Email</th>
+            <% @topics.each do |topic| %>
+              <th class='back-gray'><%= topic.camelize %></th>
+            <% end %>
+            <th class='back-gray'>Nombre</th>
+            <th class='back-gray'>Estatus</th>
+            <th class='back-gray'>Fecha de envío</th>
+            <th class='back-gray'>Puntuación</th>
+            <th class='back-gray'>Comentario</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @contacts_not_sent.each do |contact| %>
+            <% if contact.blacklist.nil? %>
+              <tr>
+                <td><%= contact.email %></td>
+                <% if @topics %>
+                  <% contact.topics.sort.to_h.each do |t, v| %>
+                    <td><%= v %></td>
+                  <% end %>
+                <% end %>
+                <td><%= contact.name %></td>
+                <td class="status"><%= contact.status.titleize %></td>
                 <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
                 <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
                 <td><%= contact.answer&.comment %></td>
               </tr>
             <% end %>
-          </tbody>
-        </table>
-      </div>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Contactos Válidos. <small>Enviados</small></h3>
+    <div class="table-responsive shadow-box">
+      <table class="table table-striped table-bordered table-hover ">
+        <thead>
+          <tr>
+            <th class="back-gray">Nombre</th>
+            <th class="back-gray">Email</th>
+            <th class="back-gray">Estatus</th>
+            <th class="back-gray">Fecha de envío</th>
+            <th class="back-gray">Puntuación</th>
+            <th class="back-gray">Comentario</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @contacts_sent.each do |contact| %>
+            <% if contact.blacklist.nil? %>
+              <tr>
+                <td><%= contact.email %></td>
+                <% if @topics %>
+                  <% contact.topics.sort.to_h.each do |t, v| %>
+                    <td><%= v %></td>
+                  <% end %>
+                <% end %>
+                <td><%= contact.name %></td>
+                <td class="status"><%= contact.status.titleize %></td>
+                <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
+                <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
+                <td><%= contact.answer&.comment %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
+  <div class="col-md-1"></div>
+</div>
 
-  <%= will_paginate @contacts %>
+<%= will_paginate @contacts_sent %>

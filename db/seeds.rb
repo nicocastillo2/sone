@@ -25,6 +25,7 @@ puts '2 Admin User created'
                              sender_email: @user.email,
                              logo: 'Logo',
                              color: color,
+                             last_sent: Time.now,
                              user: @user)
   15.times do |contact_num|
     days_before = contact_num % 3
@@ -49,6 +50,7 @@ admin_campaign = Campaign.create(name: 'Admin Campaign',
                                  sender_email: @admin.email,
                                  logo: 'Logo',
                                  color: color,
+                                 last_sent: Time.now,
                                  user_id: @admin.id)
 15.times do |contact_num|
   status = rand(0..1)
@@ -74,6 +76,7 @@ campaign = Campaign.create(name: "Kheper",
                              sender_email: "roberto@kheper.io",
                              logo: 'Logo',
                              color: 'red',
+                             last_sent: Time.now,
                              user: roberto)
 
 mails = ["roberto@kheper.io", "mauricio@kheper.io", "alejandro@kheper.io"]

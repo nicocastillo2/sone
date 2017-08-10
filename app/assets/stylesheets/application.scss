@@ -5,6 +5,7 @@
 @import 'blacklist';
 @import 'campaign';
 @import 'suscription';
+@import 'sessions';
 
 $green: #cbc86f;
 $pink: #9a4479;
@@ -12,7 +13,12 @@ $pink: #9a4479;
 .overflow{
 	overflow: auto;
 }
-
+.container-mine:before{
+  display: none!important;
+}
+.container-mine:after{
+  display: none!important;
+}
 .c3-target-NPS .c3-line {
   stroke-width: 5px;
 }
@@ -42,6 +48,9 @@ $pink: #9a4479;
     font-size:small;
     padding-left: 0;
   }  
+  table{
+    overflow-x: auto;
+  }
   .affix-row, .affix-container, .affix-content{
     height: 100%;
     margin-left: 0;
@@ -56,8 +65,11 @@ $pink: #9a4479;
   }
   .sidebar-nav .navbar{
     border-radius:0; 
-    margin-bottom:0; 
+    margin-bottom:0!important; 
     border:0;
+  }
+  .navbar{
+    margin-bottom: 0!important;
   }
   .sidebar-nav .navbar ul {
     float: none;

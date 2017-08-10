@@ -39,7 +39,7 @@
       <div class="collapse navbar-collapse" id="navbar-toggle-menu">
         <a class="nav-btn navbar-text show-toggle-menu">Productos</a>
         <a class="nav-btn navbar-text show-toggle-menu">Precios</a>
-        <a class="nav-btn navbar-text show-toggle-menu">Blog</a>
+        <a class="nav-btn navbar-text show-toggle-menu">Blog</a> 
         <% if user_signed_in? %>
           <%= link_to(destroy_user_session_path, method: "delete", id: 'login', class: "nav-btn margin-right-0 navbar-text navbar-link navbar-right green") do %>
             <span class="green">Cerrar Sesión</span>
@@ -49,13 +49,18 @@
             <span class="green">Iniciar Sesión</span>
           <% end %>
         <% end %>
-        <a href="" id="faq" class="nav-btn navbar-text navbar-right pink"><span class="white">FAQ</span> <span class="pink">?</span></a>
+        <button href="" id="faq" class="nav-btn navbar-text navbar-right pink faq"><span class="white">FAQ</span> <span class="pink">?</span></button>
       </div>
     </div>
   </nav>
 
+  <script type="text/javascript">
+    $('.faq, .faq *').click(function(){
+      $("html, body").animate({ scrollTop: $("#faq-title").offset().top }, 850);
+    });
+  </script>
 
   <%= yield %>
-
+  
 </body>
 </html>

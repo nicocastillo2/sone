@@ -16,8 +16,9 @@ class CampaignsController < ApplicationController
   def show
     if user_signed_in?
       @nps = Nps.for_campaign(@campaign.id)
-      @contacts = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.paginate(:page => params[:page])
-      @topics = Campaign.find(params[:id]).tmp_topics
+      @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
+      @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
+      @topics = Campaign.find(params[:id]).tmp_topics 
     else
       redirect_to new_user_session_path
     end
@@ -89,7 +90,8 @@ class CampaignsController < ApplicationController
     campaign = Campaign.includes(:contacts).find(params[:campaign_id])
 
     @time = Time.now
-    campaign.contacts.update_all(status: 1, sent_date: @time)
+    campaign.update last_sent: @time
+    campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
   end
 
   def upload_csv

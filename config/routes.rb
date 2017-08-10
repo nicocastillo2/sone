@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :contacts
   #static pages
   root to: 'static#homepage'
   get 'pricing', to: 'static#pricing'

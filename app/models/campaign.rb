@@ -6,7 +6,8 @@ class Campaign < ApplicationRecord
 
   attr_accessor :file, :topics
 
-  validates :sender_name, :sender_email, :logo, :color, presence: { message: "esta vacio" }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :sender_name, :sender_email, :logo, :color, presence: { message: "está vacío" }
   validates :file, csv: {
                           columns: 2,
                           max_rows: 6000,
@@ -26,6 +27,11 @@ class Campaign < ApplicationRecord
         if formatted_topics.key? head
           formatted_topics[head] = row[head]
         else
+          if head == 'email'
+            if !VALID_EMAIL_REGEX.match?(row[head])
+              attributes[:valid_info] = false
+            end
+          end
           attributes[head.to_sym] = row[head]
         end
         attributes[:topics] = formatted_topics
@@ -36,6 +42,42 @@ class Campaign < ApplicationRecord
       attributes = {}
     end
     Contact.import(contacts, batch_size: 1000)
+  end
+
+  def mails_sent
+    contacts.where(contacts: { status: 1 }).count
+  end
+
+  def mails_not_sent
+    contacts.where(contacts: { status: 0 }).count
+  end
+
+  def mails_answered
+    contacts.where('contacts.id IN (SELECT DISTINCT(contact_id) FROM answers)').count
+  end
+
+  def mails_not_answered
+    contacts.where('contacts.id NOT IN (SELECT DISTINCT(contact_id) FROM answers)').count
+  end
+
+  def unsubscribes
+    contacts.where.not(blacklist: nil).count
+  end
+
+  def valid_contacts
+    contacts.where(valid_info: true)
+  end
+
+  def invalid_contacts
+    contacts.where(valid_info: false)
+  end
+
+  def percentage_sent
+    ((mails_sent * 100) / valid_contacts.count )
+  end
+
+  def percentage_answered
+    ((mails_answered * 100) / valid_contacts.count )
   end
 
   private

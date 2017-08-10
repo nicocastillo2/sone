@@ -18,8 +18,6 @@ $( window ).resize(function() {
   title_mobile();
 });
 
-console.log("hola")
-
 function margin_top(){
   if (window.outerWidth <= 991){
       $('#popular').addClass('margin-top-5');
@@ -66,3 +64,7 @@ $(document).ready(function() {
         slider.goToPrevSlide();
       });
 });
+
+//$(":file").filestyle({input: false});
+
+
