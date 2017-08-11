@@ -95,18 +95,19 @@
               ['Promoters'] + @nps.promoters
             ],
             axes: {
-              'NPS' => 'y',
-              'Detractors' => 'y2',
-              'Passives' => 'y2',
-              'Promoters' => 'y2'
+              'NPS' => 'y'
             }
+          },
+          legend: {
+            show: false
           },
           axis: {
             x: {
               type: 'category'
             },
-            y2: {
-              show: true
+            y: {
+              max: 95,
+              min: -95
             }
           }
         )
