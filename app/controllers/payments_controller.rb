@@ -27,7 +27,7 @@ class PaymentsController < ApplicationController
           :type => "card"
         }]
       })
-
+      debugger
       @payment = Payment.new(full_name: user_name, phone: user_phone,
                               id_conekta: customer.id,
                               card_conekta: customer.payment_sources.first.id, user: current_user)
@@ -100,6 +100,12 @@ class PaymentsController < ApplicationController
   def destroy
     @payment.destroy
     redirect_to campaigns_path, notice: 'Payment eliminado correctamente.'
+  end
+
+  def payment_fail
+    data = JSON.parse(request.body.read)
+    p data
+    head 200, content_type: "text/html"
   end
 
   private
