@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:destroy]
-  skip_before_action :verify_authenticity_token, only: :payment_fail
+  skip_before_action :verify_authenticity_token, only: :payment_callback
 
   # GET /payments/new
   def new
