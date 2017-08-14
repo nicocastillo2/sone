@@ -103,7 +103,7 @@ class PaymentsController < ApplicationController
     redirect_to campaigns_path, notice: 'Payment eliminado correctamente.'
   end
 
-  def payment_fail
+  def payment_callback
     data = JSON.parse(request.body.read)
     p data
     head 200, content_type: "text/html"
