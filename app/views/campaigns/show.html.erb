@@ -131,7 +131,15 @@
         <% end %>
       </div>
       <div class="col-md-4 col-sm-4">
-        <%= link_to 'Enviar campaña', send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button send-campaign', remote: true, data: { confirm: 'Deseas enviar la campaña?'} %>
+        <% unless @campaign.contacts.empty? %>
+          <%= link_to send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button send-campaign', remote: true, data: { confirm: 'Deseas enviar la campaña?'} do %>
+            Enviar<br>Campaña
+          <% end %>
+        <% else %>
+          <div class="text-center">
+            <h4>Importa contactos para enviar tu campaña</h4>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -214,10 +222,6 @@
             <% end %>
           </tbody>
         </table>
-      </div>
-    <% else %>
-      <div class="row text-center">
-        <h4>Aún no envías tu campaña</h4>
       </div>
     <% end %>
   </div>
