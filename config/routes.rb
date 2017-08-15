@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   patch '/answers/:id', to: 'answers#update', as: 'edit_answer'
   put '/answers/:id', to: 'answers#update', as: nil
   get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
-  resources :campaigns
+  resources :campaigns do
+    get 'report', on: :member
+  end
   resources :payments, except: [:index, :show]
   post '/import_contacts', to: 'campaigns#upload_csv', as: 'import_csv'
 

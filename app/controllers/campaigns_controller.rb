@@ -65,6 +65,10 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def report
+
+  end
+
   def generate_campaign_mailing
     CampaignMailer.send_survey(params[:campaign_id], 'Campaña enviada via Sone', params[:sender_email]).deliver!
     # TODO: Add/Render this flash message into flash messages partial
