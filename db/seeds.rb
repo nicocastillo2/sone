@@ -33,7 +33,7 @@ campaign_logo_img = Rails.root.join("app/assets/images/logo-sone-250.png").open
     days_before = contact_num % 3
     contact = Contact.create(name: "Contact #{contact_num + 1}",
                    email: "contact_#{contact_num + 1}@mail.com",
-                   sent_date: nil,
+                   sent_date: Time.now,
                    status: status,
                    campaign: campaign,
                    valid_info: true)
@@ -59,7 +59,7 @@ admin_campaign = Campaign.create(name: 'Admin Campaign',
   status = rand(0..1)
   contact = Contact.create(name: "Contact #{contact_num + 1}",
                            email: "contact_#{contact_num + 1}@mail.com",
-                           sent_date: nil,
+                           sent_date: Time.now,
                            status: status,
                            campaign: admin_campaign,
                            valid_info: true)
@@ -87,7 +87,7 @@ mails = ["roberto@kheper.io", "mauricio@kheper.io", "alejandro@kheper.io"]
 mails.each_with_index do |mail, index|
   contact = Contact.create(name: "Kheper #{index}",
                              email: mail,
-                             sent_date: nil,
+                             sent_date: Time.now,
                              status: "not_sent",
                              campaign: campaign,
                              valid_info: true)
