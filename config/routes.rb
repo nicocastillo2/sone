@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   #static pages
   root to: 'static#homepage'
   get 'pricing', to: 'static#pricing'
+  get 'terms', to: 'static#terms'
+  get 'politics', to: 'static#politics'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   get '/answers/new', to: 'answers#new', as: 'new_answer'
