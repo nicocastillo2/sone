@@ -46,11 +46,14 @@ $pink: #9a4479;
 }
 .no{
   color: black;
-  padding-left: 10%;
+  margin-left: 10%;
 }
 .no:hover{
   color: $pink;
   text-decoration: none;
+  border: 1px solid $pink;
+  border-radius: 100%;
+  padding: 20px;
 }
 @media (min-width: 991px) {
   .padding-top{

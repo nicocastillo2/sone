@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'report', on: :member
   end
   resources :payments, except: [:index, :show]
+  post '/payments/callback', to: 'payments#payment_callback', as: 'payment_callback'
   post '/import_contacts', to: 'campaigns#upload_csv', as: 'import_csv'
 
   get '/suscriptions', to: 'suscriptions#index', as: 'suscriptions'
