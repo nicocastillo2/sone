@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  
+
+  resources :contacts
   #static pages
   root to: 'static#homepage'
   get 'pricing', to: 'static#pricing'
+  get 'terms', to: 'static#terms'
+  get 'politics', to: 'static#politics'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   get '/answers/new', to: 'answers#new', as: 'new_answer'
@@ -11,7 +14,8 @@ Rails.application.routes.draw do
   get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
   resources :campaigns
   resources :payments, except: [:index, :show]
-  
+  post '/import_contacts', to: 'campaigns#upload_csv', as: 'import_csv'
+
   get '/suscriptions', to: 'suscriptions#index', as: 'suscriptions'
   post 'suscriptions', to: 'suscriptions#update'
 
