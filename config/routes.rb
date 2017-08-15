@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
   resources :campaigns
   resources :payments, except: [:index, :show]
+  post '/payments/callback', to: 'payments#payment_callback', as: 'payment_callback'
   post '/import_contacts', to: 'campaigns#upload_csv', as: 'import_csv'
 
   get '/suscriptions', to: 'suscriptions#index', as: 'suscriptions'
