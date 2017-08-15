@@ -35,7 +35,8 @@ campaign_logo_img = Rails.root.join("app/assets/images/logo-sone-250.png").open
                    email: "contact_#{contact_num + 1}@mail.com",
                    sent_date: nil,
                    status: status,
-                   campaign: campaign)
+                   campaign: campaign,
+                   valid_info: true)
     Answer.create(score: rand(1..10),
                   comment: "Answer of contact #{contact_num + 1}",
                   contact: contact,
@@ -60,7 +61,8 @@ admin_campaign = Campaign.create(name: 'Admin Campaign',
                            email: "contact_#{contact_num + 1}@mail.com",
                            sent_date: nil,
                            status: status,
-                           campaign: admin_campaign)
+                           campaign: admin_campaign,
+                           valid_info: true)
   Answer.create(score: rand(1..10),
                 comment: "Answer of contact #{contact_num + 1}",
                 contact: contact)
@@ -87,7 +89,8 @@ mails.each_with_index do |mail, index|
                              email: mail,
                              sent_date: nil,
                              status: "not_sent",
-                             campaign: campaign)
+                             campaign: campaign,
+                             valid_info: true)
 end
 
 puts '1 campaign created for Admin with 15 contacts added to it and every
