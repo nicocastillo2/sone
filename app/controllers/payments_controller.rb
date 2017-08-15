@@ -4,8 +4,12 @@ class PaymentsController < ApplicationController
 
   # GET /payments/new
   def new
-    @payment = Payment.new
-    redirect_to edit_payment_path(current_user.payment) if current_user.payment
+    if user_signed_in?
+      @payment = Payment.new
+      redirect_to edit_payment_path(current_user.payment) if current_user.payment
+    else
+      redirect_to new_user_session_path
+    end 
   end
 
   # POST /payments
@@ -93,8 +97,12 @@ class PaymentsController < ApplicationController
 
   # GET /payments/1/edit
   def edit
-    @payment = Payment.find_by_id(params[:id])
-    redirect_to new_payment_path unless @payment
+    if user_signed_in?
+      @payment = Payment.find_by_id(params[:id])
+      redirect_to new_payment_path unless @payment
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # DELETE /payments/1
