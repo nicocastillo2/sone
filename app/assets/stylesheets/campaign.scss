@@ -344,6 +344,10 @@ $stat-box-gray: #f4f4f4;
     stroke-width: 1px !important;
 }
 
+.c3-axis.c3-axis-x .tick {
+  display: none;
+}
+
 // End Graphic style changes
 
 /* Media Querys */

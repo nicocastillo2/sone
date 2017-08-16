@@ -30,7 +30,7 @@ campaign_logo_img = Rails.root.join("app/assets/images/logo-sone-250.png").open
                              last_sent: Time.now,
                              user: @user)
   15.times do |contact_num|
-    days_before = contact_num % 3
+    days_before = contact_num % 30
     contact = Contact.create(name: "Contact #{contact_num + 1}",
                    email: "contact_#{contact_num + 1}@mail.com",
                    sent_date: Time.now,

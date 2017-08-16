@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
   resources :campaigns do
     get 'report', on: :member
+    post 'report', on: :member
   end
   resources :payments, except: [:index, :show]
   post '/payments/callback', to: 'payments#payment_callback', as: 'payment_callback'

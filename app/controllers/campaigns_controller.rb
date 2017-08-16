@@ -66,7 +66,13 @@ class CampaignsController < ApplicationController
   end
 
   def report
+    @search = Campaign.search(params[:q])
+    @campaigns = @search.result.includes(contacts: [:answer])
+    @nps = Nps.for_campaign(params[:id])
 
+    # TODO: Check if needs to be removed
+    @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
+    @topics = Campaign.find(params[:id]).tmp_topics
   end
 
   def generate_campaign_mailing

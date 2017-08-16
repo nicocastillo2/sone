@@ -21,4 +21,8 @@
 
 $(document).on('turbolinks:load', function() {
   $('.colorpicker').colorpicker();
+
+  $('.input-daterange').datepicker({
+    format: 'yyyy-mm-dd'
+  });
 });

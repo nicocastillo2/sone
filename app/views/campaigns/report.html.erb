@@ -1,1 +1,116 @@
-<h1>Hello</h1>
+<%= provide :title, 'Reportes' %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-1">
+    <%= search_form_for @search, url: report_campaign_path, method: :post do |f| %>
+      <div class="form-group">
+        <%= f.label :name_cont, 'Nombre', class: 'control-label' %>
+        <%= f.text_field :name_cont, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :contacts_name_or_contacts_email_cont, 'Nombre o Email de contacto' %>
+        <%= f.text_field :contacts_name_or_contacts_email %>
+      </div>
+
+      <div class="form-group">
+        <div class="input-daterange">
+          <%= f.text_field :name_gteq, class: 'form-control', placeholder: 'Fecha >= a' %>
+          <%= f.text_field :name_lteq, class: 'form-control', placeholder: 'Fecha <= a' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Filtrar', class: 'btn btn-default send-button button-100' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-9 col-md-offset-1">
+    <div id="graph_report"></div>
+  </div>
+
+  <%= javascript_tag do %>
+    <%=
+      graph_generate(
+        'graph_report',
+        data: {
+          x: 'x',
+          columns: [
+            ['x'] + @nps.dates,
+            ['NPS'] + @nps.nps,
+            ['Detractors'] + @nps.detractors,
+            ['Passives'] + @nps.passives,
+            ['Promoters'] + @nps.promoters
+          ],
+          axes: {
+            'NPS' => 'y'
+          }
+        },
+        legend: {
+          show: false
+        },
+        axis: {
+          x: {
+            type: 'category'
+          },
+          y: {
+            max: 95,
+            min: -95
+          }
+        }
+      )
+    %>
+  <% end %>
+</div>
+
+<table>
+  <tr>
+    <th>Campaign Name</th>
+  </tr>
+  <% @campaigns.each do |c| %>
+    <tr>
+      <td><%= c.name %></td>
+    </tr>
+  <% end %>
+</table>
+<br>
+<br>
+<br>
+<table>
+  <tr>
+    <th>Answer Date</th>
+  </tr>
+  <% @campaigns.each do |c| %>
+    <tr>
+      <td><%= c.name %></td>
+    </tr>
+  <% end %>
+</table>
+<br>
+<br>
+<br>
+<h3>Contacts</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @campaigns.each do |c| %>
+      <% c.contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= contact.email %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
