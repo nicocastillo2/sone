@@ -10,9 +10,7 @@
 	<div class="row margin-bottom">
 		<div class="col-md-4"><br></div>
 		<div class="col-md-4 text-center">
-			<%= link_to(blacklist_unsubscribe_path + "?data=#{@data}", method: :post, class: "") do %>
- 				<%= image_tag("si-8.png", class: "img-100") %>
-		    <% end %>
+			<%= link_to "Si", blacklist_unsubscribe_path + "?data=#{@data}", method: :post, class: "text-center font-st no"  %>
 			<%= link_to "No", blacklist_cancel_path, method: :post, class: "text-center font-st no", remote: true %>
 		</div>
 		<div class="col-md-4"></div>

@@ -8,4 +8,9 @@ class StaticController < ApplicationController
   def pricing
   end
 
+  def terms
+  end
+
+  def politics
+  end
 end

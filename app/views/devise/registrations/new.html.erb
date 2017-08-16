@@ -1,13 +1,13 @@
 <% provide(:header, "hidden")  %>
 <% provide(:aside, "hidden")  %>
 <div class="row heigth-100">
-  <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1">
-    <h2 class="text-center text-pink">Sign uppppp!!!</h2>
+  <div class="col-md-5 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 pull-sm-5">
+    <h1 class="text-center text-pink font-40">Sign up</h1>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'form-horizontal') do |f| %>
           <%= devise_error_messages! %>
 
-          <div class="form-group">
+          <div class="form-group form-sign-up">
             <%= f.label :username, class: 'control-label text-gray' %>
             <%= f.text_field :username, autofocus: true, class: 'form-control form-pink' %>
           </div>
@@ -32,17 +32,47 @@
           </div>
 
           <div class="form-group">
-            <%= f.submit "Sign up", class: 'btn btn-primary pink-show' %>
+            <%= f.submit "Sign up", class: 'btn btn-default pink-show right' %>
           </div>
   </div>
-  <div class="col-md-6 heigth-100">
-    <div class="form-group avatar-gray heigth-50">
-      <%= f.label :avatar, class: "control-label" %>
-      <%= f.file_field :avatar %>
+  <div class="col-md-6 col-sm-12 col-xs-12 heigth-100 push-sm-5">
+    <div class="form-group avatar-gray heigth-50 div-avatar">
+      <div class="text-center">
+      <br>
+        <br>
+        <%= image_tag("avatar.png", class: 'img-responsive center-image border-circle hidden-xs', style: "margin: 0 auto;")  %>
+        <%= f.label :Editar_imagen, class: "control-label text-center" %>
+        <br>
+        <%= f.file_field :avatar %>
+      </div>
     </div>
     <div class="sociales heigth-50">
-      <%= render "devise/shared/links" %>
+      <div class="row text-center">
+        <h1 class="text-center green">¡Regístrate gratis!</h1>
+        <div class="col-md-8 col-md-offset-2 ">
+          <div class="row text-center">
+            <div class="col-xs-3 col-md-3">
+              <p class="con">con</p>
+            </div>
+            <div class="col-xs-3 col-md-3">
+              <%= link_to user_facebook_omniauth_authorize_path do %>
+                <img class="login-icons img-responsive" src="<%= root_url %>facebookblanco.svg" alt="">
+              <% end %>
+            </div>
+            <div class="col-xs-3 col-md-3">
+              <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+                <img class="login-icons img-responsive" src="<%= root_url %>googleblanco.svg" alt="">
+              <% end %>
+            </div>
+            <div class="col-xs-3 col-md-3">
+              <%= link_to new_user_registration_path do %>
+              <img class="login-icons img-responsive" src="<%= root_url %>mailblanco.svg" alt="">
+              <% end %>
+            </div>
+          </div>
+        </div>  
+      </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
