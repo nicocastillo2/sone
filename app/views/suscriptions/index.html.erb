@@ -16,7 +16,7 @@
               <div class="imagen">
                 <%= image_tag("static/avion-papel.png", class: "img-responsive img-center") %>
               </div>
-              <%= submit_tag 'Obtener', class: 'btn confirm' %>
+              <%= submit_tag 'Obtener', class: 'btn confirm select-plan-submit', disabled: @current_suscription == 'freelancer' %>
               <p class="margin-top-10">Funcionalidad básica</p>
             </div>
           <% end %>
@@ -34,7 +34,7 @@
               <div class="imagen">
                 <%= image_tag("static/avion.png", class: "img-responsive img-center") %>  
               </div>
-              <%= submit_tag 'Obtener', class: 'btn confirm' %>
+              <%= submit_tag 'Obtener', class: 'btn confirm select-plan-submit', disabled: @current_suscription == 'startup' %>
               <p class="margin-top-10">Multi campaña</p>
             </div>
           <% end %>
@@ -52,7 +52,7 @@
               <div class="imagen">
                 <%= image_tag("static/helicoptero.png", class: "img-responsive img-center") %>
               </div>
-              <%= submit_tag 'Obtener', class: 'btn confirm' %>
+              <%= submit_tag 'Obtener', class: 'btn confirm select-plan-submit', disabled: @current_suscription == 'crecimiento' %>
               <p class="margin-top-10">Multi campaña</p>
               <p class="pink">Inforgrafía mensual</p>
             </div>
@@ -71,7 +71,7 @@
               <div class="imagen">
                 <%= image_tag("static/cohete.png", class: "img-responsive img-center") %>  
               </div>
-              <%= submit_tag 'Obtener', class: 'btn confirm' %>
+              <%= submit_tag 'Obtener', class: 'btn confirm select-plan-submit', disabled: @current_suscription == 'enterprise' %>
               <p class="margin-top-10">Multi campaña</p>
               <p class="pink">Inforgrafía mensual</p>
             </div>

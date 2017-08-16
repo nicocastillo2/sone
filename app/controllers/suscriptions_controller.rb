@@ -3,12 +3,15 @@ class SuscriptionsController < ApplicationController
 
   def index
     @suscriptions = ["freelancer", "startup", "crecimiento", "enterprise"]
+    @current_suscription = current_user.payment.plan_name
   end
 
   def update
     @payment = current_user.payment
     @suscriptions = ["freelancer", "startup", "crecimiento", "enterprise"]
     new_suscription = params[:suscription_name]
+
+    # Mandar error en caso de recibir un parametro mal
     unless @suscriptions.include?(new_suscription)
       flash.now[:warning] = "Se produjo un error"
       render :index and return 
@@ -22,10 +25,11 @@ class SuscriptionsController < ApplicationController
     else
       begin
         customer = Conekta::Customer.find(current_user.payment.id_conekta)
-        # debugger
+
+        # si existe la subscripcion
         if(customer.subscription)
-          customer.subscription.resume if customer.subscription.status == "canceled"
-          subscription = customer.subscription.update({
+          customer.subscription.cancel if customer.subscription.status != "active"
+          subscription = customer.create_subscription({
             :plan => new_suscription
           })
         else
@@ -33,7 +37,8 @@ class SuscriptionsController < ApplicationController
             :plan => new_suscription
           })
         end
-        @payment.update(cycle_start: DateTime.strptime(subscription.billing_cycle_start.to_s,'%s'),
+        @payment.update(plan_name: new_suscription,
+                        cycle_start: DateTime.strptime(subscription.billing_cycle_start.to_s,'%s'),
                         cycle_end: DateTime.strptime(subscription.billing_cycle_end.to_s,'%s'))
         # debugger
       rescue Conekta::Error => e
@@ -48,7 +53,7 @@ class SuscriptionsController < ApplicationController
   private
 
   def require_payment_method
-    redirect_to new_payment_path unless current_user.payment
+    redirect_to new_payment_path unless current_user.payment.id_conekta
   end
 
 end

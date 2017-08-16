@@ -13,6 +13,9 @@ class User < ApplicationRecord
   validates_presence_of :email
   validates :email, uniqueness: true
 
+  # crea el objeto payment con los datos por default
+  after_create :create_default_payment
+
   # return all the user contacts
   # def all_contacts
   #   Contact.joins([:campaign => :user]).where(campaigns: {user_id: self.id})
@@ -42,6 +45,14 @@ class User < ApplicationRecord
       user.omniauth_name = auth.info.name # assuming the user model has a name
       user.image = auth.info.image # assuming the user model has an image
     end
+  end
+
+  private
+
+  def create_default_payment
+    Payment.create(user_id: self.id, plan_name: 'freelancer',
+                  cycle_start: DateTime.now,
+                  cycle_end: DateTime.now.next_month)
   end
 
 end

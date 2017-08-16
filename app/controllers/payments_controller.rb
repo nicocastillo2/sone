@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new
-    redirect_to edit_payment_path(current_user.payment) if current_user.payment
+    redirect_to edit_payment_path(current_user.payment) if current_user.payment.card_conekta
   end
 
   # POST /payments
@@ -28,12 +28,14 @@ class PaymentsController < ApplicationController
           :type => "card"
         }]
       })
-      debugger
-      @payment = Payment.new(full_name: user_name, phone: user_phone,
-                              id_conekta: customer.id,
-                              card_conekta: customer.payment_sources.first.id, user: current_user)
+      # debugger
+      @payment = current_user.payment
 
-    if @payment.save
+      payment_params = {full_name: user_name, phone: user_phone,
+                              id_conekta: customer.id,
+                              card_conekta: customer.payment_sources.first.id, user: current_user}
+
+    if @payment.update(payment_params)
       redirect_to suscriptions_path, notice: 'Se agrego satisfactoriamente el metodo de pago'
     else
       render :new
@@ -79,7 +81,8 @@ class PaymentsController < ApplicationController
     # rescue Conekta::ValidationError => e
     #   flash[:danger] = e.message
     rescue Conekta::ErrorList => e
-      flash[:danger] = e.message
+      debugger
+      flash[:danger] = e.details[0].message
     rescue Conekta::Error => e
       flash[:danger] = e.message
     end
