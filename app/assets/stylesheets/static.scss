@@ -357,7 +357,14 @@ p {
 }
 .contain{
   height: 100%;
+}
 
+.padding-top-100 {
+  padding: 4%;
+}
+
+.margin-00{
+  margin: 0!important;
 }
 
 @media (min-width: 992px) {
@@ -410,6 +417,9 @@ p {
   }
   .img-70{max-width: 20%;}
 }
+
+
+
 .triangle{
   height: 0;
   width: 100%;
@@ -477,7 +487,7 @@ header {
   height: 1px;
   background-color: $pink;
   content: " ";
-  width: 600px;
+  width: 50%;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -487,7 +497,7 @@ header {
   background-image: image-url("dotted.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  /*background-size: cover;*/
 }
 
 .ask-improve-section h3 {
@@ -571,11 +581,11 @@ header {
 
 // Clients opinion section
 
-.clients-opinion-section {
+.clients-opinion-section  > .container {
   background-image: image-url("clients-opinion.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: initial;
+  background-size: cover;
 
 }
 
@@ -670,17 +680,6 @@ header {
   color: #fff;
 }
 
-/*@media (max-width: 776px){
-  .hero-text-box {
-    position: fixed;
-    color: blue;
-    font-size: 10px;
-  }
-   {
-    
-   }
-}*/
-
 #home-main-title {
   font-family: 'LeagueSpartan';
   color: $green;
@@ -884,6 +883,12 @@ header {
   font-size: 90%;
 }
 
+.link-white {
+  color: white; 
+}
+
+/*Terms and privacy section*/
+
 #title {
   margin-top: 15%;
   font-weight: bold;
@@ -928,4 +933,36 @@ ul .point{
   margin-left: -5%;
 }
 
+@media (max-width: 991px) {
+  .hero-text-box {
+    width: 53%;
+    margin-right: 3%;
+    margin-left: 2%;
+  }
 
+  .hero-text-bottom {
+    width: 45%;
+    margin-right: 3%;
+    margin-left: 2%;
+  }
+
+  .hero-text-bottom h4:first-child:after {
+    width: 60%;
+  }
+
+  #home-main-title {
+    font-size: 2.3em;
+  }
+
+  #title-responsive {
+    font-size: 1.3em;
+  }
+  
+  .btn-free-trial {
+    margin-top: 30px;
+  } 
+}
+
+.slider-opinios-wrapper > .bx-wrapper {
+  margin-bottom: 0;
+}

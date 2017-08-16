@@ -16,8 +16,10 @@
 		<%= image_tag("logo-sone-250.png", class: "img-25") %><br>
 		<h4>CopyRight Customer Comfort S.A. de C.V.</h4>
 	</div>
-	<div class="col-md-4">
-		<a href="#">Terminos</a>
-		<a href="#">condiciones</a>
-	</div>
+	<!-- <div class="col-md-4 padding-top-100"> -->
+			<div class="text-center white margin-00 padding-top-100">
+				<%= link_to "Términos y condiciones", terms_path, class: "link-white"%>
+				<%= link_to "Politícas de privacidad", politics_path, class: "link-white"%>
+			</div>
+	<!-- </div>	 -->
 </footer>
