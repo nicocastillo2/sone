@@ -16,6 +16,7 @@
 //= require d3c3_rails
 //= require rails-ujs
 //= require turbolinks
+//= require datepicker
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
