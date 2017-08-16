@@ -63,6 +63,8 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'conekta'
 # validates csv
 gem 'csv_validator'
+# Ransack for filter campaign reports
+gem 'ransack', '~> 1.8', '>= 1.8.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
