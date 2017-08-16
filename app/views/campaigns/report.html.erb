@@ -1,24 +1,19 @@
 <%= provide :title, 'Reportes' %>
 
 <div class="row">
-  <div class="col-md-4 col-md-offset-1">
+  <div class="col-md-8 col-md-offset-1">
     <%= search_form_for @search, url: report_campaign_path, method: :post do |f| %>
-      <div class="form-group">
-        <%= f.label :name_cont, 'Nombre', class: 'control-label' %>
-        <%= f.text_field :name_cont, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :contacts_name_or_contacts_email_cont, 'Nombre o Email de contacto' %>
-        <%= f.text_field :contacts_name_or_contacts_email %>
-      </div>
-
-      <div class="form-group">
-        <div class="input-daterange">
-          <%= f.text_field :name_gteq, class: 'form-control', placeholder: 'Fecha >= a' %>
-          <%= f.text_field :name_lteq, class: 'form-control', placeholder: 'Fecha <= a' %>
+      <%= f.condition_fields do |c| %>
+        <div class="form-group">
+          <%= c.attribute_fields do |a| %>
+            <%= a.attribute_select associations: [:contacts] %>
+          <% end %>
+          <%= c.predicate_select %>
+          <%= c.value_fields do |v| %>
+            <%= v.text_field :value %>
+          <% end %>
         </div>
-      </div>
+      <% end %>
 
       <div class="form-group">
         <%= f.submit 'Filtrar', class: 'btn btn-default send-button button-100' %>
@@ -75,41 +70,6 @@
       <td><%= c.name %></td>
     </tr>
   <% end %>
-</table>
-<br>
-<br>
-<br>
-<table>
-  <tr>
-    <th>Answer Date</th>
-  </tr>
-  <% @campaigns.each do |c| %>
-    <tr>
-      <td><%= c.name %></td>
-    </tr>
-  <% end %>
-</table>
-<br>
-<br>
-<br>
-<h3>Contacts</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @campaigns.each do |c| %>
-      <% c.contacts.each do |contact| %>
-        <tr>
-          <td><%= contact.name %></td>
-          <td><%= contact.email %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
 </table>
 <br>
 <br>

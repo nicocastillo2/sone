@@ -68,6 +68,7 @@ class CampaignsController < ApplicationController
   def report
     @search = Campaign.search(params[:q])
     @campaigns = @search.result.includes(contacts: [:answer])
+    @search.build_condition
     @nps = Nps.for_campaign(params[:id])
 
     # TODO: Check if needs to be removed
