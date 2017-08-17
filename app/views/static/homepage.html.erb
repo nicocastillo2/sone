@@ -112,35 +112,104 @@
 
 <!-- Our clients opinion -->
 <section class="clients-opinion-section">
-  <div class="container">
-    <div class="row">
-      <h2 class="text-center">Nuestros clientes opinan</h2>
-    </div>
-    <div class="row opinions-row">
-      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 slider-opinios-wrapper">
-        <ul class="bxslider-opinions">
-          <li>
-            <p>"<span class="sone-text-in-opinion">sone</span> es fácil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente."</p>
-            <p><span class="author-opinion">Mauricio <span class="author-lastname">Herrera</span></span><br><small class="author-site">mexicanisimo.com</small></p>
-          </li>
-          <li>
-            <p>"<span class="sone-text-in-opinion">sone</span> es fácil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente."</p>
-            <p><span class="author-opinion">Mauricio <span class="author-lastname">Herrera</span></span><br><small class="author-site">mexicanisimo.com</small></p>
-          </li>
-          <li>
-            <p>"<span class="sone-text-in-opinion">sone</span> es fácil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente."</p>
-            <p><span class="author-opinion">Mauricio <span class="author-lastname">Herrera</span></span><br><small class="author-site">mexicanisimo.com</small></p>
-          </li>
-          <li>
-            <p>"<span class="sone-text-in-opinion">sone</span> es fácil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente."</p>
-            <p><span class="author-opinion">Mauricio <span class="author-lastname">Herrera</span></span><br><small class="author-site">mexicanisimo.com</small></p>
-          </li>
-        </ul>
-      </div>
-      <%= image_tag 'arrow-left.svg', id: 'slider-left-arrow' %>
-      <%= image_tag 'arrow-right.svg', id: 'slider-right-arrow' %>
-    </div>
+  
+  <h3 class="text-center">Nuestros clientes opinan</h3>
+  
+  <div class="slider-container">
+    <ul class="bxslider-opinions">
+      <li class="bxslider-item">
+        <p class="clients-opinion">
+          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
+          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
+          <span class="amarillo negritas">. "</span>
+        </p>
+        <div class="line"></div>
+        <p class="clients-name amarillo">
+          Mauricio <span class="negritas">Herrera</span>
+        </p>
+        <p class="clients-pagina">
+          mexicanisimo.com
+        </p>
+        <%= image_tag 'foto-cliente.png', class: 'bxslider-image' %>
+      </li>
+
+      <li class="bxslider-item">
+        <p class="clients-opinion">
+          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
+          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
+          <span class="amarillo negritas">. "</span>
+        </p>
+        <div class="line"></div>
+        <p class="clients-name amarillo">
+          Mauricio <span class="negritas">Herrera</span>
+        </p>
+        <p class="clients-pagina">
+          mexicanisimo.com
+        </p>
+        <%= image_tag 'foto-cliente.png', class: 'bxslider-image' %>
+      </li>
+
+      <li class="bxslider-item">
+        <p class="clients-opinion">
+          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
+          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
+          <span class="amarillo negritas">. "</span>
+        </p>
+        <div class="line"></div>
+        <p class="clients-name amarillo">
+          Mauricio <span class="negritas">Herrera</span>
+        </p>
+        <p class="clients-pagina">
+          mexicanisimo.com
+        </p>
+        <%= image_tag 'foto-cliente.png', class: 'bxslider-image' %>
+      </li>
+
+      <li class="bxslider-item">
+        <p class="clients-opinion">
+          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
+          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
+          <span class="amarillo negritas">. "</span>
+        </p>
+        <div class="line"></div>
+        <p class="clients-name amarillo">
+          Mauricio <span class="negritas">Herrera</span>
+        </p>
+        <p class="clients-pagina">
+          mexicanisimo.com
+        </p>
+        <%= image_tag 'foto-cliente.png', class: 'bxslider-image' %>
+      </li>
+
+      <li class="bxslider-item">
+        <p class="clients-opinion">
+          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
+          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
+          <span class="amarillo negritas">. "</span>
+        </p>
+        <div class="line"></div>
+        <p class="clients-name amarillo">
+          Mauricio <span class="negritas">Herrera</span>
+        </p>
+        <p class="clients-pagina">
+          mexicanisimo.com
+        </p>
+        <%= image_tag 'foto-cliente.png', class: 'bxslider-image' %>
+      </li>
+    </ul>
+    
+    <ul class="slider-clients-pages">
+      <li class="slider-page-item active" data-slide-index="0"></li>
+      <li class="slider-page-item" data-slide-index="1"></li>
+      <li class="slider-page-item" data-slide-index="2"></li>
+      <li class="slider-page-item" data-slide-index="3"></li>
+      <li class="slider-page-item" data-slide-index="4"></li>
+    </ul>
+
+    <%= image_tag 'arrow-left.svg', id: 'slider-left-arrow', class: "hidden-sm hidden-xs" %>
+    <%= image_tag 'arrow-right.svg', id: 'slider-right-arrow', class: "hidden-sm hidden-xs" %>
   </div>
+
 </section>
 <!-- End Our clients opinion -->
 <%= render "layouts/static_footer" %>

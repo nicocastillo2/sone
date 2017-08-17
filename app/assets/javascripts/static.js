@@ -47,11 +47,10 @@ function title_mobile(){
 
 $(document).ready(function() {
   var slider = $('.bxslider-opinions').bxSlider({
-        nextSelector: '#slider-right-arrow',
-        prevSelector: '#slider-left-arrow',
         pager: false,
+        controls: false,
         onSlideBefore: function($slideElement, oldIndex, newIndex) {
-          $(".slider-points, .slider-menu-titles li").removeClass("active");
+          $(".slider-clients-pages li.slider-page-item").removeClass("active");
           $("[data-slide-index="+newIndex+"]").addClass("active");
         }
       });
