@@ -585,7 +585,7 @@ header {
   background-image: image-url("clients-opinion.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: cover  ;
 
 }
 
@@ -961,6 +961,9 @@ ul .point{
   .btn-free-trial {
     margin-top: 30px;
   } 
+  .img-25 {
+    max-width: 15%;
+  }
 }
 
 .slider-opinios-wrapper > .bx-wrapper {
