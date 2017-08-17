@@ -108,7 +108,8 @@ class PaymentsController < ApplicationController
 
   def payment_callback
     data = JSON.parse(request.body.read)
-    p data
+    puts '*'*100
+    p data['type']
     head 200, content_type: "text/html"
   end
 
