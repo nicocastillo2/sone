@@ -25,6 +25,13 @@
                 </li>
                 
                 <li class="center">
+                  <%= link_to(campaigns_path, class: 'left-menu') do %>
+                    <span class="glyphicon glyphicon-bell small-img pink" aria-hidden="true"></span>
+                    Respuestas <span class="number-notifications"><%= CampaignsHelper.count_notifications(current_user) %></span>
+                  <% end %>
+                </li>
+
+                <li class="center">
                   <!-- edit_user_registration -->
                   <%= link_to(edit_user_registration_path, class: 'left-menu') do %>
                   <%= image_tag("iconos-pencil.svg", class: "img-responsive small-img navbar-link") %>Editar perfil
