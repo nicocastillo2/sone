@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817002814) do
+ActiveRecord::Schema.define(version: 20170817183135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170817002814) do
     t.datetime "updated_at", null: false
     t.string "tmp_topics", default: [], array: true
     t.datetime "last_sent"
+    t.integer "new_answers", default: 0
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 

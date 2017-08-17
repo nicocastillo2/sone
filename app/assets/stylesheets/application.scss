@@ -24,6 +24,14 @@ $pink: #9a4479;
   stroke-width: 5px;
 }
 
+.number-notifications{
+  background-color: $pink;
+  border-radius: 20px;
+  padding: 2px 10px;
+  color: white;
+  margin-left: 5px;
+}
+
 .c3-target-NPS.c3-focused path.c3-line, .c3-target-NPS.c3-focused path.c3-step {
   stroke-width: 5px;
 }

@@ -13,7 +13,8 @@ class CampaignsController < ApplicationController
       @nps = Nps.for_campaign(@campaign.id)
       @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
       @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
-      @topics = Campaign.find(params[:id]).tmp_topics 
+      @topics = Campaign.find(params[:id]).tmp_topics
+      @campaign.update({new_answers: 0})
   end
 
   # GET /campaigns/new
@@ -31,7 +32,7 @@ class CampaignsController < ApplicationController
       @campaign = Campaign.new(campaign_params.merge(user_id: current_user.id))
       @campaign.tmp_topics = campaign_params[:topics].map(&:split).flatten.sort if campaign_params[:topics]
       respond_to do |format|
-        if @campaign.save!
+        if @campaign.save
           format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
           format.json { render :show, status: :created, location: @campaign }
         else
