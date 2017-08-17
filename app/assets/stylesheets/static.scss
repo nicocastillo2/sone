@@ -578,7 +578,6 @@ header {
 }
 
 // End Easy / Fast section
-
 .margin-0{
   margin: 0!important;
 }
@@ -731,7 +730,7 @@ header {
   .text-center{
     font-family: 'LeagueSpartan';
     color: #606060;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     font-size: 3.4em;
   }
 
@@ -911,10 +910,8 @@ ul .point{
   
   .btn-free-trial {
     margin-top: 30px;
+  } 
+  .img-25 {
+    max-width: 15%;
   }
-
-}
-
-.slider-opinios-wrapper > .bx-wrapper {
-  margin-bottom: 0;
 }
