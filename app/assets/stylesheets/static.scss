@@ -26,9 +26,9 @@ html {
   font-size: 20px;
 }
 
-section {
-  padding-top: 80px;
-}
+/*section {
+  padding-top: none;
+}*/
 
 p {
   font-family: 'SourceSansPro';
@@ -885,15 +885,21 @@ ul .point{
 
 @media (max-width: 991px) {
   .hero-text-box {
-    width: 53%;
+    width: 80%;
     margin-right: 3%;
     margin-left: 2%;
   }
 
   .hero-text-bottom {
-    width: 45%;
+    width: 80%;
     margin-right: 3%;
     margin-left: 2%;
+    margin-top: 10%;
+    bottom: 5px;  
+  }
+
+  .hero-text-bottom  h4 {
+    font-size: 1.1em;
   }
 
   .hero-text-bottom h4:first-child:after {
@@ -909,7 +915,7 @@ ul .point{
   }
   
   .btn-free-trial {
-    margin-top: 30px;
+    margin-top: 8%;
   } 
   .img-25 {
     max-width: 15%;
