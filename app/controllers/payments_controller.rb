@@ -111,7 +111,7 @@ class PaymentsController < ApplicationController
     puts '*'*100
 
     if data['type'] == 'subscription.paid'
-      puts customer_id = data['object']['customer_id']
+      p customer_id = data['object']
     end
     
     head 200, content_type: "text/html"
