@@ -109,7 +109,11 @@ class PaymentsController < ApplicationController
   def payment_callback
     data = JSON.parse(request.body.read)
     puts '*'*100
-    p data['type']
+
+    if data['type'] == 'subscription.paid'
+      puts customer_id = data['object']['customer_id']
+    end
+    
     head 200, content_type: "text/html"
   end
 
