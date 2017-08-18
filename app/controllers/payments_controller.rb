@@ -111,7 +111,16 @@ class PaymentsController < ApplicationController
     puts '*'*100
 
     if json['type'] == 'subscription.paid'
-      p customer_id = json['data']["object"]['customer_id']
+      id_conekta = json['data']["object"]['customer_id']
+      payment = Payment.find_by(id_conekta: id_conekta)
+      case payment.plan_name
+      when "startup"
+        payment.update({available_emails: 1000})
+      when "crecimiento"
+        payment.update({available_emails: 5000})
+      when "enterprise"
+        payment.update({available_emails: 10000})
+      end
     end
     
     head 200, content_type: "text/html"
