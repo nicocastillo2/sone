@@ -111,7 +111,7 @@ class PaymentsController < ApplicationController
     puts '*'*100
 
     if json['type'] == 'subscription.paid'
-      p customer_id = json['data']
+      p customer_id = json['data']["object"]['customer_id']
     end
     
     head 200, content_type: "text/html"
