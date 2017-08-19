@@ -17,6 +17,7 @@ class Campaign < ApplicationRecord
   validate :csv_has_headers?
 
   mount_uploader :logo, LogoUploader
+  before_create :add_domain_to_mail
 
   def self.import_contacts(file, topics, campaign_id)
     formatted_topics = Campaign.assign_topics(topics)
@@ -89,12 +90,12 @@ class Campaign < ApplicationRecord
 
   private
 
-  def csv_has_headers?
-    if file
-      csv = CSV.read(file.path)
-      errors.add(:csv, "sin headers") if csv.first != ["email"]
+    def csv_has_headers?
+      if file
+        csv = CSV.read(file.path)
+        errors.add(:csv, "sin headers") if csv.first != ["email"]
+      end
     end
-  end
 
     def self.contact_topics
       {
@@ -118,6 +119,10 @@ class Campaign < ApplicationRecord
       formatted_topics = {}
       topics.each { |topic| formatted_topics[topic] = '' }
       formatted_topics
+    end
+
+    def add_domain_to_mail
+      self.sender_email += '@sone.com.mx'
     end
 
 end

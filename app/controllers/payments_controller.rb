@@ -107,8 +107,22 @@ class PaymentsController < ApplicationController
   end
 
   def payment_callback
-    data = JSON.parse(request.body.read)
-    p data
+    json = JSON.parse(request.body.read)
+    puts '*'*100
+
+    if json['type'] == 'subscription.paid'
+      id_conekta = json['data']["object"]['customer_id']
+      payment = Payment.find_by(id_conekta: id_conekta)
+      case payment.plan_name
+      when "startup"
+        payment.update({available_emails: 1000})
+      when "crecimiento"
+        payment.update({available_emails: 5000})
+      when "enterprise"
+        payment.update({available_emails: 10000})
+      end
+    end
+    
     head 200, content_type: "text/html"
   end
 

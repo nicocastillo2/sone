@@ -135,6 +135,11 @@
 .right{
   float: right;
 }
+
+.registration-links{
+  z-index: 4;
+  position: relative;
+}
 @media (min-width: 992px){
   .login-icons{
     width: 50%;
