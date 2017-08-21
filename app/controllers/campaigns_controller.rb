@@ -67,7 +67,8 @@ class CampaignsController < ApplicationController
   end
 
   def generate_campaign_mailing
-    CampaignMailer.send_survey(params[:campaign_id], 'Campaña enviada via Sone', params[:sender_email]).deliver!
+    debugger
+    CampaignMailer.send_survey(params[:campaign_id], params[:sender_email]).deliver!
     # TODO: Add/Render this flash message into flash messages partial
     respond_to do |format|
       format.js { flash.now[:notice] = 'Campaña enviada exitosamente.' }
