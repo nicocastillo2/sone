@@ -67,7 +67,7 @@ class CampaignsController < ApplicationController
   end
 
   def generate_campaign_mailing
-    debugger
+    # debugger
     CampaignMailer.send_survey(params[:campaign_id], params[:sender_email]).deliver!
     # TODO: Add/Render this flash message into flash messages partial
     respond_to do |format|

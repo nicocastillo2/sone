@@ -46,6 +46,7 @@ class SuscriptionsController < ApplicationController
         render :index and return
       end
     end
+    CampaignMailer.change_subscription(new_suscription.capitalize, current_user.email).deliver_now
     flash[:success] = "Se realizó su cambio de suscripción a: #{new_suscription.capitalize}"
     redirect_to campaigns_path
   end
