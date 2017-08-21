@@ -26,10 +26,6 @@ html {
   font-size: 20px;
 }
 
-/*section {
-  padding-top: none;
-}*/
-
 p {
   font-family: 'SourceSansPro';
 }
@@ -919,5 +915,33 @@ ul .point{
   } 
   .img-25 {
     max-width: 15%;
+  }
+
+  .clients-opinion-section .text-center {
+    font-size: 1.4em;
+  }
+
+  .clients-opinion-section p.clients-opinion {
+    font-size: 1em;
+    margin-top: 20%
+  }
+
+  .clients-opinion-section .bx-wrapper {
+    width: 85%;
+  }
+
+  .clients-opinion-section .bx-wrapper img {
+      max-width: 35%;
+  }
+
+  .clients-opinion-section .slider-container {
+    padding-bottom: 0%;
+    padding-top: 0%;
+    background-size: inherit;
+  }
+
+  .clients-opinion-section .clients-pagina {
+    font-size: 0.8em;
+    margin-top: 6%
   }
 }
