@@ -87,6 +87,36 @@ class Campaign < ApplicationRecord
     0
   end
 
+  def self.nps_dates
+    {
+      1 => '30 Días',
+      2 => '60 Días',
+      3 => '90 Días',
+      4 => '6 Meses',
+      5 => '1 Año',
+      6 => 'Todo'
+    }
+  end
+
+  def self.receive_date selected_date
+    today = Date.today
+
+    case selected_date
+    when '1'
+      start_date = today - 30.days
+    when '2'
+      start_date = today - 60.days
+    when '3'
+      start_date = today - 90.days
+    when '4'
+      start_date = today - 6.months
+    when '5'
+      start_date = today - 1.year
+    when '6'
+      # today - 1.year
+    end
+  end
+
   private
 
   def csv_has_headers?
