@@ -81,7 +81,7 @@ class PaymentsController < ApplicationController
     # rescue Conekta::ValidationError => e
     #   flash[:danger] = e.message
     rescue Conekta::ErrorList => e
-      debugger
+      # debugger
       flash[:danger] = e.details[0].message
     rescue Conekta::Error => e
       flash[:danger] = e.message

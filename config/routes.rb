@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'terms', to: 'static#terms'
   get 'politics', to: 'static#politics'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions' }
   get '/answers/new', to: 'answers#new', as: 'new_answer'
   patch '/answers/:id', to: 'answers#update', as: 'edit_answer'
   put '/answers/:id', to: 'answers#update', as: nil
