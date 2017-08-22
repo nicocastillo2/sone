@@ -68,17 +68,19 @@ class CampaignsController < ApplicationController
   def report
     puts 'REPORT PARAMS ' * 10
     pp params
-    # pp params[:filter][:nps_date]
     puts 'REPORT PARAMS ' * 10
 
     puts '+' * 30
-    # if params[:filter]
-      # selected_date = params[:filter][:nps_date]
-      # pp Campaign.receive_date(selected_date)
-    # else
+    if params[:filter]
+      puts 'TRUE ' * 30
+      selected_date = params[:filter][:nps_date]
+      pp date_range = Campaign.receive_date(selected_date)
+      @nps = Nps.for_campaign(params[:id], date_range[0], date_range[1])
+    else
+      puts 'FALSE ' * 30
       pp date_range = Campaign.receive_date('1')
       @nps = Nps.for_campaign(params[:id], date_range[0], date_range[1])
-    # end
+    end
     puts '+' * 30
 
     @search = Campaign.includes(contacts: [:answer]).search(params[:q])
