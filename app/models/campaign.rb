@@ -113,8 +113,9 @@ class Campaign < ApplicationRecord
     when '5'
       start_date = today - 1.year
     when '6'
-      # today - 1.year
+      # ALL
     end
+    return start_date, today
   end
 
   private
