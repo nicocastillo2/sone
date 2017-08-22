@@ -95,3 +95,18 @@ end
 
 puts '1 campaign created for Admin with 15 contacts added to it and every
 contact created an answer'
+
+# Uncomment just to add some answers to campaign 2 for testing purposes
+# 15.times do |contact_num|
+#   status = rand(0..1)
+#   contact = Contact.create(name: "Contact #{contact_num + 100}",
+#                  email: "contact_#{contact_num + 1}@mail.com",
+#                  sent_date: Time.now,
+#                  status: status,
+#                  campaign_id: 2,
+#                  valid_info: true)
+#   Answer.create(score: rand(1..10),
+#                 comment: "ADDED Answer of contact #{contact_num + 100}",
+#                 contact: contact,
+#                 created_at: Time.now - 3.months)
+# end

@@ -94,7 +94,6 @@ class Campaign < ApplicationRecord
       3 => '90 Días',
       4 => '6 Meses',
       5 => '1 Año',
-      6 => 'Todo'
     }
   end
 
@@ -112,8 +111,6 @@ class Campaign < ApplicationRecord
       start_date = today - 6.months
     when '5'
       start_date = today - 1.year
-    when '6'
-      # ALL
     end
     return start_date, today
   end

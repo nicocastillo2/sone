@@ -29,7 +29,6 @@ class Nps
   private
 
     def self.get_nps_data campaign_id, start_date, end_date
-      puts '/\\' * 20
       query = <<~HEREDOC
           SELECT
             date(answers.created_at) AS answer_date,
@@ -46,5 +45,4 @@ class Nps
         HEREDOC
         ActiveRecord::Base.connection.select_all(query, nil, [[nil, campaign_id], [nil, start_date], [nil, end_date]])
     end
-
 end

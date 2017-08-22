@@ -10,7 +10,8 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    @nps = Nps.for_campaign(@campaign.id)
+    date_range = Campaign.receive_date('1')
+    @nps = Nps.for_campaign(@campaign.id, date_range[0], date_range[1])
     @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
     @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
     @topics = Campaign.find(params[:id]).tmp_topics
@@ -66,29 +67,15 @@ class CampaignsController < ApplicationController
   end
 
   def report
-    puts 'REPORT PARAMS ' * 10
-    pp params
-    puts 'REPORT PARAMS ' * 10
-
-    puts '+' * 30
     if params[:filter]
-      puts 'TRUE ' * 30
       selected_date = params[:filter][:nps_date]
-      pp date_range = Campaign.receive_date(selected_date)
+      date_range = Campaign.receive_date(selected_date)
       @nps = Nps.for_campaign(params[:id], date_range[0], date_range[1])
     else
-      puts 'FALSE ' * 30
-      pp date_range = Campaign.receive_date('1')
+      date_range = Campaign.receive_date('1')
       @nps = Nps.for_campaign(params[:id], date_range[0], date_range[1])
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: params[:id] }, created_at: date_range[0]..date_range[1] )
     end
-    puts '+' * 30
-
-    @search = Campaign.includes(contacts: [:answer]).search(params[:q])
-    @campaigns = @search.result
-
-    # TODO: Check if needs to be removed
-    @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
-    @topics = Campaign.find(params[:id]).tmp_topics
   end
 
   def generate_campaign_mailing
