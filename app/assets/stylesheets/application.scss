@@ -196,9 +196,16 @@ $pink: #9a4479;
 	height: 65px;
 	background-color: #606060;
 	color: white;
-	padding-top: 2.5%;
+	padding-top: 2%;
 	padding-left: 3%;
 }
+
+@media (min-height: 1200px) {
+  .menu-top {
+    padding-top: 1.5%;
+  }
+}
+
 .padding-left{
 	padding-left: 8px;
 }
