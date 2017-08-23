@@ -71,10 +71,11 @@ class CampaignsController < ApplicationController
       selected_date = params[:filter][:nps_date]
       date_range = Campaign.receive_date(selected_date)
       @nps = Nps.for_campaign(params[:id], date_range[0], date_range[1])
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: params[:id] }, created_at: date_range[0]..date_range[1]).order(created_at: :asc)
     else
       date_range = Campaign.receive_date('1')
       @nps = Nps.for_campaign(params[:id], date_range[0], date_range[1])
-      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: params[:id] }, created_at: date_range[0]..date_range[1] )
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: params[:id] }, created_at: date_range[0]..date_range[1]).order(created_at: :asc)
     end
   end
 

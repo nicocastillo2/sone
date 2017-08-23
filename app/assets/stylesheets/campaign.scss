@@ -350,6 +350,24 @@ $stat-box-gray: #f4f4f4;
 
 // End Graphic style changes
 
+.feedback-answer-date {
+  font-size: 85%;
+  padding-top: 5px;
+}
+
+.feedback-answer .panel {
+  border-radius: 15px;
+}
+
+.feedback-answer .panel-heading {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.feedback-answer i {
+  font-size: 150%;
+}
+
 /* Media Querys */
 
 @media (max-width: 991px) {
