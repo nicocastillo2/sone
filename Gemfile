@@ -65,6 +65,8 @@ gem 'conekta'
 gem 'csv_validator'
 # Ransack for filter campaign reports
 gem 'ransack', '~> 1.8', '>= 1.8.3'
+# Font Awesome
+gem "font-awesome-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
