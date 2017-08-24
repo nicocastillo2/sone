@@ -72,10 +72,14 @@ class CampaignsController < ApplicationController
       date_range = Campaign.receive_date(selected_date)
       @nps = Nps.for_campaign(params[:id], date_range[0], date_range[1])
       @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: params[:id] }, created_at: date_range[0]..date_range[1]).order(created_at: :asc)
+      @nps_sample_count = @contacts_feedback.count
+      @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
     else
       date_range = Campaign.receive_date('1')
       @nps = Nps.for_campaign(params[:id], date_range[0], date_range[1])
       @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: params[:id] }, created_at: date_range[0]..date_range[1]).order(created_at: :asc)
+      @nps_sample_count = @contacts_feedback.count
+      @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
     end
   end
 

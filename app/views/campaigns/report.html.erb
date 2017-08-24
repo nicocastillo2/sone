@@ -65,6 +65,25 @@
 </div>
 
 <div class="row">
+  <div class="col-md-6 col-md-offset-1">
+    <h1 class="feedback-stat">
+      <span class="label label-default">: <%= @nps_sample_count %></span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default"><%= fa_icon 'smile-o' %> <%= @data_percentages[:promoters] %>%</span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default"><%= fa_icon 'meh-o' %> <%= @data_percentages[:passives] %>%</span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default"><%= fa_icon 'frown-o' %> <%= @data_percentages[:detractors] %>%</span>
+    </h1>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
   <% @contacts_feedback.each do |answer| %>
     <div class="row feedback-answer">
       <div class="col-md-6 col-md-offset-1">
