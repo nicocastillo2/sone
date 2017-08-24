@@ -127,6 +127,16 @@ class Campaign < ApplicationRecord
     { detractors: detractors, passives: passives, promoters: promoters }
   end
 
+  def self.to_csv(campaign, answers)
+    headers = %w(email name score comment)
+    CSV.generate(headers: true) do |csv|
+      csv << headers
+      answers.each do |answer|
+        csv << [answer.contact.email, answer.contact.name, answer.score, answer.comment]
+      end
+    end
+  end
+
   private
 
   def csv_has_headers?

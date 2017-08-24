@@ -23,6 +23,10 @@
       </div>
     <% end %>
   </div>
+
+  <div class="col-md-2 col-md-offset-4">
+    <%= button_to "Descargar Reporte", report_campaign_path(format: :csv), class: 'btn btn-default send-button', method: :get %>
+  </div>
 </div>
 
 <div class="row">
