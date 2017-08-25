@@ -734,7 +734,6 @@ header {
     background-image: image-url("clients-opinion.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
     position: relative;
     padding-bottom: 3%;
     padding-top: 3%;
@@ -827,7 +826,9 @@ header {
   }
 }
 
-
+.text-white {
+  color: white;
+}
 
 .link-white {
   color: white; 
@@ -879,7 +880,30 @@ ul .point{
   margin-left: -5%;
 }
 
-@media (max-width: 991px) {
+#flecha-arriba {
+  position: fixed;
+  width: 160%;
+  height: 7%;
+  margin-top: 140%;
+  z-index: 3;
+  margin-right: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: inline;
+}
+
+@media (max-width: 700px) {
+
+  .text-copy{
+  color: white;
+  font-size: 1.1em
+  }
+
   .hero-text-box {
     width: 80%;
     margin-right: 3%;
