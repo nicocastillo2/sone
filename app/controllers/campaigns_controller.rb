@@ -68,16 +68,24 @@ class CampaignsController < ApplicationController
 
   def generate_campaign_mailing
     # debugger
-    CampaignMailer.send_survey(params[:campaign_id], params[:sender_email]).deliver!
+    num_surveys = Campaign.find(params[:campaign_id]).contacts.where(blacklist: nil, valid_info: true, status: 0).count
+    
+    if num_surveys <= current_user.available_emails
+      CampaignMailer.send_survey(params[:campaign_id], params[:sender_email]).deliver!
+      campaign = Campaign.includes(:contacts).find(params[:campaign_id])
+
+      @time = Time.now
+      campaign.update last_sent: @time
+      campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
+      num_available_emails = current_user.available_emails
+      current_user.update(available_emails: num_available_emails - num_surveys)
+    else
+    end
+
     # TODO: Add/Render this flash message into flash messages partial
     respond_to do |format|
       format.js { flash.now[:notice] = 'Campaña enviada exitosamente.' }
     end
-    campaign = Campaign.includes(:contacts).find(params[:campaign_id])
-
-    @time = Time.now
-    campaign.update last_sent: @time
-    campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
   end
 
   def upload_csv
