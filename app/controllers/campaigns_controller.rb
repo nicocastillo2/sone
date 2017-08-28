@@ -10,11 +10,11 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-      @nps = Nps.for_campaign(@campaign.id)
-      @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
-      @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
-      @topics = Campaign.find(params[:id]).tmp_topics
-      @campaign.update({new_answers: 0})
+    date_range = Campaign.receive_date('1')
+    @nps = Nps.for_campaign(@campaign.id, date_range[0], date_range[1])
+    @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
+    @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
+    @topics = Campaign.find(params[:id]).tmp_topics
   end
 
   # GET /campaigns/new
@@ -63,6 +63,37 @@ class CampaignsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to campaigns_url, notice: 'Campaign was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def report
+    campaign = Campaign.find(params[:id])
+    @selected_date = params[:filter] ? params[:feedback_date] : '30 Días'
+    @selected_date ||= '30 Días'
+
+    if params[:filter]
+      params[:filter][:nps_date] = params[:nps_date] if params[:nps_date]
+      selected_date = params[:filter][:nps_date]
+      date_range = Campaign.receive_date(selected_date)
+      @nps = Nps.for_campaign(campaign.id, date_range[0], date_range[1])
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1]).paginate(page: params[:page], per_page: 5)#.order(created_at: :asc)
+      @nps_sample_count = @contacts_feedback.count
+      @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
+    else
+      date = params[:nps_date] ? params[:nps_date] : '1'
+      date_range = Campaign.receive_date(date)
+      @nps = Nps.for_campaign(campaign.id, date_range[0], date_range[1])
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1]).paginate(page: params[:page], per_page: 5)#.order(created_at: :asc)
+      @nps_sample_count = @contacts_feedback.count
+      @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
+    end
+    respond_to do |format|
+      format.js { render partial: 'contacts_feedback' }
+      format.html
+      format.csv do
+        send_data Campaign.to_csv(campaign, @contacts_feedback),
+        filename: "report-#{Date.today}.csv"
+      end
     end
   end
 

@@ -9,10 +9,10 @@ class Nps
     @nps = []
   end
 
-  def self.for_campaign campaign_id
+  def self.for_campaign campaign_id, start_date, end_date
     nps = new
 
-    get_nps_data(campaign_id).each do |row|
+    get_nps_data(campaign_id, start_date, end_date).each do |row|
       detractors_avg = row["detractors"].to_f / row["total"] * 100
       promoters_avg = row["promoters"].to_f / row["total"] * 100
 
@@ -28,7 +28,7 @@ class Nps
 
   private
 
-    def self.get_nps_data campaign_id
+    def self.get_nps_data campaign_id, start_date, end_date
       query = <<~HEREDOC
           SELECT
             date(answers.created_at) AS answer_date,
@@ -39,11 +39,10 @@ class Nps
           FROM "answers"
           INNER JOIN "contacts" ON "contacts"."id" = "answers"."contact_id"
           INNER JOIN "campaigns" ON "campaigns"."id" = "contacts"."campaign_id"
-          WHERE "campaigns"."id" = $1
+          WHERE "campaigns"."id" = $1 AND date(answers.created_at) BETWEEN $2 AND $3
           GROUP BY date(answers.created_at)
           ORDER BY answer_date
         HEREDOC
-        ActiveRecord::Base.connection.select_all(query, nil, [[nil, campaign_id]])
+        ActiveRecord::Base.connection.select_all(query, nil, [[nil, campaign_id], [nil, start_date], [nil, end_date]])
     end
-
 end

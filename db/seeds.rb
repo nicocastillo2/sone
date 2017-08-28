@@ -30,12 +30,13 @@ campaign_logo_img = Rails.root.join("app/assets/images/logo-sone-250.png").open
                              last_sent: Time.now,
                              user: @user)
   15.times do |contact_num|
-    days_before = contact_num % 3
+    days_before = contact_num % 30
     contact = Contact.create(name: "Contact #{contact_num + 1}",
                    email: "contact_#{contact_num + 1}@mail.com",
-                   sent_date: nil,
+                   sent_date: Time.now,
                    status: status,
-                   campaign: campaign)
+                   campaign: campaign,
+                   valid_info: true)
     Answer.create(score: rand(1..10),
                   comment: "Answer of contact #{contact_num + 1}",
                   contact: contact,
@@ -58,9 +59,10 @@ admin_campaign = Campaign.create(name: 'Admin Campaign',
   status = rand(0..1)
   contact = Contact.create(name: "Contact #{contact_num + 1}",
                            email: "contact_#{contact_num + 1}@mail.com",
-                           sent_date: nil,
+                           sent_date: Time.now,
                            status: status,
-                           campaign: admin_campaign)
+                           campaign: admin_campaign,
+                           valid_info: true)
   Answer.create(score: rand(1..10),
                 comment: "Answer of contact #{contact_num + 1}",
                 contact: contact)
@@ -85,10 +87,26 @@ mails = ["roberto@kheper.io", "mauricio@kheper.io", "alejandro@kheper.io"]
 mails.each_with_index do |mail, index|
   contact = Contact.create(name: "Kheper #{index}",
                              email: mail,
-                             sent_date: nil,
+                             sent_date: Time.now,
                              status: "not_sent",
-                             campaign: campaign)
+                             campaign: campaign,
+                             valid_info: true)
 end
 
 puts '1 campaign created for Admin with 15 contacts added to it and every
 contact created an answer'
+
+# Uncomment just to add some answers to campaign 2 for testing purposes
+# 15.times do |contact_num|
+#   status = rand(0..1)
+#   contact = Contact.create(name: "Contact #{contact_num + 100}",
+#                  email: "contact_#{contact_num + 1}@mail.com",
+#                  sent_date: Time.now,
+#                  status: status,
+#                  campaign_id: 2,
+#                  valid_info: true)
+#   Answer.create(score: rand(1..10),
+#                 comment: "ADDED Answer of contact #{contact_num + 100}",
+#                 contact: contact,
+#                 created_at: Time.now - 3.months)
+# end

@@ -88,6 +88,56 @@ class Campaign < ApplicationRecord
     0
   end
 
+  def self.nps_dates
+    {
+      1 => '30 Días',
+      2 => '60 Días',
+      3 => '90 Días',
+      4 => '6 Meses',
+      5 => '1 Año',
+    }
+  end
+
+  def self.receive_date selected_date
+    today = Date.today
+
+    case selected_date
+    when '1'
+      start_date = today - 30.days
+    when '2'
+      start_date = today - 60.days
+    when '3'
+      start_date = today - 90.days
+    when '4'
+      start_date = today - 6.months
+    when '5'
+      start_date = today - 1.year
+    end
+    return start_date, today
+  end
+
+  def self.get_nps_data_percentages(nps, nps_sample_count)
+    puts '+' * 30
+    puts 'PERCENTAGES'
+    puts "sample count: #{nps_sample_count}"
+    pp detractors = (nps.detractors.select { |n| n == 1 }.count) * 100 / nps_sample_count
+    pp passives = (nps.passives.select { |n| n == 1 }.count) * 100 / nps_sample_count
+    pp promoters = (nps.promoters.select { |n| n == 1 }.count) * 100 / nps_sample_count
+    puts '+' * 30
+
+    { detractors: detractors, passives: passives, promoters: promoters }
+  end
+
+  def self.to_csv(campaign, answers)
+    headers = %w(email name score comment)
+    CSV.generate(headers: true) do |csv|
+      csv << headers
+      answers.each do |answer|
+        csv << [answer.contact.email, answer.contact.name, answer.score, answer.comment]
+      end
+    end
+  end
+
   private
 
     def csv_has_headers?
