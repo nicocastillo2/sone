@@ -1,5 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: :report
 
   # GET /campaigns
   # GET /campaigns.json
@@ -87,8 +88,10 @@ class CampaignsController < ApplicationController
       @nps_sample_count = @contacts_feedback.count
       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
     end
+    # debugger
     respond_to do |format|
-      format.js { render partial: 'contacts_feedback' }
+      # format.js { render partial: 'contacts_feedback' }
+      format.js { render js: 'console.log("hola");' }
       format.html
       format.csv do
         send_data Campaign.to_csv(campaign, @contacts_feedback),

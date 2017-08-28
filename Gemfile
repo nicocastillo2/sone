@@ -58,7 +58,6 @@ gem 'sparkpost_rails', :git => 'https://github.com/KheperIo/sparkpost_rails.git'
 # OpenSSL generate mail token
 gem 'openssl', '~> 2.0.0.beta.1'
 # Pagination to Campaign contacts
-gem 'will_paginate', '~> 3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
 # conekta integration
 gem 'conekta'

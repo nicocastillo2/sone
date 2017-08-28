@@ -14,6 +14,6 @@
     </div>
   <% end %>
   <div class="col-md-5 col-md-offset-1">
-    <%= will_paginate @contacts_feedback, remote: true %>
+    <%= will_paginate @contacts_feedback, remote: true, params: {format: 'js'} %>
   </div>
 </div>
