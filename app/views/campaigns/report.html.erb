@@ -5,7 +5,7 @@
     <%= form_for :filter, url: report_campaign_path, method: :post, html: { id: 'filter-form' } do |f| %>
       <div class="form-group">
         <%= f.label :nps_date, 'Fecha', class: 'control-label' %>
-        <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, {}, class: 'report-select' %>
+        <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, { selected: @active_filter }, class: 'report-select' %>
       </div>
 
       <!-- DO NOT REMOVE DATEPICKER RANGE -->
@@ -71,7 +71,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-1">
     <h1 class="feedback-stat">
-      <span class="label label-default"><span id="selected-date-feedback"><%= @selected_date %></span>: <%= @nps_sample_count %></span>
+      <span class="label label-default"><span id="selected-date-feedback"><%= @date_range %></span>: <%= @nps_sample_count %></span>
     </h1>
     <h1 class="feedback-stat">
       <span class="label label-default"><%= fa_icon 'smile-o' %> <%= @data_percentages[:promoters] %>%</span>
