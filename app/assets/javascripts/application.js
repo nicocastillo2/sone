@@ -25,4 +25,22 @@ $(document).on('turbolinks:load', function() {
   $('.input-daterange').datepicker({
     format: 'yyyy-mm-dd'
   });
+
+  // Selected date for report
+  $(document).on('change', '.report-select', function(){
+    $('input[name=feedback_date]').remove();
+
+    var reportUrl = $('#download-report').attr('href').slice(0, -1);;
+    var dateNumber = $('.report-select').find(":selected").val();
+    var dateText = $('.report-select').find(":selected").text();
+
+    $('<input>').attr({
+      type: 'hidden',
+      value: dateText,
+      name: 'feedback_date'
+    }).appendTo('#filter-form');
+
+    var newReportUrl = reportUrl + dateNumber;
+    $('#download-report').attr('href', newReportUrl);
+  });
 });

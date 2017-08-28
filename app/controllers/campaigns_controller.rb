@@ -68,7 +68,11 @@ class CampaignsController < ApplicationController
 
   def report
     campaign = Campaign.find(params[:id])
+    @selected_date = params[:filter] ? params[:feedback_date] : '30 Días'
+    @selected_date ||= '30 Días'
+
     if params[:filter]
+      params[:filter][:nps_date] = params[:nps_date] if params[:nps_date]
       selected_date = params[:filter][:nps_date]
       date_range = Campaign.receive_date(selected_date)
       @nps = Nps.for_campaign(campaign.id, date_range[0], date_range[1])
@@ -76,13 +80,15 @@ class CampaignsController < ApplicationController
       @nps_sample_count = @contacts_feedback.count
       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
     else
-      date_range = Campaign.receive_date('1')
+      date = params[:nps_date] ? params[:nps_date] : '1'
+      date_range = Campaign.receive_date(date)
       @nps = Nps.for_campaign(campaign.id, date_range[0], date_range[1])
       @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1]).paginate(page: params[:page], per_page: 5)#.order(created_at: :asc)
       @nps_sample_count = @contacts_feedback.count
       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
     end
     respond_to do |format|
+      format.js { render partial: 'contacts_feedback' }
       format.html
       format.csv do
         send_data Campaign.to_csv(campaign, @contacts_feedback),
