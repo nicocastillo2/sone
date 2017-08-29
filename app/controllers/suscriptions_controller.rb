@@ -14,7 +14,7 @@ class SuscriptionsController < ApplicationController
     # Mandar error en caso de recibir un parametro mal
     unless @suscriptions.include?(new_suscription)
       flash.now[:warning] = "Se produjo un error"
-      render :index and return 
+      render :index and return
     end
 
     if new_suscription == "freelancer"
@@ -40,7 +40,6 @@ class SuscriptionsController < ApplicationController
         @payment.update(plan_name: new_suscription,
                         cycle_start: DateTime.strptime(subscription.billing_cycle_start.to_s,'%s'),
                         cycle_end: DateTime.strptime(subscription.billing_cycle_end.to_s,'%s'))
-        # debugger
       rescue Conekta::Error => e
         flash.now[:danger] = e.message
         render :index and return

@@ -89,7 +89,6 @@ class CampaignsController < ApplicationController
       @nps_sample_count = @contacts_feedback.count
       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
     end
-    # debugger
     respond_to do |format|
       format.js { render partial: 'feedback', content_type: 'text/html' }
       format.html
@@ -101,7 +100,6 @@ class CampaignsController < ApplicationController
   end
 
   def generate_campaign_mailing
-    # debugger
     num_surveys = Campaign.find(params[:campaign_id]).contacts.where(blacklist: nil, valid_info: true, status: 0).count
     @mensaje = ""
     if num_surveys <= current_user.available_emails

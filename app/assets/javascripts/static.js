@@ -20,7 +20,7 @@ $( window ).resize(function() {
 
 $(window).scroll(function() {
   title_botton();
-}) 
+})
 
 function margin_top(){
   if (window.outerWidth <= 991){
@@ -33,14 +33,13 @@ function margin_top(){
 function back_to_top(){
   document.body.scrollTop=0;
   document.documentElement.scrollTop=0;
-  console.log('hola')
 }
 function title_botton(){
    var algo=$(window).scrollTop()
   if (algo >= 322){
     $('#flecha-arriba').removeClass('hide');
     $('#flecha-arriba').addClass('show');
-    
+
   }else{
     $('#flecha-arriba').addClass('hide');
     $('#flecha-arriba').removeClass('show');  }
@@ -85,5 +84,3 @@ $(document).ready(function() {
 });
 
 //$(":file").filestyle({input: false});
-
-

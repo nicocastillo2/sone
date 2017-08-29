@@ -10,7 +10,6 @@ class PaymentsController < ApplicationController
 
   # POST /payments
   def create
-    # debugger
     # render plain: params.inspect.to_s, layout: false
     user_name = params[:name]
     user_email = current_user.email
@@ -18,7 +17,7 @@ class PaymentsController < ApplicationController
     card_token_id = params[:conektaTokenId]
 
     begin
-      
+
       customer = Conekta::Customer.create({
         :name => user_name,
         :email => user_email,
@@ -28,7 +27,6 @@ class PaymentsController < ApplicationController
           :type => "card"
         }]
       })
-      # debugger
       @payment = current_user.payment
 
       payment_params = {full_name: user_name, phone: user_phone,
@@ -60,7 +58,7 @@ class PaymentsController < ApplicationController
   # PATCH/PUT /payments/1
   def update
     @payment = current_user.payment
-    
+
     user_name = params[:name]
     user_email = current_user.email
     user_phone = params[:phone]
@@ -81,12 +79,11 @@ class PaymentsController < ApplicationController
     # rescue Conekta::ValidationError => e
     #   flash[:danger] = e.message
     rescue Conekta::ErrorList => e
-      # debugger
       flash[:danger] = e.details[0].message
     rescue Conekta::Error => e
       flash[:danger] = e.message
     end
-    
+
     if update_status
       redirect_to campaigns_path, notice: 'Payment actualisado correctamente.'
     else
@@ -108,7 +105,6 @@ class PaymentsController < ApplicationController
 
   def payment_callback
     json = JSON.parse(request.body.read)
-    puts '*'*100
 
     if json['type'] == 'subscription.paid'
       id_conekta = json['data']["object"]['customer_id']
@@ -122,7 +118,7 @@ class PaymentsController < ApplicationController
         payment.update({available_emails: 10000})
       end
     end
-    
+
     head 200, content_type: "text/html"
   end
 

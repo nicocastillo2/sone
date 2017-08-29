@@ -117,13 +117,9 @@ class Campaign < ApplicationRecord
   end
 
   def self.get_nps_data_percentages(nps, nps_sample_count)
-    puts '+' * 30
-    puts 'PERCENTAGES'
-    puts "sample count: #{nps_sample_count}"
-    pp detractors = (nps.detractors.select { |n| n == 1 }.count) * 100 / nps_sample_count
-    pp passives = (nps.passives.select { |n| n == 1 }.count) * 100 / nps_sample_count
-    pp promoters = (nps.promoters.select { |n| n == 1 }.count) * 100 / nps_sample_count
-    puts '+' * 30
+    detractors = (nps.detractors.select { |n| n == 1 }.count) * 100 / nps_sample_count
+    passives = (nps.passives.select { |n| n == 1 }.count) * 100 / nps_sample_count
+    promoters = (nps.promoters.select { |n| n == 1 }.count) * 100 / nps_sample_count
 
     { detractors: detractors, passives: passives, promoters: promoters }
   end
