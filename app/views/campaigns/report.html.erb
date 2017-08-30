@@ -74,13 +74,13 @@
       <span class="label label-default"><span id="selected-date-feedback"><%= @date_range %></span>: <%= @nps_sample_count %></span>
     </h1>
     <h1 class="feedback-stat">
-      <span class="label label-default"><%= fa_icon 'smile-o' %> <%= @data_percentages[:promoters] %>%</span>
+      <span class="label label-default" data-feedback-type='promoter'><%= fa_icon 'smile-o' %> <%= @data_percentages[:promoters] %>%</span>
     </h1>
     <h1 class="feedback-stat">
-      <span class="label label-default"><%= fa_icon 'meh-o' %> <%= @data_percentages[:passives] %>%</span>
+      <span class="label label-default" data-feedback-type='passive'><%= fa_icon 'meh-o' %> <%= @data_percentages[:passives] %>%</span>
     </h1>
     <h1 class="feedback-stat">
-      <span class="label label-default"><%= fa_icon 'frown-o' %> <%= @data_percentages[:detractors] %>%</span>
+      <span class="label label-default" data-feedback-type='detractor'><%= fa_icon 'frown-o' %> <%= @data_percentages[:detractors] %>%</span>
     </h1>
   </div>
 </div>
