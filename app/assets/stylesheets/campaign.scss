@@ -104,6 +104,7 @@ $stat-box-gray: #f4f4f4;
 .form-pink{
   border-color: $pink;
   color: $pink;
+  border-radius: 0;
 }
 .form-pink::-webkit-input-placeholder{
   color: $pink;

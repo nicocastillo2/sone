@@ -21,3 +21,7 @@
 $(document).on('turbolinks:load', function() {
   $('.colorpicker').colorpicker();
 });
+
+$("#upfile1").click(function () {
+    $("#file1").trigger('click');
+});
