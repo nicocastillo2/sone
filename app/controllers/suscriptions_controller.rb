@@ -1,5 +1,6 @@
 class SuscriptionsController < ApplicationController
   before_action :require_payment_method, only: "update"
+  before_action :require_login
 
   def index
     @suscriptions = ["freelancer", "startup", "crecimiento", "enterprise"]
