@@ -44,3 +44,7 @@ $(document).on('turbolinks:load', function() {
     $('#download-report').attr('href', newReportUrl);
   });
 });
+
+$("#upfile1").click(function () {
+    $("#file1").trigger('click');
+});
