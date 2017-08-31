@@ -91,7 +91,11 @@
   color: transparent; 
   overflow: hidden;
 }
-
+#avatar-sign{
+  background-color: rgba(178, 66, 124, 0);
+  width: 50%;
+  height: auto;
+}
 .image-edit {
   background-clip: content-box;
   background-color: white;
@@ -119,6 +123,7 @@
 }
 .text-center{
   text-align: center;
+  width: 100%;
 }
 .margin-top-20{
   margin-top: -50px!important;
@@ -132,13 +137,12 @@
   max-width: 10%;  
   padding-left: 5px;
   padding-top:2%;
-  background-color: white;
 }
 .img-fixed{
   position: absolute;
   max-width: 4%;  
   padding-left: 5px;
-  padding-top:2%;
+  padding-top:3%;
   right: 5%;
   margin-top: 0%;
 }
@@ -242,4 +246,41 @@
     width: 30px;
   }
 
+}
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
+  .img-fixed{
+    padding-top:3%;
+    right: 6.5%;
+  }
+}
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
+  .img-fixed {
+    padding-top: 1%;
+    right: 4.5%;
+    max-width: 20px;
+  }
+  #sign-up{
+    margin-bottom: 20px;
+  }
+  .login-icon {
+    width: 60px;
+  }
+}
+
+@media (max-width: $screen-xs-max){ 
+  .img-fixed {
+    padding-top: 2%;
+    right: 25px;
+    max-width: 20px;
+  }
+  .div-avatar div{
+    position: relative;
+    top: 8.5em;
+  }
+  #sign-up{
+    margin-bottom: 20px;
+  }
+  .login-icon {
+    width: 60px;
+  }
 }
