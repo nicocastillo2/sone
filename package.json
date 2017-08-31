@@ -1,5 +1,7 @@
 {
   "name": "sone",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "hbs": "^4.0.1"
+  }
 }
