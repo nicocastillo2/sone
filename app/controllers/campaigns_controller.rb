@@ -78,12 +78,19 @@ class CampaignsController < ApplicationController
       date_range = Campaign.receive_date(selected_date)
       @nps = Nps.for_campaign(campaign.id, date_range[0], date_range[1])
       @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1]).paginate(page: params[:page], per_page: 5)#.order(created_at: :asc)
+      @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1])
       if params[:feedback_type] == 'promoter'
+        @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 9..10)
+        @feedback_report = @feedback_report.where(score: 9..10)
       elsif params[:feedback_type] == 'passive'
+        @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 7..8)
+        @feedback_report = @feedback_report.where(score: 7..8)
       elsif params[:feedback_type] == 'detractor'
+        @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 0..6)
+        @feedback_report = @feedback_report.where(score: 0..6)
       end
       @nps_sample_count = @contacts_feedback.count
       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
@@ -93,21 +100,29 @@ class CampaignsController < ApplicationController
       date_range = Campaign.receive_date(date)
       @nps = Nps.for_campaign(campaign.id, date_range[0], date_range[1])
       @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1]).paginate(page: params[:page], per_page: 5)#.order(created_at: :asc)
+      @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1])
       if params[:feedback_type] == 'promoter'
+        @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 9..10)
+        @feedback_report = @feedback_report.where(score: 9..10)
       elsif params[:feedback_type] == 'passive'
+        @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 7..8)
+        @feedback_report = @feedback_report.where(score: 7..8)
       elsif params[:feedback_type] == 'detractor'
+        @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 0..6)
+        @feedback_report = @feedback_report.where(score: 0..6)
       end
       @nps_sample_count = @contacts_feedback.count
       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
     end
+
     respond_to do |format|
       format.js { render partial: 'feedback', content_type: 'text/html' }
       format.html
       format.csv do
-        send_data Campaign.to_csv(campaign, @contacts_feedback),
+        send_data Campaign.to_csv(campaign, @feedback_report),
         filename: "report-#{Date.today}.csv"
       end
     end

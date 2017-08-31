@@ -25,7 +25,10 @@
   </div>
 
   <div class="col-md-2 col-md-offset-4">
-    <%= link_to "Descargar Reporte", report_campaign_path(format: :csv, nps_date: '1'), class: 'btn btn-default send-button', id: 'download-report' %>
+    <% date = @active_filter || '1' %>
+    <% feedback_type = @feedback_type || 'none' %>
+    <%= link_to "Descargar Reporte", report_campaign_path(format: :csv, nps_date: date, feedback_type: feedback_type), class: 'btn btn-default send-button', id: 'download-report' %>
+    <h3><%= @feedback_type %></h3>
   </div>
 </div>
 

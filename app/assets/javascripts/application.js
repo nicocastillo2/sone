@@ -30,7 +30,7 @@ $(document).on('turbolinks:load', function() {
   $(document).on('change', '.report-select', function(){
     $('input[name=feedback_date]').remove();
 
-    var reportUrl = $('#download-report').attr('href').slice(0, -1);;
+    var reportUrl = $('#download-report').attr('href').slice(0, -1);
     var dateNumber = $('.report-select').find(":selected").val();
     var dateText = $('.report-select').find(":selected").text();
 
