@@ -1,36 +1,26 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: :report
 
   # GET /campaigns
   # GET /campaigns.json
   def index
-    if user_signed_in?
     @campaigns = current_user.campaigns
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    if user_signed_in?
-      @nps = Nps.for_campaign(@campaign.id)
-      @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
-      @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
-      @topics = Campaign.find(params[:id]).tmp_topics 
-    else
-      redirect_to new_user_session_path
-    end
+    date_range = Campaign.receive_date('1')
+    @nps = Nps.for_campaign(@campaign.id, date_range[0], date_range[1])
+    @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
+    @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
+    @topics = Campaign.find(params[:id]).tmp_topics
   end
 
   # GET /campaigns/new
   def new
-    if user_signed_in?
     @campaign = Campaign.new
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   # GET /campaigns/1/edit
@@ -43,7 +33,7 @@ class CampaignsController < ApplicationController
       @campaign = Campaign.new(campaign_params.merge(user_id: current_user.id))
       @campaign.tmp_topics = campaign_params[:topics].map(&:split).flatten.sort if campaign_params[:topics]
       respond_to do |format|
-        if @campaign.save!
+        if @campaign.save
           format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
           format.json { render :show, status: :created, location: @campaign }
         else
@@ -56,18 +46,14 @@ class CampaignsController < ApplicationController
   # PATCH/PUT /campaigns/1
   # PATCH/PUT /campaigns/1.json
   def update
-    if user_signed_in?
-      respond_to do |format|
-        if @campaign.update(campaign_params)
-          format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
-          format.json { render :show, status: :ok, location: @campaign }
-        else
-          format.html { render :edit }
-          format.json { render json: @campaign.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @campaign.update(campaign_params)
+        format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
+        format.json { render :show, status: :ok, location: @campaign }
+      else
+        format.html { render :edit }
+        format.json { render json: @campaign.errors, status: :unprocessable_entity }
       end
-    else
-      redirect_to new_user_session_path
     end
   end
 
@@ -81,17 +67,89 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def report
+    campaign = Campaign.find(params[:id])
+    @date_range = params[:filter] ? params[:feedback_date] : '30 Días'
+    @date_range ||= '30 Días'
+
+    if params[:filter]
+      params[:filter][:nps_date] = params[:nps_date] if params[:nps_date]
+      selected_date = params[:filter][:nps_date]
+      date_range = Campaign.receive_date(selected_date)
+      @nps = Nps.for_campaign(campaign.id, date_range[0], date_range[1])
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1]).paginate(page: params[:page], per_page: 5)#.order(created_at: :asc)
+      @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1])
+      if params[:feedback_type] == 'promoter'
+        @feedback_type = params[:feedback_type]
+        @contacts_feedback = @contacts_feedback.where(score: 9..10)
+        @feedback_report = @feedback_report.where(score: 9..10)
+      elsif params[:feedback_type] == 'passive'
+        @feedback_type = params[:feedback_type]
+        @contacts_feedback = @contacts_feedback.where(score: 7..8)
+        @feedback_report = @feedback_report.where(score: 7..8)
+      elsif params[:feedback_type] == 'detractor'
+        @feedback_type = params[:feedback_type]
+        @contacts_feedback = @contacts_feedback.where(score: 0..6)
+        @feedback_report = @feedback_report.where(score: 0..6)
+      end
+      @nps_sample_count = @contacts_feedback.count
+      @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
+      @active_filter = params[:filter][:nps_date]
+    else
+      date = params[:nps_date] ? params[:nps_date] : '1'
+      date_range = Campaign.receive_date(date)
+      @nps = Nps.for_campaign(campaign.id, date_range[0], date_range[1])
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1]).paginate(page: params[:page], per_page: 5)#.order(created_at: :asc)
+      @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: campaign.id }, created_at: date_range[0]..date_range[1])
+      if params[:feedback_type] == 'promoter'
+        @feedback_type = params[:feedback_type]
+        @contacts_feedback = @contacts_feedback.where(score: 9..10)
+        @feedback_report = @feedback_report.where(score: 9..10)
+      elsif params[:feedback_type] == 'passive'
+        @feedback_type = params[:feedback_type]
+        @contacts_feedback = @contacts_feedback.where(score: 7..8)
+        @feedback_report = @feedback_report.where(score: 7..8)
+      elsif params[:feedback_type] == 'detractor'
+        @feedback_type = params[:feedback_type]
+        @contacts_feedback = @contacts_feedback.where(score: 0..6)
+        @feedback_report = @feedback_report.where(score: 0..6)
+      end
+      @nps_sample_count = @contacts_feedback.count
+      @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
+    end
+
+    respond_to do |format|
+      format.js { render partial: 'feedback', content_type: 'text/html' }
+      format.html
+      format.csv do
+        send_data Campaign.to_csv(campaign, @feedback_report),
+        filename: "report-#{Date.today}.csv"
+      end
+    end
+  end
+
   def generate_campaign_mailing
-    CampaignMailer.send_survey(params[:campaign_id], 'Campaña enviada via Sone', params[:sender_email]).deliver!
+    num_surveys = Campaign.find(params[:campaign_id]).contacts.where(blacklist: nil, valid_info: true, status: 0).count
+    @mensaje = ""
+    if num_surveys <= current_user.available_emails
+      CampaignMailer.send_survey(params[:campaign_id], params[:sender_email]).deliver!
+      campaign = Campaign.includes(:contacts).find(params[:campaign_id])
+
+      @time = Time.now
+      campaign.update last_sent: @time
+      campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
+      num_available_emails = current_user.available_emails
+      current_user.update(available_emails: num_available_emails - num_surveys)
+      campaign
+      @mensaje = 'Campaña enviada exitosamente.'
+    else
+      @mensaje = 'No tienes sufucuentes emails disponibles'
+    end
+
     # TODO: Add/Render this flash message into flash messages partial
     respond_to do |format|
-      format.js { flash.now[:notice] = 'Campaña enviada exitosamente.' }
+      format.js { flash.now[:notice] = @mensaje }
     end
-    campaign = Campaign.includes(:contacts).find(params[:campaign_id])
-
-    @time = Time.now
-    campaign.update last_sent: @time
-    campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
   end
 
   def upload_csv

@@ -1,0 +1,93 @@
+<%= provide :title, 'Reportes' %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-1">
+    <%= form_for :filter, url: report_campaign_path, method: :post, html: { id: 'filter-form' } do |f| %>
+      <div class="form-group">
+        <%= f.label :nps_date, 'Fecha', class: 'control-label' %>
+        <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, { selected: @active_filter }, class: 'report-select' %>
+      </div>
+
+      <!-- DO NOT REMOVE DATEPICKER RANGE -->
+      <!-- <div class="form-group">
+        <div class="input-daterange">
+          <div class="row">
+            <div class="col-md-6"><%#= f.text_field :start_date, class: 'form-control', placeholder: 'Fecha >= a' %></div>
+            <div class="col-md-6"><%#= f.text_field :end_date, class: 'form-control', placeholder: 'Fecha <= a' %></div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <%= f.submit 'Filtrar', class: 'btn btn-default send-button button-100' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-2 col-md-offset-4">
+    <% date = @active_filter || '1' %>
+    <% feedback_type = @feedback_type || 'none' %>
+    <%= link_to "Descargar Reporte", report_campaign_path(format: :csv, nps_date: date, feedback_type: feedback_type), class: 'btn btn-default send-button', id: 'download-report' %>
+    <h3><%= @feedback_type %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-9 col-md-offset-1">
+    <div id="graph_report"></div>
+  </div>
+
+  <%= javascript_tag do %>
+    <%=
+      graph_generate(
+        'graph_report',
+        data: {
+          x: 'x',
+          columns: [
+            ['x'] + @nps.dates,
+            ['NPS'] + @nps.nps,
+            ['Detractors'] + @nps.detractors,
+            ['Passives'] + @nps.passives,
+            ['Promoters'] + @nps.promoters
+          ],
+          axes: {
+            'NPS' => 'y'
+          }
+        },
+        legend: {
+          show: false
+        },
+        axis: {
+          x: {
+            type: 'category'
+          },
+          y: {
+            max: 95,
+            min: -95
+          }
+        }
+      )
+    %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+    <h1 class="feedback-stat">
+      <span class="label label-default"><span id="selected-date-feedback"><%= @date_range %></span>: <%= @nps_sample_count %></span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default" data-feedback-type='promoter'><%= fa_icon 'smile-o' %> <%= @data_percentages[:promoters] %>%</span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default" data-feedback-type='passive'><%= fa_icon 'meh-o' %> <%= @data_percentages[:passives] %>%</span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default" data-feedback-type='detractor'><%= fa_icon 'frown-o' %> <%= @data_percentages[:detractors] %>%</span>
+    </h1>
+  </div>
+</div>
+
+<br>
+
+<div id="contacts-feedback"><%= render partial: 'feedback' %></div>

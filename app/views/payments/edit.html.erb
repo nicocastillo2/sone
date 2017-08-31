@@ -6,7 +6,6 @@
   Conekta.setPublishableKey('<%= Rails.application.secrets.conekta_public %>');
 
   var conektaSuccessResponseHandler = function(token) {
-    console.log(token);
     var $form = $("#card-form");
     //Inserta el token_id en la forma para que se envíe al servidor
     $form.append($("<input type=\"hidden\" name=\"conektaTokenId\" />").val(token.id));
@@ -75,7 +74,7 @@
       <label class="fecha">
         <span>Fecha de expiración (MM/AAAA)</span><br>
         <input class="form-control field-pay date" type="text" size="2" data-conekta="card[exp_month]"/>
-      
+
       <span>/</span>
       <input class="form-control field-pay date" type="text" size="4" data-conekta="card[exp_year]"/>
       </label>
@@ -87,7 +86,7 @@
       </label>
     </div>
     <br>
-    
+
     <button type="submit" class="pay-now">Actualizar</button>
     </div>
     <div class="col-md-2"></div>

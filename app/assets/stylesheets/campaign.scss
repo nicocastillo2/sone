@@ -104,6 +104,7 @@ $stat-box-gray: #f4f4f4;
 .form-pink{
   border-color: $pink;
   color: $pink;
+  border-radius: 0;
 }
 .form-pink::-webkit-input-placeholder{
   color: $pink;
@@ -326,6 +327,12 @@ $stat-box-gray: #f4f4f4;
   padding: 0px;
 }
 
+.email-sone-input{
+  background-color: $pink;
+  color: white;
+  border: 1px solid $pink;
+}
+
 // Graphic style changes
 
 .c3-target-Detractors {
@@ -344,7 +351,33 @@ $stat-box-gray: #f4f4f4;
     stroke-width: 1px !important;
 }
 
+.c3-axis.c3-axis-x .tick {
+  display: none;
+}
+
 // End Graphic style changes
+
+.feedback-stat {
+  display: inline;
+}
+
+.feedback-answer-date {
+  font-size: 85%;
+  padding-top: 5px;
+}
+
+.feedback-answer .panel {
+  border-radius: 15px;
+}
+
+.feedback-answer .panel-heading {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.feedback-answer i {
+  font-size: 150%;
+}
 
 /* Media Querys */
 

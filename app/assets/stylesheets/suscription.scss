@@ -109,3 +109,10 @@ $gray: #b9b7b6;
 		margin-left: 40px;
 	}
 }
+
+.select-plan-submit:hover{
+  -webkit-box-shadow: 5px 5px 35px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 35px -10px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 35px -10px rgba(0,0,0,0.75);
+  color: white;
+}

@@ -4,17 +4,12 @@ class PaymentsController < ApplicationController
 
   # GET /payments/new
   def new
-    if user_signed_in?
-      @payment = Payment.new
-      redirect_to edit_payment_path(current_user.payment) if current_user.payment
-    else
-      redirect_to new_user_session_path
-    end 
+    @payment = Payment.new
+    redirect_to edit_payment_path(current_user.payment) if current_user.payment.card_conekta
   end
 
   # POST /payments
   def create
-    # debugger
     # render plain: params.inspect.to_s, layout: false
     user_name = params[:name]
     user_email = current_user.email
@@ -22,7 +17,7 @@ class PaymentsController < ApplicationController
     card_token_id = params[:conektaTokenId]
 
     begin
-      
+
       customer = Conekta::Customer.create({
         :name => user_name,
         :email => user_email,
@@ -32,12 +27,13 @@ class PaymentsController < ApplicationController
           :type => "card"
         }]
       })
-      debugger
-      @payment = Payment.new(full_name: user_name, phone: user_phone,
-                              id_conekta: customer.id,
-                              card_conekta: customer.payment_sources.first.id, user: current_user)
+      @payment = current_user.payment
 
-    if @payment.save
+      payment_params = {full_name: user_name, phone: user_phone,
+                              id_conekta: customer.id,
+                              card_conekta: customer.payment_sources.first.id, user: current_user}
+
+    if @payment.update(payment_params)
       redirect_to suscriptions_path, notice: 'Se agrego satisfactoriamente el metodo de pago'
     else
       render :new
@@ -62,7 +58,7 @@ class PaymentsController < ApplicationController
   # PATCH/PUT /payments/1
   def update
     @payment = current_user.payment
-    
+
     user_name = params[:name]
     user_email = current_user.email
     user_phone = params[:phone]
@@ -83,11 +79,11 @@ class PaymentsController < ApplicationController
     # rescue Conekta::ValidationError => e
     #   flash[:danger] = e.message
     rescue Conekta::ErrorList => e
-      flash[:danger] = e.message
+      flash[:danger] = e.details[0].message
     rescue Conekta::Error => e
       flash[:danger] = e.message
     end
-    
+
     if update_status
       redirect_to campaigns_path, notice: 'Payment actualisado correctamente.'
     else
@@ -97,12 +93,8 @@ class PaymentsController < ApplicationController
 
   # GET /payments/1/edit
   def edit
-    if user_signed_in?
-      @payment = Payment.find_by_id(params[:id])
-      redirect_to new_payment_path unless @payment
-    else
-      redirect_to new_user_session_path
-    end
+    @payment = Payment.find_by_id(params[:id])
+    redirect_to new_payment_path unless @payment
   end
 
   # DELETE /payments/1
@@ -112,8 +104,21 @@ class PaymentsController < ApplicationController
   end
 
   def payment_callback
-    data = JSON.parse(request.body.read)
-    p data
+    json = JSON.parse(request.body.read)
+
+    if json['type'] == 'subscription.paid'
+      id_conekta = json['data']["object"]['customer_id']
+      payment = Payment.find_by(id_conekta: id_conekta)
+      case payment.plan_name
+      when "startup"
+        payment.update({available_emails: 1000})
+      when "crecimiento"
+        payment.update({available_emails: 5000})
+      when "enterprise"
+        payment.update({available_emails: 10000})
+      end
+    end
+
     head 200, content_type: "text/html"
   end
 

@@ -18,4 +18,8 @@ module CampaignsHelper
     cipher.update(decode_text) + cipher.final
   end
 
+  def self.count_notifications(user)
+    user.campaigns.inject(0){ |sum, campaign| sum + campaign.new_answers }
+  end
+
 end

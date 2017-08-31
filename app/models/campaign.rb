@@ -17,6 +17,7 @@ class Campaign < ApplicationRecord
   validate :csv_has_headers?
 
   mount_uploader :logo, LogoUploader
+  before_create :add_domain_to_mail
 
   def self.import_contacts(file, topics, campaign_id)
     formatted_topics = Campaign.assign_topics(topics)
@@ -87,14 +88,60 @@ class Campaign < ApplicationRecord
     0
   end
 
-  private
+  def self.nps_dates
+    {
+      1 => '30 Días',
+      2 => '60 Días',
+      3 => '90 Días',
+      4 => '6 Meses',
+      5 => '1 Año',
+    }
+  end
 
-  def csv_has_headers?
-    if file
-      csv = CSV.read(file.path)
-      errors.add(:csv, "sin headers") if csv.first != ["email"]
+  def self.receive_date selected_date
+    today = Date.today
+
+    case selected_date
+    when '1'
+      start_date = today - 30.days
+    when '2'
+      start_date = today - 60.days
+    when '3'
+      start_date = today - 90.days
+    when '4'
+      start_date = today - 6.months
+    when '5'
+      start_date = today - 1.year
+    end
+    return start_date, today
+  end
+
+  def self.get_nps_data_percentages(nps, nps_sample_count)
+    detractors = (nps.detractors.select { |n| n == 1 }.count) * 100 / nps_sample_count
+    passives = (nps.passives.select { |n| n == 1 }.count) * 100 / nps_sample_count
+    promoters = (nps.promoters.select { |n| n == 1 }.count) * 100 / nps_sample_count
+
+    { detractors: detractors, passives: passives, promoters: promoters }
+  end
+
+  def self.to_csv(campaign, answers)
+    headers = %w(email name score comment)
+    CSV.generate(headers: true) do |csv|
+      csv << headers
+      answers.each do |answer|
+        csv << [answer.contact.email, answer.contact.name, answer.score, answer.comment]
+      end
     end
   end
+
+  private
+
+    def csv_has_headers?
+      if file
+        csv = CSV.read(file.path)
+        errors.add(:csv, "sin headers") if csv.first != ["email"]
+      end
+    end
 
     def self.contact_topics
       {
@@ -118,6 +165,10 @@ class Campaign < ApplicationRecord
       formatted_topics = {}
       topics.each { |topic| formatted_topics[topic] = '' }
       formatted_topics
+    end
+
+    def add_domain_to_mail
+      self.sender_email += '@sone.com.mx'
     end
 
 end

@@ -58,11 +58,15 @@ gem 'sparkpost_rails', :git => 'https://github.com/KheperIo/sparkpost_rails.git'
 # OpenSSL generate mail token
 gem 'openssl', '~> 2.0.0.beta.1'
 # Pagination to Campaign contacts
-gem 'will_paginate', '~> 3.1.0'
+gem 'bootstrap-will_paginate', '1.0.0'
 # conekta integration
 gem 'conekta'
 # validates csv
 gem 'csv_validator'
+# Ransack for filter campaign reports
+gem 'ransack', '~> 1.8', '>= 1.8.3'
+# Font Awesome
+gem "font-awesome-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
