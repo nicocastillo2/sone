@@ -9,10 +9,10 @@ class Nps
     @nps = []
   end
 
-  def self.for_campaign campaign_id, start_date, end_date
+  def self.for_campaign campaign_id, start_date, end_date, topics
     nps = new
 
-    get_nps_data(campaign_id, start_date, end_date).each do |row|
+    get_nps_data(campaign_id, start_date, end_date, topics).each do |row|
       detractors_avg = row["detractors"].to_f / row["total"] * 100
       promoters_avg = row["promoters"].to_f / row["total"] * 100
 
@@ -22,13 +22,16 @@ class Nps
       nps.promoters << row["promoters"]
       nps.nps << promoters_avg - detractors_avg
     end
-
     nps
   end
 
   private
 
-    def self.get_nps_data campaign_id, start_date, end_date
+    def self.get_nps_data campaign_id, start_date, end_date, topics
+      topic_query = ''
+      topics.each do |topic|
+        topic_query += "AND contacts.topics ? '#{topic}' "
+      end
       query = <<~HEREDOC
           SELECT
             date(answers.created_at) AS answer_date,
@@ -39,7 +42,7 @@ class Nps
           FROM "answers"
           INNER JOIN "contacts" ON "contacts"."id" = "answers"."contact_id"
           INNER JOIN "campaigns" ON "campaigns"."id" = "contacts"."campaign_id"
-          WHERE "campaigns"."id" = $1 AND date(answers.created_at) BETWEEN $2 AND $3
+          WHERE "campaigns"."id" = $1 #{topic_query}AND date(answers.created_at) BETWEEN $2 AND $3
           GROUP BY date(answers.created_at)
           ORDER BY answer_date
         HEREDOC
