@@ -8,6 +8,17 @@
         <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, { selected: @active_filter }, class: 'report-select' %>
       </div>
 
+      <div class="form-group" id="topics-checkboxes">
+        <% @campaign.tmp_topics.each do |topic| %>
+          <%= label_tag topic, topic.capitalize, class: 'control-label' %>
+          <% if @selected_topics.include? topic %>
+            <%= check_box_tag "topics[]", topic, { checked: true } %>
+          <% else %>
+            <%= check_box_tag "topics[]", topic %>
+          <% end %>
+        <% end %>
+      </div>
+
       <!-- DO NOT REMOVE DATEPICKER RANGE -->
       <!-- <div class="form-group">
         <div class="input-daterange">

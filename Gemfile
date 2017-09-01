@@ -67,6 +67,8 @@ gem 'csv_validator'
 gem 'ransack', '~> 1.8', '>= 1.8.3'
 # Font Awesome
 gem "font-awesome-rails"
+# Faker used in seed
+gem 'faker', '~> 1.8.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
