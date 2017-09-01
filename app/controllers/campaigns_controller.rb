@@ -2,6 +2,7 @@ class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: :report
   before_action :require_login
+  before_action :validate_campaign_belongs_to_currents_user, only: [:show, :edit, :update]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -173,5 +174,12 @@ class CampaignsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
       params.require(:campaign).permit(:name, :sender_name, :sender_email, :logo, :color, topics: [])
+    end
+
+    def validate_campaign_belongs_to_currents_user
+      campaign = Campaign.find(params[:id])
+      unless current_user.campaigns.include?(campaign)
+        redirect_to campaigns_path
+      end
     end
 end

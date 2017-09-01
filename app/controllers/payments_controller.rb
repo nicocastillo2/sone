@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: :payment_callback
   before_action :require_login
+  before_action :validate_suscription_belongs_to_currents_user, only: [:edit, :update]
 
   # GET /payments/new
   def new
@@ -127,5 +128,12 @@ class PaymentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_payment
       @payment = Payment.find(params[:id])
+    end
+
+    def validate_suscription_belongs_to_currents_user
+      payment = Payment.find(params[:id])
+      if current_user.id != payment.user_id
+        redirect_to campaigns_path
+      end
     end
 end
