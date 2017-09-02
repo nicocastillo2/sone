@@ -42,8 +42,8 @@
         <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Precios</a>
         <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Blog</a> 
         <% if user_signed_in? %>
-          <%= link_to(destroy_user_session_path, method: "delete", id: 'login', class: "nav-btn margin-right-0 navbar-text navbar-link navbar-right green") do %>
-            <span class="green">Cerrar Sesión</span>
+          <%= link_to(campaigns_path, id: 'login', class: "nav-btn margin-right-0 navbar-text navbar-link navbar-right green", "data-turbolinks" => false) do %>
+            <span class="green">Dashboard</span>
           <% end %>
         <% else %>
           <%= link_to(new_user_session_path, id: 'login', class: "nav-btn navbar-text navbar-link navbar-right green", "data-turbolinks" => false) do %>
