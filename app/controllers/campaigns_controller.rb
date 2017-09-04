@@ -70,37 +70,29 @@ class CampaignsController < ApplicationController
   end
 
   def report
-    puts '+' * 30
-    pp params
-    puts '+' * 30
     @campaign = Campaign.find(params[:id])
     @date_range = params[:filter] ? params[:feedback_date] : '30 Días'
     @date_range ||= '30 Días'
     @selected_topics = params[:filter] ? params[:topics] : []
-    puts 'not string'
-    pp @topics = params[:topics] ||= []
+    @topics = params[:topics] ||= []
+
     if params[:topics].is_a? String
-      puts 'string'
-      pp @topics = params[:topics].split(',')
+      @topics = params[:topics].split(',')
     end
 
     if params[:filter]
-      puts 'inside filter'
       @selected_topics = params[:topics]
       params[:filter][:nps_date] = params[:nps_date] if params[:nps_date]
-      pp params
       selected_date = params[:filter][:nps_date]
       date_range = Campaign.receive_date(selected_date)
       @nps = Nps.for_campaign(@campaign.id, date_range[0], date_range[1], @topics)
       @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
       @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
-      puts '+' * 30
-      puts 'topics each'
       @topics.each do |topic|
         @contacts_feedback = @contacts_feedback.where('contacts.topics ? :topics', topics: topic)
-        pp @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
+        @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
       end
-      puts '+' * 30
+
       @contacts_feedback = @contacts_feedback.paginate(page: params[:page], per_page: 5)
       # @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
       if params[:feedback_type] == 'promoter'
@@ -127,7 +119,7 @@ class CampaignsController < ApplicationController
       @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
       @topics.each do |topic|
         @contacts_feedback = @contacts_feedback.where('contacts.topics ? :topics', topics: topic)
-        pp @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
+        @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
       end
       @contacts_feedback = @contacts_feedback.paginate(page: params[:page], per_page: 5)
       if params[:feedback_type] == 'promoter'
