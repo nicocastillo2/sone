@@ -1,19 +1,45 @@
 <div class="row">
+  <div class="col-md-8 col-md-offset-1">
+    <h1 class="feedback-stat">
+      <span class="label label-default"><span id="selected-date-feedback"><%= @date_range %></span>: <%= @nps_sample_count %></span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default" data-feedback-type='promoter'><%= fa_icon 'smile-o' %> <%= @data_percentages[:promoters] %>%</span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default" data-feedback-type='passive'><%= fa_icon 'meh-o' %> <%= @data_percentages[:passives] %>%</span>
+    </h1>
+    <h1 class="feedback-stat">
+      <span class="label label-default" data-feedback-type='detractor'><%= fa_icon 'frown-o' %> <%= @data_percentages[:detractors] %>%</span>
+    </h1>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
   <% @contacts_feedback.each do |answer| %>
     <div class="row feedback-answer container-fluid">
-      <div class="col-md-5 col-md-offset-1">
+      <div class="col-md-8 col-md-offset-1">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title"><%= fa_icon(Answer.get_icon(answer.score)) %><span class="feedback-answer-date pull-right"><%= answer.created_at.strftime("%d-%m-%Y") %></span></h4>
           </div>
           <div class="panel-body">
-            <%= answer.comment %>
+            <% if answer.comment.blank? %>
+              <h5 class="text-center">Sin comentario</h5>
+            <% else %>
+              <%= answer.comment %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
-  <div class="col-md-5 col-md-offset-1">
-    <%= will_paginate @contacts_feedback %>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-md-offset-1">
+    <%= will_paginate @contacts_feedback, inner_window: 3, outer_window: 1 %>
   </div>
 </div>
