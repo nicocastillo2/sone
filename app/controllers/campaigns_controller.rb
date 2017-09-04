@@ -185,6 +185,8 @@ class CampaignsController < ApplicationController
     campaign_id = params[:campaign][:id]
     if params[:campaign][:file].nil?
       redirect_to campaign_path(campaign_id), notice: 'Necesitas agregar un archivo.'
+    elsif !params[:campaign][:file].content_type.include?('csv')
+      redirect_to campaign_path(campaign_id), notice: 'El formato de el archivo no es correcto'
     else
       topics = Campaign.find(campaign_id).tmp_topics
       Campaign.import_contacts(params[:campaign][:file], topics, campaign_id)
