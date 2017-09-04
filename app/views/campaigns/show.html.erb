@@ -262,7 +262,11 @@
   <div class="col-md-1"></div>
 </div>
 
-<%= will_paginate @contacts_sent %>
+<div class="row">
+  <div class="col-md-12 col-md-offset-1">
+    <%= will_paginate @contacts_sent %>
+  </div>
+</div>
 
 <script type="text/javascript">
   ;( function ( document, window, index )
