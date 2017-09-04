@@ -197,7 +197,7 @@ class CampaignsController < ApplicationController
   def template
     campaign = current_user.campaigns.find(params[:id])
     respond_to do |format|
-      format.csv { send_data campaign.csv_template, filename: "report-#{Date.today}.csv" }
+      format.csv { send_data campaign.csv_template, filename: "contacts-#{Date.today}.csv" }
     end
   end
 
