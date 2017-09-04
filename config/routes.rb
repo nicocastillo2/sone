@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   patch '/answers/:id', to: 'answers#update', as: 'edit_answer'
   put '/answers/:id', to: 'answers#update', as: nil
   get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
+  get '/campaigns/template', to: 'campaigns#template', as: 'campaign_template'
   resources :campaigns do
     get 'report', on: :member
     post 'report', on: :member

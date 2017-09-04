@@ -136,6 +136,13 @@ class Campaign < ApplicationRecord
     end
   end
 
+  def csv_template
+    headers = ['email'] + tmp_topics + ['name']
+    CSV.generate(headers: true) do |csv|
+      csv << headers
+    end
+  end
+
   private
 
     def csv_has_headers?

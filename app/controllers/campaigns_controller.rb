@@ -192,6 +192,13 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def template
+    campaign = current_user.campaigns.find(params[:id])
+    respond_to do |format|
+      format.csv { send_data campaign.csv_template, filename: "report-#{Date.today}.csv" }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
