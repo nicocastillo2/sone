@@ -15,7 +15,8 @@ class BlacklistsController < ApplicationController
   def unsubscribe
     id = CampaignsHelper.decrypt(params[:data])
     Contact.find(id).update(blacklist: Time.now)
-    flash[:notice] = 'Gracias por contactarnos'
+    flash[:notice] = 'Gracias por contactarnos, Disculpe las molestias'
+    redirect_to root_path
   end
 
   def cancel
