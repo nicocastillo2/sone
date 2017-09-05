@@ -4,7 +4,7 @@
   <div class="col-md-10">
     <% @suscriptions.each_with_index do |suscription, index| %>
       <% if  index == 0%>
-        <div class="col-md-3 text-center">
+        <div class="col-md-3 centering-text">
           <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
             <%= hidden_field_tag 'suscription_name', suscription %>
             <div class="form-group shadow">
@@ -22,7 +22,7 @@
           <% end %>
         </div>
       <% elsif index == 1 %>
-        <div class="col-md-3 text-center">
+        <div class="col-md-3 centering-text">
           <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
             <%= hidden_field_tag 'suscription_name', suscription %>
             <div class="form-group shadow">
@@ -40,7 +40,7 @@
           <% end %>
         </div>
       <% elsif index == 2 %>
-        <div class="col-md-3 text-center">
+        <div class="col-md-3 centering-text">
           <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
             <%= hidden_field_tag 'suscription_name', suscription %>
             <div class="form-group shadow">
@@ -59,7 +59,7 @@
           <% end %>
         </div>
       <% else %>
-        <div class="col-md-3 text-center">
+        <div class="col-md-3 centering-text">
           <%= form_tag(suscriptions_path, method: "post", data: {confirm: 'Estas seguro?'} ) do %>
             <%= hidden_field_tag 'suscription_name', suscription %>
             <div class="form-group shadow">
