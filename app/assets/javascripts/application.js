@@ -49,17 +49,10 @@ $(document).on('turbolinks:load', function() {
   $('#topics-checkboxes input:checked').each(function() {
     selected.push($(this).val());
   });
-  console.log(selected);
   var reportFullUrl = $('#download-report').attr('href');
-  // var test = JSON.stringify(selected)
-  // var test = escape(selected);
-  // var test = encodeURIComponent(JSON.stringify(selected));
-  var test = selected.join();
-  console.log(test);
-  console.log(reportFullUrl + test);
-  var final = reportFullUrl + '&topics=' + test;
-  console.log(final);
-  $('#download-report').attr('href', final);
+  var topicsStr = selected.join();
+  var urlWithTopics = reportFullUrl + '&topics=' + topicsStr;
+  $('#download-report').attr('href', urlWithTopics);
 });
 
 $("#upfile1").click(function () {
