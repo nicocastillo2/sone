@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   # layout :layout_by_resource
+  def survey
+    render 'campaign_mailer/send_survey'
+  end
 
   protected
 
