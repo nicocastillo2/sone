@@ -32,4 +32,27 @@ $(function() {
       $("#contacts-feedback").html(data);
     });
   });
+
+
+  // preview create campaign
+  $(document).on("keyup change focusout", "#nombre-empresa-field", function(){
+    var nombre = $(this).val() + " a un amigo o familiar?";
+    $("#nombre-empresa-preview").html(nombre);
+  });
+
+  $(document).on("click", "#img-logo-img",function() {
+    $("#img-logo-field").click();
+  });
+
+  $(document).on("change", "#img-logo-field", function(event) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $("#img-logo-preview").attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+    // var url = event.target.files[0];
+    // $("#img-logo-preview").attr('src', url);
+  });
+  // end preview create campaign
 });

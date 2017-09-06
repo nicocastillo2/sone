@@ -25,6 +25,9 @@ $stat-box-gray: #f4f4f4;
 .green{
   color: $green;
 }
+.vista-previa{
+  padding: 10%;
+}
 .gray-sone{
   color: $green!important;
 }
@@ -410,6 +413,18 @@ $stat-box-gray: #f4f4f4;
 }
 #view-report {
   margin-right: 40px;
+}
+
+#img-logo-preview{
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 15%;
+  height: 9%;
+  top: 25%;
+  border: none;
+  bottom: 0;
 }
 
 /* Media Querys */
