@@ -1,4 +1,4 @@
-<div class="col-sm-3 col-md-2 affix-sidebar" style="padding-right: 0;"> 
+<div class="col-sm-3 col-md-2 affix-sidebar" style="padding-right: 0;">
       <div class="sidebar-nav">
         <div class="navbar navbar-default" style="margin-bottom: 0;" role="navigation">
           <div class="navbar-header">
@@ -19,11 +19,23 @@
                     <% if current_user.avatar.nil? %>
                       <%= image_tag("logo-sone-250.png", id: "sone_icon", class: "img-responsive center") %>
                     <% else %>
-                      <%= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %> 
+                      <%= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %>
                     <% end %>
-                    <p class="left-menu center gray"><%= current_user.email %></p>                   
+                    <p class="left-menu center gray"><%= current_user.email %></p>
                 </li>
-                
+
+                <li class="center">
+                  <%= link_to('#', class: 'left-menu') do %>
+                  <%= fa_icon 'tachometer', class: 'img-responsive small-img navbar-link' %>Dashboard
+                  <% end %>
+                </li>
+
+                <li class="center">
+                  <%= link_to(campaigns_path, class: 'left-menu') do %>
+                  <%= image_tag("iconos-block.svg", class: "img-responsive small-img navbar-link") %>Campañas
+                  <% end %>
+                </li>
+
                 <li class="center">
                   <%= link_to(campaigns_path, class: 'left-menu') do %>
                     <span class="glyphicon glyphicon-bell small-img pink" aria-hidden="true"></span>
@@ -38,31 +50,30 @@
                   <% end %>
                   </a>
                 </li>
-                <li class="center">
-                  <%= link_to(campaigns_path, class: 'left-menu') do %>
-                  <%= image_tag("iconos-block.svg", class: "img-responsive small-img navbar-link") %>Campañas
-                  <% end %>
-                </li>
+
                 <li class="center">
                   <%= link_to(suscriptions_path, class: 'left-menu') do %>
                     <%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Planes
                   <% end %>
                 </li>
+
                 <li class="center">
                   <%= link_to(new_payment_path, class: 'left-menu') do %>
                     <%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Metodo de Pago
                   <% end %>
                 </li>
+
                 <li class="center">
                   <%= link_to(pricing_path + '#faq-title', class: 'left-menu', "data-turbolinks" => false) do %>
                     <%= image_tag("iconos-question.svg", class: "img-responsive small-img navbar-link") %>FAQ
                   <% end %>
                   </a>
                 </li>
+
                 <li class="center">
                   <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu") do %>
                   <%= image_tag("iconos-profile.svg", class: "small-img") %>Cerrar sesión
-                  <% end %> 
+                  <% end %>
                 </li>
               <% else %>
                 <%=link_to "Iniciar sesión", new_user_session_path, class: "left-menu navbar-link" %>
