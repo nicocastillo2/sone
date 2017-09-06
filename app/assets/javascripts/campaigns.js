@@ -40,7 +40,7 @@ $(function() {
     $("#nombre-empresa-preview").html(nombre);
   });
 
-  $("#img-logo-img").click(function() {
+  $(document).on("click", "#img-logo-img",function() {
     $("#img-logo-field").click();
   });
 
