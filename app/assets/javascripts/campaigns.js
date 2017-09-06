@@ -44,7 +44,7 @@ $(function() {
     $("#img-logo-field").click();
   });
 
-  $("#img-logo-field").change(function(event) {
+  $(document).on("change", "#img-logo-field", function(event) {
     var reader = new FileReader();
     reader.onload = function(e) {
       $("#img-logo-preview").attr('src', e.target.result);
