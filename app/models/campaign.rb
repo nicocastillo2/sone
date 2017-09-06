@@ -23,7 +23,7 @@ class Campaign < ApplicationRecord
     formatted_topics = Campaign.assign_topics(topics)
     contacts = []
     attributes = {}
-    file_content = CSV.foreach(file.path, headers: true) do |row|
+    file_content = CSV.foreach(file.path, headers: true, encoding: "utf-8") do |row|
       row.headers.each do |head|
         if formatted_topics.key? head
           formatted_topics[head] = row[head]
