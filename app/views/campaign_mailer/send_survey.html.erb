@@ -203,9 +203,9 @@
                 <% (0..10).each do |index| %>
                   <td class="full border-0">
                     <% if index != 10  %>
-                      <a class="select" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
+                      <a class="select" style="color: white;background-color: #b2427c;padding:1.5% 20%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
                     <% else %>
-                      <a class="select-2" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
+                      <a class="select-2" style="color: white;background-color: #b2427c;padding:1.5% 19%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
                     <% end %>
                   </td>
                   <% end %>
