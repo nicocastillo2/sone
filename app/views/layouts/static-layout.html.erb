@@ -32,7 +32,6 @@
         </button>
       </div>
       <div class="navbar-center navbar-brand-center">
-        <a class="nav-btn navbar-text navbar-brand-center center-links active">Productos</a>
         <!-- <a class="nav-btn navbar-text navbar-brand-center center-links">Precios</a> -->
         <%= link_to('Precios', pricing_path, class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
         <a class="nav-btn navbar-text navbar-brand-center center-links">Blog</a>
@@ -40,7 +39,7 @@
       <div class="collapse navbar-collapse" id="navbar-toggle-menu">
         <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Productos</a>
         <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Precios</a>
-        <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Blog</a> 
+        <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Blog</a>
         <% if user_signed_in? %>
           <%= link_to(campaigns_path, id: 'login', class: "nav-btn margin-right-0 navbar-text navbar-link navbar-right green", "data-turbolinks" => false) do %>
             <span class="green">Dashboard</span>

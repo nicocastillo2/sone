@@ -4,10 +4,11 @@
   <div class="col-md-4 col-md-offset-1">
     <%= form_for :filter, url: report_campaign_path, method: :post, html: { id: 'filter-form' } do |f| %>
       <div class="form-group">
-        <%= f.label :nps_date, 'Fecha', class: 'control-label' %>
+        <h4>Período</h4>
         <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, { selected: @active_filter }, class: 'report-select' %>
       </div>
 
+      <h4>Topics</h4>
       <div class="form-group" id="topics-checkboxes">
         <% @campaign.tmp_topics.each do |topic| %>
           <%= label_tag topic, topic.capitalize, class: 'control-label' %>
