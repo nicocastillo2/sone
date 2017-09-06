@@ -35,7 +35,7 @@ $(function() {
 
 
   // preview create campaign
-  $("#nombre-empresa-field").keyup(function(){
+  $(document).on("keyup change focusout", "#nombre-empresa-field", function(){
     var nombre = $(this).val() + " a un amigo o familiar?";
     $("#nombre-empresa-preview").html(nombre);
   });
