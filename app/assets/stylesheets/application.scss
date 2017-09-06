@@ -158,10 +158,15 @@ $pink: #9a4479;
   margin: 10px 0 20px;
 }
 /* left menu */
+
+#color-transparent {
+  background-color: transparent;
+}
+
 #sone_icon{
   width: 100px!important;
   display: block;
-  margin-left: 5%;
+  margin-left: 3%;
   margin-top: 2%;
   margin-bottom: 3%;
 }

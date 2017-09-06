@@ -13,7 +13,7 @@
           <div class="navbar-collapse collapse sidebar-navbar-collapse back-white">
             <ul class="nav navbar-nav" id="sidenav01">
               <li class="active">
-                <%= image_tag("logo-sone-250.png", id: "sone_icon", class: "img-responsive center") %>
+                <%= link_to image_tag("logo-sone-250.png", id: "sone_icon", class: "img-responsive center"), root_path, id: "color-transparent" %>
                 <br>
                 <% if user_signed_in? %>
                     <% if current_user.avatar.nil? %>
