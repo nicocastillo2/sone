@@ -7,14 +7,9 @@ class AnswersController < ApplicationController
     @score = params[:score]
     @answer = Answer.new(score: @score, contact: contact)
     @status = false
-    puts "psdf"*90
-    puts "hola pinche putita"
     if Answer.find_by_contact_id(@answer.contact_id)
-      puts "asidasda"* 90
-      puts "SI la incluye"
       @status = true
     else
-      puts "no no esta"
       @answer = Answer.create(score: @score, contact: contact)
     end
     # Answer.all.each do |ans|
