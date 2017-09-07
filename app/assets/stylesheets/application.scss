@@ -20,6 +20,9 @@ $pink: #9a4479;
 .container-mine:before{
   display: none!important;
 }
+.row-0{
+  margin: 0!important;
+}
 .container-mine:after{
   display: none!important;
 }
@@ -158,10 +161,15 @@ $pink: #9a4479;
   margin: 10px 0 20px;
 }
 /* left menu */
+
+#color-transparent {
+  background-color: transparent;
+}
+
 #sone_icon{
   width: 100px!important;
   display: block;
-  margin-left: 5%;
+  margin-left: 3%;
   margin-top: 2%;
   margin-bottom: 3%;
 }
@@ -267,6 +275,11 @@ $pink: #9a4479;
   }
 }
 /* table style*/
+.blacklist-none {
+  padding-left: 10%;
+  color: #9a4479;
+}
+
 .th-no-border{
   background: #b3b3b3!important;
     border: inset 0pt!important;

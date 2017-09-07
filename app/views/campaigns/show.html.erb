@@ -1,4 +1,5 @@
-<div class="row">
+
+<div class="row row-0">
   <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
     <div class="page-header">
       <div class="row">
@@ -167,7 +168,7 @@
       </div>
       <div class="col-md-4 col-sm-4">
         <% unless @campaign.contacts.empty? %>
-          <%= link_to send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button send-campaign', remote: true, data: { confirm: 'Deseas enviar la campaña?'} do %>
+          <%= link_to send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: @campaign.mails_not_sent > 0 ? 'btn btn-default send-button send-campaign' : 'btn btn-default send-button send-campaign disabled', data: { confirm: 'Deseas enviar la campaña?'} do %>
             Enviar<br>Campaña
           <% end %>
         <% else %>

@@ -13,7 +13,7 @@
       <div class="form-group" id="campaigns-checkboxes">
         <% current_user.campaigns.each do |campaign| %>
           <%= label_tag campaign.name, campaign.name, class: 'control-label' %>
-          <% if @selected_campaigns.include? campaign.id.to_s %>
+          <% if @selected_campaigns.size == 0 || @selected_campaigns.include?(campaign.id.to_s) %>
             <%= check_box_tag "campaigns[]", campaign.id, { checked: true } %>
           <% else %>
             <%= check_box_tag "campaigns[]", campaign.id %>

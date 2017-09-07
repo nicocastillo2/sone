@@ -18,6 +18,7 @@ class CampaignsController < ApplicationController
     @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
     @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
     @topics = Campaign.find(params[:id]).tmp_topics
+    @campaign.update({new_answers: 0})
   end
 
   # GET /campaigns/new
@@ -158,6 +159,16 @@ class CampaignsController < ApplicationController
     @date_range = params[:filter] ? params[:feedback_date] : '30 Días'
     @date_range ||= '30 Días'
 
+    if params[:campaigns].is_a? String
+      @selected_campaigns = params[:campaigns].split(',')
+      params[:campaigns] = @selected_campaigns
+    end
+
+    if params[:topics].is_a? String
+      @topics = params[:topics].split(',')
+      params[:topics] = @topics
+    end
+
     if params[:campaigns]
       @campaigns = current_user.campaigns.where(id: params[:campaigns])
     else
@@ -168,14 +179,8 @@ class CampaignsController < ApplicationController
     @selected_campaigns = params[:campaigns] ||= []
     @selected_topics = params[:topics] ||= []
     @topics = params[:topics] ||= []
-
-    if params[:campaigns].is_a? String
-      @selected_campaigns = params[:campaigns].split(',')
-    end
-
-    if params[:topics].is_a? String
-      @topics = params[:topics].split(',')
-    end
+    # debugger
+    
 
     if params[:filter]
       puts '+' * 30
@@ -272,15 +277,12 @@ class CampaignsController < ApplicationController
       num_available_emails = current_user.available_emails
       current_user.update(available_emails: num_available_emails - num_surveys)
       campaign
-      @mensaje = 'Campaña enviada exitosamente.'
+      flash[:success] = 'Campaña enviada exitosamente.'
     else
-      @mensaje = 'No tienes sufucuentes emails disponibles'
+      flash[:warning] = 'No tienes sufucuentes emails disponibles'
     end
 
-    # TODO: Add/Render this flash message into flash messages partial
-    respond_to do |format|
-      format.js { flash.now[:notice] = @mensaje }
-    end
+    redirect_to campaign_path(id: params[:campaign_id])
   end
 
   def upload_csv

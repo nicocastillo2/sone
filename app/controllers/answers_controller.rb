@@ -5,7 +5,13 @@ class AnswersController < ApplicationController
     contact = Contact.find(id)
     Campaign.increment_counter(:new_answers, contact.campaign.id)
     @score = params[:score]
-    @answer = Answer.create(score: @score, contact: contact)
+    @answer = Answer.new(score: @score, contact: contact)
+    @status = false
+    if Answer.find_by_contact_id(@answer.contact_id)
+      @status = true
+    else
+      @answer = Answer.create(score: @score, contact: contact)
+    end
   end
 
   def update

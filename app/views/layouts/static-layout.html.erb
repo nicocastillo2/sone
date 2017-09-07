@@ -16,14 +16,13 @@
 <%= stylesheet_link_tag 'static' %>
 <%= javascript_include_tag 'static' %>
 <%= csrf_meta_tags %>
-
 </head>
 <body>
 
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand"><%= image_tag("logo-sone-250.png", id: "sone_icon") %></a>
+        <%= link_to image_tag("logo-sone-250.png", id: "sone_icon"), root_path, class:"navbar-brand"%> 
         <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#navbar-toggle-menu" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
