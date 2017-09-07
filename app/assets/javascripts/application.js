@@ -45,20 +45,26 @@ $(document).on('turbolinks:load', function() {
   });
 
   // Campaigns checkboxes
-  // var selectedCampaigns = [];
-  // $('#campaigns-checkboxes input:checked').each(function() {
-  //   selected.push($(this).val());
-  // });
-
-  // Topics checkboxes
-  var selected = [];
-  $('#topics-checkboxes input:checked').each(function() {
-    selected.push($(this).val());
+  var selectedCampaigns = [];
+  $('#campaigns-checkboxes input:checked').each(function() {
+    selectedCampaigns.push($(this).val());
   });
   var reportFullUrl = $('#download-report').attr('href');
-  var topicsStr = selected.join();
+  var campaignsStr = selectedCampaigns.join();
+  var urlWithCampaigns = reportFullUrl + '&campaigns=' + campaignsStr;
+  $('#download-report').attr('href', urlWithCampaigns);
+
+  // Topics checkboxes
+  var selectedTopics = [];
+  $('#topics-checkboxes input:checked').each(function() {
+    selectedTopics.push($(this).val());
+  });
+  var reportFullUrl = $('#download-report').attr('href');
+  var topicsStr = selectedTopics.join();
   var urlWithTopics = reportFullUrl + '&topics=' + topicsStr;
   $('#download-report').attr('href', urlWithTopics);
+
+  console.log('start report url ---> ' + $('#download-report').attr('href'));
 });
 
 $("#upfile1").click(function () {

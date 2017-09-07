@@ -57,8 +57,9 @@
 
   <div class="col-md-2">
     <% date = @active_filter || '1' %>
-    <% feedback_type = @feedback_type || 'none' %>
-    <%= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date, feedback_type: feedback_type), class: 'btn btn-default send-button', id: 'download-report' %>
+    <%# feedback_type = @feedback_type || 'none' %>
+    <!-- <%#= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date, feedback_type: feedback_type), class: 'btn btn-default send-button', id: 'download-report' %> -->
+    <%= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date), class: 'btn btn-default send-button', id: 'download-report' %>
     <h3><%= @feedback_type %></h3>
   </div>
 </div>

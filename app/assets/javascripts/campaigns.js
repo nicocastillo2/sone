@@ -29,24 +29,34 @@ $(function() {
 
     // Collect data to send through AJAX post request
     var urlPathname = window.location.pathname;
-    // var reportUrl = $('#download-report').attr('href');
+    var reportUrl = $('#download-report').attr('href');
     var dataType = $(this).attr('data-feedback-type');
-
+    console.log('SPAN reportUrl ---> ' + reportUrl);
+    var feedbackType = '&feedback_type=' + dataType;
+    var modifiedUrl = reportUrl + feedbackType;
+    $('#download-report').attr('href', modifiedUrl);
+    console.log(modifiedUrl);
     // var dateNumber = $('.report-select').find(":selected").val();
     // var sentData = { 'feedback_type': dataType, 'filter[nps_date]' : dateNumber };
 
     // Manipulate report url to insert feedback type into query string
     // var urlReplaced = reportUrl.replace(/=.*&/, '=&');
+    // console.log('SPAN urlReplaced ---> ' + urlReplaced);
     // var str1 = urlReplaced.slice(0, urlReplaced.indexOf('=') + 1);
+    // console.log('SPAN str1 ---> ' + str1);
     // var str2 = urlReplaced.slice(urlReplaced.indexOf('=') + 1);
+    // console.log('SPAN str2 ---> ' + str2);
     // var modifiedUrl = str1 + dataType + str2;
-    // $('#download-report').attr('href', modifiedUrl);
-    //
+    // var reportUrlModified = $('#download-report').attr('href', modifiedUrl);
+    // console.log('SPAN modifiedUrl final ---> ' + modifiedUrl);
+
     // $.post(urlPathname, sentData, function(data){
     //   $("#contacts-feedback").html(data);
     // });
-    console.log(urlPathname);
-    $.post(urlPathname, $("#filter-form").serialize()+"&feedback_type="+dataType, function(data){
+
+    var sendData = $("#filter-form").serialize() + '&feedback_type=' + dataType;
+
+    $.post(urlPathname, sendData, function(data){
       $("#contacts-feedback").html(data);
       $('#contacts-feedback').attr('data-feedback-type', dataType);
     });
