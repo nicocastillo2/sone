@@ -421,6 +421,24 @@ $stat-box-gray: #f4f4f4;
   bottom: 0;
 }
 
+@media (min-width: 992px) and (max-width: 1200px){
+  #img-logo-preview{
+    top: 30%;
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1400px){
+  #img-logo-preview{
+    top: 28%;
+  }
+}
+
+@media (min-width: 1401px) and (max-width: 1660px){
+  #img-logo-preview{
+    top: 26%;
+  }
+}
+
 /* Media Querys */
 
 @media (max-width: 991px) {
