@@ -91,7 +91,14 @@
         },
         axis: {
           x: {
-            type: 'category'
+            type: 'category',
+            tick: {
+              rotate: 50,
+              multiline: false,
+              culling: {
+                max: 3
+              }
+            }
           },
           y: {
             max: 95,
