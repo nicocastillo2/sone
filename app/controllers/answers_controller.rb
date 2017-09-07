@@ -12,14 +12,6 @@ class AnswersController < ApplicationController
     else
       @answer = Answer.create(score: @score, contact: contact)
     end
-    # Answer.all.each do |ans|
-    #   if ans.contact_id == @answer.contact_id
-    #     @status = true
-    #     return
-    #   else
-    #     @answer = Answer.create(score: @score, contact: contact)
-    #   end
-    # end
   end
 
   def update
