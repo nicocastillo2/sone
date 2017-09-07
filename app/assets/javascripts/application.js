@@ -44,6 +44,12 @@ $(document).on('turbolinks:load', function() {
     $('#download-report').attr('href', newReportUrl);
   });
 
+  // Campaigns checkboxes
+  // var selectedCampaigns = [];
+  // $('#campaigns-checkboxes input:checked').each(function() {
+  //   selected.push($(this).val());
+  // });
+
   // Topics checkboxes
   var selected = [];
   $('#topics-checkboxes input:checked').each(function() {

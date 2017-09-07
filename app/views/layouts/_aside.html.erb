@@ -25,7 +25,7 @@
                 </li>
 
                 <li class="center">
-                  <%= link_to('#', class: 'left-menu') do %>
+                  <%= link_to(user_dashboard_path(current_user), class: 'left-menu') do %>
                   <%= fa_icon 'tachometer', class: 'img-responsive small-img navbar-link' %>Dashboard
                   <% end %>
                 </li>

@@ -1,23 +1,34 @@
 Rails.application.routes.draw do
-
-  resources :contacts
-  #static pages
   root to: 'static#homepage'
+
+  #static pages
   get 'pricing', to: 'static#pricing'
   get 'terms', to: 'static#terms'
   get 'politics', to: 'static#politics'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                                    sessions: 'users/sessions',
+                                    registrations: 'users/registrations'}
+
+  get 'users/:id/dashboard', to: 'campaigns#dashboard', as: 'user_dashboard'
+  post 'users/:id/dashboard', to: 'campaigns#dashboard'
+
+  resources :contacts
+
   get '/answers/new', to: 'answers#new', as: 'new_answer'
   patch '/answers/:id', to: 'answers#update', as: 'edit_answer'
   put '/answers/:id', to: 'answers#update', as: nil
   get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
   get '/campaigns/template', to: 'campaigns#template', as: 'campaign_template'
+
   resources :campaigns do
     get 'report', on: :member
     post 'report', on: :member
   end
+
   resources :payments, except: [:index, :show]
+
   post '/payments/callback', to: 'payments#payment_callback', as: 'payment_callback'
   post '/import_contacts', to: 'campaigns#upload_csv', as: 'import_csv'
 
