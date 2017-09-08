@@ -195,8 +195,9 @@ class CampaignsController < ApplicationController
       choosed_campaigns = @campaigns.where(id: @selected_campaigns)
 
       @nps = Nps.for_dashboard(choosed_campaigns, date_range[0], date_range[1], @topics)
-      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
-      @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
+      # @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
+      @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
       @topics.each do |topic|
         @contacts_feedback = @contacts_feedback.where('contacts.topics ? :topics', topics: topic)
         @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
@@ -204,18 +205,25 @@ class CampaignsController < ApplicationController
 
       @contacts_feedback = @contacts_feedback.paginate(page: params[:page], per_page: 5)
       # @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
+      # debugger
       if params[:feedback_type] == 'promoter'
         @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 9..10)
         @feedback_report = @feedback_report.where(score: 9..10)
+        @nps.passives = [0]
+        @nps.detractors = [0]
       elsif params[:feedback_type] == 'passive'
         @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 7..8)
         @feedback_report = @feedback_report.where(score: 7..8)
+        @nps.detractors = [0]
+        @nps.promoters = [0]
       elsif params[:feedback_type] == 'detractor'
         @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 0..6)
         @feedback_report = @feedback_report.where(score: 0..6)
+        @nps.passives = [0]
+        @nps.promoters = [0]
       end
       @nps_sample_count = @contacts_feedback.count
       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
@@ -227,8 +235,8 @@ class CampaignsController < ApplicationController
       date = params[:nps_date] ? params[:nps_date] : '1'
       date_range = Campaign.receive_date(date)
       @nps = Nps.for_dashboard(@campaigns, date_range[0], date_range[1], @topics)
-      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
-      @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
+      @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
+      @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
       @topics.each do |topic|
         @contacts_feedback = @contacts_feedback.where('contacts.topics ? :topics', topics: topic)
         @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)

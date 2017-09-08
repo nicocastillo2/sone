@@ -1,5 +1,6 @@
 class Nps
-  attr_reader :dates, :detractors, :passives, :promoters, :nps
+  attr_reader :dates, :nps
+  attr_accessor :detractors, :passives, :promoters
 
   def initialize
     @dates = []
@@ -73,7 +74,8 @@ class Nps
       topics.each do |topic|
         topic_query += "AND contacts.topics ? '#{topic}' "
       end
-
+      puts "*"*100
+      p start_date
       query = <<~HEREDOC
           SELECT
             date(answers.created_at) AS answer_date,
