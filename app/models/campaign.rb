@@ -118,7 +118,6 @@ class Campaign < ApplicationRecord
   def self.get_nps_data_percentages(nps, nps_sample_count)
     
     return { detractors: 0, passives: 0, promoters: 0 } if nps_sample_count == 0
-    # debugger
     nps_sample_count = nps_sample_count.to_f
     detractors = (nps.detractors.inject(:+) * 100) / nps_sample_count
     passives = (nps.passives.inject(:+) * 100) / nps_sample_count

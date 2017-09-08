@@ -91,7 +91,14 @@
         },
         axis: {
           x: {
-            type: 'category'
+            type: 'category',
+            tick: {
+              rotate: 50,
+              multiline: false,
+              culling: {
+                max: 3
+              }
+            }
           },
           y: {
             max: 95,
@@ -103,4 +110,18 @@
   <% end %>
 </div>
 
+<div class="row">
+  <div class="col-md-12 col-md-offset-1">
+    <h1 class="feedback-stat">
+      <span class="label label-default">
+        <span id="selected-date-feedback">30 Day NPS</span>:
+        <% if @nps_30_fixed %>
+          <%= (@data_percentages_30_fixed[:promoters] - @data_percentages_30_fixed[:detractors]).round(2) %>
+        <% else %>
+          <%= (@data_percentages[:promoters] - @data_percentages[:detractors]).round(2) %>
+        <% end %>
+      </span>
+    </h1>
+  </div>
+</div>
 <div id="contacts-feedback"><%= render partial: 'feedback' %></div>
