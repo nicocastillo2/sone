@@ -1,5 +1,22 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-md-12 col-md-offset-1">
+    <h1 class="feedback-stat">
+      <span class="label label-default">
+        <span id="selected-date-feedback">30 Day NPS</span>:
+        <% if @nps_30_fixed %>
+          <%= (@data_percentages_30_fixed[:promoters] - @data_percentages_30_fixed[:detractors]).round(2) %>
+        <% else %>
+          <%= (@data_percentages[:promoters] - @data_percentages[:detractors]).round(2) %>
+        <% end %>
+      </span>
+    </h1>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-11 col-md-offset-1">
     <h1 class="feedback-stat">
       <span class="label label-default"><span id="selected-date-feedback"><%= @date_range %></span>: <%= @nps_sample_count %></span>
     </h1>
