@@ -29,7 +29,6 @@ $pink: #9a4479;
 .c3-target-NPS .c3-line {
   stroke-width: 5px;
 }
-
 .number-notifications{
   background-color: $pink;
   border-radius: 20px;
@@ -181,7 +180,9 @@ $pink: #9a4479;
 .pink{
   color: #b2427c;
 }
-
+.ipad{
+  height: 520px;
+}
 .back-white{background-color: white!important;}
 @media (max-width: 767px){
   .center{text-align: center;}
@@ -189,7 +190,24 @@ $pink: #9a4479;
     margin: 0 auto;
   }
 }
-
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
+  .ipad{
+    background-image: image-url("ipad-8.png");
+    background-size: cover; 
+  } 
+}
+@media (min-width: $screen-lg-min) { 
+  .ipad{
+    background-image: image-url("ipad-8.png");
+    background-size: cover;
+  } 
+}
+.answer-form{
+  outline: none;
+  background-color: #f3f3f3;
+  resize: none;
+  border: 0;
+}
 #sidenav01{
   li.center:hover{
     background-color: $green;
