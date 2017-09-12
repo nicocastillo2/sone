@@ -828,7 +828,17 @@ header {
 
 .text-white {
   color: white;
+  font-size: 18px;
+  margin-left: 5px;
 }
+
+.none-underline:hover {
+  text-decoration: none;
+}
+
+.text-white:hover {
+  color: white;
+} 
 
 .link-white {
   color: white; 
@@ -836,7 +846,7 @@ header {
 }
 
 #word-space {
-  margin-right: 20px;
+  margin-left: -10px;
 }
 
 /*Terms and privacy section*/
