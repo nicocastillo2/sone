@@ -63,8 +63,6 @@ $(document).on('turbolinks:load', function() {
   var topicsStr = selectedTopics.join();
   var urlWithTopics = reportFullUrl + '&topics=' + topicsStr;
   $('#download-report').attr('href', urlWithTopics);
-
-  console.log('start report url ---> ' + $('#download-report').attr('href'));
 });
 
 $("#upfile1").click(function () {
