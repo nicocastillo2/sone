@@ -249,7 +249,7 @@
                   <% end %>
                   <td><%= contact.name %></td>
                   <td class="status"><%= contact.status.titleize %></td>
-                  <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
+                  <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y %H:%M".to_s %></td>
                   <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
                   <td><%= contact.answer&.comment %></td>
                 </tr>
