@@ -10,6 +10,7 @@
             <th class="th-no-border">Name</th>
             <th class="th-no-border">Sender Name</th>
             <th class="th-no-border">Sender Email</th>
+            <th class="th-no-border">Total Surveys</th>
             <th class="th-no-border">New Answers</th>
             <th class="th-no-border">Logo</th>
             <th class="th-no-border">Color</th>
@@ -24,6 +25,7 @@
                 <td class="text-center tr-pad td-no-border padding-bottom middle-align"><%= link_to 'name', campaign, class: "black"%></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.sender_name %></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.sender_email %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.surveys_counter %></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.new_answers %></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align width-10"><%= image_tag(campaign.logo, class: "logo-cam") %></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><div class="box-color text-center div-center" style="background-color: <%=campaign.color%>;"></div></td>
@@ -35,6 +37,7 @@
                 <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.name %></td>
                 <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.sender_name %></td>
                 <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.sender_email %></td>
+                <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.surveys_counter %></td>
                 <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.new_answers %></td>
                 <td class="td-no-border text-center padding-bottom middle-align width-10"><%= image_tag(campaign.logo,class: "logo-cam") %></td>
                 <td class="td-no-border text-center padding-bottom middle-align"><div class="box-color div-center" style="background-color: <%=campaign.color%>;"></div></td>

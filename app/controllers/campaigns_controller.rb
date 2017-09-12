@@ -284,7 +284,8 @@ class CampaignsController < ApplicationController
       campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
       num_available_emails = current_user.available_emails
       current_user.update(available_emails: num_available_emails - num_surveys)
-      campaign
+      campaign.surveys_counter += num_surveys
+      campaign.save
       flash[:success] = 'Campaña enviada exitosamente.'
     else
       flash[:warning] = 'No tienes sufucuentes emails disponibles'
