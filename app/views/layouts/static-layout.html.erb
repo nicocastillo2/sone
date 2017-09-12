@@ -22,7 +22,11 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
+<<<<<<< HEAD
         <%= link_to image_tag("1.png", id: "sone_icon"), root_path, class:"navbar-brand"%> 
+=======
+        <%= link_to image_tag("logo-sone-250.png", id: "sone_icon"), root_path, class:"navbar-brand", "data-turbolinks" => false %> 
+>>>>>>> 1c180590334bdf653bf430b6e003403d0c3a8726
         <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#navbar-toggle-menu" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -33,7 +37,7 @@
       <div class="navbar-center navbar-brand-center">
         <!-- <a class="nav-btn navbar-text navbar-brand-center center-links">Precios</a> -->
         <%= link_to('Precios', pricing_path, class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
-        <a class="nav-btn navbar-text navbar-brand-center center-links">Blog</a>
+        <%= link_to('Blog', "https://blog.sone.com.mx/", class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-toggle-menu">
         <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Productos</a>

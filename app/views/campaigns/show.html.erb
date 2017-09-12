@@ -24,8 +24,8 @@
         <%= image_tag(@campaign.logo_url.to_s, class: "logo") %>
       </div>
       <div class="col-md-3 align-center">
-        <p class="text-pink">Nombre:</p>
-        <p class="text-gray"><%= @campaign.name %></p>
+        <p class="text-pink">Compañia:</p>
+        <p class="text-gray"><%= @campaign.sender_name %></p>
       </div>
       <div class="col-md-3 align-center">
         <p class="text-pink">Email del Remitente:</p>
@@ -183,7 +183,7 @@
     <br>
 
     <% unless @campaign.invalid_contacts.empty? %>
-      <h3>Contactos Inválidos</h3>
+      <h3>Contactos. <small>Inválidos</small></h3>
       <div class="table-responsive shadow-box">
         <table class="table table-striped table-bordered table-hover ">
           <thead>
@@ -219,8 +219,49 @@
       </div>
     <% end %>
 
+    <% unless @contacts_not_sent.empty? %>
+      <h3>Contactos. <small>No enviados</small></h3>
+      <div class="table-responsive shadow-box">
+        <table class="table table-striped table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th class='back-gray'>Email</th>
+              <% @topics.each do |topic| %>
+                <th class='back-gray'><%= topic.camelize %></th>
+              <% end %>
+              <th class='back-gray'>Nombre</th>
+              <th class='back-gray'>Estatus</th>
+              <th class='back-gray'>Fecha de envío</th>
+              <th class='back-gray'>Puntuación</th>
+              <th class='back-gray'>Comentario</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @contacts_not_sent.each do |contact| %>
+              <% if contact.blacklist.nil? %>
+                <tr>
+                  <td><%= contact.email %></td>
+                  <% unless @topics.empty? %>
+                    <% contact.topics.sort.to_h.each do |t, v| %>
+                      <td><%= v %></td>
+                    <% end %>
+                  <% end %>
+                  <td><%= contact.name %></td>
+                  <td class="status"><%= contact.status.titleize %></td>
+                  <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
+                  <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
+                  <td><%= contact.answer&.comment %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
     <% unless @contacts_sent.empty? %>
-      <h3>Contactos <small>Enviados</small></h3>
+      <h3>Contactos. <small>Enviados</small></h3>
       <div class="table-responsive shadow-box">
         <table class="table table-striped table-bordered table-hover ">
           <thead>
@@ -249,7 +290,7 @@
                   <% end %>
                   <td><%= contact.name %></td>
                   <td class="status"><%= contact.status.titleize %></td>
-                  <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
+                  <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y %H:%M".to_s %></td>
                   <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
                   <td><%= contact.answer&.comment %></td>
                 </tr>
