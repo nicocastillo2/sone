@@ -1,6 +1,6 @@
 <% provide(:title, 'Campañas') %>
 
-<div class="row" style="margin-left: 0;margin-right: 0;">
+<div class="row" style="margin-left: 0;margin-right: 0;column-rule-style: ">
   <div class="col-md-10 col-md-offset-1">
 
     <div class="table-responsive table-shadow">
@@ -22,7 +22,7 @@
           <% @campaigns.each_with_index do |campaign, index| %>
             <%if index == 0%>
               <tr class="td-no-border">
-                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.name %></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= link_to campaign.name, campaign, class: "black"%></td></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.sender_name %></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.sender_email %></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.new_answers %></td>
