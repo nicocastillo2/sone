@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import 'bootstrap-colorpicker';
 @import 'bxslider.min.css';
+@import 'bootstrap/variables';
 
 @font-face {
   font-family: 'LeagueSpartan';
@@ -974,3 +975,24 @@ ul .point{
     margin-top: 6%
   }
 }
+@media (max-width: $screen-xs-max) {
+  .cohete{
+    max-width: 30%
+  }
+}
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  .cohete{
+    max-width: 30%;
+  }
+}
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  .cohete{
+    max-width: 50%;
+  }
+}
+@media (min-width: $screen-lg-min) {
+  .cohete{
+    max-width: 50%;
+  }
+}
+

@@ -1,12 +1,9 @@
-<% provide(:header, "hidden")  %>
-<% provide(:aside, "hidden")  %>
-
 <div class="row">
   <div class="col-md-1 col-sm-1 col-xs-1"></div>
   <div class="col-md-10 col-sm-10 col-xs-10">
     <div class="row row-0">
       <div class="col-md-8">
-        <h2 class="pink">Editar usuario</h2>
+        <h2 class="pink">Información de cuenta</h2>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
@@ -23,7 +20,7 @@
           <% end %>
 
           <div class="field">
-            <%= f.label :password, 'Contraseña', class: "text-gray" %><i class="gray"> (Vacío si no deseas cambiarlo)</i><br>
+            <%= f.label :password, 'Nueva Contraseña', class: "text-gray" %><i class="gray"> (Vacío si no deseas cambiarlo)</i><br>
             <%= f.password_field :password, autocomplete: "off", class: "width-80 form_pink" %>
             <% if @minimum_password_length %>
               <br>
@@ -48,15 +45,13 @@
             <br>
             <%= f.submit "Actualizar", class: "gray-button" %>
             <br>
-            <%= link_to "Regresar", :back, class: "left pink-button" %>
-            <br>
           </div>
         <% end %>
       </div>
       <div class="col-md-4">
         <%= image_tag("edit-user.png", class: "img responsive margin-img") %>
-        <h3>Cancelar mi cuenta</h3>
-        <p class="gray">¿Insatisfecho? <%= button_to "Cancelar", registration_path(resource_name), data: { confirm: "¿Estás seguro?" }, method: :delete, class: "gray-button" %></p>
+        <!-- <h3>Cancelar mi cuenta</h3>
+        <p class="gray"><%#= button_to "Cancelar", registration_path(resource_name), data: { confirm: "¿Estás seguro?" }, method: :delete, class: "gray-button" %></p> -->
       </div>
     </div>
   </div>

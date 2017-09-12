@@ -1,35 +1,34 @@
-
 <% provide(:header, "hidden")  %>
 <% provide(:aside, "hidden")  %>
   <div class="container-fluid sign-in">
     <div class="container-margin">
       <img id="compu" class="hidden-sm hidden-xs" src="<%= root_url %>login-pc.png">
       <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-4 col-md-offset-0 text-center">
           <h1 class="registrate-gratis">¡Regístrate gratis!</h1>
         </div>
       </div>
 
       <div class="row">
       <div class="col-md-4">
-        <%= image_tag("static/sone-logo.svg", class: "img-100 margin-top-20  hidden-sm hidden-xs") %>
+        <%= image_tag("3.png", class: "img-100 margin-top-20  hidden-sm hidden-xs") %>
       </div>
-        <div class="col-xs-4 text-center width">
-          <div class="row text-center registration-links">
-            <div class="col-xs-3 col-md-3">
+        <div class="col-xs-4 col-md-2 col-md-offset-0 pad-left text-center width">
+          <div class="text-center registration-links">
+            <!--<div class="col-xs-3 col-md-3">
               <p class="con gray">con</p>
-            </div>
-            <div class="col-xs-3 col-md-3">
-              <%= link_to user_facebook_omniauth_authorize_path do %>
-                <img class="login-icons" src="<%= root_url %>face-icon.svg" alt="">
+            </div> -->
+            <div class="col-xs-4 col-md-2" style="display: inline-flex;"">
+              <p class="con gray">con</p><%= link_to user_facebook_omniauth_authorize_path do %>
+                <img class="login-icons face-icon" src="<%= root_url %>face-icon.svg" alt="">
               <% end %>
             </div>
-            <div class="col-xs-3 col-md-3">
+            <div class="col-xs-4 col-md-2">
               <%= link_to user_google_oauth2_omniauth_authorize_path do %>
                 <img class="login-icons" src="<%= root_url %>google-plus.svg" alt="">
               <% end %>
             </div>
-            <div class="col-xs-3 col-md-3">
+            <div class="col-xs-4 col-md-2">
               <%= link_to new_user_registration_path do %>
               <img class="login-icons" src="<%= root_url %>mail.svg" alt="">
               <% end %>
