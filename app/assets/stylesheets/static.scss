@@ -3,6 +3,7 @@
 @import 'bootstrap-colorpicker';
 @import 'bxslider.min.css';
 @import 'bootstrap/variables';
+@import "font-awesome";
 
 @font-face {
   font-family: 'LeagueSpartan';
@@ -926,6 +927,10 @@ ul .point{
 
 .show {
   display: inline;
+}
+
+#space-number {
+  margin-left: 5px;
 }
 
 @media (max-width: 700px) {
