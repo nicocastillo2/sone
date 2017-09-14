@@ -65,7 +65,11 @@
           <ul class="gray">
           <% Campaign.contact_topics.each do |t_spanish, t_english| %>
             <%= f.check_box :topics, { multiple: true, class: "" }, t_english, nil %>
-            <%= t_spanish.camelize %>
+            <% if t_spanish == 'cliente' %>
+              <%= 'ID ' + t_spanish.camelize %>
+            <% else %>
+              <%= t_spanish.camelize %>
+            <% end %>
             <br>
           <% end %>
           </ul>

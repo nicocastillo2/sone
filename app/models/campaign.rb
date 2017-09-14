@@ -116,7 +116,7 @@ class Campaign < ApplicationRecord
   end
 
   def self.get_nps_data_percentages(nps, nps_sample_count)
-    
+
     return { detractors: 0, passives: 0, promoters: 0 } if nps_sample_count == 0
     nps_sample_count = nps_sample_count.to_f
     detractors = (nps.detractors.inject(:+) * 100) / nps_sample_count
@@ -155,7 +155,8 @@ class Campaign < ApplicationRecord
     def self.contact_topics
       {
         'ciudad' => 'city',
-        'cliente' => 'client',
+        'cliente' => 'id_client',
+        'edad' => 'age',
         'ejecutivo' => 'executive',
         'estado' => 'state',
         'fecha' => 'date',
@@ -163,6 +164,7 @@ class Campaign < ApplicationRecord
         'pais' => 'country',
         'producto' => 'product',
         'promocion' => 'promotion',
+        'sexo' => 'sex',
         'sku' => 'sku',
         'sucursal' => 'office',
         'supervisor' => 'supervisor'
