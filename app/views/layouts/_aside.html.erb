@@ -73,7 +73,7 @@
                 </li>
 
                 <li class="center">
-                  <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu") do %>
+                  <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu","data-turbolinks" => false) do %>
                   <%= image_tag("iconos-profile.svg", class: "small-img") %>Cerrar sesión
                   <% end %>
                 </li>
