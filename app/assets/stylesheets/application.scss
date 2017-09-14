@@ -178,7 +178,7 @@ $pink: #9a4479;
 }
 
 .pink{
-  color: #b2427c;
+  color: #b2427c !important;
 }
 .ipad{
   height: 520px;
@@ -352,3 +352,8 @@ $pink: #9a4479;
 /*.sociales{
   background-color: #666666;
 }*/
+
+.fa.navbar-link{
+  width: 30px;
+  font-size: 1.2em;
+}
