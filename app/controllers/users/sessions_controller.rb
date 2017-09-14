@@ -8,5 +8,12 @@ class Users::SessionsController < Devise::SessionsController
     end
     campaigns_path
   end
+
+  def after_sign_out_path_for(resource_or_scope)
+   	response.headers["Cache-Control"] = "no-cache, no-store"
+    response.headers["Pragma"] = "no-cache"
+    Rails.cache.clear
+    root_path
+  end
   
 end

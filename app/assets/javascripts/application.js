@@ -68,3 +68,15 @@ $(document).on('turbolinks:load', function() {
 $("#upfile1").click(function () {
     $("#file1").trigger('click');
 });
+$('#close', ".close").click(function() {
+  console.log("si entre a esta wea");
+    $.ajax({
+        url: "",
+        context: document.body,
+        success: function(s,x){
+
+            $('html[manifest=saveappoffline.appcache]').attr('content', '');
+                $(this).html(s);
+        }
+    }); 
+});
