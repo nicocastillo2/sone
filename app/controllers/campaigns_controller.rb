@@ -151,11 +151,6 @@ class CampaignsController < ApplicationController
   end
 
   def dashboard
-    puts '+' * 30
-    puts 'DASHBOARD'
-    pp params
-    puts '+' * 30
-
     @date_range = params[:filter] ? params[:feedback_date] : '30 Días'
     @date_range ||= '30 Días'
 
@@ -181,15 +176,11 @@ class CampaignsController < ApplicationController
     @topics = params[:topics] ||= []
 
     if params[:filter]
-      puts '+' * 30
-      puts 'FILTER'
-      puts '+' * 30
       params[:filter][:nps_date] = params[:nps_date] if params[:nps_date]
       selected_date = params[:filter][:nps_date]
       date_range = Campaign.receive_date(selected_date)
       date_range_fixed_nps = Campaign.receive_date('1')
-      puts 'selected campaigns'
-      # pp @selected_campaigns
+
       choosed_campaigns = @campaigns.where(id: @selected_campaigns)
 
       @nps = Nps.for_dashboard(choosed_campaigns, date_range[0], date_range[1], @topics)
@@ -204,7 +195,7 @@ class CampaignsController < ApplicationController
 
       @contacts_feedback = @contacts_feedback.paginate(page: params[:page], per_page: 5)
       # @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
-      # debugger
+
       if params[:feedback_type] == 'promoter'
         @feedback_type = params[:feedback_type]
         @contacts_feedback = @contacts_feedback.where(score: 9..10)
@@ -229,9 +220,6 @@ class CampaignsController < ApplicationController
       @data_percentages_30_fixed = Campaign.get_nps_data_percentages(@nps_30_fixed, @nps_sample_count)
       @active_filter = params[:filter][:nps_date]
     else
-      puts '+' * 30
-      puts 'NO FILTER'
-      puts '+' * 30
       date = params[:nps_date] ? params[:nps_date] : '1'
       date_range = Campaign.receive_date(date)
       @nps = Nps.for_dashboard(@campaigns, date_range[0], date_range[1], @topics)

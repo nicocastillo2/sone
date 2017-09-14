@@ -1,4 +1,3 @@
-
 <div class="row row-0">
   <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
     <div class="page-header">
@@ -167,8 +166,14 @@
       </div>
       <div class="col-md-4 col-sm-4">
         <% unless @campaign.contacts.empty? %>
-          <%= link_to send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: @campaign.mails_not_sent > 0 ? 'btn btn-default send-button send-campaign' : 'btn btn-default send-button send-campaign disabled', data: { confirm: 'Deseas enviar la campaña?'} do %>
-            Enviar<br>Campaña
+          <% if @campaign.mails_not_sent > 0 %>
+            <%= link_to send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button send-campaign', data: { confirm: 'Deseas enviar la campaña?'} do %>
+              Enviar<br>Campaña
+            <% end %>
+          <% else %>
+            <div class="text-center">
+              <h4>Importa contactos para enviar tu campaña</h4>
+            </div>
           <% end %>
         <% else %>
           <div class="text-center">
@@ -192,8 +197,8 @@
                 <th class='back-gray'><%= topic.camelize %></th>
               <% end %>
               <th class='back-gray'>Nombre</th>
-              <th class='back-gray text-center'><span class="glyphicon glyphicon-pencil"></span></th>
-              <th class='back-gray text-center'><span class="glyphicon glyphicon-trash"></span></th>
+              <th class='back-gray'></th>
+              <th class='back-gray'></th>
             </tr>
           </thead>
 
@@ -208,8 +213,8 @@
                     <% end %>
                   <% end %>
                   <td><%= contact.name %></td>
-                  <td class="text-center"><%= link_to 'edit', edit_contact_path(contact), class: "black" %></td>
-                  <td class="text-center"><%= link_to 'destroy', contact, class: "black", method: :delete, data: { confirm: 'Are you sure?' }%></td>
+                  <td><%= link_to '', edit_contact_path(contact), class: "black glyphicon glyphicon-pencil table-icons" %></td>
+                  <td><%= link_to '', contact, class: "black glyphicon glyphicon-trash table-icons", method: :delete, data: { confirm: 'Are you sure?' }%></td>
                 </tr>
               <% end %>
             <% end %>
@@ -221,7 +226,7 @@
     <% unless @contacts_not_sent.empty? %>
       <h3>Contactos. <small>No enviados</small></h3>
       <div class="table-responsive shadow-box">
-        <table class="table table-striped table-bordered table-hover ">
+        <table class="table table-striped table-bordered table-hover not-sent-table">
           <thead>
             <tr>
               <th class='back-gray'>Email</th>
@@ -230,9 +235,8 @@
               <% end %>
               <th class='back-gray'>Nombre</th>
               <th class='back-gray'>Estatus</th>
-              <th class='back-gray'>Fecha de envío</th>
-              <th class='back-gray'>Puntuación</th>
-              <th class='back-gray'>Comentario</th>
+              <th class='back-gray'></th>
+              <th class='back-gray'></th>
             </tr>
           </thead>
 
@@ -248,9 +252,8 @@
                   <% end %>
                   <td><%= contact.name %></td>
                   <td class="status"><%= contact.status.titleize %></td>
-                  <td class="sent_date"><%= contact.sent_date&.strftime "%d/%m/%Y".to_s %></td>
-                  <td class="score"><%= contact.answer ? contact.answer.score : "Pendiente" %></td>
-                  <td><%= contact.answer&.comment %></td>
+                  <td><%= link_to '', edit_contact_path(contact), class: "black glyphicon glyphicon-pencil table-icons" %></td>
+                  <td><%= link_to '', contact, class: "black glyphicon glyphicon-trash table-icons", method: :delete, data: { confirm: 'Are you sure?' }%></td>
                 </tr>
               <% end %>
             <% end %>

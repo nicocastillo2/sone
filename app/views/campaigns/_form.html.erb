@@ -2,7 +2,7 @@
   <% if @campaign.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h4>
+      <h4><%= pluralize(@campaign.errors.count, "error", 'errores') %> prohibieron esta campaña de ser guardada:</h4>
 
       <ul>
       <% @campaign.errors.full_messages.each do |msg| %>
@@ -58,7 +58,7 @@
     <div class="col-md-4">
       <div class="form-group">
       <h4 class="pink titulo"><span class="glyphicon glyphicon-plus circle"></span> Añade topics a tu campaña</h4>
-      <p class="gray">Los topics son atributos (información que acompañan a las direcciones de correo de tus clientes). Al incluirlos, el diagnóstico sobre la experiencia que tu marca ofrece será más completo.</p>
+      <p class="gray">Selecciona la información que quieres incluir en tu campaña para segmentar los resultados.</p>
         <%= f.label :tmp_topics, 'Topics', class: "col-sm-2 control-label text-gray-form" %>
         <div class="col-sm-10">
           <ul class="gray">

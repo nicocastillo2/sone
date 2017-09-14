@@ -3,6 +3,7 @@
 @import 'bootstrap-colorpicker';
 @import 'bxslider.min.css';
 @import 'bootstrap/variables';
+@import "font-awesome";
 
 @font-face {
   font-family: 'LeagueSpartan';
@@ -77,6 +78,10 @@ p {
   border: 1px solid $green;
 }
 
+#width-inicio {
+  border: 1px solid $green;
+}
+  
 .navbar-brand-center {
   float: none;
 }
@@ -115,7 +120,7 @@ p {
   .navbar-brand-center{
     display: none;
   }
-  #navbar-toggle-menu a{
+   #navbar-toggle-menu a{
     display: block;
   }
 }
@@ -913,6 +918,10 @@ ul .point{
   display: inline;
 }
 
+#space-number {
+  margin-left: 5px;
+}
+
 @media (max-width: 700px) {
 
   .text-copy{
@@ -983,6 +992,15 @@ ul .point{
   .clients-opinion-section .clients-pagina {
     font-size: 0.8em;
     margin-top: 6%
+  }
+
+    #login {
+    border: 1px solid $green;
+    width: 32%;
+  }
+   #width-inicio {
+    width: 40%;
+    border: 1px solid $green;
   }
 }
 @media (max-width: $screen-xs-max) {
