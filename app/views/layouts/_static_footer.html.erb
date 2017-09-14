@@ -2,22 +2,23 @@
 	<div class="col-md-4">
 		<div class="row padding-top-10 margin-0">
 			<div class="col-md-3 text-center white hidden-sm hidden-xs">
-				<h4>Precio</h4>
-			</div> 
+				<h4> <%=link_to "Precios", pricing_path,  class: "text-white none-underline"%></h4>
+			</div>
 			<div class="col-md-3 text-center white hidden-sm hidden-xs">
-				<h4>Blog</h4>
+				<h4><a class="none-underline" href="https://blog.sone.com.mx/" target="_blank"><span class="text-white none-underline">Blog</span></a></h4>
 			</div>
 		</div>
 	</div>
 	<div class="col-md-4 text-center white">
-		<%= image_tag("logo-sone-250.png", class: "img-25") %><br>
+		<%= image_tag("2.png", class: "img-25") %><br>
 		<h4 class="text-copy">CopyRight Customer Comfort S.A. de C.V.</h4>
 	</div>
 	<!-- <div class="col-md-4 padding-top-100"> -->
 			<div class="text-center white margin-00 padding-top-100">
-				<%= link_to "Términos y condiciones", terms_path, class: "link-white", id:"word-space"%>
-				<%= link_to "Politícas de privacidad", politics_path, class: "link-white"%>
-				<p>Developed by <a href="http://www.kheper.io" target="_blank"><span class="text-white">Kheper</span></a></p>
+				<%= link_to "Términos y condiciones", terms_path, class: "text-white none-underline", id:"word-space"%>
+				<%= link_to "Politícas de privacidad", politics_path, class: "text-white none-underline"%>
+				<p>Developed by <a class="none-underline" href="http://www.kheper.io" target="_blank"><span class="text-white">Kheper</span></a></p>
+				<i class="fa fa-whatsapp"><span id="space-number">+525569687847</span></i>
 			</div>
 	<!-- </div>	 -->
 </footer>
