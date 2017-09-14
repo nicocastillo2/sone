@@ -195,7 +195,11 @@
             <tr>
               <th class='back-gray'>Email</th>
               <% @topics.each do |topic| %>
-                <th class='back-gray'><%= topic.camelize %></th>
+                <% if topic == 'id_client' %>
+                  <th class='back-gray'>ID Cliente</th>
+                <% else %>
+                  <th class='back-gray'><%= topic.humanize %></th>
+                <% end %>
               <% end %>
               <th class='back-gray'>Nombre</th>
               <th class='back-gray'></th>
@@ -232,7 +236,11 @@
             <tr>
               <th class='back-gray'>Email</th>
               <% @topics.each do |topic| %>
-                <th class='back-gray'><%= topic.camelize %></th>
+                <% if topic == 'id_client' %>
+                  <th class='back-gray'>ID Cliente</th>
+                <% else %>
+                  <th class='back-gray'><%= topic.humanize %></th>
+                <% end %>
               <% end %>
               <th class='back-gray'>Nombre</th>
               <th class='back-gray'>Estatus</th>
@@ -271,7 +279,11 @@
             <tr>
               <th class='back-gray'>Email</th>
               <% @topics.each do |topic| %>
-                <th class='back-gray'><%= topic.camelize %></th>
+                <% if topic == 'id_client' %>
+                  <th class='back-gray'>ID Cliente</th>
+                <% else %>
+                  <th class='back-gray'><%= topic.humanize %></th>
+                <% end %>
               <% end %>
               <th class='back-gray'>Nombre</th>
               <th class='back-gray'>Estatus</th>
