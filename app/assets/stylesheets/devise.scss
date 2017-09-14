@@ -257,7 +257,14 @@
   .login-icon {
     width: 30px;
   }
+  
+  #space-icon {
+    margin-left: 20px;
+  }
 
+  #login-button {
+    width: 108px
+  }
 }
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
   .img-fixed{
