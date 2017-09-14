@@ -190,17 +190,17 @@ $pink: #9a4479;
     margin: 0 auto;
   }
 }
-@media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
-  .ipad{
-    background-image: image-url("ipad-8.png");
-    background-size: cover; 
-  } 
-}
-@media (min-width: $screen-lg-min) { 
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   .ipad{
     background-image: image-url("ipad-8.png");
     background-size: cover;
-  } 
+  }
+}
+@media (min-width: $screen-lg-min) {
+  .ipad{
+    background-image: image-url("ipad-8.png");
+    background-size: cover;
+  }
 }
 .answer-form{
   outline: none;
