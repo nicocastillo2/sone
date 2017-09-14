@@ -13,7 +13,9 @@
           <div class="navbar-collapse collapse sidebar-navbar-collapse back-white">
             <ul class="nav navbar-nav" id="sidenav01">
               <li class="active">
-                <%= link_to image_tag("3.png", id: "sone_icon", class: "img-responsive center"), root_path, id: "color-transparent" %>
+                <%= link_to root_path, id: "color-transparent", "data-turbolinks" => false do%>
+                  <%= image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>
+                <% end %>
                 <br>
                 <% if user_signed_in? %>
                     <% if current_user.avatar.nil? %>
