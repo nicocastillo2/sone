@@ -25,4 +25,10 @@ class CampaignMailer < ApplicationMailer
     mail(to: @user_email, subject: 'Cambio de Suscription', from: 'noreply@sone.com.mx', sparkpost_data: data)
   end
 
+  def welcome(user)
+    @current_user = user
+    data = { html_content_only: true }
+    mail(to: @current_user.email, subject: 'Bienvenido a Sone', from: 'noreply@sone.com.mx', sparkpost_data: data)
+  end
+
 end
