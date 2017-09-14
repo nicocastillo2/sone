@@ -13,7 +13,9 @@
           <div class="navbar-collapse collapse sidebar-navbar-collapse back-white">
             <ul class="nav navbar-nav" id="sidenav01">
               <li class="active">
-                <%= link_to image_tag("3.png", id: "sone_icon", class: "img-responsive center"), root_path, id: "color-transparent" %>
+                <%= link_to root_path, id: "color-transparent", "data-turbolinks" => false do%>
+                  <%= image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>
+                <% end %>
                 <br>
                 <% if user_signed_in? %>
                     <% if current_user.avatar.nil? %>
@@ -22,6 +24,8 @@
                       <%= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %>
                     <% end %>
                     <p class="left-menu center gray"><%= current_user.email %></p>
+                    <p class="left-menu center gray">Mail Disponibles: <%= current_user.available_emails %></p>
+                    <p class="left-menu center gray">Plan: <%= current_user.payment.plan_name.capitalize %></p>
                 </li>
 
                 <li class="center">
@@ -71,7 +75,7 @@
                 </li>
 
                 <li class="center">
-                  <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu") do %>
+                  <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu","data-turbolinks" => false) do %>
                   <%= image_tag("iconos-profile.svg", class: "small-img") %>Cerrar sesión
                   <% end %>
                 </li>
