@@ -6,7 +6,6 @@
           <h1 class="border-left"><%= @campaign.name %></h1>
         </div>
         <div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-1 col-sm-5">
-          <%= link_to 'Reporte', report_campaign_path(@campaign), class: 'btn btn-default pink-show', id: 'view-report' %>
           <%= link_to campaigns_path, class: 'btn btn-default pink-show' do %>
             Regresar
           <% end %>
@@ -195,7 +194,11 @@
             <tr>
               <th class='back-gray'>Email</th>
               <% @topics.each do |topic| %>
-                <th class='back-gray'><%= topic.camelize %></th>
+                <% if topic == 'id_client' %>
+                  <th class='back-gray'>ID Cliente</th>
+                <% else %>
+                  <th class='back-gray'><%= topic.humanize %></th>
+                <% end %>
               <% end %>
               <th class='back-gray'>Nombre</th>
               <th class='back-gray'></th>
@@ -232,7 +235,11 @@
             <tr>
               <th class='back-gray'>Email</th>
               <% @topics.each do |topic| %>
-                <th class='back-gray'><%= topic.camelize %></th>
+                <% if topic == 'id_client' %>
+                  <th class='back-gray'>ID Cliente</th>
+                <% else %>
+                  <th class='back-gray'><%= topic.humanize %></th>
+                <% end %>
               <% end %>
               <th class='back-gray'>Nombre</th>
               <th class='back-gray'>Estatus</th>
@@ -271,7 +278,11 @@
             <tr>
               <th class='back-gray'>Email</th>
               <% @topics.each do |topic| %>
-                <th class='back-gray'><%= topic.camelize %></th>
+                <% if topic == 'id_client' %>
+                  <th class='back-gray'>ID Cliente</th>
+                <% else %>
+                  <th class='back-gray'><%= topic.humanize %></th>
+                <% end %>
               <% end %>
               <th class='back-gray'>Nombre</th>
               <th class='back-gray'>Estatus</th>
