@@ -37,7 +37,7 @@ class CampaignsController < ApplicationController
       @campaign.tmp_topics = campaign_params[:topics].map(&:split).flatten.sort if campaign_params[:topics]
       respond_to do |format|
         if @campaign.save
-          format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
+          format.html { redirect_to @campaign, notice: 'Campaña creada exitosamente.' }
           format.json { render :show, status: :created, location: @campaign }
         else
           format.html { render :new }
@@ -272,7 +272,8 @@ class CampaignsController < ApplicationController
       campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
       num_available_emails = current_user.available_emails
       current_user.update(available_emails: num_available_emails - num_surveys)
-      campaign
+      campaign.surveys_counter += num_surveys
+      campaign.save
       flash[:success] = 'Campaña enviada exitosamente.'
     else
       flash[:warning] = 'No tienes sufucuentes emails disponibles'
@@ -286,7 +287,7 @@ class CampaignsController < ApplicationController
     if params[:campaign][:file].nil?
       redirect_to campaign_path(campaign_id), notice: 'Necesitas agregar un archivo.'
     elsif !params[:campaign][:file].content_type.include?('csv')
-      redirect_to campaign_path(campaign_id), notice: 'El formato de el archivo no es correcto'
+      redirect_to campaign_path(campaign_id), notice: 'El formato del archivo no es correcto.'
     else
       topics = Campaign.find(campaign_id).tmp_topics
       Campaign.import_contacts(params[:campaign][:file], topics, campaign_id)

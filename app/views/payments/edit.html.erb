@@ -1,4 +1,4 @@
-<% provide :title, "Editar Metodo de Pago" %>
+<% provide :title, "Cambiar Metodo de Pago" %>
 <% content_for :conekta_scripts do %>
   <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
   <script type="text/javascript">
@@ -32,7 +32,58 @@
 
 <% end %>
 
-<div class="col-md-1 col-sm-1 col-xs-1"><br></div>
+<div id="current-card">
+  <div class="col-md-1 col-sm-1 col-xs-1"><br></div>
+  <div class="col-md-10 col-sm-10 col-xs-10">
+      <%= form_tag(payment_path(@payment), id: 'card-form', method: "patch", class: "form-inline") do %>
+  <span class="card-errors"></span>
+  <br>
+  <div class="row ">
+    <div class="col-md-2"><br></div>
+    <div class="col-md-8 target">
+      <div class="form-group">
+      <h3>Realizar compra<%= image_tag(@img_card, class: "img-responsive card-img", id: "chip") %></h3>
+
+      <br>
+      <%= image_tag("chip.png", class: "img-responsive chip") %>
+      <br>
+      <label>
+        <span>Número de tarjeta de crédito</span><br>
+        <input class="form-control field-pay" type="text" size="20" value="**** **** **** <%= @payment_sources.last4 %>" disabled/>
+      </label>
+    </div>
+    <br>
+    <div class="form-group">
+      <label class="fecha">
+        <span>Fecha de expiración (MM/AAAA)</span><br>
+        <input class="form-control field-pay date" type="text" size="2" value="<%= @payment_sources.exp_month %>" disabled/>
+
+      <span>/</span>
+      <input class="form-control field-pay date" type="text" size="4" value="<%= @payment_sources.exp_year %>" disabled/>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        <span>CVC</span>
+        <input class="form-control field-pay" type="text" size="4" value="***" disabled/>
+      </label>
+    </div>
+    <br>
+
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+<% end %>
+
+<button class="btn btn-default change-payment send-button">Cambiar Metodo de Pago</button>
+
+
+  </div>
+  <div class="col-md-1 col-sm-1 col-xs-1"></div>
+</div>
+
+<div id="edit-card" style="display: none">
+  <div class="col-md-1 col-sm-1 col-xs-1"><br></div>
   <div class="col-md-10 col-sm-10 col-xs-10">
       <%= form_tag(payment_path(@payment), id: 'card-form', method: "patch", class: "form-inline") do %>
   <span class="card-errors"></span>
@@ -57,10 +108,8 @@
   <br>
   <div class="row ">
     <div class="col-md-2"><br></div>
-    <div class="col-md-8 target ">
+    <div class="col-md-8 target">
       <div class="form-group">
-      <h3>Realizar compra<%= image_tag("master.png", class: "img-responsive card-img", id: "chip") %></h3>
-
       <br>
       <%= image_tag("chip.png", class: "img-responsive chip") %>
       <br>
@@ -87,7 +136,7 @@
     </div>
     <br>
 
-    <button type="submit" class="pay-now">Actualizar</button>
+    <button type="submit" class="pay-now">Cambiar</button>
     </div>
     <div class="col-md-2"></div>
   </div>
@@ -96,3 +145,4 @@
 
   </div>
   <div class="col-md-1 col-sm-1 col-xs-1"></div>
+</div>

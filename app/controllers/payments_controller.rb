@@ -96,6 +96,18 @@ class PaymentsController < ApplicationController
   # GET /payments/1/edit
   def edit
     @payment = Payment.find_by_id(params[:id])
+    @payment_sources = Conekta::Customer.find(@payment.id_conekta).payment_sources[0]
+    @img_card = ""
+    case @payment_sources.brand.downcase
+    when "mc"
+      @img_card = "master.png"
+    when "visa"
+      @img_card = "visa.png"
+    when "american_express"
+      @img_card = "american.png"
+    else
+
+    end
     redirect_to new_payment_path unless @payment
   end
 
