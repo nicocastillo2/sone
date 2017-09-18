@@ -45,6 +45,13 @@ class Campaign < ApplicationRecord
     Contact.import(contacts, batch_size: 1000)
   end
 
+  def self.have_correct_columns?(csv_file, campaign_id)
+    campaign_topics = Campaign.find(campaign_id).tmp_topics
+    file_columns = CSV.read(csv_file.path)[0]
+    headers = ['email'] + campaign_topics + ['name']
+    file_columns == headers
+  end
+
   def mails_sent
     contacts.where(contacts: { status: 1 }).count
   end
