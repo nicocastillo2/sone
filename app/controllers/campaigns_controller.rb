@@ -284,10 +284,13 @@ class CampaignsController < ApplicationController
 
   def upload_csv
     campaign_id = params[:campaign][:id]
-    if params[:campaign][:file].nil?
+    csv_file = params[:campaign][:file]
+    if csv_file.nil?
       redirect_to campaign_path(campaign_id), notice: 'Necesitas agregar un archivo.'
-    elsif !params[:campaign][:file].content_type.include?('csv')
+    elsif !csv_file.content_type.include?('csv')
       redirect_to campaign_path(campaign_id), notice: 'El formato del archivo no es correcto.'
+    elsif !Campaign.have_correct_columns?(csv_file, campaign_id)
+      redirect_to campaign_path(campaign_id), notice: 'Recuerda agregar las columnas correspondientes a tu archivo.'
     else
       topics = Campaign.find(campaign_id).tmp_topics
       Campaign.import_contacts(params[:campaign][:file], topics, campaign_id)
