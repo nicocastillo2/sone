@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: :payment_callback
-  before_action :require_login
+  before_action :require_login, except: [:payment_callback]
   before_action :validate_suscription_belongs_to_currents_user, only: [:edit, :update]
 
   # GET /payments/new
