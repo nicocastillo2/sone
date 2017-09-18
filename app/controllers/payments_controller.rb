@@ -128,11 +128,11 @@ class PaymentsController < ApplicationController
       payment = Payment.find_by(id_conekta: id_conekta)
       case payment.plan_name
       when "startup"
-        payment.update({available_emails: 1000})
+        payment.user.update({available_emails: 1000})
       when "crecimiento"
-        payment.update({available_emails: 5000})
+        payment.user.update({available_emails: 5000})
       when "enterprise"
-        payment.update({available_emails: 10000})
+        payment.user.update({available_emails: 10000})
       end
     end
 
