@@ -72,6 +72,19 @@ class Campaign < ApplicationRecord
     contacts.where.not(blacklist: nil).count
   end
 
+  def valid_and_not_sent_contacts
+    contacts = self.contacts.where(valid_info: true, status: 0, status: 3, blacklist: nil)
+    valid_result = contacts.select do |contact|
+      cont = self.contacts.where(email: contact.email, blacklist: nil).order(id: :asc)
+      if cont.size == 1
+        true
+      else
+        DateTime.now - 30.days > cont[-2].sent_date
+      end
+    end
+    return valid_result
+  end
+
   def valid_contacts
     contacts.where(valid_info: true)
   end
