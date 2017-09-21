@@ -29,10 +29,16 @@ class SuscriptionsController < ApplicationController
 
         # si existe la subscripcion
         if(customer.subscription)
-          customer.subscription.cancel if customer.subscription.status != "active"
-          subscription = customer.create_subscription({
-            :plan => new_suscription
-          })
+          if customer.subscription.status != "active" && @suscriptions.index(new_suscription) > @suscriptions.index(current_user.payment.plan_name)
+            customer.subscription.cancel
+            subscription = customer.create_subscription({
+              :plan => new_suscription
+            })
+          else
+            subscription = customer.subscription.update({
+              :plan => new_suscription
+            })
+          end
         else
           subscription = customer.create_subscription({
             :plan => new_suscription

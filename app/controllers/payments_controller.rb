@@ -123,6 +123,11 @@ class PaymentsController < ApplicationController
     p json
     puts '-' * 100
     p json['type']
+
+    if json['type'] == 'subscription.updated'
+      
+    end
+
     if json['type'] == 'subscription.paid'
       id_conekta = json['data']["object"]['customer_id']
       payment = Payment.find_by(id_conekta: id_conekta)

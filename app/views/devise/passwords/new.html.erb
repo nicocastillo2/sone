@@ -1,4 +1,7 @@
-<h2>Forgot your password?</h2>
+<% provide(:header, "hidden")  %>
+<% provide(:aside, "hidden")  %>
+
+<h2>¿Olvidaste tu Contraseña?</h2>
 
 <div class="row">
   <div class="col-md-4">
@@ -11,7 +14,7 @@
       </div>
 
       <div class="form-group">
-        <%= f.submit "Send me reset password instructions", class: 'btn btn-primary' %>
+        <%= f.submit "Enviar Instrucciones", class: 'btn btn-primary' %>
       </div>
     <% end %>
 
