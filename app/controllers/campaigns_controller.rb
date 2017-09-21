@@ -16,7 +16,7 @@ class CampaignsController < ApplicationController
     date_range = Campaign.receive_date('1')
     @nps = Nps.for_campaign(@campaign.id, date_range[0], date_range[1], @campaign.tmp_topics)
     @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
-    @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '0').paginate(:page => params[:page])
+    @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: ['0', '3']).paginate(:page => params[:page])
     @topics = Campaign.find(params[:id]).tmp_topics
     @campaign.update({new_answers: 0})
   end
@@ -269,7 +269,8 @@ class CampaignsController < ApplicationController
 
       @time = Time.now
       campaign.update last_sent: @time
-      campaign.contacts.where(valid_info: true).update_all(status: 1, sent_date: @time)
+      campaign.valid_and_not_sent_contacts.each { |contact| contact.update(status: 1, sent_date: @time) }
+      campaign.contacts.where(status: 0, valid_info: true).update_all(status: 3)
       num_available_emails = current_user.available_emails
       current_user.update(available_emails: num_available_emails - num_surveys)
       campaign.surveys_counter += num_surveys

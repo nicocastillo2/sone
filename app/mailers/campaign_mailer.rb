@@ -8,7 +8,7 @@ class CampaignMailer < ApplicationMailer
     recipients = []
     recipients_data = []
     color = campaign.color
-    campaign.contacts.where(blacklist: nil, valid_info: true, status: 0).each do |contact|
+    campaign.valid_and_not_sent_contacts.each do |contact|
       recipients << contact.email
       recipients_data << { substitution_data: { name: contact.name, token: CampaignsHelper.encrypt(contact.id.to_s), color: color }, address: { email: contact.email, header_to: contact.email } }
     end

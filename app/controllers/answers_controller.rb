@@ -6,9 +6,11 @@ class AnswersController < ApplicationController
     Campaign.increment_counter(:new_answers, contact.campaign.id)
     @score = params[:score]
     @answer = Answer.new(score: @score, contact: contact)
-    @status = false
-    if Answer.find_by_contact_id(@answer.contact_id)
-      @status = true
+
+    if DateTime.now - 48.hours > contact.sent_date
+      @status = 'expired'
+    elsif Answer.find_by_contact_id(@answer.contact_id)
+      @status = 'answered'
     else
       @answer = Answer.create(score: @score, contact: contact)
     end
