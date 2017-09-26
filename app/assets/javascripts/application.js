@@ -80,3 +80,12 @@ $('#close', ".close").click(function() {
         }
     }); 
 });
+
+function checkForm(form){
+  if(!form.terms.checked) {
+    alert("Por favor acepta los terminos y condiciones.");
+    form.terms.focus();
+    return false;
+  }
+  return true;
+}

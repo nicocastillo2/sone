@@ -22,7 +22,19 @@
   height: auto;
   padding: 3px;
 }
-
+.terms{
+  padding: 0;
+  font-size: 16px;
+  border: 0;
+  background-color: white;
+  color: #727272;
+}
+.terms:hover{
+  text-decoration: underline;
+  padding: 0;
+  background-color:white;
+  color: black;
+}
 .login-icon{
   height: 60px;
   width: 60px;
@@ -198,7 +210,14 @@
 .center-iamge{
   margin:0 auto!important;
   background-color: white;
-
+}
+.fotgot-pass{
+  color: #9a4479!important;
+  text-decoration: none;
+}
+.forgot-pass:hover{
+  color: $pink;
+  text-decoration: underline;
 }
 .font-40{
   font-size: 40px;
