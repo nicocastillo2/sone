@@ -993,24 +993,31 @@ ul .point{
     font-size: 0.8em;
     margin-top: 6%
   }
-
-    #login {
-    border: 1px solid $green;
-    width: 32%;
-  }
-   #width-inicio {
-    width: 40%;
-    border: 1px solid $green;
-  }
 }
 @media (max-width: $screen-xs-max) {
   .cohete{
     max-width: 30%
   }
+  #login {
+    border: 1px solid $green;
+    width: 100px;
+  }
+  #width-inicio {
+    width: 120px;
+    border: 1px solid $green;
+  }
 }
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
   .cohete{
     max-width: 30%;
+  }
+  #login {
+    border: 1px solid $green;
+    width: 100px;
+  }
+  #width-inicio {
+    width: 120px;
+    border: 1x solid $green;
   }
 }
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {

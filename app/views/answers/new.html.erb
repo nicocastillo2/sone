@@ -1,12 +1,22 @@
 <% provide(:header, "hidden")  %>
 <% provide(:aside, "hidden")  %>
-<% if @status %>
+
+<% if @status == 'expired' %>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+    <h2 class="text-center pink">¡Lo sentimos! <br>La encuesta ha caducado</h2>
+  </div>
+  <div class="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+    <%= image_tag("expired-survey.png", class: "img-responsive") %>
+  </div>
+</div>
+<% elsif @status == 'answered' %>
   <div class="row">
     <div class="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
       <h2 class="text-center pink">¡Gracias por tu ayuda! <br>La encuesta ha sido contestada</h2>
     </div>
     <div class="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
-      <%= image_tag("encuesta-8.png", class: "img-responsive") %>
+      <%= image_tag("answered-survey.png", class: "img-responsive") %>
     </div>
   </div>
 <% else %>

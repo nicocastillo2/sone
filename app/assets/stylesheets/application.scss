@@ -178,7 +178,7 @@ $pink: #9a4479;
 }
 
 .pink{
-  color: #b2427c;
+  color: #b2427c !important;
 }
 .ipad{
   height: 520px;
@@ -190,17 +190,17 @@ $pink: #9a4479;
     margin: 0 auto;
   }
 }
-@media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
-  .ipad{
-    background-image: image-url("ipad-8.png");
-    background-size: cover; 
-  } 
-}
-@media (min-width: $screen-lg-min) { 
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   .ipad{
     background-image: image-url("ipad-8.png");
     background-size: cover;
-  } 
+  }
+}
+@media (min-width: $screen-lg-min) {
+  .ipad{
+    background-image: image-url("ipad-8.png");
+    background-size: cover;
+  }
 }
 .answer-form{
   outline: none;
@@ -352,3 +352,8 @@ $pink: #9a4479;
 /*.sociales{
   background-color: #666666;
 }*/
+
+.fa.navbar-link{
+  width: 30px;
+  font-size: 1.2em;
+}

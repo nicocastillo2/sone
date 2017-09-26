@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:destroy]
   skip_before_action :verify_authenticity_token, only: :payment_callback
-  before_action :require_login
+  before_action :require_login, except: [:payment_callback]
   before_action :validate_suscription_belongs_to_currents_user, only: [:edit, :update]
 
   # GET /payments/new
@@ -119,17 +119,25 @@ class PaymentsController < ApplicationController
 
   def payment_callback
     json = JSON.parse(request.body.read)
+    puts '*' * 100
+    p json
+    puts '-' * 100
+    p json['type']
+
+    if json['type'] == 'subscription.updated'
+      
+    end
 
     if json['type'] == 'subscription.paid'
       id_conekta = json['data']["object"]['customer_id']
       payment = Payment.find_by(id_conekta: id_conekta)
       case payment.plan_name
       when "startup"
-        payment.update({available_emails: 1000})
+        payment.user.update({available_emails: 1000})
       when "crecimiento"
-        payment.update({available_emails: 5000})
+        payment.user.update({available_emails: 5000})
       when "enterprise"
-        payment.update({available_emails: 10000})
+        payment.user.update({available_emails: 10000})
       end
     end
 

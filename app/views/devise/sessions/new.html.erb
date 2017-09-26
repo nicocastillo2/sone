@@ -25,7 +25,7 @@
             </div>
             <div class="col-xs-4 col-md-2">
               <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-                <img class="login-icons" src="<%= root_url %>google-plus.svg" alt="">
+                <img class="login-icons", id="space-icon" src="<%= root_url %>google-plus.svg" alt="">
               <% end %>
             </div>
             <div class="col-xs-4 col-md-2">
@@ -63,6 +63,9 @@
                 <%# end -%>
 
                 <div class="form-group">
+                  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                    <%= link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name) %><br />
+                  <% end -%>
                   <%= f.submit "Iniciar Sesión", class: 'btn pull-right', id: 'login-button' %>
                 </div>
               <% end %>
@@ -74,3 +77,5 @@
       </div>
     </div>
   </div>
+
+  <%#= render "devise/shared/links" %>

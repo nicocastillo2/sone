@@ -30,19 +30,19 @@
 
                 <li class="center">
                   <%= link_to(user_dashboard_path(current_user), class: 'left-menu') do %>
-                  <%= fa_icon 'tachometer', class: 'img-responsive small-img navbar-link' %>Dashboard
+                  <%= fa_icon 'tachometer', class: 'navbar-link pink' %>Dashboard
                   <% end %>
                 </li>
 
                 <li class="center">
                   <%= link_to(campaigns_path, class: 'left-menu') do %>
-                  <%= image_tag("iconos-block.svg", class: "img-responsive small-img navbar-link") %>Campañas
+                  <%= fa_icon 'envelope-o', class: 'navbar-link pink' %>Campañas
                   <% end %>
                 </li>
 
                 <li class="center">
                   <%= link_to(campaigns_path, class: 'left-menu') do %>
-                    <span class="glyphicon glyphicon-bell small-img pink" aria-hidden="true"></span>
+                    <%= fa_icon 'bell', class: 'navbar-link pink' %>
                     Respuestas <span class="number-notifications"><%= CampaignsHelper.count_notifications(current_user) %></span>
                   <% end %>
                 </li>
@@ -50,33 +50,31 @@
                 <li class="center">
                   <!-- edit_user_registration -->
                   <%= link_to(edit_user_registration_path, class: 'left-menu') do %>
-                  <%= image_tag("iconos-pencil.svg", class: "img-responsive small-img navbar-link") %>Editar perfil
+                  <%= fa_icon 'pencil', class: 'navbar-link pink' %>Editar perfil
                   <% end %>
                   </a>
                 </li>
 
                 <li class="center">
                   <%= link_to(suscriptions_path, class: 'left-menu') do %>
-                    <%= image_tag("iconos-config.svg", class: "img-responsive small-img navbar-link") %> Planes
+                    <%= fa_icon 'shopping-cart', class: 'navbar-link pink' %> Planes
                   <% end %>
                 </li>
 
                 <li class="center">
                   <%= link_to(new_payment_path, class: 'left-menu') do %>
-                    <%= image_tag("iconos-store.svg", class: "img-responsive small-img navbar-link") %>Metodo de Pago
+                    <%= fa_icon 'credit-card', class: 'navbar-link pink' %>Metodo de Pago
                   <% end %>
                 </li>
 
                 <li class="center">
                   <%= link_to(pricing_path + '#faq-title', class: 'left-menu', "data-turbolinks" => false) do %>
-                    <%= image_tag("iconos-question.svg", class: "img-responsive small-img navbar-link") %>FAQ
+                    <%= fa_icon 'question-circle', class: 'navbar-link pink' %>FAQ
                   <% end %>
                   </a>
                 </li>
-
-                <li class="center">
-                  <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu", id: "close", "data-turbolinks" => false) do %>
-                  <%= image_tag("iconos-profile.svg", class: "small-img") %>Cerrar sesión
+                  <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu","data-turbolinks" => false) do %>
+                    <%= fa_icon 'user', class: 'navbar-link pink' %>Cerrar sesión
                   <% end %>
                 </li>
               <% else %>

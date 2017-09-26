@@ -8,7 +8,7 @@ class CampaignMailer < ApplicationMailer
     recipients = []
     recipients_data = []
     color = campaign.color
-    campaign.contacts.where(blacklist: nil, valid_info: true, status: 0).each do |contact|
+    campaign.valid_and_not_sent_contacts.each do |contact|
       recipients << contact.email
       recipients_data << { substitution_data: { name: contact.name, token: CampaignsHelper.encrypt(contact.id.to_s), color: color }, address: { email: contact.email, header_to: contact.email } }
     end
@@ -23,6 +23,12 @@ class CampaignMailer < ApplicationMailer
     @user_email = user_email
     data = { html_content_only: true }
     mail(to: @user_email, subject: 'Cambio de Suscription', from: 'noreply@sone.com.mx', sparkpost_data: data)
+  end
+
+  def welcome(user)
+    @current_user = user
+    data = { html_content_only: true }
+    mail(to: @current_user.email, subject: 'Bienvenido a Sone', from: 'noreply@sone.com.mx', sparkpost_data: data)
   end
 
 end

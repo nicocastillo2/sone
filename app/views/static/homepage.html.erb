@@ -1,6 +1,6 @@
 <header>
   <div class="container-fluid">
-       <button onclick="back_to_top()" id="flecha"><%= image_tag 'static/flecha-arriba.svg', id: 'flecha-arriba', class: "hidden-lg hide" %></button> 
+       <button onclick="back_to_top()" id="flecha"><%= image_tag 'static/flecha-arriba.svg', id: 'flecha-arriba', class: "hidden-lg hide" %></button>
     <div class="hero-text-box text-center">
       <h1 id="home-main-title">Pide feedback a tus clientes</h1>
       <h3 class="responsive" id="title-responsive">Mide la experiencia que les ofreces y encuentra áreas de oportunidad<br>para crecer tu negocio</h3>
@@ -18,7 +18,7 @@
 <section class="ask-improve-section">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-md-offset-1 col-sm-5"> 
+      <div class="col-md-4 col-md-offset-1 col-sm-5">
         <h3>Pregunta</h3>
         <p>
           Crea una <span class="highlight-text">base de clientes</span>,
@@ -114,9 +114,9 @@
 
 <!-- Our clients opinion -->
 <section class="clients-opinion-section">
-  
+
   <h3 class="text-center">Nuestros clientes opinan</h3>
-  
+
   <div class="slider-container">
     <ul class="bxslider-opinions">
       <li class="bxslider-item">
@@ -199,7 +199,7 @@
         <%= image_tag 'foto-cliente.png', class: 'bxslider-image'%>
       </li>
     </ul>
-    
+
     <ul class="slider-clients-pages hidden-sm hidden-xs">
       <li class="slider-page-item active" data-slide-index="0"></li>
       <li class="slider-page-item" data-slide-index="1"></li>
@@ -214,3 +214,17 @@
 </section>
 <!-- End Our clients opinion -->
 <%= render "layouts/static_footer" %>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  window.$_Tawk = undefined;
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/59baffe8c28eca75e46201b4/default';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+<!--End of Tawk.to Script-->

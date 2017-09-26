@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170912170619) do
+ActiveRecord::Schema.define(version: 20170918180917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170912170619) do
     t.jsonb "topics", default: "{}", null: false
     t.boolean "valid_info", default: true, null: false
     t.index ["campaign_id"], name: "index_contacts_on_campaign_id"
+    t.index ["email"], name: "index_contacts_on_email"
   end
 
   create_table "payments", force: :cascade do |t|
