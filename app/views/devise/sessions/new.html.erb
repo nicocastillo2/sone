@@ -64,7 +64,7 @@
 
                 <div class="form-group">
                   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-                    <%= link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name), class: "forgot-pass" %><br />
+                    <%= link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name), class: "forgot-pass text-pink" %><br /> <br>
                   <% end -%>
                   <%= f.submit "Iniciar Sesión", class: 'btn pull-right', id: 'login-button' %>
                 </div>
