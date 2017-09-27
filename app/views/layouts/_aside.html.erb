@@ -21,7 +21,7 @@
                     <% if current_user.avatar.nil? %>
                       <%= image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>
                     <% else %>
-                      <%= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %>
+                      <%#= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %>
                     <% end %>
                     <p class="left-menu center gray"><%= current_user.email %></p>
                     <p class="left-menu center gray">Mail Disponibles: <%= current_user.available_emails %></p>
