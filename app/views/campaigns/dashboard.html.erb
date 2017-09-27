@@ -1,40 +1,15 @@
 <%= provide :title, 'Dashboard' %>
 
 <div class="row">
-  <div class="col-md-4 col-md-offset-1">
+  <div class="col-md-2 col-md-offset-8">
+    <% date = @active_filter || '1' %>
+    <%= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date), class: 'btn btn-default send-button', id: 'download-report' %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
     <%= form_for :filter, url: user_dashboard_path, method: :post, html: { id: 'filter-form' } do |f| %>
-      <div class="form-group">
-        <h2>Período</h2>
-        <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, { selected: @active_filter }, class: 'report-select' %>
-      </div>
-
-      <h2>Campañas</h2>
-      <%= button_tag 'Todas las campañas', id: 'all-campaigns' %>
-      <div class="form-group" id="campaigns-checkboxes">
-        <% current_user.campaigns.each do |campaign| %>
-          <%= label_tag campaign.name, campaign.name, class: 'control-label' %>
-          <% if @selected_campaigns.size == 0 || @selected_campaigns.include?(campaign.id.to_s) %>
-            <%= check_box_tag "campaigns[]", campaign.id, { checked: true } %>
-          <% else %>
-            <%= check_box_tag "campaigns[]", campaign.id %>
-          <% end %>
-          <br>
-        <% end %>
-      </div>
-
-      <h2>Topics</h2>
-      <div class="form-group" id="topics-checkboxes">
-        <% Campaign.contact_topics.each do |key, value| %>
-          <%= label_tag value, value.capitalize, class: 'control-label' %>
-          <% if @selected_topics.include? value %>
-            <%= check_box_tag "topics[]", value, { checked: true } %>
-          <% else %>
-            <%= check_box_tag "topics[]", value %>
-          <% end %>
-          <br>
-        <% end %>
-      </div>
-
       <!-- DO NOT REMOVE DATEPICKER RANGE -->
       <!-- <div class="form-group">
         <div class="input-daterange">
@@ -45,27 +20,73 @@
         </div>
       </div> -->
 
-      <div class="form-group">
-        <%= f.submit 'Filtrar', class: 'btn btn-default send-button button-100' %>
+      <table class="table table-condensed" id="filter-table">
+        <thead class="container-shadow">
+          <tr>
+            <th class="dashboard-filter-titles">Período</th>
+            <th class="dashboard-filter-titles">Campañas</th>
+            <th class="dashboard-filter-titles">Topics</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              <br>
+              <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, { selected: @active_filter }, class: 'report-select' %>
+            </td>
+            <td>
+              <br>
+              <%= button_tag 'Todas las campañas', id: 'all-campaigns' %>
+              <div class="form-group" id="campaigns-checkboxes">
+                <% current_user.campaigns.each do |campaign| %>
+                  <% if @selected_campaigns.size == 0 || @selected_campaigns.include?(campaign.id.to_s) %>
+                    <%= check_box_tag "campaigns[]", campaign.id, { checked: true } %>
+                  <% else %>
+                    <%= check_box_tag "campaigns[]", campaign.id %>
+                  <% end %>
+                  <%= label_tag campaign.name, campaign.name, class: 'control-label' %>
+                  <br>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <br>
+              <div class="form-group" id="topics-checkboxes">
+                <% Campaign.contact_topics.each do |key, value| %>
+                  <% if @selected_topics.include? value %>
+                    <%= check_box_tag "topics[]", value, { checked: true } %>
+                  <% else %>
+                    <%= check_box_tag "topics[]", value %>
+                  <% end %>
+                  <%= label_tag value, value.capitalize, class: 'control-label' %>
+                  <br>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+          <div class="form-group">
+            <%= f.submit 'Filtrar', class: 'btn btn-default send-button button-100' %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <%= link_to "Quitar filtros", user_dashboard_path, class: 'btn btn-default send-button button-100' %>
+        </div>
       </div>
     <% end %>
   </div>
-
-  <div class="col-md-2 col-md-offset-2">
-    <%= link_to "Quitar filtros", user_dashboard_path, class: 'btn btn-default send-button' %>
-  </div>
-
-  <div class="col-md-2">
-    <% date = @active_filter || '1' %>
-    <%# feedback_type = @feedback_type || 'none' %>
-    <!-- <%#= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date, feedback_type: feedback_type), class: 'btn btn-default send-button', id: 'download-report' %> -->
-    <%= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date), class: 'btn btn-default send-button', id: 'download-report' %>
-    <h3><%= @feedback_type %></h3>
-  </div>
 </div>
 
+<br>
+
 <div class="row">
-  <div class="col-md-9 col-md-offset-1">
+  <div class="col-md-9 col-md-offset-2">
+    <h1 class="dashboard-title-section">Tendencias</h1>
+    <br>
     <div id="graph_report"></div>
   </div>
 
@@ -111,7 +132,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12 col-md-offset-1">
+  <div class="col-md-11 col-md-offset-2">
     <h1 class="feedback-stat">
       <span class="label label-default">
         <span id="selected-date-feedback">30 Day NPS</span>:

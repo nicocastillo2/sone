@@ -372,6 +372,7 @@ $stat-box-gray: #f4f4f4;
 .feedback-answer-date {
   font-size: 85%;
   padding-top: 5px;
+  color: gray;
 }
 
 .feedback-answer .panel {
@@ -462,4 +463,43 @@ $stat-box-gray: #f4f4f4;
   .pink-button{
     width: 100%;
   }
+}
+
+#filter-table tbody {
+  color: gray;
+}
+
+.dashboard-title-section {
+  color: $green;
+}
+
+.feedback-icon {
+  color: $green;
+}
+
+.dashboard-filter-titles {
+  color: $pink;
+  font-size: 140%;
+}
+
+.container-shadow {
+  -webkit-box-shadow: 5px 5px 35px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 35px -5px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 35px -5px rgba(0,0,0,0.75);
+}
+
+.feedback-answer .panel-default > .panel-heading-custom {
+  background-color: white;
+  border-color: $green;
+}
+
+.feedback-answer {
+  color: gray;
+}
+
+.feedback-answer .panel-default > .panel-body {
+  // background-color: rgba(0, 0, 0, 0.1);
+  background-color: #f1f1f1;
+  border-bottom-right-radius: 14px;
+  border-bottom-left-radius: 14px;
 }

@@ -28,6 +28,8 @@ class CampaignsController < ApplicationController
 
   # GET /campaigns/1/edit
   def edit
+    p "·#" * 123
+    p params
   end
 
   # POST /campaigns
