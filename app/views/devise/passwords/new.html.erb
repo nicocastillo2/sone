@@ -3,21 +3,41 @@
 
 <h2>¿Olvidaste tu Contraseña?</h2>
 
-<div class="row">
-  <div class="col-md-4">
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= devise_error_messages! %>
+<div class="row row-0">
+<div class="col-md-4">
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<%= devise_error_messages! %>
 
-      <div class="form-group">
-        <%= f.label :email, class: 'control-label' %>
-        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+<div class="form-group">
+<%= f.label :email, class: 'control-label' %>
+<%= f.email_field :email, autofocus: true, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+<%= f.submit "Enviar Instrucciones", class: 'btn btn-primary' %>
+</div>
+<% end %>
+
+<div class="col-xs-4 col-md-2 col-md-offset-0 pad-left text-center width">
+<div class="text-center registration-links">
+      <!--<div class="col-xs-3 col-md-3">
+        <p class="con gray">con</p>
+      </div> -->
+      <div class="col-xs-4 col-md-2" style="display: inline-flex;"">
+        <p class="con gray"></p><%= link_to user_facebook_omniauth_authorize_path do %>
+        <img class="login-icons face-icon" src="<%= root_url %>face-icon.svg" alt="">
+        <% end %>
       </div>
-
-      <div class="form-group">
-        <%= f.submit "Enviar Instrucciones", class: 'btn btn-primary' %>
+      <div class="col-xs-4 col-md-2">
+        <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+        <img class="login-icons", id="space-icon" src="<%= root_url %>google-plus.svg" alt="">
+        <% end %>
       </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
+      <div class="col-xs-4 col-md-2">
+        <%= link_to new_user_registration_path do %>
+        <img class="login-icons" src="<%= root_url %>mail.svg" alt="">
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
