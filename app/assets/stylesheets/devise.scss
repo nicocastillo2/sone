@@ -176,6 +176,27 @@
   padding: 7%;
   padding-left: 12%;
 }
+.btn-gray{
+  background-color: #808080;
+  color: white;
+  border-radius: 30px;
+  border-color: #808080;
+  padding: 5px 30px;
+}
+.btn-gray:hover{
+  background-color: #4c4c4c;
+  color: white;
+  border-color: $gray;
+}
+.btn-pink{
+  background-color: $pink;
+  border-radius: 30px;
+  padding: 10px 30px;
+  color: white;
+}
+.btn-pink:hover{
+  text-decoration: underline;
+}
 .div-avatar{
   background-color: #666666;
   position: relative;
@@ -218,6 +239,17 @@
 .forgot-pass:hover{
   color: $pink;
   text-decoration: underline;
+}
+#pass-mail{
+  float: right;
+  text-align: right;
+  right: 5%;
+  top: 30px;
+  max-width: 27px;
+
+}
+.font-20{
+  font-size: 20px;
 }
 .font-40{
   font-size: 40px;
@@ -299,6 +331,9 @@
     padding-top: 1%;
     right: 4.5%;
     max-width: 20px;
+  }
+  #pass-mail{
+    top: 28px;
   }
   #sign-up{
     margin-bottom: 20px;
