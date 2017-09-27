@@ -1,7 +1,7 @@
 <br>
 
 <div class="row">
-  <div class="col-md-11 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-2">
     <h1 class="feedback-stat">
       <span class="label label-default"><span id="selected-date-feedback"><%= @date_range %></span>: <%= @nps_sample_count %></span>
     </h1>
@@ -22,10 +22,10 @@
 <div class="row">
   <% @contacts_feedback.each do |answer| %>
     <div class="row feedback-answer container-fluid">
-      <div class="col-md-8 col-md-offset-1">
+      <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title"><%= fa_icon(Answer.get_icon(answer.score)) %><span class="feedback-answer-date pull-right"><%= answer.created_at.strftime("%d-%m-%Y") %></span></h4>
+          <div class="panel-heading panel-heading-custom">
+            <h4 class="panel-title"><%= fa_icon(Answer.get_icon(answer.score), class: 'feedback-icon') %><span class="feedback-answer-date pull-right"><%= answer.created_at.strftime("%d-%m-%Y") %></span></h4>
           </div>
           <div class="panel-body">
             <% if answer.comment.blank? %>
@@ -41,7 +41,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-2">
     <%= will_paginate @contacts_feedback, inner_window: 3, outer_window: 1 %>
   </div>
 </div>
