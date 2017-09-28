@@ -3,7 +3,6 @@ class AnswersController < ApplicationController
   def new
     id = CampaignsHelper.decrypt(params[:data])
     contact = Contact.find(id)
-    Campaign.increment_counter(:new_answers, contact.campaign.id)
     @score = params[:score]
     @answer = Answer.new(score: @score, contact: contact)
 
@@ -13,6 +12,7 @@ class AnswersController < ApplicationController
       @status = 'answered'
     else
       @answer = Answer.create(score: @score, contact: contact)
+      Campaign.increment_counter(:new_answers, contact.campaign.id)
     end
   end
 

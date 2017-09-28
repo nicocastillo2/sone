@@ -60,7 +60,6 @@ class Nps
       cumulative_nps << (((cumulative_promoters[index]) * 100) / cumulative_answers[index]) - (((cumulative_detractors[index]) * 100) / cumulative_answers[index])
     end
     nps.cumulative_nps = cumulative_nps
-    debugger
 
     nps
   end

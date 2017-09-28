@@ -28,8 +28,8 @@ class CampaignsController < ApplicationController
 
   # GET /campaigns/1/edit
   def edit
-    p "·#" * 123
-    p params
+    # p "·#" * 123
+    # p params
   end
 
   # POST /campaigns
@@ -264,9 +264,14 @@ class CampaignsController < ApplicationController
 
   def generate_campaign_mailing
     num_surveys = Campaign.find(params[:campaign_id]).contacts.where(blacklist: nil, valid_info: true, status: 0).count
-    @mensaje = ""
+    # @mensaje = ""
     if num_surveys <= current_user.available_emails
-      CampaignMailer.send_survey(params[:campaign_id], params[:sender_email]).deliver!
+      mensaje = 'Campaña enviada exitosamente.'
+      if Campaign.find(params[:campaign_id]).valid_and_not_sent_contacts.empty?
+        mensaje = 'No hay contactos disponibles'
+      else
+        CampaignMailer.send_survey(params[:campaign_id], params[:sender_email]).deliver!
+      end
       campaign = Campaign.includes(:contacts).find(params[:campaign_id])
 
       @time = Time.now
@@ -277,7 +282,7 @@ class CampaignsController < ApplicationController
       current_user.update(available_emails: num_available_emails - num_surveys)
       campaign.surveys_counter += num_surveys
       campaign.save
-      flash[:success] = 'Campaña enviada exitosamente.'
+      flash[:info] = mensaje
     else
       flash[:warning] = 'No tienes sufucuentes emails disponibles'
     end
