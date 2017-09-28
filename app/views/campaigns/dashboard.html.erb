@@ -96,8 +96,10 @@
         'graph_report',
         data: {
           x: 'x',
+          cumulative: 'Cumulative NPS',
           columns: [
             ['x'] + @nps.dates,
+            ['Cumulative NPS'] + @nps.cumulative_nps,
             ['NPS'] + @nps.nps,
             ['Detractors'] + @nps.detractors,
             ['Passives'] + @nps.passives,
@@ -108,7 +110,7 @@
           }
         },
         legend: {
-          show: false
+          show: true
         },
         axis: {
           x: {
