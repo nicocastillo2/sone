@@ -19,7 +19,9 @@ class AnswersController < ApplicationController
   def update
     answer = Answer.find(params[:id])
     answer.update(comment: params[:answer][:comment])
-    redirect_to root_path
+    # redirect_to new_answer_url(data: params[:data])
+    #se soluciona cambiando a root_path
+    render :new, locals: {status: "expired"}
   end
 
 end

@@ -23,7 +23,7 @@
   <div class="row" style="width: 100%;">
     <div class="col-md-10 col-md-offset-1 ipad">
       <h2 class="pink text-center" style="padding-top: 2%;">Tu Calificación fue: <%= @score %> </h2>
-      <h2 class="text-gray text-center">Déjanos tus comentarios</h3>
+      <h2 class="text-gray text-center">Por favor déjanos tus comentarios</h3>
       <br>
       <%= form_for(@answer, url: edit_answer_path(@answer), html: { method: "patch", class: " form-pink", role: "form" }) do |f| %>
         <% if @answer.errors.any? %>
@@ -46,7 +46,7 @@
         <br>
         <div class="form-group">
           <div class="col-sm-10 text-center">
-            <%= f.submit class: "btn btn-default pink-show center", style:"margin-top: 0.5%;" %>
+            <%= f.submit "Enviar respuesta", class: "btn btn-default pink-show center", style:"margin-top: 0.5%;" %>
           </div>
         </div>
         <div class="col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 hidden-md hidden-lg">

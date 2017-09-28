@@ -60,12 +60,23 @@
       width: 300px;
       height: auto;
     }
-
+  .em{
+    width: 50em;
+  }
     table table td{
       border: 1px solid black;
-      width: 9.09%;
+      width: 15.09%;
     }
-    @media only screen and (max-width: 770px)  {
+    @media only screen and (min-width: 766px)  {
+      .text-full{
+        width: 5%!important;
+      }
+      .full{
+        width: 5%;
+      }
+      
+    }
+    @media only screen and (max-width: 765px)  {
       .full {
         display:block;
         width:100%;
@@ -203,22 +214,35 @@
           <table border="0" cellpadding="0" cellspacing="5" width="100%">
             <tbody>
             <% (0..10).each do |index| %>
-              <tr class="" style="width: 100%;display: inline-block;">
-                <%# (0..10).each do |index| %>
-                  <td class="full border-0">
-                    <% if index != 10  %>
-                     <a class="select" style="color: white;background-color: #b2427c;padding:1.5% 21%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
-                    <% else %>
-                      <a class="select" style="color: white;background-color: #b2427c;padding:1.3% 20%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
-                    <%# end %>
-                  </td>
-                  <% end %>
-                <% end %>
+            <% if index == 0 %>
+              <tr class="text-full" style="">
+              <%# (0..10).each do |index| %>
+                <td class="border-0">
+                  <a class="select " style="color: white;background-color: {{color}};padding:1.5% 21%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %> - Poco</a>
+                </td>
               </tr>
+            <% elsif index != 10  %>
+            <tr class="full" style="">
+                <%# (0..10).each do |index| %>
+                  <td class="border-0" style="width: 50em;">
+                     <a class="select em" style="width: 50em; color: white;background-color: {{color}};padding:1.5% 21%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
+                                      <%# end %>
+                  </td>
+                  
+              </tr>
+            <% else %>
+              <tr class="text-full" style="">
+                <%# (0..10).each do |index| %>
+                <td class="border-0">
+                  <a class="select " style="color: white;background-color: {{color}};padding:1.3% 20%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %> - Mucho</a>
+                </td>
+              </tr>
+              <% end %>
+            <% end %>
             </tbody>
           </table>
           <center>
-            <p class="font-size-10" style="font-size: 70%">Si quieres dejar de recibir correos por parte de Sone da <a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Clic aquí</a></p>
+            <p class="font-size-10" style="font-size: 70%">Dejar Suscripción<a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Clic aquí</a> <br>Powered by <%= link_to "SONE", root_path, class: "link font-10" %></p>
           </center>
         </td>
       </tr>

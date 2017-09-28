@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/send_campaign', to: 'campaigns#generate_campaign_mailing', as: 'send_campaign'
   get '/campaigns/template', to: 'campaigns#template', as: 'campaign_template'
 
+  get '/test_mail', to: 'application#survey'
+
   resources :campaigns do
     get 'report', on: :member
     post 'report', on: :member
