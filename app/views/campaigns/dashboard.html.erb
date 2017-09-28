@@ -1,14 +1,21 @@
 <%= provide :title, 'Dashboard' %>
 
 <div class="row">
-  <div class="col-md-2 col-md-offset-8">
+  <div class="col-md-2 col-md-offset-2">
+    <button class="btn btn-default filter-collapse-btn" type="button" data-toggle="collapse" data-target="#filter" aria-expanded="false" aria-controls="filter">
+      Filtros
+    </button>
+  </div>
+  <div class="col-md-2">
     <% date = @active_filter || '1' %>
     <%= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date), class: 'btn btn-default send-button', id: 'download-report' %>
   </div>
 </div>
+
 <br>
+
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2 collapse" id="filter">
     <%= form_for :filter, url: user_dashboard_path, method: :post, html: { id: 'filter-form' } do |f| %>
       <!-- DO NOT REMOVE DATEPICKER RANGE -->
       <!-- <div class="form-group">
@@ -41,23 +48,24 @@
               <div class="form-group" id="campaigns-checkboxes">
                 <% current_user.campaigns.each do |campaign| %>
                   <% if @selected_campaigns.size == 0 || @selected_campaigns.include?(campaign.id.to_s) %>
-                    <%= check_box_tag "campaigns[]", campaign.id, { checked: true } %>
+                    <%= check_box_tag "campaigns[]", campaign.id, { checked: true }, id: campaign.name  %>
                   <% else %>
-                    <%= check_box_tag "campaigns[]", campaign.id %>
+                    <%= check_box_tag "campaigns[]", campaign.id, id: campaign.name %>
                   <% end %>
-                  <%= label_tag campaign.name, campaign.name, class: 'control-label' %>
+                  <%= label_tag campaign.name, campaign.name, class: 'control-label', for: campaign.name %>
                   <br>
                 <% end %>
               </div>
             </td>
             <td>
               <br>
+              <%= button_tag 'Todos los topics', id: 'all-topics' %>
               <div class="form-group" id="topics-checkboxes">
                 <% Campaign.contact_topics.each do |key, value| %>
                   <% if @selected_topics.include? value %>
                     <%= check_box_tag "topics[]", value, { checked: true } %>
                   <% else %>
-                    <%= check_box_tag "topics[]", value %>
+                    <%= check_box_tag "topics[]", value, nil, id: value %>
                   <% end %>
                   <%= label_tag value, value.capitalize, class: 'control-label' %>
                   <br>
@@ -134,8 +142,8 @@
 </div>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <h1 class="feedback-stat">
+  <div class="col-md-4 col-md-offset-2">
+    <h1>
       <span class="label label-default">
         <span id="selected-date-feedback">30 Day NPS</span>:
         <% if @nps_30_fixed %>
@@ -147,4 +155,5 @@
     </h1>
   </div>
 </div>
+
 <div id="contacts-feedback"><%= render partial: 'feedback' %></div>
