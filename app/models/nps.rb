@@ -1,6 +1,6 @@
 class Nps
   attr_reader :dates, :nps
-  attr_accessor :detractors, :passives, :promoters
+  attr_accessor :detractors, :passives, :promoters, :cumulative_nps
 
   def initialize
     @dates = []
@@ -8,6 +8,7 @@ class Nps
     @passives = []
     @promoters = []
     @nps = []
+    @cumulative_nps = []
   end
 
   def self.for_campaign campaign_id, start_date, end_date, topics
@@ -39,6 +40,28 @@ class Nps
       nps.promoters << row["promoters"]
       nps.nps << promoters_avg - detractors_avg
     end
+
+    cumulative_answers = []
+    cumulative_promoters = []
+    cumulative_detractors = []
+    cumulative_passives = []
+    (0...nps.nps.size).each do |index|
+        cumulative_promoters << nps.promoters[0..index].reduce(:+)
+        cumulative_detractors << nps.detractors[0..index].reduce(:+)
+        cumulative_passives << nps.passives[0..index].reduce(:+)
+        cumulative_answers << cumulative_promoters[index] + cumulative_detractors[index] + cumulative_passives[index]
+    end
+
+    # cumulative_answers[index] -> 100%
+    # (promoters/detractors)    ->  ?
+    # ((promoters/detractors) * 100) / cumulative_answers[index]
+    cumulative_nps = []
+    (0...nps.nps.size).each do |index|
+      cumulative_nps << (((cumulative_promoters[index]) * 100) / cumulative_answers[index]) - (((cumulative_detractors[index]) * 100) / cumulative_answers[index])
+    end
+    nps.cumulative_nps = cumulative_nps
+    debugger
+
     nps
   end
 
