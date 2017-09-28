@@ -365,14 +365,28 @@ $stat-box-gray: #f4f4f4;
   text-align: center;
 }
 
+.feedback-stat-first {
+  background-color: $green;
+  color: white;
+  text-align: center;
+}
+
 .feedback-stat {
-  display: inline;
+  background-color: rgba(198, 195, 110, 0.3);
+  color: $green;
+  text-align: center;
+  font-weight: bold;
+}
+
+.feedback-icon-info {
+  font-size: 200%;
 }
 
 .feedback-answer-date {
   font-size: 85%;
   padding-top: 5px;
-  color: gray;
+  color: $pink;
+  font-weight: 600;
 }
 
 .feedback-answer .panel {
@@ -488,13 +502,19 @@ $stat-box-gray: #f4f4f4;
   box-shadow: 5px 5px 35px -5px rgba(0,0,0,0.75);
 }
 
-.feedback-answer .panel-default > .panel-heading-custom {
+.feedback-answer .panel {
+  border: 0;
+}
+
+.feedback-answer .panel-default > .panel-heading {
   background-color: white;
+  border: 2px solid transparent;
   border-color: $green;
 }
 
 .feedback-answer {
-  color: gray;
+  color: $pink;
+  font-weight: 500;
 }
 
 .feedback-answer .panel-default > .panel-body {
@@ -510,5 +530,16 @@ $stat-box-gray: #f4f4f4;
 }
 
 .pagination > li > a, .pagination > li > span {
+  color: $pink;
+}
+
+.filter-collapse-btn {
+  background-color: $green;
+  color: white;
+  margin-bottom: 7%;
+  border-radius: 20px;
+}
+
+.feedback-answer-titles h4 {
   color: $pink;
 }

@@ -19,14 +19,26 @@ $(function() {
     });
   });
 
-  $('#all-campaigns').on('click', function(event){
+  $(document).on('click', '#all-campaigns', function(event) {
     event.preventDefault();
-    $('#campaigns-checkboxes input').prop('checked', true);
+    if ($('#campaigns-checkboxes input').is(':checked')) {
+      $('#campaigns-checkboxes input').removeAttr('checked');
+    } else {
+      $('#campaigns-checkboxes input').prop('checked', true );
+    }
+  });
+
+  $(document).on('click', '#all-topics', function(event) {
+    event.preventDefault();
+    if ($('#topics-checkboxes input').is(':checked')) {
+      $('#topics-checkboxes input').removeAttr('checked');
+    } else {
+      $('#topics-checkboxes input').prop('checked', true );
+    }
   });
 
   $(document).on('click', '.feedback-stat:not(:first-child) span', function(event) {
     event.preventDefault();
-
     // Collect data to send through AJAX post request
     var urlPathname = window.location.pathname;
     var reportUrl = $('#download-report').attr('href');
