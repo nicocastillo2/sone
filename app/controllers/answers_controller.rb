@@ -7,9 +7,11 @@ class AnswersController < ApplicationController
     @answer = Answer.new(score: @score, contact: contact)
 
     if DateTime.now - 48.hours > contact.sent_date
-      @status = 'expired'
+      # @status = 'expired'
+      render 'expired'
     elsif Answer.find_by_contact_id(@answer.contact_id)
-      @status = 'answered'
+      # @status = 'answered'
+      render 'answered'
     else
       @answer = Answer.create(score: @score, contact: contact)
       Campaign.increment_counter(:new_answers, contact.campaign.id)
@@ -21,7 +23,7 @@ class AnswersController < ApplicationController
     answer.update(comment: params[:answer][:comment])
     # redirect_to new_answer_url(data: params[:data])
     #se soluciona cambiando a root_path
-    render :new, locals: {status: "expired"}
+    render 'answered'
   end
 
 end
