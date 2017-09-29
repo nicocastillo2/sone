@@ -36,16 +36,17 @@
 
                 <li class="center">
                   <%= link_to(campaigns_path, class: 'left-menu') do %>
-                  <%= fa_icon 'envelope-o', class: 'navbar-link pink' %>Campañas
+                  <%= fa_icon 'envelope-o', class: 'navbar-link pink' %>
+                  Campañas <span class="number-notifications"><%= CampaignsHelper.count_notifications(current_user) %></span>
                   <% end %>
                 </li>
 
-                <li class="center">
-                  <%= link_to(campaigns_path, class: 'left-menu') do %>
-                    <%= fa_icon 'bell', class: 'navbar-link pink' %>
-                    Respuestas <span class="number-notifications"><%= CampaignsHelper.count_notifications(current_user) %></span>
-                  <% end %>
-                </li>
+                <!-- <li class="center">
+                  <%#= link_to(campaigns_path, class: 'left-menu') do %>
+                    <%#= fa_icon 'bell', class: 'navbar-link pink' %>
+                    Respuestas <span class="number-notifications"><%#= CampaignsHelper.count_notifications(current_user) %></span>
+                  <%# end %>
+                </li> -->
 
                 <li class="center">
                   <!-- edit_user_registration -->
