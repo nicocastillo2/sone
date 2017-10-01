@@ -1,6 +1,7 @@
 class StaticController < ApplicationController
 
   layout "static-layout"
+  http_basic_authenticate_with name: "kheper", password: "1234kh"
 
   def homepage
     # redirect_to campaigns_path if user_signed_in?
