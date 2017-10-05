@@ -43,6 +43,12 @@
           <div class="panel-heading">
             <h4 class="panel-title">
               <%= fa_icon(Answer.get_icon(answer.score), class: 'feedback-icon') %>
+              <span class="feedback-answer-date">
+                Nombre: <span class="contact-info-answer"><%= answer.contact.name %></span>
+              </span>
+              <span class="feedback-answer-date">
+                Email: <span class="contact-info-answer"><%= answer.contact.email %></span>
+              </span>
               <span class="feedback-answer-date pull-right">
                 <%= answer.created_at.strftime("%d / %m / %Y") %>
               </span>
