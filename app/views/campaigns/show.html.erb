@@ -294,7 +294,7 @@
 
           <tbody>
             <% @contacts_sent_pendants_actives.each do |contact| %>
-              <% if contact.blacklist.nil? && contact.answer.nil? %>
+              <% if contact.blacklist.nil? %>
                 <tr>
                   <td><%= contact.email %></td>
                   <% unless @topics.empty? %>
