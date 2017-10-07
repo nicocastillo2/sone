@@ -163,6 +163,14 @@ class Campaign < ApplicationRecord
     end
   end
 
+  def self.get_filtered_campaigns(campaigns)
+    Campaign.where(id: campaigns)
+  end
+
+  def self.get_filtered_topics(topics)
+    Campaign.contact_topics.map { |k, v| k if topics.include?(v) }.compact
+  end
+
   private
 
     def csv_has_headers?

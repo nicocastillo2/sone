@@ -99,6 +99,24 @@
 
   <br>
 
+  <% if @filters %>
+    <div class="row well">
+      <div class="col-md-4">
+        <%= @filters[:date] %>
+      </div>
+      <div class="col-md-4">
+        <% @filters[:campaigns].each do |campaign| %>
+          <h6><%= campaign.name %></h6>
+        <% end %>
+        </div>
+      <div class="col-md-4">
+        <% @filters[:topics].each do |topic| %>
+          <h6><%= topic %></h6>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="col-md-9 col-md-offset-2">
       <h1 class="dashboard-title-section">Tendencias</h1>
