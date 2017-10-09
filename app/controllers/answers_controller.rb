@@ -15,6 +15,7 @@ class AnswersController < ApplicationController
     else
       @answer = Answer.create(score: @score, contact: contact)
       Campaign.increment_counter(:new_answers, contact.campaign.id)
+      Campaign.increment_counter(:total_answers, contact.campaign.id)
     end
   end
 

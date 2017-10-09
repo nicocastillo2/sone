@@ -267,7 +267,6 @@ class CampaignsController < ApplicationController
         }
       end
     end
-
     respond_to do |format|
       format.js { render partial: 'feedback', content_type: 'text/html' }
       format.html
