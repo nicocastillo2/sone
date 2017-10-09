@@ -154,9 +154,6 @@ class CampaignsController < ApplicationController
   end
 
   def dashboard
-    puts '+' * 30
-    pp params
-    puts '+' * 30
     if current_user.campaigns.empty?
       @no_campaigns = true
     else
@@ -228,14 +225,11 @@ class CampaignsController < ApplicationController
         @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
         @data_percentages_30_fixed = Campaign.get_nps_data_percentages(@nps_30_fixed, @nps_sample_count)
         @active_filter = params[:filter][:nps_date]
-        puts '+' * 30
-        puts 'FILTERS'
-        pp @filters = {
+        @filters = {
           date: @date_range,
           campaigns: Campaign.get_filtered_campaigns(@selected_campaigns),
           topics: Campaign.get_filtered_topics(@selected_topics)
         }
-        puts '+' * 30
       else
         date = params[:nps_date] ? params[:nps_date] : '1'
         date_range = Campaign.receive_date(date)
@@ -265,6 +259,12 @@ class CampaignsController < ApplicationController
 
         @nps_sample_count = @contacts_feedback.count
         @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
+
+        @filters = {
+          date: @date_range,
+          campaigns: ['Todas las campañas'],
+          topics: Campaign.get_filtered_topics(@selected_topics)
+        }
       end
     end
 

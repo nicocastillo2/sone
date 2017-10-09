@@ -8,13 +8,49 @@
     </div>
   </div>
 <% else %>
+  <% if @filters %>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 well">
+        <h4 class="text-center">Filtros activos</h4>
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <td><h5>Período</h5></td>
+                <td><h5>Campañas</h5></td>
+                <td><h5>Topics</h5></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="label label-default filter-label"><%= @filters[:date] %></span>
+                </td>
+                <td>
+                  <% @filters[:campaigns].each do |campaign| %>
+                    <span class="label label-default filter-label"><%= campaign.is_a?(Campaign) ? campaign.name : campaign %></span>
+                  <% end %>
+                </td>
+                <td>
+                  <% @filters[:topics].each do |topic| %>
+                    <span class="label label-default filter-label"><%= topic %></span>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  <% end %>
   <div class="row">
-    <div class="col-md-2 col-md-offset-2">
+    <div class="col-md-1 col-md-offset-2">
       <button class="btn btn-default filter-collapse-btn" type="button" data-toggle="collapse" data-target="#filter" aria-expanded="false" aria-controls="filter">
         Filtros
       </button>
     </div>
     <div class="col-md-2">
+      <%= link_to "Quitar filtros", user_dashboard_path, class: 'btn btn-default send-button' %>
+    </div>
+    <div class="col-md-2 col-md-offset-3">
       <% date = @active_filter || '1' %>
       <%= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date), class: 'btn btn-default send-button', id: 'download-report' %>
     </div>
@@ -55,7 +91,6 @@
                 <%= button_tag 'Todas las campañas', id: 'all-campaigns' %>
                 <div class="form-group" id="campaigns-checkboxes">
                   <% current_user.campaigns.each do |campaign| %>
-                    <h6><%= campaign.id %></h6>
                     <% if @selected_campaigns.size == 0 || @selected_campaigns.include?(campaign.id.to_s) %>
                       <%= check_box_tag "campaigns[]", campaign.id, { checked: true }, id: campaign.name  %>
                     <% else %>
@@ -85,13 +120,10 @@
           </tbody>
         </table>
         <div class="row">
-          <div class="col-md-3 col-md-offset-3">
+          <div class="col-md-3 col-md-offset-4">
             <div class="form-group">
               <%= f.submit 'Filtrar', class: 'btn btn-default send-button button-100' %>
             </div>
-          </div>
-          <div class="col-md-3">
-            <%= link_to "Quitar filtros", user_dashboard_path, class: 'btn btn-default send-button button-100' %>
           </div>
         </div>
       <% end %>
@@ -100,26 +132,8 @@
 
   <br>
 
-  <% if @filters %>
-    <div class="row well">
-      <div class="col-md-4">
-        <%= @filters[:date] %>
-      </div>
-      <div class="col-md-4">
-        <% @filters[:campaigns].each do |campaign| %>
-          <h6><%= campaign.name %></h6>
-        <% end %>
-        </div>
-      <div class="col-md-4">
-        <% @filters[:topics].each do |topic| %>
-          <h6><%= topic %></h6>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
   <div class="row">
-    <div class="col-md-9 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2">
       <h1 class="dashboard-title-section">Tendencias</h1>
       <br>
       <div id="graph_report"></div>
