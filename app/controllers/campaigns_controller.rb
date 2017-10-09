@@ -199,7 +199,7 @@ class CampaignsController < ApplicationController
           @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
         end
 
-        @contacts_feedback = @contacts_feedback.paginate(page: params[:page], per_page: 5)
+        @contacts_feedback = @contacts_feedback.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
         # @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
 
         if params[:feedback_type] == 'promoter'
@@ -241,7 +241,7 @@ class CampaignsController < ApplicationController
           @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
         end
 
-        @contacts_feedback = @contacts_feedback.paginate(page: params[:page], per_page: 5)
+        @contacts_feedback = @contacts_feedback.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
 
         if params[:feedback_type] == 'promoter'
           @feedback_type = params[:feedback_type]
