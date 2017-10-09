@@ -1000,6 +1000,10 @@ ul .point{
 .static-footer-social{
   list-style: none;
   display: flex;
+
+  a{
+    color: white;
+  }
   
   li{
     margin: 0 auto;
