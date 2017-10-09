@@ -15,7 +15,8 @@ class CampaignsController < ApplicationController
   def show
     date_range = Campaign.receive_date('1')
     @nps = Nps.for_campaign(@campaign.id, date_range[0], date_range[1], @campaign.tmp_topics)
-    @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
+    # @contacts_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: '1').paginate(:page => params[:page])
+    @contacts_sent_pendants_actives = Contact.includes(:answer).where(campaign_id: @campaign.id, answers: { id: nil }, valid_info: true, status: '1', sent_date: (Time.current - 48.hour..Time.current)).paginate(:page => params[:page])
     @contacts_not_sent = Campaign.includes(contacts: [:answer]).find(params[:id]).contacts.where(valid_info: true, status: ['0', '3']).paginate(:page => params[:page])
     @topics = Campaign.find(params[:id]).tmp_topics
     @campaign.update({new_answers: 0})

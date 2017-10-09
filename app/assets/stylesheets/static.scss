@@ -996,6 +996,20 @@ ul .point{
     margin-top: 6%
   }
 }
+
+.static-footer-social{
+  list-style: none;
+  display: flex;
+
+  a{
+    color: white;
+  }
+  
+  li{
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: $screen-xs-max) {
   .cohete{
     max-width: 30%

@@ -489,6 +489,7 @@ $stat-box-gray: #f4f4f4;
 
 .feedback-icon {
   color: $green;
+  margin-right: 5px;
 }
 
 .dashboard-filter-titles {
@@ -542,4 +543,8 @@ $stat-box-gray: #f4f4f4;
 
 .feedback-answer-titles h4 {
   color: $pink;
+}
+
+.contact-info-answer {
+  font-weight: 400;
 }
