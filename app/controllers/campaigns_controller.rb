@@ -256,7 +256,6 @@ class CampaignsController < ApplicationController
         @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
       end
     end
-
     respond_to do |format|
       format.js { render partial: 'feedback', content_type: 'text/html' }
       format.html
