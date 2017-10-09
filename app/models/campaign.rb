@@ -17,7 +17,7 @@ class Campaign < ApplicationRecord
   validate :csv_has_headers?
 
   mount_uploader :logo, LogoUploader
-  before_create :add_domain_to_mail
+  before_save :add_domain_to_mail
 
   def self.import_contacts(file, topics, campaign_id)
     formatted_topics = Campaign.assign_topics(topics)
@@ -207,7 +207,7 @@ class Campaign < ApplicationRecord
     end
 
     def add_domain_to_mail
-      self.sender_email += '@sone.com.mx'
+      self.sender_email += '@sone.com.mx' if changes.include?("sender_email")
     end
 
 end

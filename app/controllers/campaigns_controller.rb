@@ -154,6 +154,9 @@ class CampaignsController < ApplicationController
   end
 
   def dashboard
+    puts '+' * 30
+    pp params
+    puts '+' * 30
     if current_user.campaigns.empty?
       @no_campaigns = true
     else
