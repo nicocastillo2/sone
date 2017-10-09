@@ -184,13 +184,6 @@ class CampaignsController < ApplicationController
       @selected_topics = params[:topics] ||= []
       @topics = params[:topics] ||= []
 
-      puts '+' * 30
-      puts 'SELECTED CAMPAIGNS'
-      pp @selected_campaigns
-      puts 'SIZE == 0'
-      pp @selected_campaigns.size == 0
-      puts '+' * 30
-
       if params[:filter]
         params[:filter][:nps_date] = params[:nps_date] if params[:nps_date]
         selected_date = params[:filter][:nps_date]

@@ -57,11 +57,9 @@
                   <% current_user.campaigns.each do |campaign| %>
                     <h6><%= campaign.id %></h6>
                     <% if @selected_campaigns.size == 0 || @selected_campaigns.include?(campaign.id.to_s) %>
-                      <h4>if</h4>
                       <%= check_box_tag "campaigns[]", campaign.id, { checked: true }, id: campaign.name  %>
                     <% else %>
-                      <h4>else</h4>
-                      <%= check_box_tag "campaigns[]", campaign.id, { checked: false }, id: campaign.name %>
+                      <%= check_box_tag "campaigns[]", campaign.id, nil, id: campaign.name %>
                     <% end %>
                     <%= label_tag campaign.name, campaign.name, class: 'control-label', for: campaign.name %>
                     <br>
