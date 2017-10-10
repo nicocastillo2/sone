@@ -3,6 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sone</title>
   <style type="text/css">
@@ -91,7 +92,7 @@
       .select{
         color: white;
         background-color: #b2427c;
-        padding:1% 20%;
+        padding:1% 2%;
         border-radius:10px;
         text-decoration: none;
       }
@@ -152,8 +153,7 @@
     }
     .border-0{
       border:0;
-      padding-bottom: 3%;
-      padding-top: 15px;
+      padding-bottom: 1%;
     }
     .border-0:hover{
       
@@ -188,15 +188,24 @@
 
 </head>
 <body>
-  <table border="0" cellpadding="0" cellspacing="5" width="100%">
+  <center>
+    <img id="img" src='<%= @logo_path %>' alt="" style="height: 140px;width: 140px;">
+    <br>
+    ¡Hola, {{name}}!
+  </center>
+  <center>
+    <p style="text-align: center">¿Qué tan dispuesto estarías a recomendar <strong><%= @sender_name %></strong> a un amigo o familiar?</p>
+  </center>
+  <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-lg-4 col-lg-offset-4 col-xs-4 col-xs-offset-4" style="width: 40%; margin-left: 30%;">
+    <table class="" border="0" cellpadding="0" cellspacing="5" width="100%">
     <tbody>
       <tr>
         <td style="" class="">
-        <center>
+        <!-- <center>
           <img id="img" src='<%= @logo_path %>' alt="" style="height: 140px;width: 140px;">
           <br>
           ¡Hola, {{name}}!
-        </center>
+        </center> -->
         </td>
       </tr>
       <tr>
@@ -206,26 +215,38 @@
       </tr>
       <tr>
         <td>
-          <p style="text-align: center">¿Qué tan dispuesto estarías a recomendar <strong><%= @sender_name %></strong> a un amigo o familiar?</p>
+          <!-- <p style="text-align: center">¿Qué tan dispuesto estarías a recomendar <strong><%= @sender_name %></strong> a un amigo o familiar?</p> -->
         </td>
       </tr>
       <tr>
         <td class="">
-          <table border="0" cellpadding="0" cellspacing="5" width="100%">
+          <table class="" border="0" cellpadding="0" cellspacing="5" width="100%">
             <tbody>
             <% (0..10).each do |index| %>
             <% if index == 0 %>
               <tr class="text-full" style="">
               <%# (0..10).each do |index| %>
-                <td class="border-0">
-                  <a class="select " style="color: white;background-color: {{color}};padding:1.5% 21%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %> - Poco</a>
+                <td class="border-0 row">
+                  <div class="col-md-12 col-sm-12 col-xs-12  col-lg-12 select text-center" style="color: white;background-color: {{color}};padding:1%;border-radius:10px;">
+                    <center>
+                      <a class="" style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %> - Poco</a>
+                    </center>
+                    
+                  </div>
+                 <!--  <a class="select " style="color: white;background-color: {{color}};padding:1.5% 112%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url)%>?data={{token}}&score=<%#=index%>"><%#= index %> - Poco</a> -->
                 </td>
               </tr>
             <% elsif index != 10  %>
-            <tr class="full" style="">
+            <tr class="text-full" style="">
                 <%# (0..10).each do |index| %>
-                  <td class="border-0" style="width: 50em;">
-                     <a class="select em" style="width: 50em; color: white;background-color: {{color}};padding:1.5% 21%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %></a>
+                  <td class="border-0 row" style="">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 select text-center" style="color: white;background-color: {{color}};padding:1%;border-radius:10px;">
+                      <center>
+                        <a class="" style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %>
+                      </center>
+                      
+                    </div>
+                     <!-- <a class="select em" style="width: 50em; color: white;background-color: {{color}};padding:1.5% 17%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url)%>?data={{token}}&score=<%#=index%>"><%#= index %></a> -->
                                       <%# end %>
                   </td>
                   
@@ -233,8 +254,14 @@
             <% else %>
               <tr class="text-full" style="">
                 <%# (0..10).each do |index| %>
-                <td class="border-0">
-                  <a class="select " style="color: white;background-color: {{color}};padding:1.3% 20%;border-radius:10px;text-decoration: none;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %> - Mucho</a>
+                <td class="border-0 row">
+                  <div class="select col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center" style="color: white;background-color: {{color}};padding:1%;border-radius:10px;">
+                    <center>
+                      <a style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %> - Mucho</a>
+                    </center>
+                    
+                  </div>
+                 <!--  <a class="select " style="color: white;background-color: {{color}};padding:1.5% 13%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url)%>?data={{token}}&score=<%#=index%>"><%#= index %> - Mucho</a> -->
                 </td>
               </tr>
               <% end %>
@@ -242,12 +269,14 @@
             </tbody>
           </table>
           <center>
-            <p class="font-size-10" style="font-size: 70%">Dejar Suscripción<a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Clic aquí</a> <br>Powered by <%= link_to "SONE", root_url, class: "link font-10" %></p>
+            <p class="font-size-10" style="font-size: 70%">Dejar Suscripción<a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Clic aquí</a> <br><br>Powered by <%= link_to "SONE", root_url, class: "link font-10" %></p>
           </center>
         </td>
       </tr>
     </tbody>
   </table>
+  </div>
+  
 </body>
 </html>
 
