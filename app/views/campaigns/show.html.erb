@@ -165,20 +165,26 @@
         <% end %>
       </div>
       <div class="col-md-4 col-sm-4">
-        <% unless @campaign.contacts.empty? %>
-          <% if @campaign.valid_and_not_sent_contacts.count > 0 %>
-            <%= link_to send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button send-campaign', data: { confirm: 'Deseas enviar la campaña?'} do %>
-              Enviar<br>Campaña
-            <% end %>
-          <% else %>
-            <div class="text-center">
-              <h4>Importa contactos para enviar tu campaña</h4>
-            </div>
-          <% end %>
-        <% else %>
+        <% if current_user.payment.plan_name == 'freelancer' && current_user.campaigns.last.id != @campaign.id %>
           <div class="text-center">
-            <h4>Importa contactos para enviar tu campaña</h4>
+            <h4>Campaña Desabilitada</h4>
           </div>
+          <% else %>
+            <% unless @campaign.contacts.empty? %>
+              <% if @campaign.valid_and_not_sent_contacts.count > 0 %>
+                <%= link_to send_campaign_path(campaign_id: @campaign.id, sender_email: @campaign.sender_email), controller: 'campaigns', action: 'generate_campaign_mailing', class: 'btn btn-default send-button send-campaign', data: { confirm: 'Deseas enviar la campaña?'} do %>
+                  Enviar<br>Campaña
+                <% end %>
+              <% else %>
+                <div class="text-center">
+                  <h4>Importa contactos para enviar tu campaña</h4>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="text-center">
+                <h4>Importa contactos para enviar tu campaña</h4>
+              </div>
+            <% end %>
         <% end %>
       </div>
     </div>
