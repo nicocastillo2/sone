@@ -521,8 +521,16 @@ $stat-box-gray: #f4f4f4;
 .feedback-answer .panel-default > .panel-body {
   // background-color: rgba(0, 0, 0, 0.1);
   background-color: #f1f1f1;
+  // border-bottom-right-radius: 14px;
+  // border-bottom-left-radius: 14px;
+}
+
+.feedback-answer .panel-default > .panel-footer {
+  // background-color: rgba(0, 0, 0, 0.1);
+  background-color: #f1f1f1;
   border-bottom-right-radius: 14px;
   border-bottom-left-radius: 14px;
+  padding: 2px 15px;
 }
 
 #contacts-feedback .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
@@ -551,4 +559,16 @@ $stat-box-gray: #f4f4f4;
 
 .filter-label {
   background-color: $pink;
+}
+
+.feedback-answer-footer {
+  font-size: 75%;
+}
+
+.answer-footer-topic {
+  font-weight: 900;
+}
+
+.answer-footer-topic-value {
+  font-weight: 400;
 }

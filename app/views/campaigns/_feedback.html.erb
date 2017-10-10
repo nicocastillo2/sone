@@ -61,6 +61,19 @@
               <%= answer.comment %>
             <% end %>
           </div>
+          <div class="panel-footer">
+            <% unless answer.contact.topics.empty? %>
+              <% answer.contact.topics.each do |topic, value| %>
+                <span class="feedback-answer-footer">
+                  <span class="answer-footer-topic"><%= topic %>:</span> <span class="answer-footer-topic-value"><%= value %></span>
+                </span>
+              <% end %>
+            <% else %>
+              <div class="text-center">
+                <span class="feedback-answer-footer">No hay topics</span>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
