@@ -62,7 +62,8 @@ class Nps
     (0...nps.nps.size).each do |index|
       cumulative_nps << (((cumulative_promoters[index]) * 100) / cumulative_answers[index]) - (((cumulative_detractors[index]) * 100) / cumulative_answers[index])
     end
-    nps.cumulative_nps = cumulative_nps
+    nps.cumulative_nps = cumulative_nps.map { |num| num.round }
+    nps.nps.map! { |num| num.round }
     nps.dates.map!{ |date| Date.parse(date).strftime("%d-%m-%Y") }
     nps.cumulative_detractors = cumulative_detractors
     nps.cumulative_promoters = cumulative_promoters
