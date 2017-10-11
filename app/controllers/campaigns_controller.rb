@@ -225,10 +225,13 @@ class CampaignsController < ApplicationController
         @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
         @data_percentages_30_fixed = Campaign.get_nps_data_percentages(@nps_30_fixed, @nps_sample_count)
         @active_filter = params[:filter][:nps_date]
+
+        get_filtered_topics = Campaign.get_filtered_topics(@selected_topics)
+        topics_for_filter = get_filtered_topics.empty? ? ['Sin topics'] : get_filtered_topics
         @filters = {
           date: @date_range,
           campaigns: Campaign.get_filtered_campaigns(@selected_campaigns),
-          topics: Campaign.get_filtered_topics(@selected_topics)
+          topics: topics_for_filter
         }
       else
         date = params[:nps_date] ? params[:nps_date] : '1'
@@ -263,7 +266,7 @@ class CampaignsController < ApplicationController
         @filters = {
           date: @date_range,
           campaigns: ['Todas las campañas'],
-          topics: Campaign.get_filtered_topics(@selected_topics)
+          topics: ['Sin topics']
         }
       end
     end
