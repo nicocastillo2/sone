@@ -24,7 +24,7 @@
                       <%#= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %>
                     <% end %>
                     <p class="left-menu center gray"><%= current_user.email %></p>
-                    <p class="left-menu center gray">Mail Disponibles: <%= current_user.available_emails %></p>
+                    <p class="left-menu center gray">Envíos Disponibles: <%= current_user.available_emails %></p>
                     <p class="left-menu center gray">Plan: <%= current_user.payment.plan_name.capitalize %></p>
                     <p class="left-menu center gray">Termina el: <%= current_user.payment.cycle_end.strftime('%d-%m-%Y') %></p>
                 </li>
