@@ -68,16 +68,12 @@
       border: 1px solid black;
       width: 15.09%;
     }
-    @media only screen and (min-width: 766px)  {
-      .text-full{
-        width: 5%!important;
+  
+    @media screen and (max-width: 765px)  {
+      div[class="mail"]{
+        max-width: 60%; 
+        margin-left: 20%;
       }
-      .full{
-        width: 5%;
-      }
-      
-    }
-    @media only screen and (max-width: 765px)  {
       .full {
         display:block;
         width:100%;
@@ -104,7 +100,17 @@
         text-decoration: none;
       }
     }
-    @media only screen and (min-width: 580px)  {
+    @media screen and (min-width: 765px)  {
+      div[class="mail"]{
+        max-width: 40%;
+        margin-left: 30%;
+      }
+      .text-full{
+        width: 5%!important;
+      }
+      .full{
+        width: 5%;
+      }
       .pink{
         color: white;
         bottom: 0;
@@ -196,7 +202,7 @@
   <center>
     <p style="text-align: center">¿Qué tan dispuesto estarías a recomendar <strong><%= @sender_name %></strong> a un amigo o familiar?</p>
   </center>
-  <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-lg-4 col-lg-offset-4 col-xs-4 col-xs-offset-4" style="width: 40%; margin-left: 30%;">
+  <div id="mail" class="mail col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-lg-4 col-lg-offset-4 col-xs-4 col-xs-offset-4" style="width: 60%; margin-left: 20%">
     <table class="" border="0" cellpadding="0" cellspacing="5" width="100%">
     <tbody>
       <tr>
@@ -269,7 +275,7 @@
             </tbody>
           </table>
           <center>
-            <p class="font-size-10" style="font-size: 70%">Dejar Suscripción<a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Clic aquí</a> <br><br>Powered by <%= link_to "SONE", root_url, class: "link font-10" %></p>
+            <p class="font-size-10" style="font-size: 70%; padding-top: 15px;">Dejar Suscripción<a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}">Clic aquí</a> <br><br>Powered by <%= link_to "SONE", root_url, class: "link font-10" %></p>
           </center>
         </td>
       </tr>
