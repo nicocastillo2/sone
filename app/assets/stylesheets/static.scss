@@ -1022,6 +1022,9 @@ ul .point{
     width: 120px;
     border: 1px solid $green;
   }
+  .static-footer-social li{
+    padding-top: 15px;
+  }
 }
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
   .cohete{
@@ -1035,15 +1038,24 @@ ul .point{
     width: 120px;
     border: 1x solid $green;
   }
+  .static-footer-social li{
+    padding-top: 15px;
+  }
 }
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   .cohete{
     max-width: 50%;
   }
+  .static-footer-social li{
+    padding-left: 15px;
+  }
 }
 @media (min-width: $screen-lg-min) {
   .cohete{
     max-width: 50%;
+  }
+  .static-footer-social li{
+    padding-left: 15px;
   }
 }
 
