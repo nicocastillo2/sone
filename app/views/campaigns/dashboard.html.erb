@@ -140,26 +140,65 @@
     </div>
 
     <%= javascript_tag do %>
+      window.graphX = <%= @nps.dates.inspect.html_safe %>
       <%=
         graph_generate(
           'graph_report',
           data: {
             x: 'x',
-            cumulative: 'Cumulative NPS',
             columns: [
               ['x'] + @nps.dates,
               ['Cumulative NPS'] + @nps.cumulative_nps,
+              ['Cumulative Detractors'] + @nps.cumulative_detractors,
+              ['Cumulative Passives'] + @nps.cumulative_passives,
+              ['Cumulative Promoters'] + @nps.cumulative_promoters,
               ['NPS'] + @nps.nps,
               ['Detractors'] + @nps.detractors,
               ['Passives'] + @nps.passives,
               ['Promoters'] + @nps.promoters
             ],
+            # groups: [
+            #   ['Cumulative NPS', 'Cumulative Detractors', 'Cumulative Passives', 'Cumulative Promoters'],
+            #   ['NPS', 'Detractors', 'Passives', 'Promoters']
+            # ],
+            # hide:['Cumulative Detractors', 'Cumulative Passives', 'Cumulative Promoters'],
             axes: {
               'NPS' => 'y'
             }
           },
+          tooltip: {
+            contents: "function(d, defaultTitleFormat, defaultValueFormat, color){
+                        //console.log(d);
+                        var content = '<table class=\"c3-tooltip\"><tbody>';
+                        content += '<tr><th colspan=\"2\">'+window.graphX[d[0].x]+'</th></tr>';
+
+                        for(var i = 0;i<d.length;i++){
+                          if($(\".c3-legend-item-Cumulative-NPS\").hasClass(\"c3-legend-item-hidden\")){
+                            if(d[i].name == 'Cumulative Detractors' || d[i].name == 'Cumulative Passives' || d[i].name == 'Cumulative Promoters') continue;
+                          }
+
+                          if($(\".c3-legend-item-NPS\").hasClass(\"c3-legend-item-hidden\")){
+                            if(d[i].name == 'Detractors' || d[i].name == 'Passives' || d[i].name == 'Promoters') continue;
+                          }
+                          var currentColor = this.levelColor ? this.levelColor(d[i].value) : color(d[i].id)
+                          content += '<tr class=\"c3-tooltip-name-'+d[i].name+'\">';
+                          content += '<td class=\"name\"><span style=\"background-color:'+currentColor+'\"></span>'+d[i].name+'</td>';
+                          content += '<td class=\"value\">'+d[i].value+'</td></tr>';
+                        }
+                          content += '</tbody></table>'
+                        return content;
+                      }"
+          },
+          grid:{
+            y:{
+              show: true
+            },
+            x: {
+              show: true
+            }
+          },
           legend: {
-            show: true
+            hide: ['Detractors', 'Passives', 'Promoters', 'Cumulative Detractors', 'Cumulative Passives', 'Cumulative Promoters']
           },
           axis: {
             x: {
@@ -199,3 +238,4 @@
 
   <div id="contacts-feedback"><%= render partial: 'feedback' %></div>
 <% end %>
+

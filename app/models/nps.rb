@@ -1,6 +1,6 @@
 class Nps
   attr_reader :dates, :nps
-  attr_accessor :detractors, :passives, :promoters, :cumulative_nps
+  attr_accessor :detractors, :passives, :promoters, :cumulative_nps, :cumulative_detractors, :cumulative_passives, :cumulative_promoters
 
   def initialize
     @dates = []
@@ -9,6 +9,9 @@ class Nps
     @promoters = []
     @nps = []
     @cumulative_nps = []
+    @cumulative_detractors = []
+    @cumulative_passives = []
+    @cumulative_promoters = []
   end
 
   def self.for_campaign campaign_id, start_date, end_date, topics
@@ -61,6 +64,9 @@ class Nps
     end
     nps.cumulative_nps = cumulative_nps
     nps.dates.map!{ |date| Date.parse(date).strftime("%d-%m-%Y") }
+    nps.cumulative_detractors = cumulative_detractors
+    nps.cumulative_promoters = cumulative_promoters
+    nps.cumulative_passives = cumulative_passives
     nps
   end
 
