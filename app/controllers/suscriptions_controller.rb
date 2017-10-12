@@ -17,7 +17,7 @@ class SuscriptionsController < ApplicationController
       flash.now[:warning] = "Se produjo un error"
       render :index and return
     end
-
+    debugger
     if new_suscription == "freelancer"
       subscription = Conekta::Customer.find(current_user.payment.id_conekta).subscription
       @payment.update(plan_name: "freelancer", cycle_start: DateTime.strptime(subscription.billing_cycle_start.to_s,'%s'),
@@ -31,6 +31,10 @@ class SuscriptionsController < ApplicationController
         if(customer.subscription)
           if customer.subscription.status == "active" && @suscriptions.index(new_suscription) > @suscriptions.index(current_user.payment.plan_name)
             customer.subscription.cancel
+            subscription = customer.create_subscription({
+              :plan => new_suscription
+            })
+          elsif customer.subscription.status == "canceled" && @suscriptions.index(new_suscription) > @suscriptions.index(current_user.payment.plan_name)
             subscription = customer.create_subscription({
               :plan => new_suscription
             })

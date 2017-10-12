@@ -147,7 +147,7 @@ class PaymentsController < ApplicationController
         amount = 4500
         payment.user.update({available_emails: 10000})
       end
-      payment.records << Record.create(monto: amount)
+      payment.records << Record.create(amount: amount)
     end
 
     head 200, content_type: "text/html"
