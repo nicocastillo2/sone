@@ -145,7 +145,7 @@ class PaymentsController < ApplicationController
         available_emails = 5000
       when "enterprise"
         amount = 4500
-        available_emails = 1000
+        available_emails = 10000
       end
 
       if payment.upgrade
