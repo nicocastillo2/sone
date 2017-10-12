@@ -231,7 +231,8 @@
         <span class="label label-default">
           <span id="selected-date-feedback">30 Day NPS</span>:
           <% if @nps_30_fixed %>
-            <%= (@data_percentages_30_fixed[:promoters] - @data_percentages_30_fixed[:detractors]).round %>
+            <%#= (@data_percentages_30_fixed[:promoters] - @data_percentages_30_fixed[:detractors]).round %>
+            <%= @nps_30_fixed.cumulative_nps.last %>
           <% else %>
             <%= (@data_percentages[:promoters] - @data_percentages[:detractors]).round %>
           <% end %>

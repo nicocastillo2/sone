@@ -187,12 +187,12 @@ class CampaignsController < ApplicationController
         selected_date = params[:filter][:nps_date]
         date_range = Campaign.receive_date(selected_date)
         date_range_fixed_nps = Campaign.receive_date('1')
-
         choosed_campaigns = @campaigns.where(id: @selected_campaigns)
 
         @nps = Nps.for_dashboard(choosed_campaigns, date_range[0], date_range[1], @topics)
         # @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
         @nps_30_fixed = Nps.for_dashboard(choosed_campaigns, date_range_fixed_nps[0], date_range_fixed_nps[1], @topics)
+
         @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
         @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
         @topics.each do |topic|
@@ -238,6 +238,7 @@ class CampaignsController < ApplicationController
         date = params[:nps_date] ? params[:nps_date] : '1'
         date_range = Campaign.receive_date(date)
         @nps = Nps.for_dashboard(@campaigns, date_range[0], date_range[1], @topics)
+        
         @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
         @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
         @topics.each do |topic|
