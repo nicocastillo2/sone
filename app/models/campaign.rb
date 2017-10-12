@@ -146,12 +146,17 @@ class Campaign < ApplicationRecord
     { detractors: detractors.round(2), passives: passives.round(2), promoters: promoters.round(2) }
   end
 
-  def self.to_csv(campaign, answers)
-    headers = %w(email name score comment)
+  def self.to_csv(campaign, answers,topics)
+    headers = %w(email name score comment date)
+    headers += topics
     CSV.generate(headers: true) do |csv|
       csv << headers
       answers.each do |answer|
-        csv << [answer.contact.email, answer.contact.name, answer.score, answer.comment]
+        row = [answer.contact.email, answer.contact.name, answer.score, answer.comment, answer.created_at.strftime('%d-%m-%Y')]
+        topics.each do |topic|
+          row << answer.contact.topics[topic]
+        end
+        csv << row
       end
     end
   end
