@@ -17,7 +17,6 @@ class SuscriptionsController < ApplicationController
       flash.now[:warning] = "Se produjo un error"
       render :index and return
     end
-    debugger
     if new_suscription == "freelancer"
       subscription = Conekta::Customer.find(current_user.payment.id_conekta).subscription
       @payment.update(plan_name: "freelancer", cycle_start: DateTime.strptime(subscription.billing_cycle_start.to_s,'%s'),
