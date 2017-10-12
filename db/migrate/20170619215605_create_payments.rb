@@ -8,6 +8,7 @@ class CreatePayments < ActiveRecord::Migration[5.1]
       t.string      :plan_name
       t.date        :cycle_start
       t.date        :cycle_end
+      t.boolean      :upgrade, default: false
 
       t.belongs_to  :user, index: true
 

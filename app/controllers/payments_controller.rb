@@ -134,18 +134,25 @@ class PaymentsController < ApplicationController
     if json['type'] == 'subscription.paid'
       id_conekta = json['data']["object"]['customer_id']
       payment = Payment.find_by(id_conekta: id_conekta)
-      
+      amount = nil
+      available_emails = 0
       case payment.plan_name
       when "startup"
         amount = 900
-        payment.user.update({available_emails: 1000})
-
+        available_emails = 1000
       when "crecimiento"
         amount = 2500
-        payment.user.update({available_emails: 5000})
+        available_emails = 5000
       when "enterprise"
         amount = 4500
-        payment.user.update({available_emails: 10000})
+        available_emails = 1000
+      end
+
+      if payment.upgrade
+        payment.user.update({available_emails: available_emails + payment.user})
+        payment.update(upgrade: false)
+      else
+        payment.user.update({available_emails: available_emails})
       end
       payment.records << Record.create(amount: amount)
     end
