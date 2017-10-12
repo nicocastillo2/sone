@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :payments, except: [:index, :show]
+  get '/payments/records', to: 'payments#records', as: 'payment_records'
 
   post '/payments/callback', to: 'payments#payment_callback', as: 'payment_callback'
   post '/import_contacts', to: 'campaigns#upload_csv', as: 'import_csv'

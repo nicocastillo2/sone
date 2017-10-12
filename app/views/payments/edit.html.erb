@@ -1,7 +1,7 @@
 <% provide :title, "Cambiar Metodo de Pago" %>
 <% content_for :conekta_scripts do %>
-  <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
-  <script type="text/javascript">
+<script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
+<script type="text/javascript">
   // Conekta Public Key
   Conekta.setPublishableKey('<%= Rails.application.secrets.conekta_public %>');
 
@@ -33,116 +33,117 @@
 <% end %>
 
 <div id="current-card">
-  <div class="col-md-1 col-sm-1 col-xs-1"><br></div>
+
   <div class="col-md-10 col-sm-10 col-xs-10">
-      <%= form_tag(payment_path(@payment), id: 'card-form', method: "patch", class: "form-inline") do %>
-  <span class="card-errors"></span>
-  <br>
-  <div class="row ">
-    <div class="col-md-2"><br></div>
-    <div class="col-md-8 target">
-      <div class="form-group">
-      <h3>Realizar compra<%= image_tag(@img_card, class: "img-responsive card-img", id: "chip") %></h3>
-
-      <br>
-      <%= image_tag("chip.png", class: "img-responsive chip") %>
-      <br>
-      <label>
-        <span>Número de tarjeta de crédito</span><br>
-        <input class="form-control field-pay" type="text" size="20" value="**** **** **** <%= @payment_sources.last4 %>" disabled/>
-      </label>
-    </div>
+    <%= form_tag(payment_path(@payment), id: 'card-form', method: "patch", class: "form-inline") do %>
+    <span class="card-errors"></span>
     <br>
-    <div class="form-group">
-      <label class="fecha">
-        <span>Fecha de expiración (MM/AAAA)</span><br>
-        <input class="form-control field-pay date" type="text" size="2" value="<%= @payment_sources.exp_month %>" disabled/>
+    <div class="row ">
+      <div class="col-md-2"><br></div>
+      <div class="col-md-8 target">
+        <div class="form-group">
+          <h3>Realizar compra<%= image_tag(@img_card, class: "img-responsive card-img", id: "chip") %></h3>
 
-      <span>/</span>
-      <input class="form-control field-pay date" type="text" size="4" value="<%= @payment_sources.exp_year %>" disabled/>
-      </label>
-    </div>
-    <div class="form-group">
-      <label>
-        <span>CVC</span>
-        <input class="form-control field-pay" type="text" size="4" value="***" disabled/>
-      </label>
-    </div>
-    <br>
+          <br>
+          <%= image_tag("chip.png", class: "img-responsive chip") %>
+          <br>
+          <label>
+            <span>Número de tarjeta de crédito</span><br>
+            <input class="form-control field-pay" type="text" size="20" value="**** **** **** <%= @payment_sources.last4 %>" disabled/>
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <label class="fecha">
+            <span>Fecha de expiración (MM/AAAA)</span><br>
+            <input class="form-control field-pay date" type="text" size="2" value="<%= @payment_sources.exp_month %>" disabled/>
 
+            <span>/</span>
+            <input class="form-control field-pay date" type="text" size="4" value="<%= @payment_sources.exp_year %>" disabled/>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <span>CVC</span>
+            <input class="form-control field-pay" type="text" size="4" value="***" disabled/>
+          </label>
+        </div>
+        <br>
+
+      </div>
+      <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2"></div>
+    <% end %>
+
+    <button class="btn btn-default change-payment send-button center-block">Cambiar Metodo de Pago</button>
+
+
   </div>
-<% end %>
-
-<button class="btn btn-default change-payment send-button center-block">Cambiar Metodo de Pago</button>
-
-
+  <div class="col-md-1 col-sm-1 col-xs-1">
+    <%= link_to "Registro de pagos", payment_records_path, class: "pink" %>
   </div>
-  <div class="col-md-1 col-sm-1 col-xs-1"></div>
 </div>
 
 <div id="edit-card" style="display: none">
   <div class="col-md-1 col-sm-1 col-xs-1"><br></div>
   <div class="col-md-10 col-sm-10 col-xs-10">
-      <%= form_tag(payment_path(@payment), id: 'card-form', method: "patch", class: "form-inline") do %>
-  <span class="card-errors"></span>
-  <div class="form-group">
-    <label>
-      <span>Nombre del tarjetahabiente</span>
-      <input id="name" class="form-control field-pay" type="text" size="20" name="name" data-conekta="card[name]" required/>
-    </label>
-  </div>
-  <br>
-  <br>
-  <div class="form-group">
-    <label>
-      <span>Telefono</span>
-      <input class="form-control field-pay" type="text" size="20" name="phone" data-conekta="card[phone]" required/>
-      <%= image_tag("master.png", class: "img-responsive card-img") %>
-      <%= image_tag("visa.png", class: "img-responsive card-img") %>
-      <%= image_tag("american.png", class: "img-responsive card-img") %>
-
-    </label>
-  </div>
-  <br>
-  <div class="row ">
-    <div class="col-md-2"><br></div>
-    <div class="col-md-8 target">
-      <div class="form-group">
-      <br>
-      <%= image_tag("chip.png", class: "img-responsive chip") %>
-      <br>
+    <%= form_tag(payment_path(@payment), id: 'card-form', method: "patch", class: "form-inline") do %>
+    <span class="card-errors"></span>
+    <div class="form-group">
       <label>
-        <span>Número de tarjeta de crédito</span><br>
-        <input class="form-control field-pay" type="text" size="20" data-conekta="card[number]" required/>
+        <span>Nombre del tarjetahabiente</span>
+        <input id="name" class="form-control field-pay" type="text" size="20" name="name" data-conekta="card[name]" required/>
       </label>
     </div>
     <br>
-    <div class="form-group">
-      <label class="fecha">
-        <span>Fecha de expiración (MM/AAAA)</span><br>
-        <input class="form-control field-pay date" type="text" size="2" data-conekta="card[exp_month]" required/>
-
-      <span>/</span>
-      <input class="form-control field-pay date" type="text" size="4" data-conekta="card[exp_year]" required/>
-      </label>
-    </div>
+    <br>
     <div class="form-group">
       <label>
-        <span>CVC</span>
-        <input class="form-control field-pay" type="text" size="4" data-conekta="card[cvc]" required/>
+        <span>Telefono</span>
+        <input class="form-control field-pay" type="text" size="20" name="phone" data-conekta="card[phone]" required/>
+        <%= image_tag("master.png", class: "img-responsive card-img") %>
+        <%= image_tag("visa.png", class: "img-responsive card-img") %>
+        <%= image_tag("american.png", class: "img-responsive card-img") %>
+
       </label>
     </div>
     <br>
+    <div class="row ">
+      <div class="col-md-2"><br></div>
+      <div class="col-md-8 target">
+        <div class="form-group">
+          <br>
+          <%= image_tag("chip.png", class: "img-responsive chip") %>
+          <br>
+          <label>
+            <span>Número de tarjeta de crédito</span><br>
+            <input class="form-control field-pay" type="text" size="20" data-conekta="card[number]" required/>
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <label class="fecha">
+            <span>Fecha de expiración (MM/AAAA)</span><br>
+            <input class="form-control field-pay date" type="text" size="2" data-conekta="card[exp_month]" required/>
 
-    <button type="submit" class="pay-now">Cambiar</button>
+            <span>/</span>
+            <input class="form-control field-pay date" type="text" size="4" data-conekta="card[exp_year]" required/>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            <span>CVC</span>
+            <input class="form-control field-pay" type="text" size="4" data-conekta="card[cvc]" required/>
+          </label>
+        </div>
+        <br>
+
+        <button type="submit" class="pay-now">Cambiar</button>
+      </div>
+      <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2"></div>
-  </div>
-<% end %>
+    <% end %>
 
 
   </div>
-  <div class="col-md-1 col-sm-1 col-xs-1"></div>
 </div>
