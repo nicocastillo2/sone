@@ -149,7 +149,7 @@ class PaymentsController < ApplicationController
       end
 
       if payment.upgrade
-        payment.user.update({available_emails: available_emails + payment.user})
+        payment.user.update({available_emails: available_emails + payment.user.available_emails})
         payment.update(upgrade: false)
       else
         payment.user.update({available_emails: available_emails})
