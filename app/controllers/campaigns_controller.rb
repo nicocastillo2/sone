@@ -8,6 +8,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns.json
   def index
     @campaigns = current_user.campaigns
+    @current_plan = current_user.payment.plan_name
   end
 
   # GET /campaigns/1
@@ -274,7 +275,7 @@ class CampaignsController < ApplicationController
       format.js { render partial: 'feedback', content_type: 'text/html' }
       format.html
       format.csv do
-        send_data Campaign.to_csv(@campaign, @feedback_report),
+        send_data Campaign.to_csv(@campaign, @feedback_report, params[:topics]),
         filename: "report-#{Date.today}.csv"
       end
     end

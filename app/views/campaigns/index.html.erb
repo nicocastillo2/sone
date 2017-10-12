@@ -20,10 +20,11 @@
           </tr>
         </thead>
         <tbody>
+          <% @last_index = @campaigns.size-1 %>
           <% @campaigns.each_with_index do |campaign, index| %>
             <%if index == 0%>
               <tr class="td-no-border">
-                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= link_to campaign.name, campaign, class: "black"%></td>
+                <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= link_to campaign.name, campaign, class: @current_plan == 'freelancer' && @last_index >=0 && @last_index != index ? "gray" : "black"%></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.sender_name %></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.sender_email %></td>
                 <td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= campaign.surveys_counter %></td>
@@ -36,7 +37,7 @@
               </tr>
             <% else %>
               <tr>
-                <td class="td-no-border text-center padding-bottom middle-align"><%= link_to campaign.name, campaign, class: "black"%></td>
+                <td class="td-no-border text-center padding-bottom middle-align"><%= link_to campaign.name, campaign, class: @current_plan == 'freelancer' && @last_index >=0 && @last_index != index ? "gray" : "black"%></td>
                 <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.sender_name %></td>
                 <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.sender_email %></td>
                 <td class="td-no-border text-center padding-bottom middle-align"><%= campaign.surveys_counter %></td>
