@@ -44,10 +44,10 @@
             <h4 class="panel-title">
               <%= fa_icon(Answer.get_icon(answer.score), class: 'feedback-icon') %>
               <span class="feedback-answer-date">
-                Nombre: <span class="contact-info-answer"><%= answer.contact.name %></span>
+                <span class="contact-info-answer"><%= answer.contact.name %>,</span>
               </span>
               <span class="feedback-answer-date">
-                Email: <span class="contact-info-answer"><%= answer.contact.email %></span>
+                <span class="contact-info-answer"><%= answer.contact.email %></span>
               </span>
               <span class="feedback-answer-date pull-right">
                 <%= answer.created_at.strftime("%d / %m / %Y") %>
@@ -64,9 +64,12 @@
           <div class="panel-footer">
             <% unless answer.contact.topics.empty? %>
               <% answer.contact.topics.each do |topic, value| %>
-                <span class="feedback-answer-footer">
+                <% if params[:topics].include?(topic) %>
+                  <span class="feedback-answer-footer">
                   <span class="answer-footer-topic"><%= topic %>:</span> <span class="answer-footer-topic-value"><%= value %></span>
-                </span>
+                  </span>
+                <% end %>
+                
               <% end %>
             <% else %>
               <div class="text-center">

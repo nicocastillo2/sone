@@ -1,0 +1,35 @@
+<% provide :title, "Registro de pagos" %>
+<div class="row row-0">
+	<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+		<% if @records.empty? %>
+			<h3 class="gray text-center"> Aún no hay registros de pago </h3>
+		<% else %>
+			<table class="table table-shadow table-striped table-bordered table-hover table-no-margin">
+				<thead>
+					<tr id="tr-pad">
+						<th class="th-no-border">Fecha</th>
+						<th class="th-no-border">Monto</th>
+						<th class="th-no-border">status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @records.each_with_index do |record, index| %>
+						<%if index == 0%>
+							<tr>
+								<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= record.created_at%></td>
+								<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= record.amount%></td>
+								<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= record.status%></td>
+							</tr>
+						<% else %>
+							<tr>
+								<td class="text-center td-no-border padding-bottom middle-align"><%= record.created_at%></td>
+								<td class="td-no-border text-center padding-bottom middle-align"><%= record.amount%></td>
+								<td class="td-no-border text-center padding-bottom middle-align"><%= record.status%></td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		<% end %>
+	</div>
+</div>

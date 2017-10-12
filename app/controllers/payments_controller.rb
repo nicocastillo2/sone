@@ -10,6 +10,9 @@ class PaymentsController < ApplicationController
     redirect_to edit_payment_path(current_user.payment) if current_user.payment.card_conekta
   end
 
+  def records
+    @records = current_user.payment.records
+  end
   # POST /payments
   def create
     # render plain: params.inspect.to_s, layout: false
@@ -131,14 +134,20 @@ class PaymentsController < ApplicationController
     if json['type'] == 'subscription.paid'
       id_conekta = json['data']["object"]['customer_id']
       payment = Payment.find_by(id_conekta: id_conekta)
+      
       case payment.plan_name
       when "startup"
+        amount = 900
         payment.user.update({available_emails: 1000})
+
       when "crecimiento"
+        amount = 2500
         payment.user.update({available_emails: 5000})
       when "enterprise"
+        amount = 4500
         payment.user.update({available_emails: 10000})
       end
+      payment.records << Record.create(monto: amount)
     end
 
     head 200, content_type: "text/html"

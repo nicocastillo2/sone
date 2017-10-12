@@ -64,23 +64,24 @@ function title_mobile(){
   }
 }
 
-$(document).ready(function() {
-  var slider = $('.bxslider-opinions').bxSlider({
-        pager: false,
-        controls: false,
-        onSlideBefore: function($slideElement, oldIndex, newIndex) {
-          $(".slider-clients-pages li.slider-page-item").removeClass("active");
-          $("[data-slide-index="+newIndex+"]").addClass("active");
-        }
-      });
+// $(document).ready(function() {
+//   console.log("**************")
+//   var slider = $('.bxslider-opinions').bxSlider({
+//         pager: false,
+//         controls: false,
+//         onSlideBefore: function($slideElement, oldIndex, newIndex) {
+//           $(".slider-clients-pages li.slider-page-item").removeClass("active");
+//           $("[data-slide-index="+newIndex+"]").addClass("active");
+//         }
+//       });
 
-      $("#slider-right-arrow").click(function() {
-        slider.goToNextSlide();
-      });
+//       $("#slider-right-arrow").click(function() {
+//         slider.goToNextSlide();
+//       });
 
-      $("#slider-left-arrow").click(function() {
-        slider.goToPrevSlide();
-      });
-});
+//       $("#slider-left-arrow").click(function() {
+//         slider.goToPrevSlide();
+//       });
+// });
 
 //$(":file").filestyle({input: false});
