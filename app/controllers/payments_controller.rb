@@ -117,7 +117,7 @@ class PaymentsController < ApplicationController
   # DELETE /payments/1
   def destroy
     @payment.destroy
-    redirect_to campaigns_path, notice: 'Payment eliminado correctamente.'
+    redirect_to campaigns_path, notice: 'Metodo de pago eliminado correctamente.'
   end
 
   def payment_callback
