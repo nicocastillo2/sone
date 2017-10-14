@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 20171012005015) do
     t.string "plan_name", default: "freelancer", null: false
     t.date "cycle_start"
     t.date "cycle_end"
-    t.boolean "upgrade", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

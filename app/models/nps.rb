@@ -32,7 +32,6 @@ class Nps
 
   def self.for_dashboard campaigns, start_date, end_date, topics
     nps = new
-
     get_nps_data_dashboard(campaigns, start_date, end_date, topics).each do |row|
       detractors_avg = row["detractors"].to_f / row["total"] * 100
       promoters_avg = row["promoters"].to_f / row["total"] * 100
@@ -43,6 +42,33 @@ class Nps
       nps.promoters << row["promoters"]
       nps.nps << promoters_avg - detractors_avg
     end
+    nps.nps.map! { |num| num.round }
+    nps.dates.map!{ |date| Date.parse(date).strftime("%d-%m-%Y") }
+    
+    nps.dates.each do |date|
+      cumulative = get_30_cumulative_nps(campaigns, Date.parse(date), topics)
+      nps.cumulative_nps << cumulative[:cumulative_nps].round
+      nps.cumulative_promoters << cumulative[:cumulative_promoters].round
+      nps.cumulative_detractors << cumulative[:cumulative_detractors].round
+      nps.cumulative_passives << cumulative[:cumulative_passives].round
+    end
+    nps
+  end
+
+  def self.get_30_cumulative_nps campaigns, end_date, topics
+    start_date = end_date - 30.days
+    nps = new
+    get_nps_data_dashboard(campaigns, start_date, end_date, topics).each do |row|
+      detractors_avg = row["detractors"].to_f / row["total"] * 100
+      promoters_avg = row["promoters"].to_f / row["total"] * 100
+
+      nps.dates << row["answer_date"]
+      nps.detractors << row["detractors"]
+      nps.passives << row["passives"]
+      nps.promoters << row["promoters"]
+      nps.nps << promoters_avg - detractors_avg
+    end
+    
 
     cumulative_answers = []
     cumulative_promoters = []
@@ -68,7 +94,11 @@ class Nps
     nps.cumulative_detractors = cumulative_detractors
     nps.cumulative_promoters = cumulative_promoters
     nps.cumulative_passives = cumulative_passives
-    nps
+
+    {cumulative_nps: nps.cumulative_nps.last,
+      cumulative_detractors: nps.cumulative_detractors.last,
+      cumulative_promoters: nps.cumulative_promoters.last,
+      cumulative_passives: nps.cumulative_passives.last}
   end
 
   private
