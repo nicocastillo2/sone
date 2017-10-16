@@ -15,5 +15,9 @@ class Users::SessionsController < Devise::SessionsController
     Rails.cache.clear
     root_path
   end
+
+  def admin
+    @users = User.all
+  end
   
 end

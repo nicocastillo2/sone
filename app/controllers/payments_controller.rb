@@ -135,15 +135,19 @@ class PaymentsController < ApplicationController
       id_conekta = json['data']["object"]['customer_id']
       payment = Payment.find_by(id_conekta: id_conekta)
       amount = nil
+      @plan = nil
       available_emails = 0
       case payment.plan_name
       when "startup"
         amount = 900
+        @plan = "startup"
         available_emails = 1000
       when "crecimiento"
+        @plan = "crecimiento"
         amount = 2500
         available_emails = 5000
       when "enterprise"
+        @plan = "enterprise"
         amount = 4500
         available_emails = 10000
       end

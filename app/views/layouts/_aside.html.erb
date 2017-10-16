@@ -29,6 +29,14 @@
                     <p class="left-menu center gray">Termina el: <%= current_user.payment.cycle_end.strftime('%d-%m-%Y') %></p>
                 </li>
 
+                <% if current_user.type == "AdminUser" %>
+                  <li class="center">
+                    <%= link_to(admin_view_path, class: 'left-menu') do %>
+                    <%= fa_icon 'tachometer', class: 'navbar-link pink' %>Admin View
+                    <% end %>
+                  </li>
+                <% end %>
+
                 <li class="center">
                   <%= link_to(user_dashboard_path(current_user), class: 'left-menu') do %>
                   <%= fa_icon 'tachometer', class: 'navbar-link pink' %>Dashboard

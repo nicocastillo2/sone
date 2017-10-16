@@ -17,14 +17,28 @@
 					<% @records.each_with_index do |record, index| %>
 						<%if index == 0%>
 							<tr>
-								<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= record.created_at%></td>
-								<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= record.amount%></td>
+								<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= record.created_at.to_formatted_s(:db) %></td>
+								<% if record.amount == 900  %>
+									<td class="tr-pad td-no-border text-center padding-bottom middle-align">Startup</td>
+								<% elsif record.amount == 2500 %>
+									<td class="tr-pad td-no-border text-center padding-bottom middle-align">Crecimiento</td>
+								<% else %>
+									<td class="tr-pad td-no-border text-center padding-bottom middle-align">Enterprise</td>
+								<% end %>
+								<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= number_to_currency(record.amount, unit: "$", precision: 2)%></td>
 								<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= record.status%></td>
 							</tr>
 						<% else %>
 							<tr>
-								<td class="text-center td-no-border padding-bottom middle-align"><%= record.created_at%></td>
-								<td class="td-no-border text-center padding-bottom middle-align"><%= record.amount%></td>
+								<td class="text-center td-no-border padding-bottom middle-align"><%= record.created_at.to_formatted_s(:db)%></td>
+								<% if record.amount == 900  %>
+									<td class="td-no-border text-center padding-bottom middle-align">Startup</td>
+								<% elsif record.amount == 2500 %>
+									<td class="td-no-border text-center padding-bottom middle-align">Crecimiento</td>
+								<% else %>
+									<td class="td-no-border text-center padding-bottom middle-align">Enterprise</td>
+								<% end %>
+								<td class="td-no-border text-center padding-bottom middle-align"><%= number_to_currency(record.amount, unit: "$", precision: 2) %></td>
 								<td class="td-no-border text-center padding-bottom middle-align"><%= record.status%></td>
 							</tr>
 						<% end %>
