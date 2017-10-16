@@ -153,10 +153,10 @@
             x: 'x',
             columns: [
               ['x'] + @nps.dates,
-              ['Cumulative NPS'] + @nps.cumulative_nps,
-              ['Cumulative Detractors'] + @nps.cumulative_detractors,
-              ['Cumulative Passives'] + @nps.cumulative_passives,
-              ['Cumulative Promoters'] + @nps.cumulative_promoters,
+              ['30-Day'] + @nps.cumulative_nps,
+              ['30-Day Detractors'] + @nps.cumulative_detractors,
+              ['30-Day Passives'] + @nps.cumulative_passives,
+              ['30-Day Promoters'] + @nps.cumulative_promoters,
               ['NPS'] + @nps.nps,
               ['Detractors'] + @nps.detractors,
               ['Passives'] + @nps.passives,
@@ -203,7 +203,7 @@
             }
           },
           legend: {
-            hide: ['Detractors', 'Passives', 'Promoters', 'Cumulative Detractors', 'Cumulative Passives', 'Cumulative Promoters']
+            hide: ['Detractors', 'Passives', 'Promoters', '30-Day Detractors', '30-Day Passives', '30-Day Promoters']
           },
           axis: {
             x: {
