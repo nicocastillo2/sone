@@ -311,7 +311,6 @@ class CampaignsController < ApplicationController
   end
 
   def upload_csv
-    debugger
     campaign_id = params[:campaign][:id]
     csv_file = params[:campaign][:file]
     if csv_file.nil?
