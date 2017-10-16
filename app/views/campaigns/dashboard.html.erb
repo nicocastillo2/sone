@@ -108,7 +108,9 @@
                 <br>
                 <%= button_tag 'Todos los topics', id: 'all-topics' %>
                 <div class="form-group" id="topics-checkboxes">
+                  <% @used_topics = Campaign.active_topics(current_user) %>
                   <% Campaign.contact_topics.each do |key, value| %>
+                    <% next unless @used_topics.include?(value) %>
                     <% if @selected_topics.include? value %>
                       <%= check_box_tag "topics[]", value, { checked: true } %>
                     <% else %>
