@@ -923,7 +923,9 @@ ul .point{
 #space-number {
   margin-left: 5px;
 }
-
+.padding-top{
+  padding-top: 7%;
+}
 @media (max-width: 700px) {
 
   .text-copy{
@@ -1024,6 +1026,10 @@ ul .point{
   }
   .static-footer-social li{
     padding-top: 15px;
+  }
+  .tittle-offer {
+    font-size: 25px;
+    padding-top: 20%;
   }
 }
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
