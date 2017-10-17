@@ -59,8 +59,15 @@ $(function() {
 
   // preview create campaign
   $(document).on("keyup change focusout", "#nombre-empresa-field", function(){
-    var nombre = $(this).val() + " a un amigo o familiar?";
+    var nombre = $(this).val();
+    // var margin = $("#nombre-empresa-preview").attr();
     $("#nombre-empresa-preview").html(nombre);
+  });
+
+  $(document).on("change focusout", "#campaign_color", function(){
+    var color = $(this).val();
+    // var margin = $("#nombre-empresa-preview").attr();
+    $(".cls-340").css('fill', color);
   });
 
   $(document).on("click", "#img-logo-img",function() {
@@ -81,38 +88,38 @@ $(function() {
 });
 
  
- function tooltip_contents(d, defaultTitleFormat, defaultValueFormat, color) {
-    var $$ = this, config = $$.config, CLASS = $$.CLASS,
-        titleFormat = config.tooltip_format_title || defaultTitleFormat,
-        nameFormat = config.tooltip_format_name || function (name) { return name; },
-        valueFormat = config.tooltip_format_value || defaultValueFormat,
-        text, i, title, value, name, bgcolor;
+//  function tooltip_contents(d, defaultTitleFormat, defaultValueFormat, color) {
+//     var $$ = this, config = $$.config, CLASS = $$.CLASS,
+//         titleFormat = config.tooltip_format_title || defaultTitleFormat,
+//         nameFormat = config.tooltip_format_name || function (name) { return name; },
+//         valueFormat = config.tooltip_format_value || defaultValueFormat,
+//         text, i, title, value, name, bgcolor;
     
-    // You can access all of data like this:
-    console.log($$.data.targets);
+//     // You can access all of data like this:
+//     console.log($$.data.targets);
     
-    for (i = 0; i < d.length; i++) {
-        if (! (d[i] && (d[i].value || d[i].value === 0))) { continue; }
+//     for (i = 0; i < d.length; i++) {
+//         if (! (d[i] && (d[i].value || d[i].value === 0))) { continue; }
 
-        // ADD
-        if (d[i].name === 'data2') { continue; }
+//         // ADD
+//         if (d[i].name === 'data2') { continue; }
         
-        if (! text) {
-            title = 'MY TOOLTIP'
-            text = "<table class='" + CLASS.tooltip + "'>" + (title || title === 0 ? "<tr><th colspan='2'>" + title + "</th></tr>" : "");
-        }
+//         if (! text) {
+//             title = 'MY TOOLTIP'
+//             text = "<table class='" + CLASS.tooltip + "'>" + (title || title === 0 ? "<tr><th colspan='2'>" + title + "</th></tr>" : "");
+//         }
 
-        name = nameFormat(d[i].name);
-        value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
-        bgcolor = $$.levelColor ? $$.levelColor(d[i].value) : color(d[i].id);
+//         name = nameFormat(d[i].name);
+//         value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
+//         bgcolor = $$.levelColor ? $$.levelColor(d[i].value) : color(d[i].id);
 
-        text += "<tr class='" + CLASS.tooltipName + "-" + d[i].id + "'>";
-        text += "<td class='name'><span style='background-color:" + bgcolor + "'></span>" + name + "</td>";
-        text += "<td class='value'>" + value + "</td>";
-        text += "</tr>";
-    }
-    return text + "</table>";   
-}
+//         text += "<tr class='" + CLASS.tooltipName + "-" + d[i].id + "'>";
+//         text += "<td class='name'><span style='background-color:" + bgcolor + "'></span>" + name + "</td>";
+//         text += "<td class='value'>" + value + "</td>";
+//         text += "</tr>";
+//     }
+//     return text + "</table>";   
+// }
 
 
 
