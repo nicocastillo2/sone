@@ -1,6 +1,6 @@
-<div class="col-sm-3 col-md-2 affix-sidebar" style="padding-right: 0;">
-      <div class="sidebar-nav">
-        <div class="navbar navbar-default" style="margin-bottom: 0;" role="navigation">
+<div class="col-sm-3 col-md-2 affix-sidebar overflow pad-left" style="padding-right: 0;height: 100%; overflow-y: auto;position: relative;">
+      <div class="sidebar-nav" style="position: inherit; height: inherit;">
+        <div class="navbar navbar-default" style="margin-bottom: 0;height: 100%;overflow: visible;position: initial;" role="navigation">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
@@ -10,7 +10,7 @@
             </button>
             <span class="visible-xs navbar-brand">Menu</span>
           </div>
-          <div class="navbar-collapse collapse sidebar-navbar-collapse back-white">
+          <div class="navbar-collapse collapse sidebar-navbar-collapse back-white" style="position: inherit;overflow: visible!important;">
             <ul class="nav navbar-nav" id="sidenav01">
               <li class="active">
                 <%= link_to root_path, id: "color-transparent", "data-turbolinks" => false do%>
