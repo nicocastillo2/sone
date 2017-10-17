@@ -176,6 +176,14 @@ class Campaign < ApplicationRecord
     Campaign.contact_topics.map { |k, v| k if topics.include?(v) }.compact
   end
 
+  def self.active_topics(user)
+    topics = []
+    user.campaigns.each do |campaign|
+      topics += campaign.tmp_topics
+    end
+    topics.uniq
+  end
+
   private
 
     def csv_has_headers?

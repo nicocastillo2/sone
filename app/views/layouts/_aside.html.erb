@@ -16,7 +16,6 @@
                 <%= link_to root_path, id: "color-transparent", "data-turbolinks" => false do%>
                   <%= image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>
                 <% end %>
-                <br>
                 <% if user_signed_in? %>
                     <% if current_user.avatar.nil? %>
                       <%= image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>

@@ -35,8 +35,9 @@
         <%= link_to('Blog', "https://blog.sone.com.mx/", class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-toggle-menu">
-        <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Precios</a>
-        <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Blog</a>
+        <%= link_to 'Precios', pricing_path,class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
+        <%= link_to 'Blog', 'https://blog.sone.com.mx/',class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
+        <!-- <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Precios</a> -->
         <% if user_signed_in? %>
           <%= link_to(campaigns_path, id: 'login', class: "nav-btn margin-right-0 navbar-text navbar-link navbar-right green", "data-turbolinks" => false) do %>
             <span class="green">Dashboard</span>
