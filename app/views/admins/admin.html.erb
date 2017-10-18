@@ -15,7 +15,7 @@
 				<% unless user.type == "AdminUser" %>
 					<%if index == 0%>
 						<tr>
-							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= user.username %></td>
+							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= link_to user.username, user_dashboard_path(user), class: 'pink' %></td>
 							<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= user.email%></td>
 							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= user.created_at.strftime('%d-%m-%Y') %></td>
 							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= user.payment.plan_name %></td>
@@ -23,7 +23,7 @@
 						</tr>
 					<% else %>
 						<tr>
-							<td class="text-center td-no-border padding-bottom middle-align"><%= user.username %></td>
+							<td class="text-center td-no-border padding-bottom middle-align"><%= link_to user.username, user_dashboard_path(user), class: 'pink' %></td>
 							<td class="td-no-border text-center padding-bottom middle-align"><%= user.email%></td>
 							<td class="text-center td-no-border padding-bottom middle-align"><%= user.created_at.strftime('%d-%m-%Y') %></td>
 							<td class="text-center td-no-border padding-bottom middle-align"><%= user.payment.plan_name %></td>
