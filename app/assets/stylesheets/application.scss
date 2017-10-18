@@ -359,8 +359,16 @@ $pink: #9a4479;
   font-size: 1.2em;
 }
 
-@media (max-width: $screen-xs-max) { }
-@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {  }
+@media (max-width: $screen-xs-max) { 
+  .pad-xs{
+    padding-left: 2%;
+  }
+}
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { 
+  .tittle-offer {
+    font-size: 20px;
+  }
+}
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { 
   .pad-left{
     padding-left: 3%;
