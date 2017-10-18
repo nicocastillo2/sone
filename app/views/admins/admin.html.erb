@@ -6,6 +6,8 @@
 				<th class="th-no-border">Nombre</th>
 				<th class="th-no-border">Email</th>
 				<th class="th-no-border">Fecha de registro</th>
+				<th class="th-no-border">Plan</th>
+				<th class="th-no-border">Vigencia</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -15,13 +17,17 @@
 						<tr>
 							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= user.username %></td>
 							<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= user.email%></td>
-							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= user.created_at.to_formatted_s(:db) %></td>
+							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= user.created_at.strftime('%d-%m-%Y') %></td>
+							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= user.payment.plan_name %></td>
+							<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= user.payment.cycle_end %></td>
 						</tr>
 					<% else %>
 						<tr>
 							<td class="text-center td-no-border padding-bottom middle-align"><%= user.username %></td>
 							<td class="td-no-border text-center padding-bottom middle-align"><%= user.email%></td>
-							<td class="text-center td-no-border padding-bottom middle-align"><%= user.created_at.to_formatted_s(:db) %></td>
+							<td class="text-center td-no-border padding-bottom middle-align"><%= user.created_at.strftime('%d-%m-%Y') %></td>
+							<td class="text-center td-no-border padding-bottom middle-align"><%= user.payment.plan_name %></td>
+							<td class="text-center td-no-border padding-bottom middle-align"><%= user.payment.cycle_end.strftime('%d-%m-%Y') %></td>
 						</tr>
 					<% end %>
 				<% end %>
