@@ -77,7 +77,7 @@ class Campaign < ApplicationRecord
     valid_result = contacts.select do |contact|
       # debugger
       conta = self.contacts.where(email: contact.email, blacklist: nil).where.not(sent_date: nil).order(id: :asc)
-      if conta.size == 1
+      if conta.size <= 1
         true
       else
         DateTime.now - 30.days > conta[-2].sent_date
