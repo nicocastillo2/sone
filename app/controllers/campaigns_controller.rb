@@ -3,6 +3,7 @@ class CampaignsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :report
   before_action :require_login
   before_action :validate_campaign_belongs_to_currents_user, only: [:show, :edit, :update]
+  before_action :validate_dashboard_belongs_to_currents_user_and_admin, only: [:dashboard]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -348,6 +349,14 @@ class CampaignsController < ApplicationController
       campaign = Campaign.find(params[:id])
       unless current_user.campaigns.include?(campaign)
         redirect_to campaigns_path
+      end
+    end
+
+    def validate_dashboard_belongs_to_currents_user_and_admin
+      id = params[:id].to_i
+      return if current_user.type == 'AdminUser'
+      if current_user.id != id
+        redirect_to user_dashboard_path(current_user)
       end
     end
 end

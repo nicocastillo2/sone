@@ -1,6 +1,6 @@
 require 'faker'
 
-@user = User.create(username: 'test',
+@user = AdminUser.create(username: 'test',
                     email: 'test@mail.com',
                     password: 'testkh',
                     password_confirmation: 'testkh')

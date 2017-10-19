@@ -81,8 +81,8 @@
     <br><br><br>
 
     <div id="nps_score" class="shadow-box"></div>
-    <%= javascript_tag do %>
-      <%=
+    <%#= javascript_tag do %>
+      <%#=
         graph_generate(
           'nps_score',
           data: {
@@ -112,7 +112,7 @@
           }
         )
       %>
-    <% end %>
+    <%# end %>
 
     <h1 class="border-left" id="contactos">Contactos de la campaña</h1>
 
