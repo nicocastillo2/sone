@@ -80,7 +80,7 @@ class Campaign < ApplicationRecord
       if conta.size == 1
         true
       else
-        DateTime.now - 30.days > cont[-2].sent_date
+        DateTime.now - 30.days > conta[-2].sent_date
       end
     end
     return valid_result
