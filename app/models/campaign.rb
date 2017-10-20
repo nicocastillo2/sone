@@ -42,6 +42,10 @@ class Campaign < ApplicationRecord
       formatted_topics = Campaign.assign_topics(topics) if topics
       attributes = {}
     end
+    contacts.uniq!{ |contact| contact.email}
+    existing_contacts = Campaign.find(campaign_id).contacts.where.not(status: 1)
+    contacts.select!{ |contact| !existing_contacts.find_by(email: contact.email) }
+    debugger
     Contact.import(contacts, batch_size: 1000)
   end
 
