@@ -101,7 +101,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.find_by_id(params[:id])
     @payment_sources = Conekta::Customer.find(@payment.id_conekta).payment_sources[0]
     @img_card = ""
-    case @payment_sources&.brand.downcase
+    case @payment_sources&.brand&.downcase
     when "mc"
       @img_card = "master.png"
     when "visa"
