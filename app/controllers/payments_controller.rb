@@ -39,7 +39,7 @@ class PaymentsController < ApplicationController
                               card_conekta: customer.payment_sources.first.id, user: current_user}
 
     if @payment.update(payment_params)
-      redirect_to suscriptions_path, notice: 'Se agrego satisfactoriamente el metodo de pago'
+      redirect_to suscriptions_path, notice: 'Se agrego satisfactoriamente el método de pago'
     else
       render :new
     end
@@ -117,7 +117,7 @@ class PaymentsController < ApplicationController
   # DELETE /payments/1
   def destroy
     @payment.destroy
-    redirect_to campaigns_path, notice: 'Metodo de pago eliminado correctamente.'
+    redirect_to campaigns_path, notice: 'Método de pago eliminado correctamente.'
   end
 
   def payment_callback
