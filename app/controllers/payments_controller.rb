@@ -116,8 +116,17 @@ class PaymentsController < ApplicationController
 
   # DELETE /payments/1
   def destroy
-    @payment.destroy
-    redirect_to campaigns_path, notice: 'Método de pago eliminado correctamente.'
+    # @payment.destroy
+    begin
+      customer = Conekta::Customer.find(@payment.id_conekta)
+      customer.payment_sources.first.delete
+      @payment.update(card_conekta: nil)
+    rescue Conekta::ErrorList => e
+      flash[:danger] = e.details[0].message
+    rescue Conekta::Error => e
+      flash[:danger] = e.message
+    end
+    redirect_to new_payment_path, notice: 'Método de pago eliminado correctamente.'
   end
 
   def payment_callback
@@ -158,7 +167,7 @@ class PaymentsController < ApplicationController
       else
         payment.user.update({available_emails: available_emails})
       end
-      payment.records << Record.create(amount: amount)
+      payment.records << Record.create(amount: amount, status: 'Pagado')
     end
 
     head 200, content_type: "text/html"

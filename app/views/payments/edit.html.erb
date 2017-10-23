@@ -81,6 +81,9 @@
   </div>
   <div class="col-md-1 col-sm-1 col-xs-1">
     <%= link_to "Historial de compras", payment_records_path, class: "btn send-button" %>
+    <%= link_to payment_path, method: :delete, data: {confirm: '¿Estas seguro que quieres eliminar tu metodo de pago?'} do %>
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    <% end %>
   </div>
 </div>
 

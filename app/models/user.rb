@@ -58,7 +58,6 @@ class User < ApplicationRecord
   end
 
   def cancel_payment_when_destroy
-    debugger
     return unless self.payment.id_conekta
     begin
       customer = Conekta::Customer.find(self.payment.id_conekta)
