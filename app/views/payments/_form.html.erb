@@ -70,16 +70,16 @@
     <div class="form-group">
       <label class="fecha">
         <span>Fecha de expiración (MM/AAAA)</span><br>
-        <input class="form-control field-pay date" type="text" size="2" data-conekta="card[exp_month]" required/>
+        <input class="form-control field-pay date" type="text" size="2" maxlength="16" data-conekta="card[exp_month]" required/>
 
       <span>/</span>
-      <input class="form-control field-pay date" type="text" size="4" data-conekta="card[exp_year]" required/>
+      <input class="form-control field-pay date" type="text" size="4" maxlength="2" data-conekta="card[exp_year]" required/>
       </label>
     </div>
     <div class="form-group">
       <label>
         <span>CVC</span>
-        <input class="form-control field-pay" type="text" size="4" data-conekta="card[cvc]" required/>
+        <input class="form-control field-pay" type="text" size="4" maxlength="4" data-conekta="card[cvc]" required/>
       </label>
     </div>
     <br>
