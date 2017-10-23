@@ -16,6 +16,8 @@ class User < ApplicationRecord
   # crea el objeto payment con los datos por default
   after_create :create_default_payment
 
+  before_destroy :cancel_payment_when_destroy
+
   # return all the user contacts
   # def all_contacts
   #   Contact.joins([:campaign => :user]).where(campaigns: {user_id: self.id})
@@ -53,6 +55,21 @@ class User < ApplicationRecord
     Payment.create(user_id: self.id, plan_name: 'freelancer',
                   cycle_start: DateTime.now,
                   cycle_end: DateTime.now.next_month)
+  end
+
+  def cancel_payment_when_destroy
+    debugger
+    return unless self.payment.id_conekta
+    begin
+      customer = Conekta::Customer.find(self.payment.id_conekta)
+      if customer.subscription && customer.subscription&.status != 'canceled'
+        customer.subscription.cancel
+      end
+    rescue Conekta::ErrorList => e
+      flash[:danger] = e.details[0].message
+    rescue Conekta::Error => e
+      flash[:danger] = e.message
+    end
   end
 
 end
