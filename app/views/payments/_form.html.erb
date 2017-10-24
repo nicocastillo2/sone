@@ -8,6 +8,9 @@
     var $form = $("#card-form");
     //Inserta el token_id en la forma para que se envíe al servidor
     $form.append($("<input type=\"hidden\" name=\"conektaTokenId\" />").val(token.id));
+    setTimeout(function() {
+      console.log("time");
+    }, 1500);
     $form.get(0).submit(); //Hace submit
   };
   var conektaErrorResponseHandler = function(response) {
@@ -63,17 +66,17 @@
       <br>
       <label>
         <span>Número de tarjeta de crédito</span><br>
-        <input class="form-control field-pay" type="text" size="20" data-conekta="card[number]" required/>
+        <input class="form-control field-pay" type="text" size="20" data-conekta="card[number]" maxlength="16" required/>
       </label>
     </div>
     <br>
     <div class="form-group">
       <label class="fecha">
         <span>Fecha de expiración (MM/AAAA)</span><br>
-        <input class="form-control field-pay date" type="text" size="2" maxlength="16" data-conekta="card[exp_month]" required/>
+        <input class="form-control field-pay date" type="text" size="2" maxlength="2" data-conekta="card[exp_month]" required/>
 
       <span>/</span>
-      <input class="form-control field-pay date" type="text" size="4" maxlength="2" data-conekta="card[exp_year]" required/>
+      <input class="form-control field-pay date" type="text" size="4" maxlength="4" data-conekta="card[exp_year]" required/>
       </label>
     </div>
     <div class="form-group">

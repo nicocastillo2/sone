@@ -92,7 +92,7 @@ class PaymentsController < ApplicationController
     if update_status
       redirect_to campaigns_path, notice: 'Payment actualisado correctamente.'
     else
-      render :edit
+      redirect_to new_payment_path
     end
   end
 

@@ -9,6 +9,9 @@
     var $form = $("#card-form");
     //Inserta el token_id en la forma para que se envíe al servidor
     $form.append($("<input type=\"hidden\" name=\"conektaTokenId\" />").val(token.id));
+    setTimeout(function() {
+      console.log("time");
+    }, 1500);
     $form.get(0).submit(); //Hace submit
   };
   var conektaErrorResponseHandler = function(response) {
@@ -35,7 +38,7 @@
 <div id="current-card">
 
   <div class="col-md-10 col-sm-10 col-xs-10">
-    <%= form_tag(payment_path(@payment), id: 'card-form', method: "patch", class: "form-inline") do %>
+    <%= form_tag(payment_path(@payment), method: "patch", class: "form-inline") do %>
     <span class="card-errors"></span>
     <br>
     <div class="row ">
@@ -49,17 +52,17 @@
           <br>
           <label>
             <span>Número de tarjeta de crédito</span><br>
-            <input class="form-control field-pay" type="text" size="20" value="**** **** **** <%= @payment_sources.last4 %>" disabled/>
+            <input class="form-control field-pay" type="text" size="20" value="**** **** **** <%= @payment_sources&.last4 %>" disabled/>
           </label>
         </div>
         <br>
         <div class="form-group">
           <label class="fecha">
             <span>Fecha de expiración (MM/AAAA)</span><br>
-            <input class="form-control field-pay date" type="text" size="2" value="<%= @payment_sources.exp_month %>" disabled/>
+            <input class="form-control field-pay date" type="text" size="2" value="<%= @payment_sources&.exp_month %>" disabled/>
 
             <span>/</span>
-            <input class="form-control field-pay date" type="text" size="4" value="<%= @payment_sources.exp_year %>" disabled/>
+            <input class="form-control field-pay date" type="text" size="4" value="<%= @payment_sources&.exp_year %>" disabled/>
           </label>
         </div>
         <div class="form-group">
