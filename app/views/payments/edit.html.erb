@@ -36,8 +36,13 @@
 <% end %>
 
 <div id="current-card">
-
-  <div class="col-md-10 col-sm-10 col-xs-10">
+  <div class="col-md-1 col-sm-10 col-xs-10 col-md-push-10" style="display: flex;">
+    <%= link_to "Historial de compras", payment_records_path, class: "btn send-button", id: "compras", style: "" %>
+    <%= link_to payment_path, method: :delete, data: {confirm: '¿Estas seguro que quieres eliminar tu metodo de pago?'} do %>
+      <span class="glyphicon glyphicon-trash" id="trash" style="" aria-hidden="true"></span>
+    <% end %>
+  </div>
+  <div class="col-md-10 col-sm-12 col-xs-12 col-md-pull-1">
     <%= form_tag(payment_path(@payment), method: "patch", class: "form-inline") do %>
     <span class="card-errors"></span>
     <br>
@@ -77,16 +82,7 @@
       <div class="col-md-2"></div>
     </div>
     <% end %>
-
     <button class="btn btn-default change-payment send-button center-block">Cambiar Método de Pago</button>
-
-
-  </div>
-  <div class="col-md-1 col-sm-1 col-xs-1">
-    <%= link_to "Historial de compras", payment_records_path, class: "btn send-button" %>
-    <%= link_to payment_path, method: :delete, data: {confirm: '¿Estas seguro que quieres eliminar tu metodo de pago?'} do %>
-      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-    <% end %>
   </div>
 </div>
 
