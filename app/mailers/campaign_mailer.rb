@@ -3,6 +3,7 @@ class CampaignMailer < ApplicationMailer
   layout false, :only => 'change_subscription'
 
   def send_survey(id_campaign, sender)
+    debugger
     campaign = Campaign.includes(:contacts).find(id_campaign)
     @sender_name = campaign.sender_name
     recipients = []
