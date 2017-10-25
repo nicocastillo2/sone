@@ -284,7 +284,6 @@ class CampaignsController < ApplicationController
   end
 
   def generate_campaign_mailing
-    debugger
     num_surveys = Campaign.find(params[:campaign_id]).contacts.where(blacklist: nil, valid_info: true, status: 0).count
     # @mensaje = ""
     if num_surveys <= current_user.available_emails

@@ -78,7 +78,6 @@ class Campaign < ApplicationRecord
   def valid_and_not_sent_contacts
     contacts = self.contacts.where(valid_info: true, status: [0, 3], blacklist: nil)
     valid_result = contacts.select do |contact|
-      debugger
       conta = self.contacts.where(email: contact.email, blacklist: nil).where.not(sent_date: nil).order(id: :asc)
       if conta.size < 1
         true
