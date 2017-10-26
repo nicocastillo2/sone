@@ -70,7 +70,7 @@ class SuscriptionsController < ApplicationController
   private
 
   def require_payment_method
-    unless current_user.payment.id_conekta
+    unless current_user.payment.id_conekta || current_user.payment.card_conekta
       flash[:info] = 'Tienes que seleccionar un método de pago antes cambiar de plan'
       redirect_to new_payment_path
     end
