@@ -2,6 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(resource)
+    puts "/"*100
     CampaignMailer.welcome(current_user).deliver_now
     current_user.update(terms: true)
     campaigns_path # Or :prefix_to_your_route
