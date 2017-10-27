@@ -156,6 +156,7 @@ class CampaignsController < ApplicationController
   end
 
   def dashboard
+    current_user = User.find(params[:id])
     if current_user.campaigns.empty?
       @no_campaigns = true
     else

@@ -12,7 +12,7 @@ puts '1 User created'
                           password: 'adminkh',
                           password_confirmation: 'adminkh')
 
-AdminUser.create(username: 'nico',
+User.create(username: 'nico',
                  email: 'nico@mail.com',
                  password: 'nico12345',
                  password_confirmation: 'nico12345')
