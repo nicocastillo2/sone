@@ -10,8 +10,8 @@
     $form.append($("<input type=\"hidden\" name=\"conektaTokenId\" />").val(token.id));
     setTimeout(function() {
       console.log("time");
+      $form.get(0).submit(); //Hace submit
     }, 1500);
-    $form.get(0).submit(); //Hace submit
   };
   var conektaErrorResponseHandler = function(response) {
     var $form = $("#card-form");

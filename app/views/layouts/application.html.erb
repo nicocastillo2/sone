@@ -24,8 +24,6 @@
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= csrf_meta_tags %>
 
-<%= yield :conekta_scripts %>
-
 </head>
 <body>
   <div class="row affix-row back-white">
@@ -71,6 +69,6 @@
   </script>
 <% end %>
 <!--End of Tawk.to Script-->
-
+<%= yield :conekta_scripts %>
 </body>
 </html>
