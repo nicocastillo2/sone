@@ -122,90 +122,43 @@
       <li class="bxslider-item">
         <p class="clients-opinion">
           <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
-          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
+          es la herramienta ideal para conocer más a nuestros clientes y diseñar mejores contenidos. Además es muy fácil de usar
           <span class="amarillo negritas">. "</span>
         </p>
         <div class="line"></div>
         <p class="clients-name amarillo hidden-sm hidden-xs">
-          Mauricio <span class="negritas">Herrera</span>
+          Alejandro <span class="negritas">Toussaint</span>
         </p>
         <p class="clients-pagina">
           mexicanisimo.com
         </p>
-        <%= image_tag 'foto-cliente.png', class: 'bxslider-image' %>
+        <%= image_tag 'static/alejandroToussaint.png', class: 'bxslider-image' %>
       </li>
 
       <li class="bxslider-item">
         <p class="clients-opinion">
-          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
-          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
+          <span class="amarillo">" </span>Queremos ofrecer la mejor experiencia a nuestros clientes. 
+          <span class="amarillo negritas">sone</span>
+          nos ayuda muchísimo con este propósito
           <span class="amarillo negritas">. "</span>
         </p>
         <div class="line"></div>
         <p class="clients-name amarillo hidden-sm hidden-xs">
-          Mauricio <span class="negritas">Herrera</span>
+          José <span class="negritas">Gonzalez</span>
         </p>
         <p class="clients-pagina">
           mexicanisimo.com
         </p>
-        <%= image_tag 'foto-cliente.png', class: 'bxslider-image hidden-phone'%>
-      </li>
-
-      <li class="bxslider-item">
-        <p class="clients-opinion">
-          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
-          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
-          <span class="amarillo negritas">. "</span>
-        </p>
-        <div class="line"></div>
-        <p class="clients-name amarillo hidden-sm hidden-xs">
-          Mauricio <span class="negritas">Herrera</span>
-        </p>
-        <p class="clients-pagina">
-          mexicanisimo.com
-        </p>
-        <%= image_tag 'foto-cliente.png', class: 'bxslider-image' %>
-      </li>
-
-      <li class="bxslider-item">
-        <p class="clients-opinion">
-          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
-          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
-          <span class="amarillo negritas">. "</span>
-        </p>
-        <div class="line"></div>
-        <p class="clients-name amarillo hidden-sm hidden-xs">
-          Mauricio <span class="negritas">Herrera</span>
-        </p>
-        <p class="clients-pagina">
-          mexicanisimo.com
-        </p>
-        <%= image_tag 'foto-cliente.png', class: 'bxslider-image' %>
-      </li>
-
-      <li class="bxslider-item">
-        <p class="clients-opinion">
-          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
-          es facil de usar, nos ha permitido mejorar la percepción de nuestra marca sustancialmente
-          <span class="amarillo negritas">. "</span>
-        </p>
-        <div class="line"></div>
-        <p class="clients-name amarillo hidden-sm hidden-xs">
-          Mauricio <span class="negritas">Herrera</span>
-        </p>
-        <p class="clients-pagina">
-          mexicanisimo.com
-        </p>
-        <%= image_tag 'foto-cliente.png', class: 'bxslider-image'%>
+        <%= image_tag 'static/JoseGonzalesFranco.png', class: 'bxslider-image' %>
       </li>
     </ul>
 
     <ul class="slider-clients-pages hidden-sm hidden-xs">
       <li class="slider-page-item active" data-slide-index="0"></li>
       <li class="slider-page-item" data-slide-index="1"></li>
-      <li class="slider-page-item" data-slide-index="2"></li>
+      <!-- <li class="slider-page-item" data-slide-index="2"></li>
       <li class="slider-page-item" data-slide-index="3"></li>
-      <li class="slider-page-item" data-slide-index="4"></li>
+      <li class="slider-page-item" data-slide-index="4"></li> -->
     </ul>
     <%= image_tag 'arrow-left.svg', id: 'slider-left-arrow', class: "hidden-sm hidden-xs" %>
     <%= image_tag 'arrow-right.svg', id: 'slider-right-arrow', class: "hidden-sm hidden-xs" %>
@@ -217,7 +170,6 @@
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
   $(document).ready(function() {
-    console.log("**************")
     var slider = $('.bxslider-opinions').bxSlider({
           pager: false,
           controls: false,
