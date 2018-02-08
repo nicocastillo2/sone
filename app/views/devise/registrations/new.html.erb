@@ -2,7 +2,7 @@
 <% provide(:aside, "hidden")  %>
 <div class="row heigth-100" style="padding: 0;">
   <div class="col-md-4 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 pull-sm-5 col-xs-push-0 ">
-    <h1 class="text-center text-pink font-40">Regístrate gratis</h1>
+    <h1 class="text-center text-pink font-40">¡Regístrate gratis!</h1>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'form-horizontal') do |f| %>
           <%= devise_error_messages! %>
@@ -359,11 +359,11 @@
 
     <div class="sociales heigth-50">
       <div class="row text-center">
-        <h1 class="text-center green">Conectarse con:</h1>
+        <h1 class="text-center green">Regístrate también</h1>
         <div class="col-md-8 col-md-offset-2 ">
           <div class="row text-center registration-links margin-icon">
             <div class="col-xs-4 col-md-4">
-              <p class="con", id="margin-con"></p>
+              <p class="con", id="margin-con">con</p>
             </div>
             <div class="col-xs-4 col-md-4">
               <%= link_to user_facebook_omniauth_authorize_path do %>
