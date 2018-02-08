@@ -344,26 +344,26 @@
             <%= f.submit "Continuar", class: 'btn btn-default pink-show right', id:"sign-up" %>
           </div>
   </div>
+  
   <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12 heigth-100 push-sm-5 col-xs-pull-0">
     <div class="form-group avatar-gray heigth-50 div-avatar">
       <div class="text-center">
-      <br>
+      
         <br>
           <div class="col-md-4" style="z-index: 20">
         <%= link_to image_tag("1.png", class: "img-100 margin-top-20  hidden-sm hidden-xs"), root_path, "data-turbolinks" => false %>
           </div>
-
-
         <br>
       </div>
     </div>
+
     <div class="sociales heigth-50">
       <div class="row text-center">
-        <h1 class="text-center green">Regístrate gratis</h1>
+        <h1 class="text-center green">Conectarse con:</h1>
         <div class="col-md-8 col-md-offset-2 ">
           <div class="row text-center registration-links margin-icon">
             <div class="col-xs-4 col-md-4">
-              <p class="con", id="margin-con">con</p>
+              <p class="con", id="margin-con"></p>
             </div>
             <div class="col-xs-4 col-md-4">
               <%= link_to user_facebook_omniauth_authorize_path do %>
