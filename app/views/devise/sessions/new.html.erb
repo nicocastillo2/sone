@@ -41,8 +41,8 @@
         <div class="col-md-4">
           <div class="row margin-top-up">
             <div class="col-md-12">
-              <%= link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name), class: "tienes-cuenta gray" %>
-              <h3 class="tienes-cuenta gray">¿Aún no tienes cuenta?</h3>
+              <h3 class="tienes-cuenta gray"><%=link_to "¿Aún no tienes una cuenta?", new_user_registration_path%></h3>
+              
             </div>
             <div class="col-md-12" style="z-index: 0">
               <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal') do |f| %>
