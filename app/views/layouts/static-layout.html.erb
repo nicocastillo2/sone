@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Sone</title>
+  <meta name="description" content="Pide feedback a tus clientes. Mide la experiencia que les ofreces y encuentra áreas de oportunidad para tu negocio">
+  <meta name="author" content="Nicolás Castillo Torres">
+  <meta name="language" content="Español">
+  <title>SONE - Software de Experiencia de Cliente</title>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -16,6 +17,37 @@
 <%= stylesheet_link_tag 'static' %>
 <%= javascript_include_tag 'static' %>
 <%= csrf_meta_tags %>
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '165280800761599');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=165280800761599&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-104558130-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-104558130-1');
+</script>
+
+
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -31,11 +63,11 @@
       </div>
       <div class="navbar-center navbar-brand-center">
         <!-- <a class="nav-btn navbar-text navbar-brand-center center-links">Precios</a> -->
-        <%= link_to('Precios', pricing_path, class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
+        <%= link_to('Precios', pricing_path(anchor: 'info-planes'), class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
         <%= link_to('Blog', "https://blog.sone.com.mx/", class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-toggle-menu">
-        <%= link_to 'Precios', pricing_path,class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
+        <%= link_to 'Precios', pricing_path(anchor: 'info-planes'),class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
         <%= link_to 'Blog', 'https://blog.sone.com.mx/',class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
         <!-- <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Precios</a> -->
         <% if user_signed_in? %>
