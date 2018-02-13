@@ -142,9 +142,9 @@ class Campaign < ApplicationRecord
 
     return { detractors: 0, passives: 0, promoters: 0 } if nps_sample_count == 0
     nps_sample_count = nps_sample_count.to_f
-    detractors = (nps.detractors.inject(:+) * 100) / nps_sample_count
-    passives = (nps.passives.inject(:+) * 100) / nps_sample_count
-    promoters = (nps.promoters.inject(:+) * 100) / nps_sample_count
+    detractors = (nps.detractors.reduce(0, :+) * 100) / nps_sample_count
+    passives = (nps.passives.reduce(0, :+) * 100) / nps_sample_count
+    promoters = (nps.promoters.reduce(0, :+) * 100) / nps_sample_count
 
     { detractors: detractors.round(2), passives: passives.round(2), promoters: promoters.round(2) }
   end
