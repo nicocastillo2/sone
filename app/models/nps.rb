@@ -126,6 +126,8 @@ class Nps
     end
 
     def self.get_nps_data_dashboard campaigns, start_date, end_date, topics
+      puts '/' * 150
+      puts campaigns
       campaigns = campaigns.map { |campaign| campaign.id }.join(', ')
 
       topic_query = ''
