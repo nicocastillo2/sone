@@ -148,6 +148,9 @@ class Nps
           GROUP BY date(answers.created_at)
           ORDER BY answer_date
         HEREDOC
+
+        puts '*' * 150
+        puts query
         ActiveRecord::Base.connection.select_all(query, nil, [[nil, start_date], [nil, end_date]])
     end
 end
