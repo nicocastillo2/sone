@@ -1,6 +1,6 @@
 require 'faker'
 
-@user = AdminUser.create(username: 'test',
+@user = User.create(username: 'test',
                     email: 'test@mail.com',
                     password: 'testkh',
                     password_confirmation: 'testkh')
@@ -99,19 +99,19 @@ puts '1 campaign created for Admin with 15 contacts added to it and every
 contact created an answer'
 
 # Uncomment just to add some answers to campaign 2 for testing purposes
-# 15.times do |contact_num|
-#   status = rand(0..1)
-#   contact = Contact.create(name: "Contact #{contact_num + 100}",
-#                  email: "contact_#{contact_num + 1}@mail.com",
-#                  sent_date: Time.now,
-#                  status: status,
-#                  campaign_id: 2,
-#                  valid_info: true)
-#   Answer.create(score: rand(1..10),
-#                 comment: "ADDED Answer of contact #{contact_num + 100}",
-#                 contact: contact,
-#                 created_at: Time.now - 3.months)
-# end
+15.times do |contact_num|
+  status = rand(0..1)
+  contact = Contact.create(name: "Contact #{contact_num + 100}",
+                 email: "contact_#{contact_num + 1}@mail.com",
+                 sent_date: Time.now,
+                 status: status,
+                 campaign_id: 2,
+                 valid_info: true)
+  Answer.create(score: rand(1..10),
+                comment: "ADDED Answer of contact #{contact_num + 100}",
+                contact: contact,
+                created_at: Time.now - 3.months)
+end
 
 # Campaign with all necessary and correct data to test
 color = '#' + "%06x" % (rand * 0xffffff)
@@ -125,47 +125,47 @@ full_campaign = Campaign.create(name: "Full",
                                 last_sent: Time.now,
                                 user: @user)
 
-# mau = Contact.create(name: 'Mauricio',
-#                      email: 'mauricio@kheper.io',
-#                      sent_date: Time.now,
-#                      status: rand(0..1),
-#                      campaign: full_campaign,
-#                      topics: {"sku"=>"196908", "city"=>"Dionysus M", "brand"=>"Prodder", "office"=>"Schaefer Group", "product"=>"Nugget Nectar"},
-#                      valid_info: true)
-# roberto = Contact.create(name: 'Roberto',
-#                          email: 'roberto@kheper.io',
-#                          sent_date: Time.now,
-#                          status: rand(0..1),
-#                          topics: {"sku"=>"296908", "city"=>"Dionysus R", "brand"=>"Prodder", "office"=>"Schaefer Group", "product"=>"Nugget Nectar"},
-#                          campaign: full_campaign,
-#                          valid_info: true)
-# aldo = Contact.create(name: 'Aldo',
-#                       email: 'aldo@kheper.io',
-#                       sent_date: Time.now,
-#                       status: rand(0..1),
-#                       campaign: full_campaign,
-#                       topics: {"sku"=>"996908", "city"=>"Dionysus A", "brand"=>"Prodder", "office"=>"Schaefer Group", "product"=>"Nugget Nectar"},
-#                       valid_info: true)
-# jonathan = Contact.create(name: 'Jonathan',
-#                       email: 'jonathan@kheper.io',
-#                       sent_date: Time.now,
-#                       status: rand(0..1),
-#                       campaign: full_campaign,
-#                       topics: {"sku"=>"496908", "city"=>"Dionysus J", "brand"=>"Prodder", "office"=>"Schaefer Group", "product"=>"Nugget Nectar"},
-#                       valid_info: true)
+mau = Contact.create(name: 'Mauricio',
+                     email: 'mauricio@kheper.io',
+                     sent_date: Time.now,
+                     status: rand(0..1),
+                     campaign: full_campaign,
+                     topics: {"sku"=>"196908", "city"=>"Dionysus M", "brand"=>"Prodder", "office"=>"Schaefer Group", "product"=>"Nugget Nectar"},
+                     valid_info: true)
+roberto = Contact.create(name: 'Roberto',
+                         email: 'roberto@kheper.io',
+                         sent_date: Time.now,
+                         status: rand(0..1),
+                         topics: {"sku"=>"296908", "city"=>"Dionysus R", "brand"=>"Prodder", "office"=>"Schaefer Group", "product"=>"Nugget Nectar"},
+                         campaign: full_campaign,
+                         valid_info: true)
+aldo = Contact.create(name: 'Aldo',
+                      email: 'aldo@kheper.io',
+                      sent_date: Time.now,
+                      status: rand(0..1),
+                      campaign: full_campaign,
+                      topics: {"sku"=>"996908", "city"=>"Dionysus A", "brand"=>"Prodder", "office"=>"Schaefer Group", "product"=>"Nugget Nectar"},
+                      valid_info: true)
+jonathan = Contact.create(name: 'Jonathan',
+                      email: 'jonathan@kheper.io',
+                      sent_date: Time.now,
+                      status: rand(0..1),
+                      campaign: full_campaign,
+                      topics: {"sku"=>"496908", "city"=>"Dionysus J", "brand"=>"Prodder", "office"=>"Schaefer Group", "product"=>"Nugget Nectar"},
+                      valid_info: true)
 
-# Answer.create(score: rand(1..10),
-#               comment: 'Mau answer',
-#               contact: mau)
+Answer.create(score: rand(1..10),
+              comment: 'Mau answer',
+              contact: mau)
 # Answer.create(score: rand(1..10),
 #               comment: 'Roberto answer',
 #               contact: roberto)
-# Answer.create(score: rand(1..10),
-#               comment: 'Aldo answer',
-#               contact: aldo)
-# Answer.create(score: rand(1..10),
-#               comment: 'Jonathan answer',
-#               contact: jonathan)
+Answer.create(score: rand(1..10),
+              comment: 'Aldo answer',
+              contact: aldo)
+Answer.create(score: rand(1..10),
+              comment: 'Jonathan answer',
+              contact: jonathan)
 
 200.times do |contact_num|
   # status = rand(0..1)

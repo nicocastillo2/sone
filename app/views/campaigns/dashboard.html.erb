@@ -93,7 +93,7 @@
                 <br>
                 <%= button_tag 'Todas las campañas', id: 'all-campaigns' %>
                 <div class="form-group" id="campaigns-checkboxes">
-                  <% current_user.campaigns.each do |campaign| %>
+                  <% User.find(params[:id]).campaigns.each do |campaign| %>
                     <% if @selected_campaigns.size == 0 || @selected_campaigns.include?(campaign.id.to_s) %>
                       <%= check_box_tag "campaigns[]", campaign.id, { checked: true }, id: campaign.name  %>
                     <% else %>

@@ -172,7 +172,6 @@ class CampaignsController < ApplicationController
         @topics = params[:topics].split(',')
         params[:topics] = @topics
       end
-
       if params[:campaigns]
         @campaigns = current_user.campaigns.where(id: params[:campaigns])
       else
@@ -190,7 +189,6 @@ class CampaignsController < ApplicationController
         date_range = Campaign.receive_date(selected_date)
         date_range_fixed_nps = Campaign.receive_date('1')
         choosed_campaigns = @campaigns.where(id: @selected_campaigns)
-
         @nps = Nps.for_dashboard(choosed_campaigns, date_range[0], date_range[1], @topics)
         # @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
         @nps_30_fixed = Nps.for_dashboard(choosed_campaigns, date_range_fixed_nps[0], date_range_fixed_nps[1], @topics)
