@@ -84,5 +84,5 @@ production:
   username: sone
   password: starbucks
   host: 178.62.145.40
-  url: postgres://sone:starbucks@178.62.145.40:5432/sone_production
-  
+  url: postgres://postgres:juanj1t0@178.62.145.40:5432/sone_production
+
