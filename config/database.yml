@@ -82,4 +82,6 @@ production:
   <<: *default
   database: sone_production
   username: sone
-  password: <%= ENV['SONE_DATABASE_PASSWORD'] %>
+  password: starbucks
+  host: 178.62.145.40
+  
