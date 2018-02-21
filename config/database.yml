@@ -84,8 +84,6 @@ production:
   username: sone
   password: starbucks
   host: 178.62.145.40
-  url: <%= ENV['DATABASE_URL'].sub("gucjcnlsnbbdsi", "postgres")
-           .sub("d8937ae38b7b378939c9c3dec22a7d2f0cbd244011ba2d0caba82e0d7e2d1e12", "juanj1t0")
-           .sub("ec2-54-235-240-92.compute-1.amazonaws.com", "178.62.145.40")
-           .sub("d6n4fi2tj04su0", "sone_production") %>
+  url: postgres://postgres:juanj1t0@178.62.145.40:5432/sone_production
+
 
