@@ -82,8 +82,4 @@ production:
   <<: *default
   database: sone_production
   username: sone
-  password: yejmex5*
-  host: 159.89.86.242
-  url: postgres://sone:yejmex5*@159.89.86.242:5432/sone_production
-
-
+  password: <%= ENV['SONE_DATABASE_PASSWORD'] %>
