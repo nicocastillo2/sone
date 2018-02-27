@@ -38,6 +38,6 @@ c.contacts.each do |contact|
     score = detractor.sample
   end
   
-  contact.answers.create({ score: score, comment: lorem.sample })
+  contact.answer.create({ score: score, comment: lorem.sample })
 end
 
