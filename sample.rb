@@ -1,6 +1,3 @@
-
-
-
 lorem = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet efficitur nulla, eu commodo ex. Quisque luctus magna ut massa",
 "ed varius ante viverra. Aenean rutrum justo sed dolor lacinia, eu vehicula sem blandit. In purus lectus, scelerisque eu est ut, eleifend placerat",
 "Phasellus suscipit dolor nunc, non gravida quam malesuada sed. Mauris pretium lacus euismod sodales tristique. Pellentesque eget elementum tortor.",
@@ -31,7 +28,7 @@ c = Campaign.find 1
 
 
 c.contacts.each do |contact|  
-  value = rand.call
+  value = rand
   
   if value < 0.55
     score = promotor.sample
