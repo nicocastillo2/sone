@@ -23,7 +23,7 @@ detractor =  [0, 1, 2, 3, 4, 5, 6]
 promotor = [9, 10]  
 normal =  [7, 8]
 
-c = Campaign.find 1
+c = Campaign.find 2
 
 
 
