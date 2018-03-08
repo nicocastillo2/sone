@@ -155,132 +155,132 @@ class CampaignsController < ApplicationController
     end
   end
 
-  # def dashboard
-  #   current_user = User.find(params[:id])
-  #   if current_user.campaigns.empty?
-  #     @no_campaigns = true
-  #   else
-  #     @date_range = params[:filter] ? params[:feedback_date] : '30 Días'
-  #     @date_range ||= '30 Días'
+  def dashboard
+    current_user = User.find(params[:id])
+    if current_user.campaigns.empty?
+      @no_campaigns = true
+    else
+      @date_range = params[:filter] ? params[:feedback_date] : '30 Días'
+      @date_range ||= '30 Días'
 
-  #     if params[:campaigns].is_a? String
-  #       @selected_campaigns = params[:campaigns].split(',')
-  #       params[:campaigns] = @selected_campaigns
-  #     end
+      if params[:campaigns].is_a? String
+        @selected_campaigns = params[:campaigns].split(',')
+        params[:campaigns] = @selected_campaigns
+      end
 
-  #     if params[:topics].is_a? String
-  #       @topics = params[:topics].split(',')
-  #       params[:topics] = @topics
-  #     end
-  #     if params[:campaigns]
-  #       @campaigns = current_user.campaigns.where(id: params[:campaigns])
-  #     else
-  #       @campaigns = current_user.campaigns
-  #     end
-  #     @campaigns_ids = @campaigns.map { |campaign| campaign.id }
+      if params[:topics].is_a? String
+        @topics = params[:topics].split(',')
+        params[:topics] = @topics
+      end
+      if params[:campaigns]
+        @campaigns = current_user.campaigns.where(id: params[:campaigns])
+      else
+        @campaigns = current_user.campaigns
+      end
+      @campaigns_ids = @campaigns.map { |campaign| campaign.id }
 
-  #     @selected_campaigns = params[:campaigns] ||= []
-  #     @selected_topics = params[:topics] ||= []
-  #     @topics = params[:topics] ||= []
+      @selected_campaigns = params[:campaigns] ||= []
+      @selected_topics = params[:topics] ||= []
+      @topics = params[:topics] ||= []
 
-  #     if params[:filter]
-  #       params[:filter][:nps_date] = params[:nps_date] if params[:nps_date]
-  #       selected_date = params[:filter][:nps_date]
-  #       date_range = Campaign.receive_date(selected_date)
-  #       date_range_fixed_nps = Campaign.receive_date('1')
-  #       choosed_campaigns = @campaigns.where(id: @selected_campaigns)
-  #       @nps = Nps.for_dashboard(choosed_campaigns, date_range[0], date_range[1], @topics)
-  #       # @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
-  #       @nps_30_fixed = Nps.for_dashboard(choosed_campaigns, date_range_fixed_nps[0], date_range_fixed_nps[1], @topics)
+      if params[:filter]
+        params[:filter][:nps_date] = params[:nps_date] if params[:nps_date]
+        selected_date = params[:filter][:nps_date]
+        date_range = Campaign.receive_date(selected_date)
+        date_range_fixed_nps = Campaign.receive_date('1')
+        choosed_campaigns = @campaigns.where(id: @selected_campaigns)
+        @nps = Nps.for_dashboard(choosed_campaigns, date_range[0], date_range[1], @topics)
+        # @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }, created_at: date_range[0]..date_range[1])
+        @nps_30_fixed = Nps.for_dashboard(choosed_campaigns, date_range_fixed_nps[0], date_range_fixed_nps[1], @topics)
 
-  #       @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
-  #       @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
-  #       @topics.each do |topic|
-  #         @contacts_feedback = @contacts_feedback.where('contacts.topics ? :topics', topics: topic)
-  #         @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
-  #       end
+        @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
+        @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
+        @topics.each do |topic|
+          @contacts_feedback = @contacts_feedback.where('contacts.topics ? :topics', topics: topic)
+          @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
+        end
 
-  #       @contacts_feedback = @contacts_feedback.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
-  #       # @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
+        @contacts_feedback = @contacts_feedback.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+        # @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaign.id }, created_at: date_range[0]..date_range[1])
 
-  #       if params[:feedback_type] == 'promoter'
-  #         @feedback_type = params[:feedback_type]
-  #         @contacts_feedback = @contacts_feedback.where(score: 9..10)
-  #         @feedback_report = @feedback_report.where(score: 9..10)
-  #         @nps.passives = [0]
-  #         @nps.detractors = [0]
-  #       elsif params[:feedback_type] == 'passive'
-  #         @feedback_type = params[:feedback_type]
-  #         @contacts_feedback = @contacts_feedback.where(score: 7..8)
-  #         @feedback_report = @feedback_report.where(score: 7..8)
-  #         @nps.detractors = [0]
-  #         @nps.promoters = [0]
-  #       elsif params[:feedback_type] == 'detractor'
-  #         @feedback_type = params[:feedback_type]
-  #         @contacts_feedback = @contacts_feedback.where(score: 0..6)
-  #         @feedback_report = @feedback_report.where(score: 0..6)
-  #         @nps.passives = [0]
-  #         @nps.promoters = [0]
-  #       end
-  #       @nps_sample_count = @contacts_feedback.count
-  #       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
-  #       @data_percentages_30_fixed = Campaign.get_nps_data_percentages(@nps_30_fixed, @nps_sample_count)
-  #       @active_filter = params[:filter][:nps_date]
+        if params[:feedback_type] == 'promoter'
+          @feedback_type = params[:feedback_type]
+          @contacts_feedback = @contacts_feedback.where(score: 9..10)
+          @feedback_report = @feedback_report.where(score: 9..10)
+          @nps.passives = [0]
+          @nps.detractors = [0]
+        elsif params[:feedback_type] == 'passive'
+          @feedback_type = params[:feedback_type]
+          @contacts_feedback = @contacts_feedback.where(score: 7..8)
+          @feedback_report = @feedback_report.where(score: 7..8)
+          @nps.detractors = [0]
+          @nps.promoters = [0]
+        elsif params[:feedback_type] == 'detractor'
+          @feedback_type = params[:feedback_type]
+          @contacts_feedback = @contacts_feedback.where(score: 0..6)
+          @feedback_report = @feedback_report.where(score: 0..6)
+          @nps.passives = [0]
+          @nps.promoters = [0]
+        end
+        @nps_sample_count = @contacts_feedback.count
+        @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
+        @data_percentages_30_fixed = Campaign.get_nps_data_percentages(@nps_30_fixed, @nps_sample_count)
+        @active_filter = params[:filter][:nps_date]
 
-  #       get_filtered_topics = Campaign.get_filtered_topics(@selected_topics)
-  #       topics_for_filter = get_filtered_topics.empty? ? ['Sin topics'] : get_filtered_topics
-  #       @filters = {
-  #         date: @date_range,
-  #         campaigns: Campaign.get_filtered_campaigns(@selected_campaigns),
-  #         topics: topics_for_filter
-  #       }
-  #     else
-  #       date = params[:nps_date] ? params[:nps_date] : '1'
-  #       date_range = Campaign.receive_date(date)
-  #       @nps = Nps.for_dashboard(@campaigns, date_range[0], date_range[1], @topics)
+        get_filtered_topics = Campaign.get_filtered_topics(@selected_topics)
+        topics_for_filter = get_filtered_topics.empty? ? ['Sin topics'] : get_filtered_topics
+        @filters = {
+          date: @date_range,
+          campaigns: Campaign.get_filtered_campaigns(@selected_campaigns),
+          topics: topics_for_filter
+        }
+      else
+        date = params[:nps_date] ? params[:nps_date] : '1'
+        date_range = Campaign.receive_date(date)
+        @nps = Nps.for_dashboard(@campaigns, date_range[0], date_range[1], @topics)
         
-  #       @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
-  #       @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
-  #       @topics.each do |topic|
-  #         @contacts_feedback = @contacts_feedback.where('contacts.topics ? :topics', topics: topic)
-  #         @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
-  #       end
+        @contacts_feedback = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
+        @feedback_report = Answer.joins(contact: :campaign).where(campaigns: { id: @campaigns_ids }).where(["date(answers.created_at) BETWEEN ? AND ?", date_range[0], date_range[1]])
+        @topics.each do |topic|
+          @contacts_feedback = @contacts_feedback.where('contacts.topics ? :topics', topics: topic)
+          @feedback_report = @feedback_report.where('contacts.topics ? :topics', topics: topic)
+        end
 
-  #       @contacts_feedback = @contacts_feedback.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+        @contacts_feedback = @contacts_feedback.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
 
-  #       if params[:feedback_type] == 'promoter'
-  #         @feedback_type = params[:feedback_type]
-  #         @contacts_feedback = @contacts_feedback.where(score: 9..10)
-  #         @feedback_report = @feedback_report.where(score: 9..10)
-  #       elsif params[:feedback_type] == 'passive'
-  #         @feedback_type = params[:feedback_type]
-  #         @contacts_feedback = @contacts_feedback.where(score: 7..8)
-  #         @feedback_report = @feedback_report.where(score: 7..8)
-  #       elsif params[:feedback_type] == 'detractor'
-  #         @feedback_type = params[:feedback_type]
-  #         @contacts_feedback = @contacts_feedback.where(score: 0..6)
-  #         @feedback_report = @feedback_report.where(score: 0..6)
-  #       end
+        if params[:feedback_type] == 'promoter'
+          @feedback_type = params[:feedback_type]
+          @contacts_feedback = @contacts_feedback.where(score: 9..10)
+          @feedback_report = @feedback_report.where(score: 9..10)
+        elsif params[:feedback_type] == 'passive'
+          @feedback_type = params[:feedback_type]
+          @contacts_feedback = @contacts_feedback.where(score: 7..8)
+          @feedback_report = @feedback_report.where(score: 7..8)
+        elsif params[:feedback_type] == 'detractor'
+          @feedback_type = params[:feedback_type]
+          @contacts_feedback = @contacts_feedback.where(score: 0..6)
+          @feedback_report = @feedback_report.where(score: 0..6)
+        end
 
-  #       @nps_sample_count = @contacts_feedback.count
-  #       @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
+        @nps_sample_count = @contacts_feedback.count
+        @data_percentages = Campaign.get_nps_data_percentages(@nps, @nps_sample_count)
 
-  #       @filters = {
-  #         date: @date_range,
-  #         campaigns: ['Todas las campañas'],
-  #         topics: ['Sin topics']
-  #       }
-  #     end
-  #   end
-  #   respond_to do |format|
-  #     format.js { render partial: 'feedback', content_type: 'text/html' }
-  #     format.html
-  #     format.csv do
-  #       send_data Campaign.to_csv(@campaign, @feedback_report, params[:topics]),
-  #       filename: "report-#{Date.today}.csv"
-  #     end
-  #   end
-  # end
+        @filters = {
+          date: @date_range,
+          campaigns: ['Todas las campañas'],
+          topics: ['Sin topics']
+        }
+      end
+    end
+    respond_to do |format|
+      format.js { render partial: 'feedback', content_type: 'text/html' }
+      format.html
+      format.csv do
+        send_data Campaign.to_csv(@campaign, @feedback_report, params[:topics]),
+        filename: "report-#{Date.today}.csv"
+      end
+    end
+  end
 
   def generate_campaign_mailing
     num_surveys = Campaign.find(params[:campaign_id]).contacts.where(blacklist: nil, valid_info: true, status: 0).count
