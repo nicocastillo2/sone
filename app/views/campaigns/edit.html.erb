@@ -1,15 +1,15 @@
-<% provide(:title, 'Editar Campaña') %>
+<% provide(:title, t("views.campaigns.campaigns_edit.edit_subtitle")) %>
 <div class="row">
 	<div class="col-md-1 col-sm-1 col-xs-1"><br></div>
 	<div class="col-md-10 col-sm-10 col-xs-10">
 		<div class="page-header">
 		  <%= link_to campaigns_path, class: 'btn btn-default button-pink send-button' do %>
 		    <span class="glyphicon glyphicon-list-alt "></span>
-		    	Regresar
+		    	<%= t("views.campaigns.campaigns_edit.back_button") %>
 		  	<% end %>
 		  	<%= link_to @campaign, class: 'btn btn-default button-pink send-button' do %>
 		    	<span class="glyphicon glyphicon-info-sign"></span>
-		    	Mostrar
+		    	<%= t("views.campaigns.campaigns_edit.show_button") %>
 		  	<% end %>
 
 			<%= render 'form' %>

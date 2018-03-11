@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sone</title>
+  <title><%= I18n.t("views.campaign_mailers.survey_email.survey_head_title") %></title>
   <style type="text/css">
   body {
       margin: 0;
@@ -197,10 +197,10 @@
   <center>
     <img id="img" src='<%= @logo_path %>' alt="" style="height: 140px;width: 140px;">
     <br>
-    ¡Hola, {{name}}!
+    <%= I18n.t("views.campaign_mailers.survey_email.survey_greeting") %> {{name}}!
   </center>
   <center>
-    <p style="text-align: center">¿Qué tan dispuest@ estarías a recomendar <strong><%= @sender_name %></strong> a un amigo o familiar?</p>
+    <p style="text-align: center"><%= I18n.t("views.campaign_mailers.survey_email.survey_question", sender_name: @sender_name).html_safe %></p>
   </center>
   <div id="mail" class="mail col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-lg-4 col-lg-offset-4 col-xs-4 col-xs-offset-4" style="width: 60%; margin-left: 20%">
     <table class="" border="0" cellpadding="0" cellspacing="5" width="100%">
@@ -235,7 +235,7 @@
                 <td class="border-0 row">
                   <div class="col-md-12 col-sm-12 col-xs-12  col-lg-12 select text-center" style="color: white;background-color: {{color}};padding:1%;border-radius:10px;">
                     <center>
-                      <a class="" style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %> - Poco</a>
+                      <a class="" style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %><%= I18n.t("views.campaign_mailers.survey_email.survey_scale_guide") %></a>
                     </center>
                     
                   </div>
@@ -263,7 +263,7 @@
                 <td class="border-0 row">
                   <div class="select col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center" style="color: white;background-color: {{color}};padding:1%;border-radius:10px;">
                     <center>
-                      <a style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %> - Mucho</a>
+                      <a style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %><%= I18n.t("views.campaign_mailers.survey_email.survey_scale_guide1") %></a>
                     </center>
                     
                   </div>
@@ -275,7 +275,7 @@
             </tbody>
           </table>
           <center>
-            <p class="font-size-10" style="font-size: 70%; padding-top: 15px;">Dejar Suscripción<a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}"> Click aquí</a> <br><br><br>Powered by <%= link_to "SONE", root_url, class: "link font-10" %></p>
+            <p class="font-size-10" style="font-size: 70%; padding-top: 15px;"><%= I18n.t("views.campaign_mailers.survey_email.leave_suscription") %><a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}"><%= I18n.t("views.campaign_mailers.survey_email.leave_suscription_link") %></a> <br><br><br><%= I18n.t("views.campaign_mailers.survey_email.survey_lead") %><%= link_to I18n.t("views.campaign_mailers.survey_email.survey_lead_link"), root_url, class: "link font-10" %></p>
           </center>
         </td>
       </tr>

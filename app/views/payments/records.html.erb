@@ -1,16 +1,16 @@
-<% provide :title, "Historial de compras" %>
+<% provide :title, t("views.payments.records.title") %>
 <div class="row row-0">
 	<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
 		<% if @records.empty? %>
-			<h3 class="gray text-center"> Aún no hay registros de pago </h3>
+			<h3 class="gray text-center"><%= t("views.payments.records.message") %></h3>
 		<% else %>
 			<table class="table table-shadow table-striped table-bordered table-hover table-no-margin">
 				<thead>
 					<tr id="tr-pad">
-						<th class="th-no-border">Fecha</th>
-						<th class="th-no-border">Plan</th>
-						<th class="th-no-border">Monto</th>
-						<th class="th-no-border">status</th>
+						<th class="th-no-border"><%= t("views.payments.records.colum1") %></th>
+						<th class="th-no-border"><%= t("views.payments.records.colum2") %></th>
+						<th class="th-no-border"><%= t("views.payments.records.colum3") %></th>
+						<th class="th-no-border"><%= t("views.payments.records.colum4") %></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -19,11 +19,11 @@
 							<tr>
 								<td class="tr-pad text-center td-no-border padding-bottom middle-align"><%= record.created_at.to_formatted_s(:db) %></td>
 								<% if record.amount == 900  %>
-									<td class="tr-pad td-no-border text-center padding-bottom middle-align">Startup</td>
+									<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= t("views.payments.records.plan1") %></td>
 								<% elsif record.amount == 2500 %>
-									<td class="tr-pad td-no-border text-center padding-bottom middle-align">Crecimiento</td>
+									<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= t("views.payments.records.plan2") %></td>
 								<% else %>
-									<td class="tr-pad td-no-border text-center padding-bottom middle-align">Enterprise</td>
+									<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= t("views.payments.records.plan3") %></td>
 								<% end %>
 								<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= number_to_currency(record.amount, unit: "$", precision: 2)%></td>
 								<td class="tr-pad td-no-border text-center padding-bottom middle-align"><%= record.status%></td>
@@ -32,11 +32,11 @@
 							<tr>
 								<td class="text-center td-no-border padding-bottom middle-align"><%= record.created_at.to_formatted_s(:db)%></td>
 								<% if record.amount == 900  %>
-									<td class="td-no-border text-center padding-bottom middle-align">Startup</td>
+									<td class="td-no-border text-center padding-bottom middle-align"><%= t("views.payments.records.plan1") %></td>
 								<% elsif record.amount == 2500 %>
-									<td class="td-no-border text-center padding-bottom middle-align">Crecimiento</td>
+									<td class="td-no-border text-center padding-bottom middle-align"><%= t("views.payments.records.plan2") %></td>
 								<% else %>
-									<td class="td-no-border text-center padding-bottom middle-align">Enterprise</td>
+									<td class="td-no-border text-center padding-bottom middle-align"><%= t("views.payments.records.plan3") %></td>
 								<% end %>
 								<td class="td-no-border text-center padding-bottom middle-align"><%= number_to_currency(record.amount, unit: "$", precision: 2) %></td>
 								<td class="td-no-border text-center padding-bottom middle-align"><%= record.status%></td>

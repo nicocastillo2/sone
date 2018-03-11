@@ -42,7 +42,7 @@ class CampaignsController < ApplicationController
       @campaign.tmp_topics = campaign_params[:topics].map(&:split).flatten.sort if campaign_params[:topics]
       respond_to do |format|
         if @campaign.save
-          format.html { redirect_to @campaign, notice: 'Campaña creada exitosamente.' }
+          format.html { redirect_to @campaign, notice: t("controllers.campaigns_controller.create_notice") }
           format.json { render :show, status: :created, location: @campaign }
         else
           format.html { render :new }
@@ -56,7 +56,7 @@ class CampaignsController < ApplicationController
   def update
     respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
+        format.html { redirect_to @campaign, notice: t("controllers.campaigns_controller.update_notice") }
         format.json { render :show, status: :ok, location: @campaign }
       else
         format.html { render :edit }
@@ -70,15 +70,15 @@ class CampaignsController < ApplicationController
   def destroy
     @campaign.destroy
     respond_to do |format|
-      format.html { redirect_to campaigns_url, notice: 'Campaign was successfully destroyed.' }
+      format.html { redirect_to campaigns_url, notice: t("controllers.campaigns_controller.delete_notice") }
       format.json { head :no_content }
     end
   end
 
   def report
     @campaign = Campaign.find(params[:id])
-    @date_range = params[:filter] ? params[:feedback_date] : '30 Días'
-    @date_range ||= '30 Días'
+    @date_range = params[:filter] ? params[:feedback_date] : t("models.campaign.nps_dates.monthly")
+    @date_range ||= t("models.campaign.nps_dates.monthly")
     @selected_topics = params[:filter] ? params[:topics] : []
     @topics = params[:topics] ||= []
 
@@ -160,8 +160,8 @@ class CampaignsController < ApplicationController
     if current_user.campaigns.empty?
       @no_campaigns = true
     else
-      @date_range = params[:filter] ? params[:feedback_date] : '30 Días'
-      @date_range ||= '30 Días'
+      @date_range = params[:filter] ? params[:feedback_date] : t("models.campaign.nps_dates.monthly")
+      @date_range ||= t("models.campaign.nps_dates.monthly")
 
       if params[:campaigns].is_a? String
         @selected_campaigns = params[:campaigns].split(',')
@@ -286,9 +286,9 @@ class CampaignsController < ApplicationController
     num_surveys = Campaign.find(params[:campaign_id]).contacts.where(blacklist: nil, valid_info: true, status: 0).count
     # @mensaje = ""
     if num_surveys <= current_user.available_emails
-      mensaje = 'Campaña enviada exitosamente.'
+      mensaje = t("controllers.campaigns_controller.sent_notice")
       if Campaign.find(params[:campaign_id]).valid_and_not_sent_contacts.empty?
-        mensaje = 'No hay contactos disponibles'
+        mensaje = t("controllers.campaigns_controller.no_contacts_notice")
       else
         CampaignMailer.send_survey(params[:campaign_id], params[:sender_email]).deliver!
       end
@@ -304,7 +304,7 @@ class CampaignsController < ApplicationController
       campaign.save
       flash[:info] = mensaje
     else
-      flash[:warning] = 'No tienes sufucuentes emails disponibles'
+      flash[:warning] = t("controllers.campaigns_controller.no_emails_notice")
     end
 
     redirect_to campaign_path(id: params[:campaign_id])
@@ -314,15 +314,15 @@ class CampaignsController < ApplicationController
     campaign_id = params[:campaign][:id]
     csv_file = params[:campaign][:file]
     if csv_file.nil?
-      redirect_to campaign_path(campaign_id), notice: 'Necesitas agregar un archivo.'
+      redirect_to campaign_path(campaign_id), notice: t("controllers.campaigns_controller.upload_csv_notice")
     elsif !(csv_file.content_type.include?('csv') || csv_file.content_type.include?('excel'))
-      redirect_to campaign_path(campaign_id), notice: 'El formato del archivo no es correcto.'
+      redirect_to campaign_path(campaign_id), notice: t("controllers.campaigns_controller.format_csv_notice")
     elsif !Campaign.have_correct_columns?(csv_file, campaign_id)
-      redirect_to campaign_path(campaign_id), notice: 'Recuerda agregar las columnas correspondientes a tu archivo.'
+      redirect_to campaign_path(campaign_id), notice: t("controllers.campaigns_controller.column_csv_notice")
     else
       topics = Campaign.find(campaign_id).tmp_topics
       Campaign.import_contacts(params[:campaign][:file], topics, campaign_id)
-      redirect_to campaign_path(campaign_id), notice: 'CSV importado exitosamente.'
+      redirect_to campaign_path(campaign_id), notice: t("controllers.campaigns_controller.upload_csv_confirm")
     end
   end
 

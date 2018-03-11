@@ -2,14 +2,14 @@
   <div class="container-fluid">
        <!-- <button onclick="back_to_top()" id="flecha"><%#= image_tag 'static/flecha-arriba.svg', id: 'flecha-arriba', class: "hidden-lg hide" %></button> -->
     <div class="hero-text-box text-center">
-      <h1 id="home-main-title">Pide feedback a tus clientes</h1>
-      <h3 class="responsive" id="title-responsive">Mide la experiencia que les ofreces y encuentra áreas de oportunidad<br>para crecer tu negocio</h3>
+      <h1 id="home-main-title"><%= t("views.static.homepage.container_call_to_action.cta_main_title") %></h1>
+      <h3 class="responsive" id="title-responsive"><%= t("views.static.homepage.container_call_to_action.cta_sub_title") %></h3>
       <!-- <%#= link_to 'Prueba gratis', '#', class: 'btn btn-free-trial' %> -->
-      <%= link_to 'Prueba gratis', new_user_registration_path, class: 'btn btn-free-trial', "data-turbolinks" => false %>
+      <%= link_to t("views.static.homepage.container_call_to_action.cta_button"), new_user_registration_path, class: 'btn btn-free-trial', "data-turbolinks" => false %>
     </div>
     <div class="hero-text-bottom text-center">
-      <h4>250 clientes por 30 días </h4>
-      <h4>Sin tarjeta de crédito</h4>
+      <h4><%= t("views.static.homepage.container_call_to_action.cta_bottom_text1") %></h4>
+      <h4><%= t("views.static.homepage.container_call_to_action.cta_bottom_text2") %></h4>
     </div>
   </div>
 </header>
@@ -19,19 +19,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-1 col-sm-5">
-        <h3>Pregunta</h3>
-        <p>
-          Crea una <span class="highlight-text">base de clientes</span>,
-          mándales nuestra sencilla <span class="highlight-text">encuesta</span>
-          y obtén a cambio <span class="highlight-text">resultados</span> poderosos.
-        </p>
+        <h3><%= t("views.static.homepage.container_ask_improve.ask_improve_claim_1") %></h3>
+        <p><%= t("views.static.homepage.container_ask_improve.ask_improve_sub_claim_1") %></p>
         <%= image_tag "pregunta.png", class: 'img-responsive' %>
       </div>
       <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-2">
-        <h3>Mejora</h3>
-        <p>
-          Adapta tu modelo de negocio a las necesidades reales de tus clientes.<br>Nuestro <span class="highlight-text">SONE Dashboard</span> te dice cómo.
-        </p>
+        <h3><%= t("views.static.homepage.container_ask_improve.ask_improve_claim_2") %></h3>
+        <p><%= t("views.static.homepage.container_ask_improve.ask_improve_sub_claim_2") %></p>
         <%= image_tag "mejora.png", class: 'img-responsive' %>
       </div>
     </div>
@@ -44,13 +38,13 @@
 <section class="benefits-section" style="margin-top: 25px;">
   <div class="container">
     <div class="row">
-      <h2 class="text-center">Beneficios de contar con <span class="pink">SONE</span></h2>
+      <h2 class="text-center"><%= t("views.static.homepage.container_beneficios.beneficios_title") %></span></h2>
     </div>
 
     <div class="row benefit-row">
       <div class="col-md-3 col-md-offset-3">
-        <h3>Escalable</h3>
-        <p>Contamos con <span class="highlight-text">planes</span> diseñados para <span class="highlight-text">cualquier tipo y tamaño de empresa</span>.</p>
+        <h3><%= t("views.static.homepage.container_beneficios.beneficio_1") %></h3>
+        <p><%= t("views.static.homepage.container_beneficios.claim_beneficio_1") %></p>
       </div>
       <div class="col-md-3 col-md-offset-1">
         <%= image_tag 'escalable.png', class: 'img-responsive' %>
@@ -62,15 +56,15 @@
         <%= image_tag 'responsivo.png', class: 'img-responsive' %>
       </div>
       <div class="col-md-3 col-md-offset-1">
-        <h3>Responsivo</h3>
-        <p>Funciona en <span class="highlight-text">cualquier dispositivo móvil</span> con los sistemas operativos más comunes.</p>
+        <h3><%= t("views.static.homepage.container_beneficios.beneficio_2") %></h3>
+        <p><%= t("views.static.homepage.container_beneficios.claim_beneficio_2") %></p>
       </div>
     </div>
 
     <div class="row benefit-row">
       <div class="col-md-3 col-md-offset-3">
-        <h3>Soporte</h3>
-        <p>Soporte en línea via <span class="highlight-text">chat</span>. Para cualquier duda puedes escribirnos.</p>
+        <h3><%= t("views.static.homepage.container_beneficios.beneficio_3") %></h3>
+        <p><%= t("views.static.homepage.container_beneficios.claim_beneficio_3") %></p>
       </div>
       <div class="col-md-3 col-md-offset-1">
         <%= image_tag 'soporte.png', class: 'img-responsive' %>
@@ -82,8 +76,8 @@
         <%= image_tag 'confiable.png', class: 'img-responsive' %>
       </div>
       <div class="col-md-3 col-md-offset-1">
-        <h3>Confiable</h3>
-        <p><span class="highlight-text">Sistemas de seguridad</span> con certificación integrados.</p>
+        <h3><%= t("views.static.homepage.container_beneficios.beneficio_4") %></h3>
+        <p><%= t("views.static.homepage.container_beneficios.claim_beneficio_4") %></p>
       </div>
     </div>
   </div>
@@ -98,10 +92,10 @@
         <%= image_tag 'home-phone.png', class: 'img-responsive phone-img' %>
       </div>
       <div class="col-md-7 col-sm-8 easy-fast-text-content">
-        <h3>Es muy fácil y rápido</h3>
-        <p>No necesitas conocimiento técnico para tener tu propio sistema de voz del cliente casi al instante. Incorpora de forma sencilla la metodología Net Promoter Score&reg; y usa nuestro dashboard para interpretar tus resultados.<p>
+        <h3><%= t("views.static.homepage.container_fast_easy.fast_easy_title") %></h3>
+        <p><%= t("views.static.homepage.container_fast_easy.fast_easy_claim") %><p>
         <div class="text-center">
-          <%= link_to 'Prueba gratis', new_user_registration_path, class: 'btn btn-free-trial', "data-turbolinks" => false %>
+          <%= link_to t("views.static.homepage.container_fast_easy.fast_easy_button"), new_user_registration_path, class: 'btn btn-free-trial', "data-turbolinks" => false %>
         </div>
       </div>
       <div class="img-container">
@@ -115,39 +109,36 @@
 <!-- Our clients opinion -->
 <section class="clients-opinion-section">
 
-  <h3 class="text-center">Nuestros clientes opinan</h3>
+  <h3 class="text-center"><%= t("views.static.homepage.container_clients_opinion.clients_opinion_title") %></h3>
 
   <div class="slider-container">
     <ul class="bxslider-opinions">
       <li class="bxslider-item">
         <p class="clients-opinion">
-          <span class="amarillo">" </span><span class="amarillo negritas">sone</span>
-          es la herramienta ideal para conocer más a nuestros clientes y diseñar mejores contenidos. Además es muy fácil de usar
+          <span class="amarillo">" </span><%= t("views.static.homepage.container_clients_opinion.clients_opinion_statement_1") %>
           <span class="amarillo negritas">. "</span>
         </p>
         <div class="line"></div>
         <p class="clients-name amarillo hidden-sm hidden-xs">
-          Alejandro <span class="negritas">Toussaint</span>
+          <%= t("views.static.homepage.container_clients_opinion.clients_opinion_name_1") %>
         </p>
         <p class="clients-pagina">
-          <a href="http://www.mexicanisimo.com.mx" class="white">www.mexicanisimo.com.mx</a>
+          <a href="http://www.mexicanisimo.com.mx" class="white"><%= t("views.static.homepage.container_clients_opinion.clients_opinion_web_1") %></a>
         </p>
         <%= image_tag 'static/alejandroToussaint.png', class: 'bxslider-image' %>
       </li>
 
       <li class="bxslider-item">
         <p class="clients-opinion">
-          <span class="amarillo">" </span>Queremos ofrecer la mejor experiencia a nuestros clientes. 
-          <span class="amarillo negritas">sone</span>
-          nos ayuda muchísimo con este propósito
+          <span class="amarillo"><%= t("views.static.homepage.container_clients_opinion.clients_opinion_statement_2") %>
           <span class="amarillo negritas">. "</span>
         </p>
         <div class="line"></div>
         <p class="clients-name amarillo hidden-sm hidden-xs">
-          José <span class="negritas">Gonzalez</span>
+          <%= t("views.static.homepage.container_clients_opinion.clients_opinion_name_2") %>
         </p>
         <p class="clients-pagina">
-          <a href="https://mexico2us.com" class="white">mexico2us.com</a>
+          <a href="https://mexico2us.com" class="white"><%= t("views.static.homepage.container_clients_opinion.clients_opinion_web_2") %></a>
         </p>
         <%= image_tag 'static/JoseGonzalesFranco.png', class: 'bxslider-image' %>
       </li>
@@ -187,16 +178,20 @@
           slider.goToPrevSlide();
         });
   });
-  
-  window.$_Tawk = undefined;
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/59baffe8c28eca75e46201b4/default';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
 </script>
-<!--End of Tawk.to Script-->
+
+<% if Rails.env.production? %>
+  <script type="text/javascript">
+    window.$_Tawk = undefined;
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/59baffe8c28eca75e46201b4/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+<% end %>

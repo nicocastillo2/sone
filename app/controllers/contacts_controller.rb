@@ -28,7 +28,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+        format.html { redirect_to @contact, notice: t("controllers.contacts_controller.create_notice") }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ContactsController < ApplicationController
       if @contact.update(contact_params)
         @contact.valid_info = true
         @contact.save
-        format.html { redirect_to campaign_path(@contact.campaign), notice: 'Contact was successfully updated.' }
+        format.html { redirect_to campaign_path(@contact.campaign), notice: t("controllers.contacts_controller.update_notice") }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to campaign_path(@contact.campaign), notice: 'Contact was successfully destroyed.' }
+      format.html { redirect_to campaign_path(@contact.campaign), notice: t("controllers.contacts_controller.delete_notice") }
       format.json { head :no_content }
     end
   end

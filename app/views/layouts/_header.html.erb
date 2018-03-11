@@ -2,15 +2,22 @@
   <nav class="menu-top hidden-sm hidden-xs">
     <% if user_signed_in? %>
       <div class="col-md-4 col-xs-3">
+        <%= link_to url_for(locale: :"es-ES"), id: "spanish-es", class: "nav-btn nav-lang-es" do %>
+          <span class="flag-icon flag-icon-squared flag-icon-es"></span> ES 
+        <% end %>
+
+        <%= link_to url_for(locale: :"es-MX"), id: "spanish-mx", class: "nav-btn nav-lang-mx" do %>                                                                                                                                              
+          <span class="flag-icon flag-icon-squared flag-icon-mx"></span> MX
+        <% end %>
       </div>
 
       <div class="col-md-2 col-xs-3 text-right black-list-header" >
-        <%= link_to "Black List", blacklist_path, id: 'black-list' %>
+        <%= link_to t("views.layouts.app_header.link_blacklist"), blacklist_path, id: 'black-list' %>
       </div>
 
       <div class="col-md-3 col-xs-3 text-right">
         <%= link_to new_campaign_path, class: current_user.payment.plan_name == "freelancer" && current_user.campaigns.count > 0 ? 'btn border-pink white disabled' : 'btn border-pink white' do %>
-          Crear campaña
+          <%= t("views.layouts.app_header.link_new_campaign") %>
           <span class="glyphicon pink glyphicon-plus pink padding-left"></span>
         <% end %>
       </div>

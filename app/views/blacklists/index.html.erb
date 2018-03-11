@@ -1,6 +1,6 @@
-<% provide(:title, 'BLACKLIST') %>
+<% provide(:title, t("views.blacklist.blacklist_title")) %>
 <% if @contacts == [] %>
-  <h3 class="blacklist-none">No hay contactos aún en el blacklist</h3>
+  <h3 class="blacklist-none"><%= t("views.blacklist.blacklist_none") %></h3>
 <%else  %>
   <div class="row row-0">
     <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
@@ -8,9 +8,9 @@
         <table class="table table-striped table-bordered table-hover table-no-margin">
           <thead>
             <tr id="tr-pad">
-              <th class="th-no-border">Campaign Name</th>
-              <th class="th-no-border">Email</th>
-              <th class="th-no-border">Unsubscribe Date</th>
+              <th class="th-no-border"><%= t("views.blacklist.blacklist_table_header_1") %></th>
+              <th class="th-no-border"><%= t("views.blacklist.blacklist_table_header_2") %></th>
+              <th class="th-no-border"><%= t("views.blacklist.blacklist_table_header_3") %></th>
             </tr>
           </thead>
           <tbody>

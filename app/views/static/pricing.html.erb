@@ -2,13 +2,12 @@
 <div class="container-fluid" style="padding: 0;">
   <div class="row">
     <div id="banner-container">
-      <p class="banner-text">
-        Empieza con un periodo de prueba gratis y <span class="green">descubre el potencial que <strong>SONE</strong> representa para tu negocio.</span>
+      <p class="banner-text"><%= t("views.static.pricing.container_banner.banner_main_title").html_safe %>
       </p>
       <p class="banner-text">
-        Es gratis y no necesitas trajeta de crédito.
+        <%= t("views.static.pricing.container_banner.banner_sub_title") %>
       </p>
-        <%= link_to "Prueba Gratis", new_user_registration_path, class: 'trial-free', "data-turbolinks" => false %>
+        <%= link_to t("views.static.pricing.container_banner.banner_cta"), new_user_registration_path, class: 'trial-free', "data-turbolinks" => false %>
         <!-- <a href="" class="trial-free">Prueba gratis</a> -->
     </div>
   </div>
@@ -19,9 +18,9 @@
     </div>
     <div class="col-md-6">
       <a id="planes y precios" name="info-planes"></a>
-      <h1 id="prim" class="font-80 capitalize padding-left-3 border-left-pink margin-bottom-0 font-gray">Planes</h1>
-      <h1 id="segu" class="font-65 capitalize padding-left-20 border-left-pink margin-0 font-gray">diseñados</h1>
-      <h1 id="terc" class=" font-80 text-right padding-bottom-5 border-right-pink font-gray">a tu medida</h1>
+      <h1 id="prim" class="font-80 capitalize padding-left-3 border-left-pink margin-bottom-0 font-gray"><%= t("views.static.pricing.container_planes_precios.plans_precios_title1") %></h1>
+      <h1 id="segu" class="font-65 capitalize padding-left-20 border-left-pink margin-0 font-gray"><%= t("views.static.pricing.container_planes_precios.plans_precios_title2") %></h1>
+      <h1 id="terc" class=" font-80 text-right padding-bottom-5 border-right-pink font-gray"><%= t("views.static.pricing.container_planes_precios.plans_precios_title3") %></h1>
     </div>
     <div class="col-md-3">
     </div>
@@ -47,57 +46,57 @@
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12 box-offer text-center padding-bottom-5 padding-0 box-res margin-top-5">
           <div>
-            <h2 class="text-center tittle-offer">Freelance</h2>
+            <h2 class="text-center tittle-offer"><%= t("views.static.pricing.container_planes_precios.title_offer1") %></h2>
           </div>
-          <h2 class="text-center font-gray">Cien</h2>
-          <h3 class="text-center font-gray">Clientes al mes</h3>
-          <h2 class="text-center">Gratis</h2>
-          <p class="text-center">Funcionalidad básica</p>
+          <h2 class="text-center font-gray"><%= t("views.static.pricing.container_planes_precios.text_offer1") %></h2>
+          <h3 class="text-center font-gray"><%= t("views.static.pricing.container_planes_precios.sub_text_offer1") %></h3>
+          <h2 class="text-center"><%= t("views.static.pricing.container_planes_precios.price_offer1") %></h2>
+          <p class="text-center"><%= t("views.static.pricing.container_planes_precios.bottom_text_offer1") %></p>
           <p></p>
           <%= image_tag("static/avion-papel.png", class: "img-60") %>
           <div class="contain">
-            <a href="#" class="capitalize link-offer">Obtener</a>
+            <a href="#" class="capitalize link-offer"><%= t("views.static.pricing.container_planes_precios.cta_offer1") %></a>
            </div>
           <br>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12 box-offer text-center padding-bottom-5 padding-0 box-res margin-top-5">
           <div>
-            <h2 class="text-center tittle-offer">Startup</h2>
+            <h2 class="text-center tittle-offer"><%= t("views.static.pricing.container_planes_precios.title_offer2") %></h2>
           </div>
-          <h2 class="text-center font-gray">Mil</h2>
-          <h3 class="text-center font-gray">Clientes al mes</h3>
-          <h2 class="text-center">MxP$900</h2>
-          <p class="text-center">Multi campaña</p>
+          <h2 class="text-center font-gray"><%= t("views.static.pricing.container_planes_precios.text_offer2") %></h2>
+          <h3 class="text-center font-gray"><%= t("views.static.pricing.container_planes_precios.sub_text_offer2") %></h3>
+          <h2 class="text-center"><%= t("views.static.pricing.container_planes_precios.price_offer2") %></h2>
+          <p class="text-center"><%= t("views.static.pricing.container_planes_precios.bottom_text_offer2") %></p>
           <p></p>
           <%= image_tag("static/avion.png", class: "img-60") %>
           <div class="contain">
-            <a href="#" class="capitalize link-offer">Obtener</a>
+            <a href="#" class="capitalize link-offer"><%= t("views.static.pricing.container_planes_precios.cta_offer2") %></a>
           </div>
           <br>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12 box-offer text-center padding-bottom-5 padding-0 box-res" id="popular">
           <div>
-            <h2 class="text-center tittle-offer">Crecimiento<%= image_tag("static/recom.svg", class: "img-35") %></h2>
+            <h2 class="text-center tittle-offer"><%= t("views.static.pricing.container_planes_precios.title_offer3") %><%= image_tag("static/recom.svg", class: "img-35") %></h2>
           </div>
-          <h2 class="text-center font-gray">5 mil</h2>
-          <h3 class="text-center font-gray">Clientes al mes</h3>
-          <h2 class="text-center">MxP$2,500</h2>
-          <p class="text-center">Multi campaña <br>Infografía mensual</p>
+          <h2 class="text-center font-gray"><%= t("views.static.pricing.container_planes_precios.text_offer3") %></h2>
+          <h3 class="text-center font-gray"><%= t("views.static.pricing.container_planes_precios.sub_text_offer3") %></h3>
+          <h2 class="text-center"><%= t("views.static.pricing.container_planes_precios.price_offer3") %></h2>
+          <p class="text-center"><%= t("views.static.pricing.container_planes_precios.bottom_text_offer3") %></p>
           <%= image_tag("static/helicoptero.png", class: "img-60 text-center") %>
-          <a href="#" class="capitalize link-offer">Obtener</a>
+          <a href="#" class="capitalize link-offer"><%= t("views.static.pricing.container_planes_precios.cta_offer3") %></a>
           <br>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12 box-offer text-center padding-bottom-5 padding-0 box-res margin-top-5">
           <div>
-            <h2 class="text-center tittle-offer">Enterprise</h2>
+            <h2 class="text-center tittle-offer"><%= t("views.static.pricing.container_planes_precios.title_offer4") %></h2>
           </div>
-          <h2 class="text-center font-gray">10 mil</h2>
-          <h3 class="text-center font-gray">Clientes al mes</h3>
-          <h2 class="text-center">MxP$4,500</h2>
-          <p class="text-center">Multi campaña <br>Infografía mensual</p>
+          <h2 class="text-center font-gray"><%= t("views.static.pricing.container_planes_precios.text_offer4") %></h2>
+          <h3 class="text-center font-gray"><%= t("views.static.pricing.container_planes_precios.sub_text_offer3") %></h3>
+          <h2 class="text-center"><%= t("views.static.pricing.container_planes_precios.price_offer4") %></h2>
+          <p class="text-center"><%= t("views.static.pricing.container_planes_precios.bottom_text_offer4") %></p>
           <%= image_tag("static/cohete.png", class: "cohete") %>
           <div class="contain">
-            <a href="#" class="capitalize link-offer">Obtener</a>
+            <a href="#" class="capitalize link-offer"><%= t("views.static.pricing.container_planes_precios.cta_offer4") %></a>
           </div>
           <br>
         </div>
@@ -113,10 +112,10 @@
           <%= image_tag("llama.jpg", class: "img-auto") %>
         </div>
          <div class="col-md-6 text-center">
-          <h4 class="font-gray margin-top-5">¿No encontraste lo que buscabas?</h4>
-          <h4 class="font-gray margin-bottom-10">Podemos ayudarte</h4>
+          <h4 class="font-gray margin-top-5"><%= t("views.static.pricing.container_ayuda.ayuda_claim") %></h4>
+          <h4 class="font-gray margin-bottom-10"><%= t("views.static.pricing.container_ayuda.ayuda_sub_claim") %></h4>
           <div class="contain">
-            <a href="mailto:soporte@sone.com.mx" class="button-pink capitalize margin-top-5">Contacto ventas</a>
+            <a href="mailto:soporte@sone.com.mx" class="button-pink capitalize margin-top-5"><%= t("views.static.pricing.container_ayuda.ayuda_cta") %></a>
           </div>
          </div>
       </div>
@@ -127,18 +126,18 @@
   <div class="col-md-1"><br></div>
     <div class="col-md-10">
     <a id="faq-title" name="Faq"></a>
-      <h1 class="green margin-bottom-10 text-center">Preguntas Frecuentes</h1>
+      <h1 class="green margin-bottom-10 text-center"><%= t("views.static.pricing.container_faq.faq_title") %></h1>
       <div class="row text-center center-block">
         <div class="col-md-5">
-          <h3 class="font-gray">¿Cómo funcionan los planes?</h3>
-          <p class="font-gray">En realidad es muy sencillo, tenemos 4 opciones que esperamos se adapten a la escala de tu negocio. Cada plan te permite contactar un número específico de clientes para evaluar su experiencia.</p>
+          <h3 class="font-gray"><%= t("views.static.pricing.container_faq.question_1") %></h3>
+          <p class="font-gray"><%= t("views.static.pricing.container_faq.answer_1") %></p>
         </div>
         <div class="col-md-1 text-center">
         <%= image_tag("static/cohete.png", class: "img-70 margin-top-5") %>
         </div>
         <div class="col-md-5">
-          <h3 class="font-gray">¿El límite es por envíos o por respuestas?</h3>
-          <p class="font-gray">Los límites de cada plan son por número de envíos, es decir la cantidad de clientes que deseas encuestar.</p>
+          <h3 class="font-gray"><%= t("views.static.pricing.container_faq.question_2") %></h3>
+          <p class="font-gray"><%= t("views.static.pricing.container_faq.answer_2") %></p>
         </div>
         <div class="col-md-1 text-center">
           <%= image_tag("static/Recurso 12-8.png", class: "img-100 margin-top-5") %>
@@ -146,15 +145,15 @@
       </div>
       <div class="row margin-top-5 text-center center-block">
         <div class="col-md-5">
-          <h3 class="font-gray">¿En qué consiste la prueba gratis?</h3>
-          <p class="font-gray">La idea es que pruebes cómo funciona la herramienta y que además tengas un volumen representativo de respuestas que te sirva para obtener conclusiones.<br>Para ello podrás contactar hasta 250 clientes en un periodo de un mes.</p>
+          <h3 class="font-gray"><%= t("views.static.pricing.container_faq.question_3") %></h3>
+          <p class="font-gray"><%= t("views.static.pricing.container_faq.answer_3") %></p>
         </div>
         <div class="col-md-1 text-center center-block">
         <%= image_tag("static/Recurso 10-8.png", class: "img-100 margin-top-5 padding-top-50") %>
         </div>
         <div class="col-md-5">
-          <h3 class="font-gray">¿Qué es la funcionalidad básica?</h3>
-          <p class="font-gray">Con la funcionalidad básica estarás limitado a una sola campaña. El resto de las opciones te permite crear tantas campañas como tú quieras, con lo cual podrías segmentar tu análisis(ejemplos: marcas, productos, eventos, geografía, lanzamientos, etc.)</p>
+          <h3 class="font-gray"><%= t("views.static.pricing.container_faq.question_4") %></h3>
+          <p class="font-gray"><%= t("views.static.pricing.container_faq.answer_4") %></p>
         </div>
         <div class="col-md-1 text-center">
           <%= image_tag("static/Recurso 11-8.png", class: "img-100 margin-top-5") %>
@@ -162,15 +161,15 @@
       </div>
       <div class="row margin-top-5 text-center center-block">
         <div class="col-md-5">
-          <h3 class="font-gray">¿Puedo suspender y reactivar?</h3>
-          <p class="font-gray">En cualquier momento. Puedes usar nuestros planes los meses que tú decidas. Configura esta y otras opciones dentro de la administración de tu cuenta.</p>
+          <h3 class="font-gray"><%= t("views.static.pricing.container_faq.question_5") %></h3>
+          <p class="font-gray"><%= t("views.static.pricing.container_faq.answer_5") %></p>
         </div>
         <div class="col-md-1 text-center">
         <%= image_tag("static/Recurso 9-8.png", class: "img-100 margin-top-5 padding-top-50") %>
         </div>
         <div class="col-md-5">
-          <h3 class="font-gray">¿Cuáles son las opciones de pago?</h3>
-          <p class="font-gray">De momento nuestros precios están calculados en pesos mexicanos, y las opciones de pago incluyen tarjetas de crédito.</p>
+          <h3 class="font-gray"><%= t("views.static.pricing.container_faq.question_6") %></h3>
+          <p class="font-gray"><%= t("views.static.pricing.container_faq.answer_6") %></p>
         </div>
         <div class="col-md-1 text-center">
           <%= image_tag("static/Recurso 8-8.png", class: "img-100 margin-top-5") %>
@@ -182,17 +181,19 @@
 </div>
 <%= render "layouts/static_footer" %>
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-  window.$_Tawk = undefined;
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/59baffe8c28eca75e46201b4/default';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
-</script>
-<!--End of Tawk.to Script-->
+<% if Rails.env.production? %>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    window.$_Tawk = undefined;
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/59baffe8c28eca75e46201b4/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+<% end %>

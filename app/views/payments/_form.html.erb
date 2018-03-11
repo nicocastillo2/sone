@@ -38,7 +38,7 @@
   <span class="card-errors"></span>
   <div class="form-group">
     <label>
-      <span>Nombre del tarjetahabiente</span>
+      <span><%= t("views.payments.payment_form.name") %></span>
       <input id="name" class="form-control field-pay" type="text" size="20" name="name" data-conekta="card[name]" required/>
     </label>
   </div>
@@ -46,7 +46,7 @@
   <br>
   <div class="form-group">
     <label>
-      <span>Telefono</span>
+      <span><%= t("views.payments.payment_form.phone") %></span>
       <input class="form-control field-pay" type="text" size="20" name="phone" data-conekta="card[phone]" required/>
       <%= image_tag("master.png", class: "img-responsive card-img") %>
       <%= image_tag("visa.png", class: "img-responsive card-img") %>
@@ -59,20 +59,20 @@
     <div class="col-md-2"><br></div>
     <div class="col-md-8 target ">
       <div class="form-group">
-      <h3>Realizar compra</h3>
+      <h3><%= t("views.payments.payment_form.subtitle") %></h3>
 
       <br>
       <%= image_tag("chip.png", class: "img-responsive chip") %>
       <br>
       <label>
-        <span>Número de tarjeta de crédito</span><br>
+        <span><%= t("views.payments.payment_form.credit_card") %></span><br>
         <input class="form-control field-pay" type="text" size="20" data-conekta="card[number]" maxlength="16" required/>
       </label>
     </div>
     <br>
     <div class="form-group">
       <label class="fecha">
-        <span>Fecha de expiración (MM/AAAA)</span><br>
+        <span><%= t("views.payments.payment_form.expire_date") %></span><br>
         <input class="form-control field-pay date" type="text" size="2" maxlength="2" data-conekta="card[exp_month]" required/>
 
       <span>/</span>
@@ -81,13 +81,13 @@
     </div>
     <div class="form-group">
       <label>
-        <span>CVC</span>
+        <span><%= t("views.payments.payment_form.cvc") %></span>
         <input class="form-control field-pay" type="text" size="4" maxlength="4" data-conekta="card[cvc]" required/>
       </label>
     </div>
     <br>
 
-    <button type="submit" class="pay-now">Cambiar</button>
+    <button type="submit" class="pay-now"><%= t("views.payments.payment_form.confirm_button") %></button>
     </div>
     <div class="col-md-2"></div>
   </div>

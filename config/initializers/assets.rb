@@ -15,4 +15,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 #Precompile assets for static-layout
 Rails.application.config.assets.precompile += %w( static.scss )
+Rails.application.config.assets.precompile += %w( flag-icon.min.css )
 Rails.application.config.assets.precompile += %w( static.js )

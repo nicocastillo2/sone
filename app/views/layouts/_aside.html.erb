@@ -12,40 +12,41 @@
           </div>
           <div class="navbar-collapse collapse sidebar-navbar-collapse back-white" style="position: inherit;overflow: visible!important;">
             <ul class="nav navbar-nav" id="sidenav01">
-              <li class="active">
-                <%= link_to root_path, id: "color-transparent", "data-turbolinks" => false do%>
-                  <%= image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>
-                <% end %>
-                <% if user_signed_in? %>
-                    <% if current_user.avatar.nil? %>
-                      <%= image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>
-                    <% else %>
-                      <%= image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %>
-                    <% end %>
-                    <p class="left-menu center gray"><%= current_user.email %></p>
-                    <p class="left-menu center gray">Envíos Disponibles: <%= current_user.available_emails %></p>
-                    <p class="left-menu center gray">Plan: <%= current_user.payment.plan_name.capitalize %></p>
-                    <p class="left-menu center gray">Termina el: <%= current_user.payment.cycle_end.strftime('%d-%m-%Y') %></p>
+              <% if user_signed_in? %>
+                <li class="active">
+                  <%= link_to root_path, id: "color-transparent", "data-turbolinks" => false do%>
+                    <%= image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>
+                  <% end %>
+                
+                  <%# if current_user.avatar.nil? %>
+                    <%# image_tag("3.png", id: "sone_icon", class: "img-responsive center") %>
+                  <%# else %>
+                    <%# image_tag(current_user.avatar, id: "sone_icon", class: "img-responsive center") %>
+                  <%# end %>
+                  <p class="left-menu center gray"><%= current_user.email %></p>
+                  <p class="left-menu center gray"><%= t("views.layouts.app_sidebar.account_info1", mails: current_user.available_emails) %></p>
+                  <p class="left-menu center gray"><%= t("views.layouts.app_sidebar.account_info2", offer: current_user.payment.plan_name.capitalize) %></p>
+                  <p class="left-menu center gray">Termina el: <%= current_user.payment.cycle_end.strftime('%d-%m-%Y') %></p>
                 </li>
 
                 <% if current_user.type == "AdminUser" %>
                   <li class="center">
                     <%= link_to(admin_view_path, class: 'left-menu') do %>
-                    <%= fa_icon 'tachometer', class: 'navbar-link pink' %>Admin View
+                      <%= fa_icon 'tachometer', class: 'navbar-link pink' %>Admin View
                     <% end %>
                   </li>
                 <% end %>
 
                 <li class="center">
                   <%= link_to(user_dashboard_path(current_user), class: 'left-menu') do %>
-                  <%= fa_icon 'tachometer', class: 'navbar-link pink' %>Dashboard
+                    <%= fa_icon 'tachometer', class: 'navbar-link pink' %><%= t("views.layouts.app_sidebar.link_dashboard") %>
                   <% end %>
                 </li>
 
                 <li class="center">
                   <%= link_to(campaigns_path, class: 'left-menu') do %>
-                  <%= fa_icon 'envelope-o', class: 'navbar-link pink' %>
-                  Campañas <span class="number-notifications"><%= CampaignsHelper.count_notifications(current_user) %></span>
+                    <%= fa_icon 'envelope-o', class: 'navbar-link pink' %>
+                    <%= t("views.layouts.app_sidebar.link_campaigns") %> <span class="number-notifications"><%= CampaignsHelper.count_notifications(current_user) %></span>
                   <% end %>
                 </li>
 
@@ -59,32 +60,32 @@
                 <li class="center">
                   <!-- edit_user_registration -->
                   <%= link_to(edit_user_registration_path, class: 'left-menu') do %>
-                  <%= fa_icon 'pencil', class: 'navbar-link pink' %>Editar perfil
+                    <%= fa_icon 'pencil', class: 'navbar-link pink' %><%= t("views.layouts.app_sidebar.link_profile") %>
                   <% end %>
                   </a>
                 </li>
 
                 <li class="center">
                   <%= link_to(suscriptions_path, class: 'left-menu') do %>
-                    <%= fa_icon 'shopping-cart', class: 'navbar-link pink' %> Planes
+                    <%= fa_icon 'shopping-cart', class: 'navbar-link pink' %><%= t("views.layouts.app_sidebar.link_offer") %>
                   <% end %>
                 </li>
 
                 <li class="center">
                   <%= link_to(new_payment_path, class: 'left-menu', "data-turbolinks" => false) do %>
-                    <%= fa_icon 'credit-card', class: 'navbar-link pink' %>Método de Pago
+                    <%= fa_icon 'credit-card', class: 'navbar-link pink' %><%= t("views.layouts.app_sidebar.link_billing") %>
                   <% end %>
                 </li>
 
                 <li class="center">
                   <%= link_to(pricing_path + '#faq-title', class: 'left-menu', "data-turbolinks" => false) do %>
-                    <%= fa_icon 'question-circle', class: 'navbar-link pink' %>FAQ
+                    <%= fa_icon 'question-circle', class: 'navbar-link pink' %><%= t("views.layouts.app_sidebar.link_FAQ") %>
                   <% end %>
                   </a>
                 </li>
                 <li class="center">
                   <%=link_to(destroy_user_session_path, method: "delete", class: "left-menu","data-turbolinks" => false) do %>
-                    <%= fa_icon 'user', class: 'navbar-link pink forgot-pass' %>Cerrar sesión
+                    <%= fa_icon 'user', class: 'navbar-link pink forgot-pass' %><%= t("views.layouts.app_sidebar.link_logout") %>
                   <% end %>
                 </li>
               <% else %>

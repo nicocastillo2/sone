@@ -2,13 +2,13 @@
 
 <div class="row feedback-answer-titles">
   <div class="col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 data-feed-back">
-    <h4>Respuestas: <%= @nps_sample_count %></h4>
+    <h4><%= t("views.campaigns.feedback.subtitle1", sample: @nps_sample_count) %></h4>
     <div class="feedback-stat-first">
       <span class="feedback-icon-info text-center" id="selected-date-feedback"><%= @date_range %></span>
     </div>
   </div>
   <div class="col-md-2 col-sm-2">
-    <h4>Promoters</h4>
+    <h4><%= t("views.campaigns.feedback.subtitle2") %></h4>
     <div class="feedback-stat">
       <span class="feedback-icon-info" data-feedback-type='promoter'>
         <%= fa_icon 'smile-o', class: 'feedback-icon' %> <%= @data_percentages[:promoters].round %> %
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="col-md-2 col-sm-2">
-    <h4>Passives</h4>
+    <h4><%= t("views.campaigns.feedback.subtitle3") %></h4>
     <div class="feedback-stat">
       <span class="feedback-icon-info" data-feedback-type='passive'>
         <%= fa_icon 'meh-o', class: 'feedback-icon' %> <%= @data_percentages[:passives].round %> %
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="col-md-2 col-sm-2">
-    <h4>Detractors</h4>
+    <h4><%= t("views.campaigns.feedback.subtitle4") %></h4>
     <div class="feedback-stat">
       <span class="feedback-icon-info" data-feedback-type='detractor'>
         <%= fa_icon 'frown-o', class: 'feedback-icon' %> <%= @data_percentages[:detractors].round %> %
@@ -56,7 +56,7 @@
           </div>
           <div class="panel-body">
             <% if answer.comment.blank? %>
-              <h5 class="text-center">Sin comentario</h5>
+              <h5 class="text-center"><%= t("views.campaigns.feedback.panel_body") %></h5>
             <% else %>
               <%= answer.comment %>
             <% end %>
@@ -66,14 +66,14 @@
               <% answer.contact.topics.each do |topic, value| %>
                 <% if params[:topics].include?(topic) %>
                   <span class="feedback-answer-footer">
-                  <span class="answer-footer-topic"><%= topic %>:</span> <span class="answer-footer-topic-value"><%= value %></span>
+                  <span class="answer-footer-topic"><%= Campaign.translated_topics[topic]  %>:</span> <span class="answer-footer-topic-value"><%= value %></span>
                   </span>
                 <% end %>
                 
               <% end %>
             <% else %>
               <div class="text-center">
-                <span class="feedback-answer-footer">No hay topics</span>
+                <span class="feedback-answer-footer">t("views.campaigns.feedback.panel_footer") %></span>
               </div>
             <% end %>
           </div>
@@ -85,6 +85,6 @@
 
 <div class="row">
   <div class="col-md-10 col-md-offset-2">
-    <%= will_paginate @contacts_feedback, inner_window: 3, outer_window: 1 %>
+    <%= will_paginate @contacts_feedback, previous_label: t("views.campaigns.feedback.previous"), next_label: t("views.campaigns.feedback.next"),  inner_window: 3, outer_window: 1 %>
   </div>
 </div>

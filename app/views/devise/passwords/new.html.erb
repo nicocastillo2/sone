@@ -1,7 +1,7 @@
 <% provide(:header, "hidden")  %>
 <% provide(:aside, "hidden")  %>
 
-<h2 class="text-center pink">¿Olvidaste tu Contraseña?</h2>
+<h2 class="text-center pink"><%= t("views.devise.passwords.recover.title") %></h2>
 
 <div class="row row-0">
   <br>
@@ -10,18 +10,18 @@
     <%= devise_error_messages! %>
 
     <div class="form-group">
-    <%= f.label :email, class: 'control-label font-20 gray' %>
+    <%= f.label :email, t("views.devise.passwords.recover.box_title"), class: 'control-label font-20 gray' %>
     <%= image_tag("icono-mail.svg", class: " img-responsive img-abs", id: "pass-mail") %>
     <%= f.email_field :email, autofocus: true, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-    <%= f.submit "Recuperar contraseña", class: 'btn btn-primary btn-gray margin-icon' %>
+    <%= f.submit t("views.devise.passwords.recover.recover_button") , class: 'btn btn-primary btn-gray margin-icon' %>
     <br><br>  
-    <p class="gray">Se enviaran instrucciones para recuperar su contraseña</p>
+    <p class="gray"><%= t("views.devise.passwords.recover.sub_text") %></p>
     </div>
     <div class="col-md-10 text-right margin-icon">
-      <%= link_to "Volver", new_user_session_path, class: "btn-pink" %>
+      <%= link_to t("views.devise.passwords.recover.back_button") , new_user_session_path, class: "btn-pink" %>
     </div>
   <% end %>
 

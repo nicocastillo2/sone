@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= @lang %>">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,38 +15,40 @@
 <![endif]-->
 <%= favicon_link_tag %>
 <%= stylesheet_link_tag 'static' %>
+<%= stylesheet_link_tag 'flag-icon.min' %>
 <%= javascript_include_tag 'static' %>
 <%= csrf_meta_tags %>
 
-<!-- Facebook Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '165280800761599');
-  fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=165280800761599&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->
+<% if Rails.env.production? %>
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '165280800761599');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=165280800761599&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Facebook Pixel Code -->
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-104558130-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104558130-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'UA-104558130-1');
-</script>
-
+    gtag('config', 'UA-104558130-1');
+  </script>
+<% end %>
 
 </head>
 <body>
@@ -63,23 +65,31 @@
       </div>
       <div class="navbar-center navbar-brand-center">
         <!-- <a class="nav-btn navbar-text navbar-brand-center center-links">Precios</a> -->
-        <%= link_to('Precios', pricing_path(anchor: 'info-planes'), class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
-        <%= link_to('Blog', "https://blog.sone.com.mx/", class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
+        <%= link_to(t("views.layouts.static_header.link_pricing"), pricing_path(anchor: 'info-planes'), class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
+        <%= link_to(t("views.layouts.static_header.link_blog"), "https://blog.sone.com.mx/", class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
       </div>
-      <div class="collapse navbar-collapse" id="navbar-toggle-menu">
-        <%= link_to 'Precios', pricing_path(anchor: 'info-planes'),class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
-        <%= link_to 'Blog', 'https://blog.sone.com.mx/',class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
+      <div class="collapse navbar-collapse" id="navbar-toggle-menu">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        <%= link_to url_for(locale: :"es-ES"), id: "spanish-es", class: "nav-btn navbar-text nav-lang-es" do %>
+          <span class="flag-icon flag-icon-squared flag-icon-es"></span> ES 
+        <% end %>
+
+        <%= link_to url_for(locale: :"es-MX"), id: "spanish-mx", class: "nav-btn navbar-text nav-lang-mx" do %>                                                                                                                                              
+          <span class="flag-icon flag-icon-squared flag-icon-mx"></span> MX
+        <% end %>
+        
+        <%= link_to t("views.layouts.static_header.link_pricing"), pricing_path(anchor: 'info-planes'),class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
+        <%= link_to t("views.layouts.static_header.link_blog"), 'https://blog.sone.com.mx/',class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
         <!-- <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Precios</a> -->
         <% if user_signed_in? %>
           <%= link_to(campaigns_path, id: 'login', class: "nav-btn margin-right-0 navbar-text navbar-link navbar-right green", "data-turbolinks" => false) do %>
-            <span class="green">Dashboard</span>
+            <span class="green"><%= t("views.layouts.static_header.app_access") %></span>
           <% end %>
         <% else %>
           <%= link_to(new_user_session_path, id: 'width-inicio', class: "nav-btn navbar-text navbar-link navbar-right green", "data-turbolinks" => false) do %>
-            <span class="green">Iniciar Sesión</span>
+            <span class="green"><%= t("views.layouts.static_header.login") %></span>
           <% end %>
         <% end %>
-        <button href="" id="faq" class="nav-btn navbar-text navbar-right pink faq"><span class="white">FAQ</span> <span class="pink">?</span></button>
+        <button href="" id="faq" class="nav-btn navbar-text navbar-right pink faq"><span class="white"><%= t("views.layouts.static_header.link_FAQ") %></span> <span class="pink">?</span></button>
       </div>
     </div>
   </nav>
@@ -87,9 +97,9 @@
   <script type="text/javascript">
     $('.faq, .faq *').click(function(){
       if($("#faq-title").size() == 0){
-        $(location).attr('href', 'pricing#faq-title')
+        $(location).attr('href', '<%= pricing_path + '#faq-title' %>');
       }else{
-        $(location).attr('href', '<%= pricing_path + '#faq-title' %>')
+        $(location).attr('href', '<%= pricing_path + '#faq-title' %>');
         $("html, body").animate({ scrollTop: $("#faq-title").offset().top }, 850);
       }
     });

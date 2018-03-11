@@ -4,14 +4,14 @@
 
 <div class="row" style="width: 100%;">
   <div class="col-md-10 col-md-offset-1 ipad">
-    <h2 class="pink text-center" style="padding-top: 2%;">Tu Calificación fue: <%= @score %> </h2>
-    <h2 class="text-gray text-center">Por favor déjanos tus comentarios</h3>
+    <h2 class="pink text-center" style="padding-top: 2%;"><%= t("views.answers.new_answer.answer_confirmation", score: @score) %> </h2>
+    <h2 class="text-gray text-center"><%= t("views.answers.new_answer.open_answer") %></h3>
       <br>
       <%= form_for(@answer, url: edit_answer_path(@answer), html: { method: "patch", class: " form-pink", role: "form" }) do |f| %>
       <% if @answer.errors.any? %>
       <div class="alert alert-danger alert-dismissable" role="alert">
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4><%= pluralize(@answer.errors.count, "error", 'errores') %> prohibieron esta respuesta de ser guardada:</h4>
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><%= t("views.answers.new_answer.close_button") %></span></button>
+        <h4><%= t("views.answers.new_answer.error", error: pluralize(@answer.errors.count, "error", 'errores')) %></h4>
         <ul>
           <% @answer.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -31,7 +31,7 @@
       <div class="row">
         <div class="form-group">
           <div class="col-sm-10 text-center">
-            <%= f.submit "Enviar respuesta", class: "btn btn-default pink-show center", style:"margin-top: 0.5%;" %>
+            <%= f.submit t("views.answers.new_answer.confirm_answer"), class: "btn btn-default pink-show center", style:"margin-top: 0.5%;" %>
           </div>
         </div>
       </div>

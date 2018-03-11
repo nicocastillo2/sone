@@ -1,17 +1,17 @@
-<%= provide :title, 'Reportes' %>
+<%= provide :title, t("views.campagins.report.title") %>
 
 <div class="row">
   <div class="col-md-4 col-md-offset-1">
     <%= form_for :filter, url: report_campaign_path, method: :post, html: { id: 'filter-form' } do |f| %>
       <div class="form-group">
-        <h4>Período</h4>
+        <h4><%= t("views.campagins.report.period") %></h4>
         <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, { selected: @active_filter }, class: 'report-select' %>
       </div>
 
-      <h4>Topics</h4>
+      <h4><%= t("views.campagins.report.period") %></h4>
       <div class="form-group" id="topics-checkboxes">
         <% @campaign.tmp_topics.each do |topic| %>
-          <%= label_tag topic, topic.capitalize, class: 'control-label' %>
+          <%= label_tag topic, Campaign.translated_topics[topic], class: 'control-label' %>
           <% if @selected_topics.include? topic %>
             <%= check_box_tag "topics[]", topic, { checked: true } %>
           <% else %>
@@ -31,19 +31,19 @@
       </div> -->
 
       <div class="form-group">
-        <%= f.submit 'Filtrar', class: 'btn btn-default send-button button-100' %>
+        <%= f.submit t("views.campagins.report.collapse_button"), class: 'btn btn-default send-button button-100' %>
       </div>
     <% end %>
   </div>
 
   <div class="col-md-2 col-md-offset-2">
-    <%= link_to "Quitar filtros", report_campaign_path, class: 'btn btn-default send-button' %>
+    <%= link_to t("views.campagins.report.reset_button"), report_campaign_path, class: 'btn btn-default send-button' %>
   </div>
 
   <div class="col-md-2">
     <% date = @active_filter || '1' %>
     <% feedback_type = @feedback_type || 'none' %>
-    <%= link_to "Descargar reporte", report_campaign_path(format: :csv, nps_date: date, feedback_type: feedback_type), class: 'btn btn-default send-button', id: 'download-report' %>
+    <%= link_to t("views.campagins.report.download_button"), report_campaign_path(format: :csv, nps_date: date, feedback_type: feedback_type), class: 'btn btn-default send-button', id: 'download-report' %>
     <h3><%= @feedback_type %></h3>
   </div>
 </div>
@@ -61,11 +61,16 @@
           x: 'x',
           columns: [
             ['x'] + @nps.dates,
-            ['NPS'] + @nps.nps,
-            ['Detractors'] + @nps.detractors,
-            ['Passives'] + @nps.passives,
-            ['Promoters'] + @nps.promoters
+            ['data5'] + @nps.nps,
+            ['data6'] + @nps.detractors,
+            ['data7'] + @nps.passives,
+            ['data8'] + @nps.promoters 
           ],
+          names: {              
+              data5: t("views.campaigns.dashboard.graph.column5"),
+              data6: t("views.campaigns.dashboard.graph.column6"),
+              data7: t("views.campaigns.dashboard.graph.column7"),
+              data8: t("views.campaigns.dashboard.graph.column8")
           axes: {
             'NPS' => 'y'
           }

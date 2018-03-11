@@ -15,20 +15,20 @@ class CampaignMailer < ApplicationMailer
     data = { html_content_only: true, recipients: recipients_data }
     @logo_path = campaign.logo.url
 
-    mail(to: recipients, subject: "¿Qué tan dispuest@ estarías a recomendar #{@sender_name} a un amigo o familiar?", from: sender, sparkpost_data: data)
+    mail(to: recipients, subject: I18n.t("mailers.campaign.survey.subject", sender_name: @sender_name), from: sender, sparkpost_data: data)
   end
 
   def change_subscription(subscription_name, user_email)
     @subscription_name = subscription_name
     @user_email = user_email
     data = { html_content_only: true }
-    mail(to: @user_email, subject: 'Cambio de Suscripción', from: 'noreply@sone.com.mx', sparkpost_data: data)
+    mail(to: @user_email, subject: I18n.t("mailers.campaign.change_subscription.subject"), from: 'noreply@sone.com.mx', sparkpost_data: data)
   end
 
   def welcome(user)
     @current_user = user
     data = { html_content_only: true }
-    mail(to: @current_user.email, subject: 'Bienvenido a Sone', from: 'noreply@sone.com.mx', sparkpost_data: data)
+    mail(to: @current_user.email, subject: I18n.t("mailers.campaign.welcome.subject"), from: 'noreply@sone.com.mx', sparkpost_data: data)
   end
 
 end

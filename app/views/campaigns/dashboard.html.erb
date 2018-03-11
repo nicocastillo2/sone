@@ -1,23 +1,23 @@
-<%= provide :title, 'Dashboard' %>
+<%= provide :title, t("views.campaigns.dashboard.title") %>
 
 <% if @no_campaigns %>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <h1>No existe ninguna campaña</h1>
-      <h2>Crea una campaña y empieza a analizar tu información</h2>
+      <h1><%= t("views.campaigns.dashboard.no_campaigns_message") %></h1>
+      <h2><%= t("views.campaigns.dashboard.no_campaigns_message1") %></h2>
     </div>
   </div>
 <% else %>
   <% if @filters %>
     <div class="row">
       <div class="col-md-8 col-md-offset-2 well">
-        <h4 class="text-center">Filtros activos</h4>
+        <h4 class="text-center"><%= t("views.campaigns.dashboard.filters_table.table_title") %></h4>
           <table class="table table-condensed">
             <thead>
               <tr>
-                <td><h5>Período</h5></td>
-                <td><h5>Campañas</h5></td>
-                <td><h5>Topics</h5></td>
+                <td><h5><%= t("views.campaigns.dashboard.filters_table.td1") %></h5></td>
+                <td><h5><%= t("views.campaigns.dashboard.filters_table.td2") %></h5></td>
+                <td><h5><%= t("views.campaigns.dashboard.filters_table.td3") %></h5></td>
               </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                 </td>
                 <td>
                   <% @filters[:topics].each do |topic| %>
-                    <span class="label label-default filter-label"><%= topic %></span>
+                    <span class="label label-default filter-label"><%= Campaign.translated_topics[topic]  %></span>
                   <% end %>
                 </td>
               </tr>
@@ -44,15 +44,15 @@
   <div class="row">
     <div class="col-md-1 col-md-offset-2">
       <button class="btn btn-default filter-collapse-btn" type="button" data-toggle="collapse" data-target="#filter" aria-expanded="false" aria-controls="filter">
-        Filtros
+        <%= t("views.campaigns.dashboard.filters_table.collapse_button") %>
       </button>
     </div>
     <div class="col-md-2">
-      <%= link_to "Quitar filtros", user_dashboard_path, class: 'btn btn-default send-button' %>
+      <%= link_to t("views.campaigns.dashboard.filters_table.reset_button"), user_dashboard_path, class: 'btn btn-default send-button' %>
     </div>
     <div class="col-md-2 col-md-offset-3">
       <% date = @active_filter || '1' %>
-      <%= link_to "Descargar reporte", user_dashboard_path(format: :csv, nps_date: date), class: 'btn btn-default send-button', id: 'download-report' %>
+      <%= link_to t("views.campaigns.dashboard.filters_table.download_button"), user_dashboard_path(format: :csv, nps_date: date), class: 'btn btn-default send-button', id: 'download-report' %>
     </div>
   </div>
 
@@ -74,9 +74,9 @@
         <table class="table table-condensed" id="filter-table">
           <thead class="container-shadow">
             <tr>
-              <th class="dashboard-filter-titles">Período</th>
-              <th class="dashboard-filter-titles">Campañas</th>
-              <th class="dashboard-filter-titles">Topics</th>
+              <th class="dashboard-filter-titles"><%= t("views.campaigns.dashboard.filter_form.th1") %></th>
+              <th class="dashboard-filter-titles"><%= t("views.campaigns.dashboard.filter_form.th2") %></th>
+              <th class="dashboard-filter-titles"><%= t("views.campaigns.dashboard.filter_form.th3") %></th>
             </tr>
           </thead>
 
@@ -86,12 +86,12 @@
                 <br>
                 <%= f.select :nps_date, Campaign.nps_dates.map { |key, value| [value, key] }, { selected: @active_filter }, class: 'report-select' %>
                 <div class="form-group">
-                  <%= f.submit 'Filtrar', class: 'btn btn-default send-button button-100' %>
+                  <%= f.submit t("views.campaigns.dashboard.filter_form.submit_button"), class: 'btn btn-default send-button button-100' %>
                 </div>
               </td>
               <td>
                 <br>
-                <%= button_tag 'Todas las campañas', id: 'all-campaigns' %>
+                <%= button_tag t("views.campaigns.dashboard.filter_form.button_tag"), id: 'all-campaigns' %>
                 <div class="form-group" id="campaigns-checkboxes">
                   <% User.find(params[:id]).campaigns.each do |campaign| %>
                     <% if @selected_campaigns.size == 0 || @selected_campaigns.include?(campaign.id.to_s) %>
@@ -106,7 +106,7 @@
               </td>
               <td>
                 <br>
-                <%= button_tag 'Todos los topics', id: 'all-topics' %>
+                <%= button_tag t("views.campaigns.dashboard.filter_form.button_tag1"), id: 'all-topics' %>
                 <div class="form-group" id="topics-checkboxes">
                   <% @used_topics = Campaign.active_topics(current_user) %>
                   <% Campaign.contact_topics.each do |key, value| %>
@@ -116,7 +116,7 @@
                     <% else %>
                       <%= check_box_tag "topics[]", value, nil, id: value %>
                     <% end %>
-                    <%= label_tag value, value.capitalize, class: 'control-label' %>
+                    <%= label_tag value, Campaign.translated_topics[value], class: 'control-label' %>
                     <br>
                   <% end %>
                 </div>
@@ -139,29 +139,41 @@
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <h1 class="dashboard-title-section">Tendencias</h1>
+      <h1 class="dashboard-title-section"><%= t("views.campaigns.dashboard.graph.title") %></h1>
       <br>
       <div id="graph_report"></div>
     </div>
 
     <%= javascript_tag do %>
       window.graphX = <%= @nps.dates.inspect.html_safe %>
+      
       <%=
+        
         graph_generate(
           'graph_report',
           data: {
             x: 'x',
             columns: [
               ['x'] + @nps.dates,
-              ['30-Day NPS'] + @nps.cumulative_nps,
-              ['30-Day Detractors'] + @nps.cumulative_detractors,
-              ['30-Day Passives'] + @nps.cumulative_passives,
-              ['30-Day Promoters'] + @nps.cumulative_promoters,
-              ['NPS'] + @nps.nps,
-              ['Detractors'] + @nps.detractors,
-              ['Passives'] + @nps.passives,
-              ['Promoters'] + @nps.promoters
+              ['data1'] + @nps.cumulative_nps,
+              ['data2'] + @nps.cumulative_detractors,
+              ['data3'] + @nps.cumulative_passives,
+              ['data4'] + @nps.cumulative_promoters,
+              ['data5'] + @nps.nps,
+              ['data6'] + @nps.detractors,
+              ['data7'] + @nps.passives,
+              ['data8'] + @nps.promoters              
             ],
+            names: {
+              data1: t("views.campaigns.dashboard.graph.column1"),
+              data2: t("views.campaigns.dashboard.graph.column2"),
+              data3: t("views.campaigns.dashboard.graph.column3"),
+              data4: t("views.campaigns.dashboard.graph.column4"),
+              data5: t("views.campaigns.dashboard.graph.column5"),
+              data6: t("views.campaigns.dashboard.graph.column6"),
+              data7: t("views.campaigns.dashboard.graph.column7"),
+              data8: t("views.campaigns.dashboard.graph.column8")
+            },
             # groups: [
             #   ['Cumulative NPS', 'Cumulative Detractors', 'Cumulative Passives', 'Cumulative Promoters'],
             #   ['NPS', 'Detractors', 'Passives', 'Promoters']
@@ -174,16 +186,18 @@
           tooltip: {
             contents: "function(d, defaultTitleFormat, defaultValueFormat, color){
                         //console.log(d);
+                        
                         var content = '<table class=\"c3-tooltip\"><tbody>';
                         content += '<tr><th colspan=\"2\">'+window.graphX[d[0].x]+'</th></tr>';
 
                         for(var i = 0;i<d.length;i++){
-                          if($(\".c3-legend-item-30-Day-NPS\").hasClass(\"c3-legend-item-hidden\")){
-                            if(d[i].name == '30-Day Detractors' || d[i].name == '30-Day Passives' || d[i].name == '30-Day Promoters') continue;
+                          console.log(d[i]);
+                          if($(\".c3-legend-item-data1\").hasClass(\"c3-legend-item-hidden\")){
+                            if(d[i].id == 'data2' || d[i].id == 'data3' || d[i].id == 'data4') continue;
                           }
 
-                          if($(\".c3-legend-item-NPS\").hasClass(\"c3-legend-item-hidden\")){
-                            if(d[i].name == 'Detractors' || d[i].name == 'Passives' || d[i].name == 'Promoters') continue;
+                          if($(\".c3-legend-item-data5\").hasClass(\"c3-legend-item-hidden\")){
+                            if(d[i].id == 'data6' || d[i].id == 'data7' || d[i].id == 'data8') continue;
                           }
                           var currentColor = this.levelColor ? this.levelColor(d[i].value) : color(d[i].id)
                           content += '<tr class=\"c3-tooltip-name-'+d[i].name+'\">';
@@ -203,7 +217,7 @@
             }
           },
           legend: {
-            hide: ['Detractors', 'Passives', 'Promoters', '30-Day Detractors', '30-Day Passives', '30-Day Promoters']
+            hide: ["data2", "data3", "data4", "data6", "data7", "data8"]
           },
           axis: {
             x: {
@@ -227,6 +241,7 @@
           }
         )
       %>
+      
     <% end %>
   </div>
 
@@ -234,7 +249,7 @@
     <div class="col-md-4 col-md-offset-2">
       <h1>
         <span class="label label-default">
-          <span id="selected-date-feedback">30 Day NPS</span>:
+          <span id="selected-date-feedback"><%= t("views.campaigns.dashboard.graph.main_score") %></span>
           <% if @nps_30_fixed %>
             <%= @nps_30_fixed.cumulative_nps.last %>
           <% else %>

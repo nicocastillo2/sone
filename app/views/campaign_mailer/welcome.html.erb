@@ -233,7 +233,7 @@ a[x-apple-data-detectors=true] {
                   
                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"><![endif]-->
 <div style="font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;line-height:120%;color:#0D0D0D; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"> 
-  <div style="font-size:12px;line-height:14px;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 28px; line-height: 33px;"><strong><span style="line-height: 33px; font-size: 28px;">¡Hola <%= @current_user.username ? @current_user.username : @current_user.omniauth_name %>!</span></strong></span><br></p></div>  
+  <div style="font-size:12px;line-height:14px;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 28px; line-height: 33px;"><strong><span style="line-height: 33px; font-size: 28px;"><%= I18n.t("views.campaign_mailers.welcome_email.welcome_email_title", name: (@current_user.username ? @current_user.username : @current_user.omniauth_name)) %></span></strong></span><br></p></div>  
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 
@@ -241,7 +241,7 @@ a[x-apple-data-detectors=true] {
                   
                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"><![endif]-->
 <div style="font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;line-height:150%;color:#0D0D0D; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"> 
-  <div style="font-size:12px;line-height:18px;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 21px;text-align: center"><span style="color: rgb(154, 68, 121); font-size: 14px; line-height: 21px;"><strong>Muchas gracias por registrarte en SONE. A partir de este momento cuentas con 30 días para enviar 250 correos de forma gratuita. Recuerda que en cualquier momento puedes mejorar tu suscripción con alguno de nuestros planes.</strong></span></p></div> 
+  <div style="font-size:12px;line-height:18px;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 21px;text-align: center"><span style="color: rgb(154, 68, 121); font-size: 14px; line-height: 21px;"><strong><%= I18n.t("views.campaign_mailers.welcome_email.welcome_email_text") %></strong></span></p></div> 
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 
@@ -249,7 +249,7 @@ a[x-apple-data-detectors=true] {
                   
                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 20px; padding-bottom: 10px;"><![endif]-->
 <div style="font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;line-height:150%;color:#0D0D0D; padding-right: 10px; padding-left: 10px; padding-top: 20px; padding-bottom: 10px;"> 
-  <div style="font-size:12px;line-height:18px;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 21px;text-align: center">Email: <%= @current_user.email %><br></p></div> 
+  <div style="font-size:12px;line-height:18px;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 21px;text-align: center"><%= I18n.t("views.campaign_mailers.welcome_email.welcome_email_username", mail: @current_user.email) %><br></p></div> 
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 
@@ -317,7 +317,7 @@ a[x-apple-data-detectors=true] {
                   
                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top: 20px; padding-bottom: 0px;"><![endif]-->
 <div style="font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;line-height:120%;color:#a8bf6f; padding-right: 0px; padding-left: 0px; padding-top: 20px; padding-bottom: 0px;">  
-  <div style="font-size:12px;line-height:14px;color:#a8bf6f;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="color: rgb(255, 255, 255); font-size: 12px; line-height: 14px;"><span style="font-size: 12px; line-height: 14px; color: rgb(168, 191, 111);">Tel.:</span> +52 5569687847</span><br></p></div>  
+  <div style="font-size:12px;line-height:14px;color:#a8bf6f;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="color: rgb(255, 255, 255); font-size: 12px; line-height: 14px;"><span style="font-size: 12px; line-height: 14px; color: rgb(168, 191, 111);"><%= I18n.t("views.campaign_mailers.welcome_email.welcome_email_footer_contact2") %></span><%= I18n.t("views.campaign_mailers.welcome_email.welcome_email_footer_number") %></span><br></p></div>  
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 
@@ -333,7 +333,7 @@ a[x-apple-data-detectors=true] {
                   
                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top: 20px; padding-bottom: 0px;"><![endif]-->
 <div style="font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;line-height:120%;color:#a8bf6f; padding-right: 0px; padding-left: 0px; padding-top: 20px; padding-bottom: 0px;">  
-  <div style="font-size:12px;line-height:14px;color:#a8bf6f;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center">Contacto: <span style="color: rgb(255, 255, 255); font-size: 12px; line-height: 14px;">soporte@sone.com.mx</span></p></div> 
+  <div style="font-size:12px;line-height:14px;color:#a8bf6f;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><%= I18n.t("views.campaign_mailers.welcome_email.welcome_email_footer_contact1") %><span style="color: rgb(255, 255, 255); font-size: 12px; line-height: 14px;"><%= I18n.t("views.campaign_mailers.welcome_email.welcome_email_footer_email") %></span></p></div> 
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 

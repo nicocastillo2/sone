@@ -4,9 +4,9 @@
     <div class="page-header">
       <%= link_to campaigns_path, class: 'btn btn-default return-button ' do %>
         <span class="glyphicon glyphicon-arrow-left"></span>
-        Regresar
+        <%= t("views.campaigns.campaigns_new.back_button") %>
       <% end %>
-      <h1 class="text-gray">Diseña una nueva campaña</h1>
+      <h1 class="text-gray"><%= t("views.campaigns.campaigns_new.main_title") %></h1>
     </div>
     <%= render 'form' %>
   </div>

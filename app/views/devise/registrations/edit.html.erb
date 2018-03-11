@@ -3,13 +3,13 @@
   <div class="col-md-10 col-sm-10 col-xs-10">
     <div class="row row-0">
       <div class="col-md-8">
-        <h2 class="pink">Información de cuenta</h2>
+        <h2 class="pink"><%= t("views.devise.registrations.edit_registration.title") %></h2>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
 
           <div class="field">
-            <%= f.label :email, class: "text-gray" %><br>
+            <%= f.label :email, t("views.devise.registrations.edit_registration.email"), class: "text-gray" %><br>
             <%= image_tag("") %>
             <%= f.email_field :email, autofocus: true, class: "width-80 form_pink" %>
             <br>
@@ -20,7 +20,7 @@
           <% end %>
 
           <div class="field">
-            <%= f.label :password, 'Nueva Contraseña', class: "text-gray" %><i class="gray"> (Vacío si no deseas cambiarlo)</i><br>
+            <%= f.label :password, t("views.devise.registrations.edit_registration.new_password"), class: "text-gray" %><i class="gray"><%= t("views.devise.registrations.edit_registration.new_password1") %></i><br>
             <%= f.password_field :password, autocomplete: "off", class: "width-80 form_pink" %>
             <% if @minimum_password_length %>
               <br>
@@ -30,20 +30,20 @@
           <br>
 
           <div class="field">
-            <%= f.label :password_confirmation, 'Confirmación de contraseña', class: "text-gray" %><br>
+            <%= f.label :password_confirmation, t("views.devise.registrations.edit_registration.confirmation"), class: "text-gray" %><br>
             <%= f.password_field :password_confirmation, autocomplete: "off", class: "width-80 form_pink" %>
           </div>
           <br>
 
           <div class="field">
-            <%= f.label :current_password, 'Contraseña actual', class: "text-gray" %> <i class="gray">(Necesitamos tu contraseña actual para confirmar tus cambios)</i><br>
+            <%= f.label :current_password, t("views.devise.registrations.edit_registration.actual_password"), class: "text-gray" %> <i class="gray"><%= t("views.devise.registrations.edit_registration.actual_password1") %></i><br>
             <%= f.password_field :current_password, autocomplete: "off", class: "width-80 form_pink" %>
           </div>
           <br>
 
           <div class="actions">
             <br>
-            <%= f.submit "Actualizar", class: "btn send-button" %>
+            <%= f.submit t("views.devise.registrations.edit_registration.update_button"), class: "btn send-button" %>
             <br>
           </div>
         <% end %>
@@ -51,7 +51,7 @@
       <div class="col-md-4">
         <%= image_tag("edit-user.png", class: "img responsive margin-img") %>
         <!-- <h3>Cancelar mi cuenta</h3> -->
-        <p class="gray"><%= button_to "Cancelar Cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro? perderas todos tus datos de las campañas" }, method: :delete, class: "gray-button" %></p>
+        <p class="gray"><%= button_to t("views.devise.registrations.edit_registration.cancel_button"), registration_path(resource_name), data: { confirm: t("views.devise.registrations.edit_registration.cancelation_confirm") }, method: :delete, class: "gray-button" %></p>
       </div>
     </div>
   </div>

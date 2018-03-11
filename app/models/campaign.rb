@@ -25,15 +25,16 @@ class Campaign < ApplicationRecord
     attributes = {}
     file_content = CSV.foreach(file.path, headers: true, encoding: "utf-8") do |row|
       row.headers.each do |head|
-        if formatted_topics.key? head
-          formatted_topics[head] = row[head]
+        translated = Campaign.inverse_translated_topics[head]
+        if formatted_topics.key? translated
+          formatted_topics[translated] = row[head]
         else
-          if head == 'email'
+          if translated == 'email'
             if !VALID_EMAIL_REGEX.match?(row[head])
               attributes[:valid_info] = false
             end
           end
-          attributes[head.to_sym] = row[head]
+          attributes[translated.to_sym] = row[head]
         end
         attributes[:topics] = formatted_topics
         attributes[:campaign_id] = campaign_id
@@ -51,6 +52,10 @@ class Campaign < ApplicationRecord
   def self.have_correct_columns?(csv_file, campaign_id)
     campaign_topics = Campaign.find(campaign_id).tmp_topics
     file_columns = CSV.read(csv_file.path)[0]
+    file_columns.each_with_index do |fc, i|
+      translation = Campaign.inverse_translated_topics[fc]
+      file_columns[i] = translation unless translation.blank?
+    end
     headers = ['email'] + campaign_topics + ['name']
     file_columns == headers
   end
@@ -113,11 +118,11 @@ class Campaign < ApplicationRecord
 
   def self.nps_dates
     {
-      1 => '30 Días',
-      2 => '60 Días',
-      3 => '90 Días',
-      4 => '6 Meses',
-      5 => '1 Año',
+      1 => "#{I18n.t("models.campaign.nps_dates.monthly")}",
+      2 => "#{I18n.t("models.campaign.nps_dates.bimonthly")}",
+      3 => "#{I18n.t("models.campaign.nps_dates.quarterly")}",
+      4 => "#{I18n.t("models.campaign.nps_dates.semester")}",
+      5 => "#{I18n.t("models.campaign.nps_dates.annual")}",
     }
   end
 
@@ -150,8 +155,10 @@ class Campaign < ApplicationRecord
   end
 
   def self.to_csv(campaign, answers,topics)
-    headers = %w(email name score comment date)
-    headers += topics
+    headers = [I18n.t("models.campaign.to_csv.header1"), I18n.t("models.campaign.to_csv.header2"), I18n.t("models.campaign.to_csv.header3"), I18n.t("models.campaign.to_csv.header4"), I18n.t("models.campaign.to_csv.header5") ]
+    topics.each do |topic|
+      headers << Campaign.translated_topics[topic]
+    end
     CSV.generate(headers: true) do |csv|
       csv << headers
       answers.each do |answer|
@@ -165,7 +172,11 @@ class Campaign < ApplicationRecord
   end
 
   def csv_template
-    headers = ['email'] + tmp_topics + ['name']
+    headers = [I18n.t("models.campaign.csv_template.header1")]  
+    tmp_topics.each do |topic|
+      headers << Campaign.translated_topics[topic]
+    end
+    headers << I18n.t("models.campaign.csv_template.header2")
     CSV.generate(headers: true) do |csv|
       csv << headers
     end
@@ -212,6 +223,50 @@ class Campaign < ApplicationRecord
         'sku' => 'sku',
         'sucursal' => 'office',
         'supervisor' => 'supervisor'
+      }
+    end
+
+#agregado 
+
+    def self.translated_topics
+      {
+        'city' => I18n.t("models.campaign.contact_topics.city"),
+        'id_client' => I18n.t("models.campaign.contact_topics.id_client"),
+        'age' => I18n.t("models.campaign.contact_topics.age"),
+        'executive' => I18n.t("models.campaign.contact_topics.executive"),
+        'state' => I18n.t("models.campaign.contact_topics.state"),
+        'date' => I18n.t("models.campaign.contact_topics.date"),
+        'brand' => I18n.t("models.campaign.contact_topics.brand"),
+        'country' => I18n.t("models.campaign.contact_topics.country"),
+        'product' => I18n.t("models.campaign.contact_topics.product"),
+        'promotion' => I18n.t("models.campaign.contact_topics.promotion"),
+        'sex' => I18n.t("models.campaign.contact_topics.sex"),
+        'sku' => I18n.t("models.campaign.contact_topics.sku"),
+        'office' => I18n.t("models.campaign.contact_topics.office"),
+        'email' => I18n.t("models.campaign.contact_topics.email"),
+        'name' => I18n.t("models.campaign.contact_topics.name"),
+        'supervisor' => I18n.t("models.campaign.contact_topics.supervisor")
+      }
+    end
+
+    def self.inverse_translated_topics
+      {
+        I18n.t("models.campaign.contact_topics.city") => 'city',
+        I18n.t("models.campaign.contact_topics.id_client") => 'id_client',
+        I18n.t("models.campaign.contact_topics.age") => 'age',
+        I18n.t("models.campaign.contact_topics.executive") => 'executive',
+        I18n.t("models.campaign.contact_topics.state") => 'state',
+        I18n.t("models.campaign.contact_topics.date") => 'date',
+        I18n.t("models.campaign.contact_topics.brand") => 'brand',
+        I18n.t("models.campaign.contact_topics.country") => 'country',
+        I18n.t("models.campaign.contact_topics.product") => 'product',
+        I18n.t("models.campaign.contact_topics.promotion") => 'promotion',
+        I18n.t("models.campaign.contact_topics.sex") => 'sex',
+        I18n.t("models.campaign.contact_topics.sku") => 'sku',
+        I18n.t("models.campaign.contact_topics.office") => 'office',
+        I18n.t("models.campaign.contact_topics.email") => 'email',
+        I18n.t("models.campaign.contact_topics.name") => 'name',
+        I18n.t("models.campaign.contact_topics.supervisor") => 'supervisor'
       }
     end
 

@@ -5,7 +5,7 @@
 		<%= image_tag(@logo, class: "img-responsive margin-auto") %>
 		<br>
 	</nav>
-	<h2 class="text-center">¿Estas seguro(a) que ya no quieres recibir correos de <%= @campaign %>?</h2>
+	<h2 class="text-center"><%= t("views.blacklist.unsuscribe.unsuscribe_confirmation") %></h2>
 	<br>
 	<div class="row margin-bottom">
 		<div class="col-md-4"><br></div>
@@ -20,7 +20,7 @@
 		<div class="col-md-8">
 			<div class="row ">
 				<div class="col-md-6 text-center">
-					<h3 class="pink padding-top">Disculpe las moletias</h3>
+					<h3 class="pink padding-top"><%= t("views.blacklist.unsuscribe.unsuscribe_message") %></h3>
 				</div>
 				<div class="col-md-2 text-center">
 					<%= image_tag("folder.png", class: "img-350") %>
@@ -29,5 +29,5 @@
 		</div>
 		<div class="col-md-3"></div>
 	</div>
-	<h4 class="gracias text-center" style="display: none">Gracias</h4>
+	<h4 class="gracias text-center" style="display: none"><%= t("views.blacklist.unsuscribe.unsuscribe_thank_you") %></h4>
 </div>

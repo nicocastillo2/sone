@@ -39,7 +39,7 @@ class PaymentsController < ApplicationController
                               card_conekta: customer.payment_sources.first.id, user: current_user}
 
     if @payment.update(payment_params)
-      redirect_to suscriptions_path, notice: 'Se agrego satisfactoriamente el método de pago'
+      redirect_to suscriptions_path, notice: t("controllers.payments_controller.create_notice")
     else
       render :new
     end
@@ -54,7 +54,7 @@ class PaymentsController < ApplicationController
       flash[:danger] = error_name
       render :new
     rescue Conekta::Error => e
-      flash[:danger] = "Error Inesperado, intentelo mas tarde"
+      flash[:danger] = t("controllers.payments_controller.error_notice")
       render :new
     end
 
@@ -90,7 +90,7 @@ class PaymentsController < ApplicationController
     end
 
     if update_status
-      redirect_to campaigns_path, notice: 'Payment actualisado correctamente.'
+      redirect_to campaigns_path, notice: t("controllers.payments_controller.update_notice")
     else
       redirect_to new_payment_path
     end
@@ -126,7 +126,7 @@ class PaymentsController < ApplicationController
     rescue Conekta::Error => e
       flash[:danger] = e.message
     end
-    redirect_to new_payment_path, notice: 'Método de pago eliminado correctamente.'
+    redirect_to new_payment_path, notice: t("controllers.payments_controller.delete_notice")
   end
 
   def payment_callback

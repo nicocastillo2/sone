@@ -63,7 +63,7 @@ class SuscriptionsController < ApplicationController
     rescue SparkPostRails::DeliveryException => e
       p e
     end
-    flash[:success] = "Se realizó su cambio de suscripción a: #{new_suscription.capitalize}"
+    flash[:success] = t("controllers.suscriptions_controller.upgrade_notice")
     redirect_to campaigns_path
   end
 
@@ -71,7 +71,7 @@ class SuscriptionsController < ApplicationController
 
   def require_payment_method
     unless current_user.payment.id_conekta || current_user.payment.card_conekta
-      flash[:info] = 'Tienes que seleccionar un método de pago antes cambiar de plan'
+      flash[:info] = t("controllers.suscriptions_controller.payment_method_notice")
       redirect_to new_payment_path
     end
   end

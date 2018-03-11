@@ -1,4 +1,4 @@
-<% provide :title, "Cambiar Método de Pago" %>
+<% provide :title, t("views.payments.edit_payment.title") %>
 <% content_for :conekta_scripts do %>
 <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
 <script type="text/javascript">
@@ -37,8 +37,8 @@
 
 <div id="current-card">
   <div class="col-md-1 col-sm-10 col-xs-10 col-md-push-10" style="display: flex;">
-    <%= link_to "Historial de compras", payment_records_path, class: "btn send-button", id: "compras", style: "" %>
-    <%= link_to payment_path, method: :delete, data: {confirm: '¿Estas seguro que quieres eliminar tu metodo de pago?'} do %>
+    <%= link_to t("views.payments.edit_payment.link_historial"), payment_records_path, class: "btn send-button", id: "compras", style: "" %>
+    <%= link_to payment_path, method: :delete, data: {confirm: t("views.payments.edit_payment.delete_message") } do %>
       <span class="glyphicon glyphicon-trash" id="trash" style="" aria-hidden="true"></span>
     <% end %>
   </div>
@@ -50,20 +50,20 @@
       <div class="col-md-2"><br></div>
       <div class="col-md-8 target">
         <div class="form-group">
-          <h3>Realizar compra<%= image_tag(@img_card, class: "img-responsive card-img", id: "chip") %></h3>
+          <h3><%= t("views.payments.edit_payment.subtitle") %><%= image_tag(@img_card, class: "img-responsive card-img", id: "chip") %></h3>
 
           <br>
           <%= image_tag("chip.png", class: "img-responsive chip") %>
           <br>
           <label>
-            <span>Número de tarjeta de crédito</span><br>
+            <span><%= t("views.payments.edit_payment.credit_card") %></span><br>
             <input class="form-control field-pay" type="text" size="20" value="**** **** **** <%= @payment_sources&.last4 %>" disabled/>
           </label>
         </div>
         <br>
         <div class="form-group">
           <label class="fecha">
-            <span>Fecha de expiración (MM/AAAA)</span><br>
+            <span><%= t("views.payments.edit_payment.expire_date") %></span><br>
             <input class="form-control field-pay date" type="text" size="2" value="<%= @payment_sources&.exp_month %>" disabled/>
 
             <span>/</span>
@@ -72,7 +72,7 @@
         </div>
         <div class="form-group">
           <label>
-            <span>CVC</span>
+            <span><%= t("views.payments.edit_payment.cvc") %></span>
             <input class="form-control field-pay" type="text" size="4" value="***" disabled/>
           </label>
         </div>
@@ -82,7 +82,7 @@
       <div class="col-md-2"></div>
     </div>
     <% end %>
-    <button class="btn btn-default change-payment send-button center-block">Cambiar Método de Pago</button>
+    <button class="btn btn-default change-payment send-button center-block"><%= t("views.payments.edit_payment.confirm_button") %></button>
   </div>
 </div>
 
@@ -93,7 +93,7 @@
     <span class="card-errors"></span>
     <div class="form-group">
       <label>
-        <span>Nombre del tarjetahabiente</span>
+        <span><%= t("views.payments.edit_payment.name") %></span>
         <input id="name" class="form-control field-pay" type="text" size="20" name="name" data-conekta="card[name]" required/>
       </label>
     </div>
@@ -101,7 +101,7 @@
     <br>
     <div class="form-group">
       <label>
-        <span>Telefono</span>
+        <span><%= t("views.payments.edit_payment.phone") %></span>
         <input class="form-control field-pay" type="text" size="20" name="phone" data-conekta="card[phone]" required/>
         <%= image_tag("master.png", class: "img-responsive card-img") %>
         <%= image_tag("visa.png", class: "img-responsive card-img") %>
@@ -118,14 +118,14 @@
           <%= image_tag("chip.png", class: "img-responsive chip") %>
           <br>
           <label>
-            <span>Número de tarjeta de crédito</span><br>
+            <span><%= t("views.payments.edit_payment.credit_card") %></span><br>
             <input class="form-control field-pay" type="text" size="20" data-conekta="card[number]" required/>
           </label>
         </div>
         <br>
         <div class="form-group">
           <label class="fecha">
-            <span>Fecha de expiración (MM/AAAA)</span><br>
+            <span><%= t("views.payments.edit_payment.expire_date") %></span><br>
             <input class="form-control field-pay date" type="text" size="2" data-conekta="card[exp_month]" required/>
 
             <span>/</span>
@@ -134,13 +134,13 @@
         </div>
         <div class="form-group">
           <label>
-            <span>CVC</span>
+            <span><%= t("views.payments.edit_payment.cvc") %></span>
             <input class="form-control field-pay" type="text" size="4" data-conekta="card[cvc]" required/>
           </label>
         </div>
         <br>
 
-        <button type="submit" class="pay-now">Cambiar</button>
+        <button type="submit" class="pay-now"><%= t("views.payments.edit_payment.confirm_button") %></button>
       </div>
       <div class="col-md-2"></div>
     </div>
