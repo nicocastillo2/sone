@@ -37,9 +37,12 @@ class ApplicationController < ActionController::Base
       ["https://www.sone.com.mx", root_path(locale: :"es-MX")],
       ["https://www.sone.com.mx/politics", politics_path(locale: :"es-MX")],
       ["https://www.sone.com.mx/pricing", pricing_path(locale: :"es-MX")],
-      ["https://www.sone.com.mx/term", terms_path(locale: :"es-MX")]
+      ["https://www.sone.com.mx/term", terms_path(locale: :"es-MX")],
+      ["https://sone.com.mx", root_path(locale: :"es-MX")],
+      ["https://sone.com.mx/politics", politics_path(locale: :"es-MX")],
+      ["https://sone.com.mx/pricing", pricing_path(locale: :"es-MX")],
+      ["https://sone.com.mx/term", terms_path(locale: :"es-MX")]
     ]
-    @original = request.original_url
     
     url = translation_table.detect{ |x| x[0] == request.original_url }
     if request.original_url.starts_with?("https://blog")
