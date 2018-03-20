@@ -275,7 +275,7 @@
             </tbody>
           </table>
           <center>
-            <p class="font-size-10" style="font-size: 70%; padding-top: 15px;"><%= I18n.t("views.campaign_mailers.survey_email.leave_suscription") %><a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url)%>?data={{token}}"><%= I18n.t("views.campaign_mailers.survey_email.leave_suscription_link") %></a> <br><br><br><%= I18n.t("views.campaign_mailers.survey_email.survey_lead") %><%= link_to I18n.t("views.campaign_mailers.survey_email.survey_lead_link"), root_url, class: "link font-10" %></p>
+            <p class="font-size-10" style="font-size: 70%; padding-top: 15px;"><%= I18n.t("views.campaign_mailers.survey_email.leave_suscription") %><a class="link font-size-10" href="<%=URI.decode(blacklist_confirm_url(locale: I18n.default_locale))%>?data={{token}}"><%= I18n.t("views.campaign_mailers.survey_email.leave_suscription_link") %></a> <br><br><br><%= I18n.t("views.campaign_mailers.survey_email.survey_lead") %><%= link_to I18n.t("views.campaign_mailers.survey_email.survey_lead_link"), root_url, class: "link font-10" %></p>
           </center>
         </td>
       </tr>
