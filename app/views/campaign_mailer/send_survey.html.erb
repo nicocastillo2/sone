@@ -235,11 +235,11 @@
                 <td class="border-0 row">
                   <div class="col-md-12 col-sm-12 col-xs-12  col-lg-12 select text-center" style="color: white;background-color: {{color}};padding:1%;border-radius:10px;">
                     <center>
-                      <a class="" style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %><%= I18n.t("views.campaign_mailers.survey_email.survey_scale_guide") %></a>
+                      <a class="" style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url(locale: I18n.default_locale))%>?data={{token}}&score=<%=index%>"><%= index %><%= I18n.t("views.campaign_mailers.survey_email.survey_scale_guide") %></a>
                     </center>
                     
                   </div>
-                 <!--  <a class="select " style="color: white;background-color: {{color}};padding:1.5% 112%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url)%>?data={{token}}&score=<%#=index%>"><%#= index %> - Poco</a> -->
+                 <!--  <a class="select " style="color: white;background-color: {{color}};padding:1.5% 112%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url(locale: I18n.default_locale))%>?data={{token}}&score=<%#=index%>"><%#= index %> - Poco</a> -->
                 </td>
               </tr>
             <% elsif index != 10  %>
@@ -248,11 +248,11 @@
                   <td class="border-0 row" style="">
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 select text-center" style="color: white;background-color: {{color}};padding:1%;border-radius:10px;">
                       <center>
-                        <a class="" style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %>
+                        <a class="" style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url(locale: I18n.default_locale))%>?data={{token}}&score=<%=index%>"><%= index %>
                       </center>
                       
                     </div>
-                     <!-- <a class="select em" style="width: 50em; color: white;background-color: {{color}};padding:1.5% 17%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url)%>?data={{token}}&score=<%#=index%>"><%#= index %></a> -->
+                     <!-- <a class="select em" style="width: 50em; color: white;background-color: {{color}};padding:1.5% 17%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url(locale: I18n.default_locale))%>?data={{token}}&score=<%#=index%>"><%#= index %></a> -->
                                       <%# end %>
                   </td>
                   
@@ -263,11 +263,11 @@
                 <td class="border-0 row">
                   <div class="select col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center" style="color: white;background-color: {{color}};padding:1%;border-radius:10px;">
                     <center>
-                      <a style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url)%>?data={{token}}&score=<%=index%>"><%= index %><%= I18n.t("views.campaign_mailers.survey_email.survey_scale_guide1") %></a>
+                      <a style="text-decoration: none;color: white;text-align: center;" href="<%=URI.decode(new_answer_url(locale: I18n.default_locale))%>?data={{token}}&score=<%=index%>"><%= index %><%= I18n.t("views.campaign_mailers.survey_email.survey_scale_guide1") %></a>
                     </center>
                     
                   </div>
-                 <!--  <a class="select " style="color: white;background-color: {{color}};padding:1.5% 13%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url)%>?data={{token}}&score=<%#=index%>"><%#= index %> - Mucho</a> -->
+                 <!--  <a class="select " style="color: white;background-color: {{color}};padding:1.5% 13%;border-radius:10px;text-decoration: none;" href="<%#=URI.decode(new_answer_url(locale: I18n.default_locale))%>?data={{token}}&score=<%#=index%>"><%#= index %> - Mucho</a> -->
                 </td>
               </tr>
               <% end %>
