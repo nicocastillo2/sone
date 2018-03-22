@@ -510,7 +510,7 @@ es-ES:
         welcome_email_footer_number: "+34 689 988 659"
       survey_email:
         survey_head_title: "Sone"
-        survey_gretting: "¡Hola, "
+        survey_greeting: "¡Hola, "
         survey_question: "¿Cuán dispuesto estarías a recomendar <strong>%{sender_name}</strong> a un amigo o familiar?"
         survey_scale_guide: " - Poco"
         survey_scale_guide1: " - Mucho"

@@ -2,7 +2,7 @@
 <% provide(:aside, "hidden")  %>
   <div class="container-fluid sign-in">
     <div class="container-margin">
-      <img id="compu" class="hidden-sm hidden-xs" src="<%= root_url %>login-pc.png">
+      <%= image_tag "login-pc.png", id: "compu", class: "hidden-sm hidden-xs" %>
       <div class="row">
         <div class="col-md-4 col-md-offset-0 text-center">
           <h2 class="registrate-gratis"><%= t("views.devise.sessions.title") %></h2>
