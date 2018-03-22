@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   get '/:locale', to: 'static#homepage', as: "home"
   root to: 'static#homepage'
     
-
+  devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
+  
   scope "/:locale" do
     
     #static pages 
@@ -11,11 +12,12 @@ Rails.application.routes.draw do
     get 'terms', to: 'static#terms'
     get 'politics', to: 'static#politics'
 
-  end
-  
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+    devise_for :users, skip: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
                                     sessions: 'users/sessions',
                                     registrations: 'users/registrations'}
+  end
+  
+  
   scope "/:locale" do
     get 'users/:id/dashboard', to: 'campaigns#dashboard', as: 'user_dashboard'
     post 'users/:id/dashboard', to: 'campaigns#dashboard'

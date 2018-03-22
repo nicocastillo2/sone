@@ -12,10 +12,6 @@ class ApplicationController < ActionController::Base
     render 'campaign_mailer/send_survey'
   end
   
-  def default_url_options
-    { locale: I18n.locale }
-  end
-
   protected
 
   def configure_permitted_parameters
@@ -58,6 +54,7 @@ class ApplicationController < ActionController::Base
       I18n.locale = params[:locale] || I18n.default_locale
     end
     @lang = I18n.locale.to_s
+    Rails.application.routes.default_url_options[:locale] = I18n.locale
   end
 
 end
