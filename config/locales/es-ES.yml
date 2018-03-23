@@ -366,7 +366,7 @@ es-ES:
         title: "Mostrar contacto"     
     campaigns:
       campaigns_index: 
-        main_title: "Resumen de campañas creadas"
+        main_title: "Resumen de campañas"
         table_header1: "Nombre"
         table_header2: "Marca"
         table_header3: "Remitente"
@@ -380,7 +380,7 @@ es-ES:
         main_title: "Diseña una nueva campaña"
       campaigns_design_form:
         error: " %{errors} prohibieron esta campaña de ser guardada:"
-        create_subtitle: " Rellena el siguiente formulario"
+        create_subtitle: " Rellena el formulario"
         campaign_name: "Nombre de la campaña"
         sender_name: "Marca o compañía"
         sender_email: "Remitente"
@@ -457,7 +457,7 @@ es-ES:
         no_campaigns_message: "Actualmente no existe ninguna campaña"
         no_campaigns_message1: "Crea una campaña y comienza a analizar la opinión de tus clientes"  
         filters_table:
-          table_title: "Cuadro de Segmentación"
+          table_title: "Cuadro de segmentación"
           td1: "Periodo"
           td2: "Campañas"
           td3: "Topics"

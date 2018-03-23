@@ -10,14 +10,14 @@
             <div class="form-group shadow">
               <span class="title"><%= suscription %></span>
               <br>
-              <h3 class="gray">Cien</h3>
-              <h5 class="gray">Clientes al mes</h5>
-              <h2>Gratis</h2>
+              <h3 class="gray"><%= t("views.static.pricing.container_planes_precios.text_offer1") %></h3>
+              <h5 class="gray"><%= t("views.static.pricing.container_planes_precios.sub_text_offer1") %></h5>
+              <h2><%= t("views.static.pricing.container_planes_precios.price_offer1") %></h2>
               <div class="imagen">
                 <%= image_tag("static/avion-papel.png", class: "img-responsive img-center") %>
               </div>
               <%= submit_tag 'Obtener', class: 'btn confirm select-plan-submit', disabled: @current_suscription == 'freelancer' %>
-              <p class="margin-top-10">Funcionalidad básica</p>
+              <p class="margin-top-10"><%= t("views.static.pricing.container_planes_precios.bottom_text_offer1") %></p>
             </div>
           <% end %>
         </div>
@@ -28,14 +28,14 @@
             <div class="form-group shadow">
               <span class="title"><%= suscription %></span>
               <br>
-              <h3 class="gray">Mil</h3>
-              <h5 class="gray">Clientes al mes</h5>
-              <h2>$900</h2>
+              <h3 class="gray"><%= t("views.static.pricing.container_planes_precios.text_offer2") %></h3>
+              <h5 class="gray"><%= t("views.static.pricing.container_planes_precios.sub_text_offer2") %></h5>
+              <h2><%= t("views.static.pricing.container_planes_precios.price_offer2") %></h2>
               <div class="imagen">
                 <%= image_tag("static/avion.png", class: "img-responsive img-center") %>  
               </div>
               <%= submit_tag 'Obtener', class: 'btn confirm select-plan-submit', disabled: @current_suscription == 'startup' %>
-              <p class="margin-top-10">Multi campaña</p>
+              <p class="margin-top-10"><%= t("views.static.pricing.container_planes_precios.bottom_text_offer2") %></p>
             </div>
           <% end %>
         </div>
@@ -46,14 +46,14 @@
             <div class="form-group shadow">
               <span class="title"><%= suscription %></span>
               <br>
-              <h3 class="gray">5 mil</h3>
-              <h5 class="gray">Clientes al mes</h5>
-              <h2>$2,500</h2>
+              <h3 class="gray"><%= t("views.static.pricing.container_planes_precios.text_offer3") %></h3>
+              <h5 class="gray"><%= t("views.static.pricing.container_planes_precios.sub_text_offer3") %></h5>
+              <h2><%= t("views.static.pricing.container_planes_precios.price_offer3") %></h2>
               <div class="imagen">
                 <%= image_tag("static/helicoptero.png", class: "img-responsive img-center") %>
               </div>
               <%= submit_tag 'Obtener', class: 'btn confirm select-plan-submit', disabled: @current_suscription == 'crecimiento' %>
-              <p class="margin-top-10">Multi campaña</p>
+              <p class="margin-top-10"><%= t("views.static.pricing.container_planes_precios.bottom_text_offer3") %></p>
             </div>
           <% end %>
         </div>
@@ -64,14 +64,14 @@
             <div class="form-group shadow">
               <span class="title"><%= suscription %></span>
               <br>
-              <h3 class="gray">10 mil</h3>
-              <h5 class="gray">Clientes al mes</h5>
-              <h2>$4,500</h2>
+              <h3 class="gray"><%= t("views.static.pricing.container_planes_precios.text_offer4") %></h3>
+              <h5 class="gray"><%= t("views.static.pricing.container_planes_precios.sub_text_offer4") %></h5>
+              <h2><%= t("views.static.pricing.container_planes_precios.price_offer4") %></h2>
               <div class="imagen">
                 <%= image_tag("static/cohete.png", class: "img-responsive img-center") %>  
               </div>
               <%= submit_tag 'Obtener', class: 'btn confirm select-plan-submit', disabled: @current_suscription == 'enterprise' %>
-              <p class="margin-top-10">Multi campaña</p>
+              <p class="margin-top-10"><%= t("views.static.pricing.container_planes_precios.bottom_text_offer4") %></p>
             </div>
           <% end %>
         </div>
