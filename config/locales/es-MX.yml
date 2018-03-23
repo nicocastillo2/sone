@@ -367,11 +367,11 @@ es-MX:
     campaigns:
       campaigns_index: 
         main_title: "Resumen de campañas creadas"
-        table_header1: "Nombre de la campaña"
-        table_header2: "Marca o compañía"
-        table_header3: "Correo remitente"
-        table_header4: "Encuestas enviadas"
-        table_header5: "Número de respuestas"
+        table_header1: "Nombre"
+        table_header2: "Marca"
+        table_header3: "Remitente"
+        table_header4: "Envíos"
+        table_header5: "Respuestas"
         table_header6: "Logo"
         table_header7: "Color"
         delete_campaign: "¿Estás seguro de que deseas eliminar la campaña?"
@@ -380,7 +380,7 @@ es-MX:
         main_title: "Diseña una nueva campaña"
       campaigns_design_form:
         error: " %{errors} prohibieron esta campaña de ser guardada:"
-        create_subtitle: "Llena el siguiente formulario"
+        create_subtitle: " Llena el siguiente formulario"
         campaign_name: "Nombre de la campaña"
         sender_name: "Marca o compañía"
         sender_email: "Remitente"
@@ -388,7 +388,7 @@ es-MX:
         color_input: "Dale color a tu diseño"
         logo_input: "Sube tu logo"
         preview_subtitle: "Vista previa"
-        topics_subtitle: "Segmenta tu campaña"
+        topics_subtitle: " Segmenta tu campaña"
         topics_info: "Selecciona los TOPICS (parámetros) que quieres utilizar para segmentar tus resultados. Considera que una vez creada la campaña no es posible editar los TOPICS."
         topics_label: "Topics a escoger:"
         submit_button: "Crear"
@@ -412,7 +412,7 @@ es-MX:
           unanswered_stats: "CORREOS SIN RESPUESTA"
           last_sent: "FECHA DEL ÚLTIMO ENVÍO"
         campaigns_import:
-          contacts_subtitle: "Administración de campaña: contactos y envíos."
+          contacts_subtitle: "Panel de envíos"
           contacts_instructions: "Instrucciones para realizar el envío de correos:"
           contacts_instructions1: "1.-Descarga la plantilla y abre el archivo"
           contacts_instructions2: "2.-Añade una fila para cada contacto que deseas encuestar y llena los campos indicados en el encabezado:" 
@@ -438,7 +438,7 @@ es-MX:
           invalid_delete: "¿Deseas eliminar el contacto?"
         campaigns_not_sent: 
           not_sent_title: "Contactos. "
-          not_sent_subtitle: "Pendientes de enviar (Pending: contactos ya encuestados; deben transcurrir 30 días)"
+          not_sent_subtitle: "Pendientes de enviar (contactos duplicados deben transcurrir 30 días)"
           not_sent_email: "Correo electrónico"
           not_sent_name: "Nombre"
           not_sent_status: "Estatus"
@@ -457,7 +457,7 @@ es-MX:
         no_campaigns_message: "Actualmente no existe ninguna campaña"
         no_campaigns_message1: "Crea una campaña y comienza a analizar la opinión de tus clientes"  
         filters_table:
-          table_title: "Segmentación de resultados"
+          table_title: "Cuadro de Segmentación"
           td1: "Periodo"
           td2: "Campañas"
           td3: "Topics"
@@ -472,12 +472,12 @@ es-MX:
           button_tag: "Todas las campañas"
           button_tag1: "Todos los topics"
         graph: 
-          title: "Evolución del Net Promoter Score®"
+          title: "Evolución del Net Promoter Score"
           column1: "NPS 30-días"
           column2: "Nº Detractores 30-días"
           column3: "Nº Neutrales 30-días"
           column4: "Nº Promotores 30-días"
-          column5: "NPS®"
+          column5: "NPS"
           column6: "Nº Detractores"
           column7: "Nº Neutrales"
           column8: "Nº Promotores"
@@ -510,7 +510,7 @@ es-MX:
         welcome_email_footer_number: "+52 55 69687847"
       survey_email:
         survey_head_title: "Sone"
-        survey_gretting: "¡Hola, "
+        survey_greeting: "¡Hola, "
         survey_question: "¿Qué tan dispuesto estarías a recomendar <strong>%{sender_name}</strong> a un amigo o familiar?"
         survey_scale_guide: " - Poco"
         survey_scale_guide1: " - Mucho"
@@ -554,9 +554,9 @@ es-MX:
       #politics:
       homepage:
         container_call_to_action: 
-          cta_main_title: "Conoce la opinión de tus clientes"
-          cta_sub_title: "Aprende a gestionar adecuadamente clientes molestos para convertirlos en promotores de tu marca"
-          cta_button: "Prueba gratis" 
+          cta_main_title: "Pide feedback a tus clientes"
+          cta_sub_title: "Mide la experiencia que les ofreces y encuentra áreas de oportunidad para tu negocio."
+          cta_button: "Comienza gratis"  
           cta_bottom_text1: "250 clientes / 30 días"
           cta_bottom_text2: "Sin tarjeta de crédito"
         container_ask_improve: 
@@ -577,7 +577,7 @@ es-MX:
         container_fast_easy:
           fast_easy_title: "Incorpora de forma práctica y sencilla la metodología Net Promoter Score®"
           fast_easy_claim: "La plataforma SONE te ayuda a descubrir áreas de oportunidad que contribuyan al crecimiento en ventas y a la reducción de clientes cancelados. Para utilizar SONE no requieres conocimiento técnico o especializado."
-          fast_easy_button: "Haz tu prueba gratis"
+          fast_easy_button: "Comienza gratis"
         container_clients_opinion: 
           clients_opinion_title: "Nuestros clientes opinan"
           clients_opinion_statement_1: "SONE es la herramienta ideal para conocer más a nuestros clientes y diseñar contenidos que se adapten a sus gustos. Además es muy fácil de usar."
@@ -604,19 +604,19 @@ es-MX:
           title_offer2: "Startup"
           text_offer2: "Mil"
           sub_text_offer2: "Clientes al mes"
-          price_offer2: "$45 USD"
+          price_offer2: "$900 MXN"
           bottom_text_offer2: "Multicampaña"
           cta_offer2: "OBTENER"
           title_offer3: "Crecimiento" 
           text_offer3: "5 mil"
           sub_text_offer3: "Clientes al mes"
-          price_offer3: "$125 USD"
+          price_offer3: "$2,500 MXN"
           bottom_text_offer3: "Multicampaña"
           cta_offer3: "OBTENER"
           title_offer4: "Enterprise"
           text_offer4: "10 mil"
           sub_text_offer4: "Clientes al mes"
-          price_offer4: "$225 USD"
+          price_offer4: "$4,500 MXN"
           bottom_text_offer4: "Multicampaña"
           cta_offer4: "OBTENER"
         container_ayuda: 
