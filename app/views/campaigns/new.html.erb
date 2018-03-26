@@ -1,3 +1,4 @@
+<% provide(:title, t("views.campaigns.campaigns_new.main_title")) %>
 <div class="row" style="margin-right: 0;margin-left: 0;">
   <div class="col-md-1 col-sm-1 col-xs-1"><br></div>
   <div class="col-md-10 col-sm-10 col-xs-10">
@@ -6,7 +7,7 @@
         <span class="glyphicon glyphicon-arrow-left"></span>
         <%= t("views.campaigns.campaigns_new.back_button") %>
       <% end %>
-      <h1 class="text-gray"><%= t("views.campaigns.campaigns_new.main_title") %></h1>
+      <!-- <h1 class="text-gray"><%= t(#"views.campaigns.campaigns_new.main_title") %></h1> -->
     </div>
     <%= render 'form' %>
   </div>
