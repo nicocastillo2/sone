@@ -565,7 +565,7 @@ es-MX:
           ask_improve_claim_2: "Mejora"
           ask_improve_sub_claim_2: "Adapta tu modelo de negocio a las necesidades reales de tus clientes. SONE Dashboard facilita el diagnóstico."
         container_beneficios: 
-          beneficios_title: "Atributos destacables de <span class=\"green\">SONE</span>"
+          beneficios_title: "Atributos destacables de SONE"
           beneficio_1: "ESCALABLE"
           claim_beneficio_1: "Planes diseñados para cualquier tipo y tamaño de empresa."
           beneficio_2: "RESPONSIVO"

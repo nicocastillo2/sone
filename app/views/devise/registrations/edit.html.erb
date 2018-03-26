@@ -1,10 +1,9 @@
-<% provide(:title, t("views.devise.registrations.edit_registration.title")) %>
 <div class="row row-0">
   <div class="col-md-1 col-sm-1 col-xs-1"></div>
   <div class="col-md-10 col-sm-10 col-xs-10">
     <div class="row row-0">
       <div class="col-md-8">
-        <!-- <h2 class="pink"><%= t(#{}"views.devise.registrations.edit_registration.title") %></h2> -->
+        <h2 class="pink"><%= t("views.devise.registrations.edit_registration.title") %></h2> 
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
