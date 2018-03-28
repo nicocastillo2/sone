@@ -11,9 +11,13 @@ class LogoUploader < CarrierWave::Uploader::Base
   end
   
   def real_ftp_url
-    f = self.file.to_file
-    system("cp #{f.path} #{Rails.root}/public/system/#{File.basename(path)}")
-    "/system/#{File.basename(path)}"
+    begin
+      f = self.file.to_file
+      system("cp #{f.path} #{Rails.root}/public/system/#{File.basename(path)}")
+      "/system/#{File.basename(path)}"
+    rescue
+      ""
+    end
   end
   
   
