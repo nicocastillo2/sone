@@ -23,7 +23,7 @@
     config.ftp_passwd = ENV['FTP_PASSWORD']
     config.ftp_folder = "/uploads"
     config.ftp_url = "/tmp"
-    config.ftp_passive = true
+    config.ftp_passive = false
     config.ftp_tls = false
   end
 # end
