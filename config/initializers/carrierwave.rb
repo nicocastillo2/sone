@@ -16,6 +16,14 @@
   # end
 # else
   CarrierWave.configure do |config|
-    config.storage = :file
+    config.storage = :ftp
+    config.ftp_host = "159.89.86.242"
+    config.ftp_port = 21
+    config.ftp_user = ENV['FTP_USER']
+    config.ftp_passwd = ENV['FTP_PASSWORD']
+    config.ftp_folder = "/uploads"
+    config.ftp_url = "/tmp"
+    config.ftp_passive = true
+    config.ftp_tls = false
   end
 # end

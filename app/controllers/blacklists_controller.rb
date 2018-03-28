@@ -7,7 +7,7 @@ class BlacklistsController < ApplicationController
   def confirm
     @data = params[:data]
     id = CampaignsHelper.decrypt(params[:data]) 
-    @logo= Contact.find(id).campaign.logo.url
+    @logo= Contact.find(id).campaign.logo.real_ftp_url
     @campaign = Contact.find(id).campaign.name
     @color = Contact.find(id).campaign.color
   end

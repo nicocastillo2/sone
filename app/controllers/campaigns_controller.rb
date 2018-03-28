@@ -42,7 +42,7 @@ class CampaignsController < ApplicationController
       @campaign.tmp_topics = campaign_params[:topics].map(&:split).flatten.sort if campaign_params[:topics]
       respond_to do |format|
         if @campaign.save
-          format.html { redirect_to @campaign, notice: t("controllers.campaigns_controller.create_notice") }
+          format.html { redirect_to campaign_path(@campaign.id), notice: t("controllers.campaigns_controller.create_notice") }
           format.json { render :show, status: :created, location: @campaign }
         else
           format.html { render :new }
@@ -56,7 +56,7 @@ class CampaignsController < ApplicationController
   def update
     respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to @campaign, notice: t("controllers.campaigns_controller.update_notice") }
+        format.html { redirect_to campaign_path(@campaign.id), notice: t("controllers.campaigns_controller.update_notice") }
         format.json { render :show, status: :ok, location: @campaign }
       else
         format.html { render :edit }

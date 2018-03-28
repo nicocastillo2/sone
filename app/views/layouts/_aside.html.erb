@@ -38,7 +38,7 @@
                 <% end %>
 
                 <li class="center">
-                  <%= link_to(user_dashboard_path(current_user), class: 'left-menu') do %>
+                  <%= link_to(user_dashboard_path(id: current_user.id), class: 'left-menu') do %>
                     <%= fa_icon 'tachometer', class: 'navbar-link pink' %><%= t("views.layouts.app_sidebar.link_dashboard") %>
                   <% end %>
                 </li>

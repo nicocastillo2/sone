@@ -19,7 +19,7 @@
 
     <div class="row margin-bot">
       <div class="col-md-3 align-center">
-        <%= image_tag(@campaign.logo_url.to_s, class: "logo") %>
+        <%= image_tag(@campaign.logo.real_ftp_url, class: "logo") %>
       </div>
       <div class="col-md-3 align-center">
         <p class="text-pink"><%= t("views.campaigns.campaigns_show.campaigns_summary.company") %></p>

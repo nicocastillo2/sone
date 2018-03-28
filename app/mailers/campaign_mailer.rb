@@ -13,7 +13,7 @@ class CampaignMailer < ApplicationMailer
       recipients_data << { substitution_data: { name: contact.name, token: CampaignsHelper.encrypt(contact.id.to_s), color: color }, address: { email: contact.email, header_to: contact.email } }
     end
     data = { html_content_only: true, recipients: recipients_data }
-    @logo_path = ENV['APP_FULL_PATH'] + campaign.logo.url
+    @logo_path = ENV['APP_FULL_PATH'] + campaign.logo.real_ftp_url
 
     mail(to: recipients, subject: I18n.t("mailers.campaign.survey.subject", sender_name: @sender_name), from: sender, sparkpost_data: data)
   end
