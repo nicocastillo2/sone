@@ -72,6 +72,7 @@ gem "font-awesome-rails"
 gem 'faker', '~> 1.8.4'
 
 gem 'font-awesome-sass', '~> 4.7.0'
+gem 'rack-rewrite', '~> 1.5.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

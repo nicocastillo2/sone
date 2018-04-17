@@ -9,6 +9,11 @@ Bundler.require(*Rails.groups)
 
 module Sone
   class Application < Rails::Application
+    
+    config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
+      p   %r{/blog/(\w+)},    'http://159.89.86.242/blog/$1'
+    end
+    
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.i18n.available_locales = [ 'es-ES', 'es-MX']
