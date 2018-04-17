@@ -5,7 +5,11 @@
 				<h4> <%=link_to t("views.layouts.static_footer.link_pricing"), pricing_path(anchor: 'info-planes'),  class: "text-white none-underline"%></h4>
 			</div>
 			<div class="col-md-3 text-center white hidden-sm hidden-xs">
-				<h4><a class="none-underline" href="https://blog.sone.com.mx/" target="_blank"><span class="text-white none-underline"><%= t("views.layouts.static_footer.link_blog") %></span></a></h4>
+				<h4>
+          <%= link_to blog_path, class: "none-underline", target: "_blank" do %>
+            <span class="text-white none-underline"><%= t("views.layouts.static_footer.link_blog") %></span>
+          <% end %>
+        </h4>
 			</div>
 		</div>
 		<div class="row margin-0">

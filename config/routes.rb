@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  # get '/blog(/:route)', to: "blog#homepage", as: "blog"
-  get '/:locale', to: 'static#homepage', as: "home"
+  get '/blog(/*post)', to: "static#blog", as: "blog"
+  
+  get '/:locale', to: 'static#homepage', as: "home", constraints: { locale: /es-ES|es-MX/}
+  
   root to: 'static#homepage'
     
   devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
