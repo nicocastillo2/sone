@@ -23,7 +23,7 @@ class SuscriptionsController < ApplicationController
                       cycle_end: DateTime.strptime(subscription.billing_cycle_end.to_s,'%s'))
       subscription.cancel
     else
-      begin
+      begin      
         customer = Conekta::Customer.find(current_user.payment.id_conekta)
 
         # si existe la subscripcion

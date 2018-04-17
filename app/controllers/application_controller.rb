@@ -41,7 +41,8 @@ class ApplicationController < ActionController::Base
     ]
     
     url = translation_table.detect{ |x| x[0] == request.original_url }
-    if request.original_url.starts_with?("https://blog")
+    if request.original_url.starts_with?("https://blog") || request.original_url.include?("/blog")
+      # redirect_to "/blog"
     elsif !url.nil?
       redirect_to url[1], status: 301 and return
     end

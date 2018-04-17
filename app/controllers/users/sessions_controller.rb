@@ -6,10 +6,10 @@ class Users::SessionsController < Devise::SessionsController
       current_user.payment.update(cycle_start: DateTime.now, cycle_end: DateTime.now.next_month)
       # if current_user.payment.card_conekta.nil?
         current_user.update(available_emails: 100)
-        current_user.payment.update(plan_name: "freelance")
+        current_user.payment.update(plan_name: "freelancer")
       # else
         # case current_user.payment.plan_name
-          # when "freelance"
+          # when "freelancer"
             # emails_limit = 100
           # when "startup"
             # emails_limit = 1000

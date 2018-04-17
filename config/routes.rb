@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # get '/blog(/:route)', to: "blog#homepage", as: "blog"
   get '/:locale', to: 'static#homepage', as: "home"
   root to: 'static#homepage'
     

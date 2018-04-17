@@ -26,4 +26,9 @@ class StaticController < ApplicationController
     @description="Acerca de nuestra política de privacidad"
 
   end
+  
+  def blog
+    byebug
+  end
+  
 end
