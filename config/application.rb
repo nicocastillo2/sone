@@ -11,8 +11,13 @@ module Sone
   class Application < Rails::Application
     
     config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
-      p   %r{/blog/(\w+)},    'http://159.89.86.242/blog/$1'
+      rewrite %r{/blog/(\w+\/?)}, 'http://159.89.86.242/blog/$1'
     end
+    
+    # config.middleware.insert(0, Rack::ReverseProxy) do
+      # reverse_proxy_options preserve_host: true
+      # reverse_proxy /^\/blog(\/?.*)$/, 'http://159.89.86.242/blog/$1'
+    # end
     
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
