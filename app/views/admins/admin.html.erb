@@ -15,7 +15,7 @@
 				<% unless user.type == "AdminUser" %>
 					<%if index == 0%>
 						<tr class="admin-table">
-							<td class="td-20 tr-pad text-center td-no-border padding-bottom middle-align"><p><%= link_to user.username, user_dashboard_path(user), class: 'pink' %></p></td>
+							<td class="td-20 tr-pad text-center td-no-border padding-bottom middle-align"><p><%= link_to user.username, user_dashboard_path(id: user.id), class: 'pink' %></p></td>
 							<td class="td-20 tr-pad td-no-border text-center padding-bottom middle-align"><p><%= user.email%></p></td>
 							<td class="td-20 tr-pad text-center td-no-border padding-bottom middle-align"><p><%= user.created_at.strftime('%d-%m-%Y') %></p></td>
 							<td class="td-20 tr-pad text-center td-no-border padding-bottom middle-align"><p><%= user.payment.plan_name %></p></td>
@@ -23,7 +23,7 @@
 						</tr>
 					<% else %>
 						<tr>
-							<td class="td-20 text-center td-no-border padding-bottom middle-align"><p><%= link_to user.username, user_dashboard_path(user), class: 'pink' %></p></td>
+							<td class="td-20 text-center td-no-border padding-bottom middle-align"><p><%= link_to user.username, user_dashboard_path(id: user.id), class: 'pink' %></p></td>
 							<td class="td-20 td-no-border text-center padding-bottom middle-align"><p><%= user.email%></p></td>
 							<td class="td-20 text-center td-no-border padding-bottom middle-align"><p><%= user.created_at.strftime('%d-%m-%Y') %></p></td>
 							<td class="td-20 text-center td-no-border padding-bottom middle-align"><p><%= user.payment.plan_name %></p></td>
