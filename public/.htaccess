@@ -1,1 +1,2 @@
-Redirect 301 /blog http://159.89.86.242/blog
+RewriteCond ${HTTP_HOST} ^sone-app.com/blog
+RewriteRule ^(.*) http://159.89.86.242/blog/$1 [P]
