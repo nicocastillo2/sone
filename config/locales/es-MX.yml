@@ -554,7 +554,7 @@ es-MX:
       #politics:
       homepage:
         container_call_to_action: 
-          cta_main_title: "Captura la voz tus clientes"
+          cta_main_title: "Captura la voz de tus clientes"
           cta_sub_title: "Transforma la experiencia de cliente en la estrategia de crecimiento para tu negocio."
           cta_button: "Comienza gratis"  
           cta_bottom_text1: "250 clientes / 30 días"
