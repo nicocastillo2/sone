@@ -483,7 +483,7 @@ es-MX:
           column8: "Nº Promotores"
           main_score: "NPS 30-días: "
       feedback:
-          subtitle1: "Total respuestas: %{sample}"
+          subtitle1: "Total: %{sample}"
           subtitle2: "Promotores"
           subtitle3: "Neutrales"
           subtitle4: "Detractores"
@@ -554,8 +554,8 @@ es-MX:
       #politics:
       homepage:
         container_call_to_action: 
-          cta_main_title: "Pide feedback a tus clientes"
-          cta_sub_title: "Mide la experiencia que les ofreces y encuentra áreas de oportunidad para tu negocio."
+          cta_main_title: "Captura la voz de tus clientes"
+          cta_sub_title: "Transforma la experiencia de cliente en la estrategia de crecimiento para tu negocio."
           cta_button: "Comienza gratis"  
           cta_bottom_text1: "250 clientes / 30 días"
           cta_bottom_text2: "Sin tarjeta de crédito"
