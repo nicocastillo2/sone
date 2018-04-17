@@ -2,6 +2,7 @@ require_relative 'boot'
 require 'pp'
 require 'csv'
 require 'rails/all'
+require 'rack/rewrite'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -11,7 +12,7 @@ module Sone
   class Application < Rails::Application
     
     config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
-      rewrite %r{/blog/(\w+\/?)}, 'http://159.89.86.242/blog/$1'
+      r301 %r{/blog/(\w+\/?)}, 'http://159.89.86.242/blog/$1'
     end
     
     # config.middleware.insert(0, Rack::ReverseProxy) do
