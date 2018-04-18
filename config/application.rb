@@ -20,7 +20,7 @@ module Sone
       reverse_proxy_options preserve_host: true
       reverse_proxy_options force_ssl: true, replace_response_host: true
       reverse_proxy_options x_forwarded_headers: true
-      reverse_proxy /^\/blog(\/?.*)$/, 'http://blog.sone-app.com/blog/$1'
+      reverse_proxy /^\/blog(\/?.*)$/, 'https://blog.sone-app.com/blog/$1'
     end
     
     # Initialize configuration defaults for originally generated Rails version.
