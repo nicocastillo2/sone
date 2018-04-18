@@ -207,7 +207,11 @@ GEM
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
-    rack-rewrite (1.5.1)
+    rack-proxy (0.6.4)
+      rack
+    rack-reverse-proxy (0.12.0)
+      rack (>= 1.0.0)
+      rack-proxy (~> 0.6, >= 0.6.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.0)
@@ -337,7 +341,7 @@ DEPENDENCIES
   openssl (~> 2.0.0.beta.1)
   pg (~> 0.18)
   puma (~> 3.7)
-  rack-rewrite (~> 1.5.0)
+  rack-reverse-proxy
   rails (= 5.1.0)
   ransack (~> 1.8, >= 1.8.3)
   record_tag_helper (~> 1.0)

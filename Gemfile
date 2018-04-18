@@ -73,8 +73,8 @@ gem 'faker', '~> 1.8.4'
 
 gem 'font-awesome-sass', '~> 4.7.0'
 
-gem 'rack-rewrite', '~> 1.5.0'
-# gem 'rack-reverse-proxy', require: 'rack/reverse_proxy'
+# gem 'rack-rewrite', '~> 1.5.0'
+gem 'rack-reverse-proxy', require: 'rack/reverse_proxy'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
