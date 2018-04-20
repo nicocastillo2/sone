@@ -44,7 +44,7 @@ class ContactsController < ApplicationController
       if @contact.update(contact_params)
         @contact.valid_info = true
         @contact.save
-        format.html { redirect_to campaign_path(@contact.campaign), notice: t("controllers.contacts_controller.update_notice") }
+        format.html { redirect_to campaign_path(id: @contact.campaign.id), notice: t("controllers.contacts_controller.update_notice") }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to campaign_path(@contact.campaign), notice: t("controllers.contacts_controller.delete_notice") }
+      format.html { redirect_to campaign_path(id: @contact.campaign.id), notice: t("controllers.contacts_controller.delete_notice") }
       format.json { head :no_content }
     end
   end

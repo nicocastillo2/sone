@@ -7,7 +7,7 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new
-    redirect_to edit_payment_path(current_user.payment) if current_user.payment.card_conekta
+    redirect_to edit_payment_path(id: current_user.payment.id) if current_user.payment.card_conekta
   end
 
   def records
