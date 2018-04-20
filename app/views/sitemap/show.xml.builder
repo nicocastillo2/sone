@@ -6,7 +6,7 @@ xml.urlset :xmlns => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
     
     xml.url do
       xml.loc link[:url]
-      xml.lastmod Time.now.strftime('%Y-%m-%d')
+      xml.lastmod '2018-04-24'
       xml.priority link[:priority]
     end
     
