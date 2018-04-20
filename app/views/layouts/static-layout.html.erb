@@ -69,11 +69,11 @@
         <%= link_to(t("views.layouts.static_header.link_blog"), blog_path, class: "nav-btn navbar-text navbar-brand-center center-links", "data-turbolinks" => false) %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-toggle-menu">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-        <%= link_to url_for(locale: :"es-ES"), id: "spanish-es", class: "nav-btn navbar-text nav-lang-es" do %>
+        <%= link_to url_for(locale: :"es-ES"), id: "spanish-es", class: "nav-btn navbar-text nav-lang-es", rel: "nofollow" do %>
           <span class="flag-icon flag-icon-squared flag-icon-es"></span> ES 
         <% end %>
 
-        <%= link_to url_for(locale: :"es-MX"), id: "spanish-mx", class: "nav-btn navbar-text nav-lang-mx" do %>                                                                                                                                              
+        <%= link_to url_for(locale: :"es-MX"), id: "spanish-mx", class: "nav-btn navbar-text nav-lang-mx", rel: "nofollow" do %>                                                                                                                                              
           <span class="flag-icon flag-icon-squared flag-icon-mx"></span> MX
         <% end %>
         
