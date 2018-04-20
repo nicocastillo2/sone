@@ -46,7 +46,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'UA-104558130-1');
+    gtag('config', '<%= I18n.locale == :'es-ES' ? "UA-104558130-3" : "UA-104558130-4" %> ');
   </script>
 <% end %>
 

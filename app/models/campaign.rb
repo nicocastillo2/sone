@@ -280,7 +280,7 @@ class Campaign < ApplicationRecord
     end
 
     def add_domain_to_mail
-      self.sender_email += '@sone-app.com' if changes.include?("sender_email")
+      self.sender_email += '@sone.com.mx' if changes.include?("sender_email")
     end
 
 end
