@@ -42,7 +42,7 @@ class CampaignsController < ApplicationController
       @campaign.tmp_topics = campaign_params[:topics].map(&:split).flatten.sort if campaign_params[:topics]
       respond_to do |format|
         if @campaign.save
-          format.html { redirect_to campaign_path(@campaign.id), notice: t("controllers.campaigns_controller.create_notice") }
+          format.html { redirect_to campaign_path(id: @campaign.id), notice: t("controllers.campaigns_controller.create_notice") }
           format.json { render :show, status: :created, location: @campaign }
         else
           format.html { render :new }
@@ -56,7 +56,7 @@ class CampaignsController < ApplicationController
   def update
     respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to campaign_path(@campaign.id), notice: t("controllers.campaigns_controller.update_notice") }
+        format.html { redirect_to campaign_path(id: @campaign.id), notice: t("controllers.campaigns_controller.update_notice") }
         format.json { render :show, status: :ok, location: @campaign }
       else
         format.html { render :edit }
@@ -314,15 +314,15 @@ class CampaignsController < ApplicationController
     campaign_id = params[:campaign][:id]
     csv_file = params[:campaign][:file]
     if csv_file.nil?
-      redirect_to campaign_path(campaign_id), notice: t("controllers.campaigns_controller.upload_csv_notice")
+      redirect_to campaign_path(id: campaign_id), notice: t("controllers.campaigns_controller.upload_csv_notice")
     elsif !(csv_file.content_type.include?('csv') || csv_file.content_type.include?('excel'))
-      redirect_to campaign_path(campaign_id), notice: t("controllers.campaigns_controller.format_csv_notice")
+      redirect_to campaign_path(id: campaign_id), notice: t("controllers.campaigns_controller.format_csv_notice")
     elsif !Campaign.have_correct_columns?(csv_file, campaign_id)
-      redirect_to campaign_path(campaign_id), notice: t("controllers.campaigns_controller.column_csv_notice")
+      redirect_to campaign_path(id: campaign_id), notice: t("controllers.campaigns_controller.column_csv_notice")
     else
       topics = Campaign.find(campaign_id).tmp_topics
       Campaign.import_contacts(params[:campaign][:file], topics, campaign_id)
-      redirect_to campaign_path(campaign_id), notice: t("controllers.campaigns_controller.upload_csv_confirm")
+      redirect_to campaign_path(id: campaign_id), notice: t("controllers.campaigns_controller.upload_csv_confirm")
     end
   end
 
@@ -355,7 +355,7 @@ class CampaignsController < ApplicationController
       id = params[:id].to_i
       return if current_user.type == 'AdminUser'
       if current_user.id != id
-        redirect_to user_dashboard_path(current_user)
+        redirect_to user_dashboard_path(id: current_user.id)
       end
     end
 end
