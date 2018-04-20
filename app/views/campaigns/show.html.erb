@@ -167,7 +167,7 @@
       <div class="col-md-4 col-sm-4">
         <% if current_user.payment.plan_name == 'freelancer' && current_user.campaigns.last.id != @campaign.id %>
           <div class="text-center">
-            <h4><%= t("views.campaigns.campaigns_show.campaigns_import.freelances_warning") %></h4>
+            <h4><%= t("views.campaigns.campaigns_show.campaigns_import.freelancer_warning") %></h4>
           </div>
           <% else %>
             <% unless @campaign.contacts.empty? %>
@@ -176,7 +176,7 @@
                 <% end %>
               <% else %>
                 <div class="text-center">
-                  <h4><%= t("views.campaigns.campaigns_show.campaigns_import.upload_message") %></h4>
+                  <h4><%= t("views.campaigns.campaigns_show.campaigns_import.upload_message1") %></h4>
                 </div>
               <% end %>
             <% else %>
