@@ -3,7 +3,7 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     <%= t("views.contacts.show.back_button") %>
   <% end %>
-  <%= link_to edit_contact_path(@contact), class: 'btn btn-primary' do %>
+  <%= link_to edit_contact_path(id: @contact.id), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     <%= t("views.contacts.show.edit_button") %>
   <% end %>

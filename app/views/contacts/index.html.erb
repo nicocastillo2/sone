@@ -19,7 +19,7 @@
     <tbody>
       <%= content_tag_for(:tr, @contacts) do |contact| %>
             <td><%= link_to 'Show', contact %></td>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <td><%= link_to 'Edit', edit_contact_path(id: contact.id) %></td>
         <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: t("views.contacts.index.destroy_notice") } %></td>
       <% end %>
     </tbody>

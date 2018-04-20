@@ -234,6 +234,10 @@ class CampaignsController < ApplicationController
           campaigns: Campaign.get_filtered_campaigns(@selected_campaigns),
           topics: topics_for_filter
         }
+        
+        Rails.logger.info ("-----------------------------------------------")
+        Rails.logger.info (@filters.as_json)
+        Rails.logger.info ("-----------------------------------------------")
       else
         date = params[:nps_date] ? params[:nps_date] : '1'
         date_range = Campaign.receive_date(date)
