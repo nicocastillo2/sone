@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get '/blog(/*post)', to: "static#blog", as: "blog"
   
   get '/:locale', to: 'static#homepage', as: "home", constraints: { locale: /es-ES|es-MX/}
+  get '/:locale/sitemap', to: 'sitemap#show'
   
   root to: 'static#homepage'
     
