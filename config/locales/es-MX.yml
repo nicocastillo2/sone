@@ -295,7 +295,7 @@ es-MX:
           link: "Enlace:"
           hyperlynk: "Cambiar mi contraseña"
           footer_contact1: "Contacto:"
-          footer_email: "soporte@sone.com.mx" 
+          footer_email: "soporte@sone-app.com" 
           footer_contact2: "Tel.:"
           footer_number: "+52 55 6968 7847"
       passwords:
@@ -384,7 +384,7 @@ es-MX:
         campaign_name: "Nombre de la campaña"
         sender_name: "Marca o compañía"
         sender_email: "Remitente"
-        email_domain: "sone.com.mx"
+        email_domain: "sone-app.com"
         color_input: "Dale color a tu diseño"
         logo_input: "Sube tu logo"
         preview_subtitle: "Vista previa"
@@ -505,7 +505,7 @@ es-MX:
         welcome_email_text: "Muchas gracias por registrarte en SONE. A partir de este momento cuentas con 30 días para enviar 250 correos de forma gratuita. Recuerda que en cualquier momento puedes mejorar tu suscripción con alguno de nuestros planes."
         welcome_email_username: "Correo electrónico: %{mail} "
         welcome_email_footer_contact1: "Contacto:"
-        welcome_email_footer_email: "soporte@sone.com.mx"
+        welcome_email_footer_email: "soporte@sone-app.com"
         welcome_email_footer_contact2: "Tel.:"
         welcome_email_footer_number: "+52 55 69687847"
       survey_email:
@@ -705,7 +705,7 @@ es-MX:
         email: "Correo electrónico"
         name: "Nombre del contacto"
         no_topics: "Todos los topics"
-        #domain_to_mail: "@sone.com.mx"
+        #domain_to_mail: "@sone-app.com"
       #nps: ??
   mailers: 
     campaign:
