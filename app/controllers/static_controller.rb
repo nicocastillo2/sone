@@ -27,8 +27,8 @@ class StaticController < ApplicationController
 
   end
   
-  def blog
-    redirect_to "http://159.89.86.242/blog/#{params[:post]}", status: 301 and return
-  end
+  # def blog
+    # redirect_to "http://159.89.86.242/blog/#{params[:post]}", status: 301 and return
+  # end
   
 end
