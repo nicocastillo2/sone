@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@sone.com.mx'
+  default from: 'soporte@sone-app.com'
   layout 'mailer'
 end

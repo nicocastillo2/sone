@@ -22,13 +22,13 @@ class CampaignMailer < ApplicationMailer
     @subscription_name = subscription_name
     @user_email = user_email
     data = { html_content_only: true }
-    mail(to: @user_email, subject: I18n.t("mailers.campaign.change_subscription.subject"), from: 'noreply@sone.com.mx', sparkpost_data: data)
+    mail(to: @user_email, subject: I18n.t("mailers.campaign.change_subscription.subject"), from: 'soporte@sone-app.com', sparkpost_data: data)
   end
 
   def welcome(user)
     @current_user = user
     data = { html_content_only: true }
-    mail(to: @current_user.email, subject: I18n.t("mailers.campaign.welcome.subject"), from: 'noreply@sone.com.mx', sparkpost_data: data)
+    mail(to: @current_user.email, subject: I18n.t("mailers.campaign.welcome.subject"), from: 'soporte@sone-app.com', sparkpost_data: data)
   end
 
 end
