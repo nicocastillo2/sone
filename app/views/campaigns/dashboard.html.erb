@@ -32,7 +32,7 @@
                 </td>
                 <td>
                   <% @filters[:topics].each do |topic| %>
-                    <span class="label label-default filter-label"><%= Campaign.translated_topics[topic]  %></span>
+                    <span class="label label-default filter-label"><%= Campaign.translated_topics[Campaign.contact_topics[topic]] %></span>
                   <% end %>
                 </td>
               </tr>

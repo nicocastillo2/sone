@@ -704,6 +704,7 @@ es-MX:
         supervisor: "Supervisor" 
         email: "Correo electrónico"
         name: "Nombre del contacto"
+        no_topics: "Todos los topics"
         #domain_to_mail: "@sone.com.mx"
       #nps: ??
   mailers: 

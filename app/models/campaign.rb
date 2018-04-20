@@ -222,7 +222,8 @@ class Campaign < ApplicationRecord
         'sexo' => 'sex',
         'sku' => 'sku',
         'sucursal' => 'office',
-        'supervisor' => 'supervisor'
+        'supervisor' => 'supervisor',
+        'Sin topics' => 'Sin topics'
       }
     end
 
@@ -245,7 +246,8 @@ class Campaign < ApplicationRecord
         'office' => I18n.t("models.campaign.contact_topics.office"),
         'email' => I18n.t("models.campaign.contact_topics.email"),
         'name' => I18n.t("models.campaign.contact_topics.name"),
-        'supervisor' => I18n.t("models.campaign.contact_topics.supervisor")
+        'supervisor' => I18n.t("models.campaign.contact_topics.supervisor"),
+        'Sin topics' => I18n.t("models.campaign.contact_topics.no_topics")
       }
     end
 
