@@ -40,13 +40,13 @@
 
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104558130-1"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= I18n.locale == :'es-ES' ? "UA-104558130-3" : "UA-104558130-4" %>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', '<%= I18n.locale == :'es-ES' ? "UA-104558130-3" : "UA-104558130-4" %> ');
+    gtag('config', '<%= I18n.locale == :'es-ES' ? "UA-104558130-3" : "UA-104558130-4" %>');
   </script>
 <% end %>
 
