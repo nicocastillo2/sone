@@ -219,7 +219,7 @@
                   <% end %>
                   <td><%= contact.name %></td>
                   <td><%= link_to '', edit_contact_path(id: contact.id), class: "black glyphicon glyphicon-pencil table-icons" %></td>
-                  <td><%= link_to '', contact, class: "black glyphicon glyphicon-trash table-icons", method: :delete, data: { confirm: t("views.campaigns.campaigns_show.campaigns_invalid.invalid_delete") }%></td>
+                  <td><%= link_to '', contact_path(id: contact.id), class: "black glyphicon glyphicon-trash table-icons", method: :delete, data: { confirm: t("views.campaigns.campaigns_show.campaigns_invalid.invalid_delete") }%></td>
                 </tr>
               <% end %>
             <% end %>
@@ -260,7 +260,7 @@
                   <td><%= contact.name %></td>
                   <td class="status"><%= contact.translated_status %></td>
                   <td><%= link_to '', edit_contact_path(id: contact.id), class: "black glyphicon glyphicon-pencil table-icons" %></td>
-                  <td><%= link_to '', contact_path(id: contact.id, class: "black glyphicon glyphicon-trash table-icons", method: :delete, data: { confirm: t("views.campaigns.campaigns_show.campaigns_not_sent.not_sent_delete") }%></td>
+                  <td><%= link_to '', contact_path(id: contact.id), class: "black glyphicon glyphicon-trash table-icons", method: :delete, data: { confirm: t("views.campaigns.campaigns_show.campaigns_not_sent.not_sent_delete") }%></td>
                 </tr>
               <% end %>
             <% end %>
