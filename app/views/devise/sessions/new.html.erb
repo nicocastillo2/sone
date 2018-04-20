@@ -65,7 +65,7 @@
 
                 <div class="form-group">
                   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-                    <%= link_to t("views.devise.sessions.password_recover"), new_password_path(resource_name), class: "forgot-pass text-pink" %><br /> <br>
+                    <%= link_to t("views.devise.sessions.password_recover"), new_password_path(resource_name), class: "forgot-pass text-pink", rel: "nofollow" %><br /> <br>
                   <% end -%>
                   <%= f.submit t("views.devise.sessions.login_button"), class: 'btn pull-right', id: 'login-button' %>
                 </div>
