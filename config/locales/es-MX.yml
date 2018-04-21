@@ -293,7 +293,7 @@ es-MX:
           greeting: "¡Hola %{name}!" 
           inner_text: "Hemos recibido una solicitud para cambiar tu contraseña. Puedes hacerlo a través del siguiente enlace."
           link: "Enlace:"
-          hyperlynk: "Cambiar mi contraseña"
+          hyperlink: "Cambiar mi contraseña"
           footer_contact1: "Contacto:"
           footer_email: "soporte@sone-app.com" 
           footer_contact2: "Tel.:"
