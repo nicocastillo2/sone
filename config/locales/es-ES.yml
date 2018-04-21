@@ -428,7 +428,7 @@ es-ES:
           send_button: "Enviar" 
           send_button2: "correos"
           send_confirm: "¿Deseas realizar el envío?"
-          upload_message: "Cargar archivo."
+          upload_message1: "Cargar archivo."
           upload_message2: "Sigue las instrucciones para realizar un envío."
         campaigns_invalid: 
           invalid_title: "Correos inválidos. "
