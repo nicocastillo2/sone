@@ -98,7 +98,7 @@
         <% end %>
         
         <%= link_to t("views.layouts.static_header.link_pricing"), pricing_path(anchor: 'info-planes'), class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
-        <% link_to t("views.layouts.static_header.link_blog"), blog_path ,class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
+        <%= link_to t("views.layouts.static_header.link_blog"), blog_path ,class: 'nav-btn navbar-text show-toggle-menu hidden-md hidden-lg' %>
         <!-- <a class="nav-btn navbar-text show-toggle-menu hidden-md hidden-lg">Precios</a> -->
         <% if user_signed_in? %>
           <%= link_to(campaigns_path, id: 'login', class: "nav-btn margin-right-0 navbar-text navbar-link navbar-right green", "data-turbolinks" => false) do %>
