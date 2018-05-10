@@ -637,7 +637,7 @@ es-MX:
           question_5: "¿Puedo suspender y reactivar mi cuenta?"
           answer_5: "En cualquie momento. Puedes usar nuestros planes los meses que tú decidas. Configura esta y otras opciones dentro de la administración de tu cuenta."
           question_6: "¿Cuáles son las opciones de pago?"
-          answer_6: "Los precios de los planes están expresados en dólares americanos. Nuetro método de pago incluye tarjetas de crédito y débito (Visa, Mastercar y American Express)"
+          answer_6: "Los precios de los planes están expresados en Pesos Mexicanos y Euros. Nuetro método de pago incluye tarjetas de crédito y débito (Visa, Mastercar y American Express)"
   controllers:
     campaigns_controller:
       create_notice: "Campaña creada exitosamente."
