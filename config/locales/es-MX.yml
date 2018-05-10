@@ -620,9 +620,9 @@ es-MX:
           bottom_text_offer4: "Multicampaña"
           cta_offer4: "OBTENER"
         container_ayuda: 
-          ayuda_claim: "¿No encontraste lo que buscabas?"
+          ayuda_claim: "¿Te gustaría obtener más información?"
           ayuda_sub_claim: "Podemos ayudarte"
-          ayuda_cta: "Contacto ventas"
+          ayuda_cta: "Agendar una demo"
         container_faq:
           faq_title: "Preguntas Frecuentes" 
           question_1: "¿Cómo funcionan los planes?"

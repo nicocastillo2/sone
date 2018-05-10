@@ -620,9 +620,9 @@ es-ES:
           bottom_text_offer4: "Multicampaña"
           cta_offer4: "OBTENER"
         container_ayuda: 
-          ayuda_claim: "¿No encontraste lo que buscabas?"
+          ayuda_claim: "¿Te gustaría obtener más información?"
           ayuda_sub_claim: "Podemos ayudarte"
-          ayuda_cta: "Contacto ventas"
+          ayuda_cta: "Agendar una demo"
         container_faq:
           faq_title: "Preguntas Frecuentes" 
           question_1: "¿Cómo funcionan los planes?"
@@ -637,7 +637,7 @@ es-ES:
           question_5: "¿Puedo suspender y reactivar mi cuenta?"
           answer_5: "En cualquie momento. Puedes usar nuestros planes los meses que tú decidas. Configura esta y otras opciones dentro de la administración de tu cuenta."
           question_6: "¿Cuáles son las opciones de pago?"
-          answer_6: "Los precios de los planes están expresados en Pesos Mexianos y Euros. Nuetro método de pago incluye tarjetas de crédito y débito (Visa, Mastercar y American Express)"
+          answer_6: "Los precios de los planes están expresados en Pesos Mexicanos y Euros. Nuetro método de pago incluye tarjetas de crédito y débito (Visa, Mastercar y American Express)"
   controllers:
     campaigns_controller:
       create_notice: "Campaña creada exitosamente."
