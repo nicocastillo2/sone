@@ -277,7 +277,7 @@ es-MX:
         confirm_button: "Cambiar"
       records:
         title: "HISTORIAL DE COMPRAS"
-        message: "No se ha realizado niguna compra"
+        message: "No se ha realizado ninguna compra"
         column1: "Fecha"
         column2: "Plan"
         column3: "Importe"
@@ -662,7 +662,7 @@ es-MX:
       update_notice: "Método de pago actualizado correctamente."
       delete_notice: "Método de pago eliminado correctamente."
     suscriptions_controller: 
-      upgrade_notice: "Se realizó su cambio de suscripción a: #{new_suscription.capitalize}"
+      upgrade_notice: "Se realizó tu cambio de suscripción a: #{new_suscription.capitalize}"
       payment_method_notice: "Tienes que seleccionar un método de pago antes cambiar de plan"
   models:
     contact:
