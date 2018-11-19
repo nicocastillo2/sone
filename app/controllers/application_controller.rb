@@ -7,9 +7,14 @@ class ApplicationController < ActionController::Base
   # http_basic_authenticate_with name: "kheper", password: "1234kh"
   include ApplicationHelper
 
+ 
   # layout :layout_by_resource
   def survey
     render 'campaign_mailer/send_survey'
+  end
+  
+  def after_sign_in_path_for(resource)
+    campaigns_path
   end
   
   protected
