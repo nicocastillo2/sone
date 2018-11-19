@@ -542,7 +542,7 @@ es-ES:
         answered_text2: "La encuesta ha sido contestada."
       expired_survey: 
         expired_survey_text: "¡Lo sentimos!"
-        expired_survey_subtext: "La encuesta ha caducado"
+        expired_survey_subtext: "La encuesta ha caducado."
       new_answer: 
         answer_confirmation: "Has calificado con un %{score}"
         open_answer: "Dinos, por favor, las razones de tu calificación"
