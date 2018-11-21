@@ -445,7 +445,7 @@ footer{
 }
 
 header {
-  background-image: url('hero.png');
+  background-image: image-url("hero.png");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -642,6 +642,7 @@ header {
   margin: 0 auto;
   margin-top: 10px;
 }
+
 
 // Ask / Improve section
 .ask-improve-section {
