@@ -196,6 +196,8 @@ p {
   -moz-box-shadow: 2px 6px 25px 1px rgba(0,0,0,0.75);
   box-shadow: 2px 6px 25px 1px rgba(0,0,0,0.75);
 }
+
+
 /* Unsuscribe */
 .back-image{
   /*background-image: image-url("folder-8.png")!important;*/
@@ -443,7 +445,7 @@ footer{
 }
 
 header {
-  background-image: url("hero.png") !important;
+  background-image: url('hero.png');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -582,12 +584,13 @@ header {
 }
 
 // End Easy / Fast section
+
 .margin-0{
   margin: 0!important;
 }
 
 header {
-  background-image: url("hero.png");
+  background-image: image-url("hero.png");
   background-size: cover;
   background-position: center;
   height: 100vh;
