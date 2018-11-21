@@ -384,7 +384,7 @@ es-ES:
         campaign_name: "Nombre de la campaña"
         sender_name: "Marca o compañía"
         sender_email: "Remitente"
-        email_domain: "sone-app.com"
+        email_domain: "@sone-app.com"
         color_input: "Dale color a tu diseño"
         logo_input: "Sube tu logo"
         preview_subtitle: "Vista previa"
