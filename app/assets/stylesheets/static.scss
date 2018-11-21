@@ -443,7 +443,7 @@ footer{
 }
 
 header {
-  background-image: url("static/hero.png");
+  background-image: url("hero.png") !important;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -587,7 +587,7 @@ header {
 }
 
 header {
-  background-image: url("static/hero.png");
+  background-image: url("hero.png");
   background-size: cover;
   background-position: center;
   height: 100vh;
