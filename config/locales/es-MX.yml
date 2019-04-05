@@ -546,7 +546,7 @@ es-MX:
       new_answer: 
         answer_confirmation: "Has calificado con un %{score}"
         open_answer: "Dinos, por favor, las razones de tu calificación"
-        confirm_answer_button: "Enviar respuesta"
+        confirm_answer: "Enviar respuesta"
         error: " %{errors} prohibieron esta respuesta de ser guardada:"
         close_button: "Cerrar"
     static:
