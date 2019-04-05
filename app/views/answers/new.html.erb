@@ -7,7 +7,7 @@
     <h2 class="pink text-center" style="padding-top: 2%;"><%= t("views.answers.new_answer.answer_confirmation", score: @score) %></h2>
     <h2 class="text-gray text-center"><%= t("views.answers.new_answer.open_answer") %></h3>
       <br>
-      <%= form_for(@answer, url: edit_answer_path(@answer.id), html: { method: "patch", class: " form-pink", role: "form" }) do |f| %>
+      <%= form_for(@answer, url: edit_answer_path(locale: @lang, id: @answer.id), html: { method: "patch", class: " form-pink", role: "form" }) do |f| %>
       <% if @answer.errors.any? %>
       <div class="alert alert-danger alert-dismissable" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><%= t("views.answers.new_answer.close_button") %></span></button>
