@@ -525,7 +525,7 @@ es-ES:
         copyright: "Copyright © 2017 SONE. Todos los derechos reservados."
     blacklist:
       blacklist_title: "BLACKLIST."
-      blacklist_none: "Ninguno de tus contactos de ha dado de baja"
+      blacklist_none: "Ninguno de tus contactos se ha dado de baja"
       blacklist_table_header_1: "Nombre de campaña"
       blacklist_table_header_2: "Correo electrónico"
       blacklist_table_header_3: "Fecha de baja"
@@ -554,30 +554,30 @@ es-ES:
       #politics:
       homepage:
         container_call_to_action: 
-          cta_main_title: "Captura la voz de tus clientes"
-          cta_sub_title: "Transforma la experiencia de cliente en la estrategia de crecimiento para tu negocio."
-          cta_button: "Comienza gratis" 
-          cta_bottom_text1: "250 clientes / 30 días"
+          cta_main_title: "¿Pides feedback a tus clientes?"
+          cta_sub_title: "La plataforma gratuita para enviar encuestas y medir la experiencia del cliente"
+          cta_button: "Regístrate aquí" 
+          cta_bottom_text1: "100 envíos gratis al mes"
           cta_bottom_text2: "Sin tarjeta de crédito"
         container_ask_improve: 
-          ask_improve_claim_1: "Pregunta"
-          ask_improve_sub_claim_1: "Crea una base de clientes, mándales nuestra sencilla encuesta y obtén resultados inmediatos."
-          ask_improve_claim_2: "Mejora"
-          ask_improve_sub_claim_2: "Adapta tu modelo de negocio a las necesidades reales de tus clientes. SONE Dashboard facilita el diagnóstico."
+          ask_improve_claim_1: "PREGUNTA"
+          ask_improve_sub_claim_1: "Crea listas de contactos, mándales una sencilla - pero poderosa - encuesta y obtén resultados inmediatos."
+          ask_improve_claim_2: "MEJORA"
+          ask_improve_sub_claim_2: "Usa nuestro SONE DASHBOARD para actuar con base en las necesidades reales de tus clientes."
         container_beneficios: 
-          beneficios_title: "Atributos destacables de SONE"
+          beneficios_title: "Conoce el potencial SONE"
           beneficio_1: "ESCALABLE"
           claim_beneficio_1: "Planes diseñados para cualquier tipo y tamaño de empresa."
           beneficio_2: "RESPONSIVO"
-          claim_beneficio_2: "Se adapta a distintos dispositivo móviles y funciona con los sistemas operativos más comunes."
+          claim_beneficio_2: "Se adapta a cualquier dispositivo y funciona con los sistemas operativos más comunes."
           beneficio_3: "SOPORTE"
           claim_beneficio_3: "Asistencia en línea vía chat. No dudes en escribirnos."
           beneficio_4: "CONFIABLE"
           claim_beneficio_4: "Certificado SSL para brindar seguridad a los datos ingresados."
         container_fast_easy:
-          fast_easy_title: "Incorpora de forma práctica y sencilla la metodología Net Promoter Score®"
-          fast_easy_claim: "La plataforma SONE brinda la posibilidad de descubrir áreas de oportunidad que contribuyan al crecimiento inmediato y a la reducción de la tasa de abandono de clientes. Para utilizar SONE no se requiere conocimiento técnico o especializado."
-          fast_easy_button: "Comienza gratis"
+          fast_easy_title: "Fácil y rápido"
+          fast_easy_claim: "Tu propio programa de voz del cliente sin necesidad de conocimiento técnico. Adopta al instante la metodología Net Promoter Score® y utiliza nuestro dashboard para interpretar los resultados"
+          fast_easy_button: "Resgístrate aquí"
         container_clients_opinion: 
           clients_opinion_title: "Nuestros clientes opinan"
           clients_opinion_statement_1: "SONE es la herramienta ideal para conocer más a nuestros clientes y diseñar contenidos que se adapten a sus gustos. Además es muy fácil de usar."
