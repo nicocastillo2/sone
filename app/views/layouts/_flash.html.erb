@@ -1,6 +1,0 @@
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, class: "alert alert-#{name == "notice" ? "info" : name} alert-dismissable", role: "alert" do %>
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><%= t("views.layouts.flash.close_button") %></span></button>
-        <%= msg %>
-  <% end %>
-<% end %>
